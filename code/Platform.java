@@ -14,12 +14,12 @@ class Platform
 {
 	RectangleShape plat;
 	
-	public Platform()
+	public Platform(int xSize, int ySize, int xPosition, int yPosition)
 	{
 		// create a rectangle shape
-		plat = new RectangleShape(new Vector2f(1024, 20));
+		plat = new RectangleShape(new Vector2f(xSize, ySize));
 		plat.setFillColor(Color.GREEN);
-		plat.setPosition(0,740);
+		plat.setPosition(xPosition,yPosition);
 	}
 	
 	public RectangleShape getPlatform()

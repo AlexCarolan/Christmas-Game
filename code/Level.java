@@ -30,11 +30,13 @@ class Level
 
 		// create all objects
 		Player player = new Player();
-		Platform platform = new Platform();
+		Platform[] platform = new Platform[2];
 		CircleShape circle = new CircleShape(2);
 		circle.setFillColor(Color.CYAN);
 		circle.setPosition(512,player.getYBottomPosition());
 
+		platform[0] = new Platform(1024,20,0,740);
+		platform[1] = new Platform(200,5,300,200);
 
 
 		while (window.isOpen()) 
@@ -44,7 +46,8 @@ class Level
 
 
 			// for all objects
-			window.draw(platform.getPlatform());
+			for (int i = 0; i < platform.length; i++)
+				window.draw(platform[i].getPlatform());
 			window.draw(player.getSprite());
 			window.draw(circle);
 
@@ -60,11 +63,17 @@ class Level
 					case KEY_PRESSED:
 						KeyEvent keyEvent = event.asKeyEvent();
 						if ((keyEvent.key == Keyboard.Key.LEFT) || (keyEvent.key == Keyboard.Key.A))
-							platform.move(2,0);
+						{
+							for (int i = 0; i < platform.length; i++)
+								platform[i].move(2,0);
 							//sprite.move(-2,0);
+						}
 						else if ((keyEvent.key == Keyboard.Key.RIGHT) || (keyEvent.key == Keyboard.Key.D))
-							platform.move(-2,0);
+						{
+							for (int i = 0; i < platform.length; i++)
+								platform[i].move(-2,0);
 							//sprite.move(2,0);
+						}
 						else if ((keyEvent.key == Keyboard.Key.UP) || (keyEvent.key == Keyboard.Key.W))
 							player.move(0,-2);
 						else if ((keyEvent.key == Keyboard.Key.DOWN) || (keyEvent.key == Keyboard.Key.S))
