@@ -32,9 +32,10 @@ class Player
 
 		sprite = new Sprite(texture);
 
-		// set its origin to its centre and put it on the screen
+		// put it on the screen
+		// TODO set the yPosition to be on the lowest platform - probably need to pass this as a parameter
 		sprite.setOrigin(0,0);
-		sprite.setPosition(512-(size.x/2), 384);
+		sprite.setPosition(Utils.PlayerXPosition-(size.x/2), 500);
 		System.out.println("Y position of Sprite: " + this.getYBottomPosition());
 	}
 
