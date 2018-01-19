@@ -117,11 +117,11 @@ class Player
 	public boolean standingOn(int itemXPosition, int itemYPosition, int itemWidth, int itemHeight)
 	{
 		position = sprite.getPosition();
-		// if left of sprite is beyond right of item, then not touching
-		if (Math.round(position.x) > (itemXPosition + itemWidth))
+		// if 60% of sprite is beyond right of item, then not standing on item
+		if (Math.round(position.x + (size.x*0.4)) > (itemXPosition + itemWidth))
 			return false;
-		// if right of sprite is before left of item, then not touching
-		if (Math.round(position.x + size.x) < itemXPosition)
+		// if 60% of sprite is before left of item, then not standing on item
+		if (Math.round(position.x + (size.x*0.6)) < itemXPosition)
 			return false;
 		// if bottom of sprite is below bottom of item, then not standing on item
 		if (Math.round(position.y + size.y) > (itemYPosition + itemHeight))
