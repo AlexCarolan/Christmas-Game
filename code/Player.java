@@ -162,4 +162,13 @@ class Player
 		// if sprite is outside vertical range of platform, then not touching
 		return(Utils.inVerticalRange(Math.round(position.y), Math.round(position.y + size.y), itemYPosition, itemYPosition + itemHeight));
 	}
+	
+	/**
+	 * touchingLeft - sets a new texture for the sprite
+	 * @param texture - the new texture for the sprite
+	 */
+	public void setSprite(Texture texture)
+	{
+		sprite.setTexture(texture);
+	}
 }	

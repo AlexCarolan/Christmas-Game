@@ -34,6 +34,10 @@ class Level
 		CircleShape circle = new CircleShape(2);
 		circle.setFillColor(Color.CYAN);
 		circle.setPosition(Utils.PlatformGameWidth/2,player.getYBottomPosition());
+		
+		//Create and start animations
+		Animation idle = new Animation(player, "Sprites\\Idle\\Santa_Elf_Idle");
+		idle.start();
 
 		int numPlatforms = Utils.PlatformPositions.length;
 		System.out.println("Number of platforms: " + numPlatforms);
