@@ -70,27 +70,39 @@ class Level
 						KeyEvent keyEvent = event.asKeyEvent();
 						if ((keyEvent.key == Keyboard.Key.LEFT) || (keyEvent.key == Keyboard.Key.A))
 						{
+							// TODO check that player is not trying to run into an obstacle
 							// if the player wants to go left, move everything else right
-							for (int i = 0; i < platform.length; i++)
-								platform[i].move(2,0);
+							for (int i = 0; i < numPlatforms; i++)
+								platform[i].move(Utils.MoveAmountX,0);
 						}
 						else if ((keyEvent.key == Keyboard.Key.RIGHT) || (keyEvent.key == Keyboard.Key.D))
 						{
+							// TODO check that player is not trying to run into an obstacle
 							// if the player wants to go right, move everything else left
-							for (int i = 0; i < platform.length; i++)
-								platform[i].move(-2,0);
+							for (int i = 0; i < numPlatforms; i++)
+								platform[i].move(0-Utils.MoveAmountX,0);
 						}
 						else if ((keyEvent.key == Keyboard.Key.UP) || (keyEvent.key == Keyboard.Key.W))
 						{
 							// Test that we can move the player up
-							player.move(0,-2);
+							player.move(0,0-Utils.MoveAmountY);
 						}
 						else if ((keyEvent.key == Keyboard.Key.DOWN) || (keyEvent.key == Keyboard.Key.S))
 						{
 							// Test that we can move the player down
-							player.move(0,2);
+							player.move(0,Utils.MoveAmountY);
 						}
 						break;
+				}
+			}
+			// if bottom of player sprite within a platform, then stand on platform
+			for (int i = 0; i < numPlatforms; i++)
+			{
+				if (player.standingOn(platform[i].getXPosition(),platform[i].getYPosition(),platform[i].getXSize(),platform[i].getYSize()))
+				{
+					System.out.println("Player is standing on platform " + i);
+					// TODO move yPosition of player to vertical centre of platform[i]
+					break;
 				}
 			}
 

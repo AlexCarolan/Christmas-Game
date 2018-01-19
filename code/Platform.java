@@ -13,17 +13,17 @@ class Platform
 	
 	/**
 	 * Platform constructor - creates a platform (for the sprite to stand on)
-	 * @param xSize - the width of the platform
-	 * @param ySize - the height of the platform
+	 * @param width - the width of the platform
+	 * @param height - the height of the platform
 	 * @param xPosition - the left hand side of the platform
 	 * @param yPosition - the top of the platform
 	 */
-	public Platform(int xSize, int ySize, int xPosition, int yPosition)
+	public Platform(int width, int height, int xPosition, int yPosition)
 	{
 		// create a rectangle shape
-		plat = new RectangleShape(new Vector2f(xSize, ySize));
+		plat = new RectangleShape(new Vector2f(width, height));
 		plat.setFillColor(Color.GREEN);
-		plat.setPosition(xPosition,yPosition);
+		plat.setPosition(xPosition, yPosition);
 	}
 	
 	/**
@@ -35,6 +35,42 @@ class Platform
 		return plat;
 	}
 	
+	/**
+	 * getXPosition - returns the xPosition for this platform
+	 * @return int, the xPosition of this platform
+	 */
+	public int getXPosition()
+	{
+		return Math.round(plat.getPosition().x);
+	}
+	
+	/**
+	 * getYPosition - returns the yPosition for this platform
+	 * @return int, the yPosition of this platform
+	 */
+	public int getYPosition()
+	{
+		return Math.round(plat.getPosition().y);
+	}
+	
+	/**
+	 * getXSize - returns the xSize for this platform
+	 * @return int, the xSize of this platform
+	 */
+	public int getXSize()
+	{
+		return Math.round(plat.getSize().x);
+	}
+	
+	/**
+	 * getYSize - returns the ySize for this platform
+	 * @return int, the ySize of this platform
+	 */
+	public int getYSize()
+	{
+		return Math.round(plat.getSize().y);
+	}
+
 	/**
 	 * move - moves the platform by the specified amount
 	 * @param xInc - the increment to move on the x-axis
