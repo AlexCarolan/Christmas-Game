@@ -36,7 +36,7 @@ class Level
 		circle.setPosition(Utils.PlatformGameWidth/2,player.getYBottomPosition());
 		
 		//Create and start animations
-		Animation idle = new Animation(player, "Sprites\\Idle\\Santa_Elf_Idle");
+		Animation idle = new Animation(player, Utils.idlePath);
 		idle.start();
 
 		int numPlatforms = Utils.PlatformPositions.length;

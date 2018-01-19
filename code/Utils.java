@@ -12,6 +12,10 @@ public class Utils
 	public static final int MoveAmountY = 4;
 	public static final int JumpAmount = 40;
 	public static final int Gravity = 2;
+	
+	//File paths for sprites
+	public static final String idlePath = "Sprites\\Idle\\Santa_Elf_Idle";
+	public static final String runningPath = "Sprites\\Running\\Santa_Elf_Running";
 
 	// define width, height, xPosition, yPosition for all the platforms for each level
 	// to access this array, first index is platform, second index is width, height, xPosition, yPosition of that platform
