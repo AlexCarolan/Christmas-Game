@@ -1,3 +1,6 @@
+/**
+ * This class manages the display and movement of the player sprite
+ */
 import java.nio.file.*;
 import java.io.*;
 
