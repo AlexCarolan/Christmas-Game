@@ -92,6 +92,11 @@ class Level
 							// TODO Test that we can move the player down
 							player.move(0,Utils.MoveAmountY);
 						}
+						else if (keyEvent.key == Keyboard.Key.SPACE)
+						{
+							// TODO Test that we can move the player up
+							player.move(0,0-Utils.JumpAmount);
+						}
 						break;
 				}
 			}
