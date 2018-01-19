@@ -10,6 +10,7 @@ public class Utils
 
 	public static final int MoveAmountX = 5;
 	public static final int MoveAmountY = 4;
+	public static final int Gravity = 2;
 
 	// define width, height, xPosition, yPosition for all the platforms for each level
 	// to access this array, first index is platform, second index is width, height, xPosition, yPosition of that platform
