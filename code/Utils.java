@@ -26,4 +26,43 @@ public class Utils
 	// define size of window for puzzle games
 	public static final int PuzzleGameWidth = 1000;
 	public static final int PuzzleGameHeight = 700;
+
+
+	/**
+	 * inVerticalRange - returns true if item1 is vertically within item2
+	 * @param item1Top - y position of top edge of item1
+	 * @param item1Bottom - y position of bottom edge of item1
+	 * @param item2Top - y position of top edge of item2
+	 * @param item2Bottom - y position of bottom edge of item2
+	 * @return boolean - returns true if item1 horizontally touching item2
+	 */
+	public static boolean inVerticalRange(long item1Top, long item1Bottom, long item2Top, long item2Bottom)
+	{
+		// if top of item1 is below bottom of item2, then not touching
+		if (item1Top > item2Bottom)
+			return false;
+		// if bottom of item1 is above top of item2, then not touching
+		if (item1Bottom < item2Top)
+			return false;
+		return true;
+	}
+
+	/**
+	 * inHorizontalRange - returns true if item1 is horizontally within item2
+	 * @param item1Left - x position of left edge of item1
+	 * @param item1Right - x position of right edge of item1
+	 * @param item2Left - x position of left edge of item2
+	 * @param item2Right - x position of right edge of item2
+	 * @return boolean - returns true if item1 horizontally touching item2
+	 */
+	public static boolean inHorizontalRange(long item1Left, long item1Right, long item2Left, long item2Right)
+	{
+		// if left edge of item1 is beyond right edge of item2, then not touching
+		if (item1Left > item2Right)
+			return false;
+		// if right edge of item2 is before left edge of item1, then not touching
+		if (item1Right < item2Left)
+			return false;
+		return true;
+	}
 }

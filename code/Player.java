@@ -71,16 +71,6 @@ class Player
 	}
 	
 	/**
-	 * getXPosition - returns the xPosition of the middle of the player sprite
-	 * (behaviour is the same on left or right edge)
-	 * @return int - the xPosition of the player
-	 */
-	public int getXPosition()
-	{
-		return Math.round(sprite.getPosition().x + size.x/2);
-	}
-	
-	/**
 	 * touching - returns true if any part of the player is vertically touching the specified position
 	 * @param itemXPosition - x position of (left edge of) item
 	 * @param itemYPosition - y position of (top edge of) item
@@ -91,19 +81,11 @@ class Player
 	public boolean touching(int itemXPosition, int itemYPosition, int itemWidth, int itemHeight)
 	{
 		position = sprite.getPosition();
-		// if left of sprite is beyond right of item, then not touching
-		if (Math.round(position.x) > (itemXPosition + itemWidth))
+		// if sprite is outside horizontal range of platform, then not touching
+		if (!Utils.inHorizontalRange(Math.round(position.x), Math.round(position.x + size.x), itemXPosition, itemXPosition + itemWidth))
 			return false;
-		// if right of sprite is before left of item, then not touching
-		if (Math.round(position.x + size.x) < itemXPosition)
-			return false;
-		// if top of sprite is below bottom of item, then not touching
-		if (Math.round(position.y) > (itemYPosition + itemHeight))
-			return false;
-		// if bottom of sprite is above top of item, then not touching
-		if (Math.round(position.y + size.y) < itemYPosition)
-			return false;
-		return true;
+		// if sprite is outside vertical range of platform, then not touching
+		return(Utils.inVerticalRange(Math.round(position.y), Math.round(position.y + size.y), itemYPosition, itemYPosition + itemHeight));
 	}
 	
 	/**
@@ -117,18 +99,67 @@ class Player
 	public boolean standingOn(int itemXPosition, int itemYPosition, int itemWidth, int itemHeight)
 	{
 		position = sprite.getPosition();
-		// if 60% of sprite is beyond right of item, then not standing on item
-		if (Math.round(position.x + (size.x*0.4)) > (itemXPosition + itemWidth))
+		// if 60% of sprite is outside horizontal range of platform, then not standing on it
+		if (!Utils.inHorizontalRange(Math.round(position.x + (size.x*0.4)), Math.round(position.x + (size.x*0.6)), itemXPosition, itemXPosition + itemWidth))
 			return false;
-		// if 60% of sprite is before left of item, then not standing on item
-		if (Math.round(position.x + (size.x*0.6)) < itemXPosition)
+		// if bottom of sprite is outside range of platform, then not standing on platform
+		int yPos = Math.round(position.y + size.y);
+		return(Utils.inVerticalRange(yPos, yPos, itemYPosition, itemYPosition + itemHeight));
+	}
+
+	/**
+	 * touchingAbove - returns true if the top of the player is touching the specified position
+	 * @param itemXPosition - x position of (left edge of) item
+	 * @param itemYPosition - y position of (top edge of) item
+	 * @param itemWidth - width of item
+	 * @param itemHeight - height of item
+	 * @return boolean - returns true if top of player touching item
+	 */
+	public boolean touchingAbove(int itemXPosition, int itemYPosition, int itemWidth, int itemHeight)
+	{
+		position = sprite.getPosition();
+		// if 60% of sprite is outside horizontal range of platform, then not touching
+		if (!Utils.inHorizontalRange(Math.round(position.x + (size.x*0.4)), Math.round(position.x + (size.x*0.6)), itemXPosition, itemXPosition + itemWidth))
 			return false;
-		// if bottom of sprite is below bottom of item, then not standing on item
-		if (Math.round(position.y + size.y) > (itemYPosition + itemHeight))
+		int yPos = Math.round(position.y);
+		return(Utils.inVerticalRange(yPos, yPos, itemYPosition, itemYPosition + itemHeight));
+	}
+	
+	/**
+	 * touchingLeft - returns true if left edge of player is touching the specified position
+	 * @param itemXPosition - x position of (left edge of) item
+	 * @param itemYPosition - y position of (top edge of) item
+	 * @param itemWidth - width of item
+	 * @param itemHeight - height of item
+	 * @return boolean - returns true if left edge of player touching item
+	 */
+	public boolean touchingLeft(int itemXPosition, int itemYPosition, int itemWidth, int itemHeight)
+	{
+		position = sprite.getPosition();
+		// if left edge of sprite is outside horizontal range of platform, then not touching
+		int xPos = Math.round(position.x);
+		if (!Utils.inHorizontalRange(xPos, xPos, itemXPosition, itemXPosition + itemWidth))
 			return false;
-		// if bottom of sprite is above top of item, then not touching
-		if (Math.round(position.y + size.y) < itemYPosition)
+		// if sprite is outside vertical range of platform, then not touching
+		return(Utils.inVerticalRange(Math.round(position.y), Math.round(position.y + size.y), itemYPosition, itemYPosition + itemHeight));
+	}
+	
+	/**
+	 * touchingRight - returns true if right edge of player is touching the specified position
+	 * @param itemXPosition - x position of (left edge of) item
+	 * @param itemYPosition - y position of (top edge of) item
+	 * @param itemWidth - width of item
+	 * @param itemHeight - height of item
+	 * @return boolean - returns true if right edge of player touching item
+	 */
+	public boolean touchingRight(int itemXPosition, int itemYPosition, int itemWidth, int itemHeight)
+	{
+		position = sprite.getPosition();
+		// if right edge of sprite outside horizontal range of platform, then not touching
+		int xPos = Math.round(position.x + size.x);
+		if (!Utils.inHorizontalRange(xPos, xPos, itemXPosition, itemXPosition + itemWidth))
 			return false;
-		return true;
+		// if sprite is outside vertical range of platform, then not touching
+		return(Utils.inVerticalRange(Math.round(position.y), Math.round(position.y + size.y), itemYPosition, itemYPosition + itemHeight));
 	}
 }	

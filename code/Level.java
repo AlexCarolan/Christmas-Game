@@ -70,22 +70,49 @@ class Level
 						KeyEvent keyEvent = event.asKeyEvent();
 						if ((keyEvent.key == Keyboard.Key.LEFT) || (keyEvent.key == Keyboard.Key.A))
 						{
-							// TODO check that player is not trying to run into an obstacle
-							// if the player wants to go left, move everything else right
+							// check that player is not trying to run into an obstacle
+							boolean touching = false;
 							for (int i = 0; i < numPlatforms; i++)
-								platform[i].move(Utils.MoveAmountX,0);
+								if (player.touchingLeft(platform[i].getXPosition(),platform[i].getYPosition(),
+										platform[i].getXSize(),platform[i].getYSize()))
+								{
+									touching = true;
+									break;
+								}
+							if (!touching)
+								// if the player wants to go left, move everything else right
+								for (int i = 0; i < numPlatforms; i++)
+									platform[i].move(Utils.MoveAmountX,0);
 						}
 						else if ((keyEvent.key == Keyboard.Key.RIGHT) || (keyEvent.key == Keyboard.Key.D))
 						{
-							// TODO check that player is not trying to run into an obstacle
-							// if the player wants to go right, move everything else left
+							// check that player is not trying to run into an obstacle
+							boolean touching = false;
 							for (int i = 0; i < numPlatforms; i++)
-								platform[i].move(0-Utils.MoveAmountX,0);
+								if (player.touchingRight(platform[i].getXPosition(),platform[i].getYPosition(),
+										platform[i].getXSize(),platform[i].getYSize()))
+								{
+									touching = true;
+									break;
+								}
+							if (!touching)
+							// if the player wants to go right, move everything else left
+								for (int i = 0; i < numPlatforms; i++)
+									platform[i].move(0-Utils.MoveAmountX,0);
 						}
 						else if ((keyEvent.key == Keyboard.Key.UP) || (keyEvent.key == Keyboard.Key.W))
 						{
-							// TODO Test that we can move the player up
-							player.move(0,0-Utils.MoveAmountY);
+							// check that player is not trying to run into an obstacle
+							boolean touching = false;
+							for (int i = 0; i < numPlatforms; i++)
+								if (player.touchingAbove(platform[i].getXPosition(),platform[i].getYPosition()-Utils.MoveAmountY/2,
+										platform[i].getXSize(),platform[i].getYSize()+Utils.MoveAmountY))
+								{
+									touching = true;
+									break;
+								}
+							if (!touching)
+								player.move(0,0-Utils.MoveAmountY);
 						}
 						else if ((keyEvent.key == Keyboard.Key.DOWN) || (keyEvent.key == Keyboard.Key.S))
 						{
