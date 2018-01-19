@@ -30,7 +30,7 @@ class Player
 			size = texture.getSize();
 		} catch(IOException ex) {
 			//ex.printStackTrace();
-			System.out.println("Unable to open texture file");
+			System.out.println("Unable to open image file");
 		}
 
 		sprite = new Sprite(texture);
@@ -67,19 +67,68 @@ class Player
 	 */
 	public int getYBottomPosition()
 	{
-		position = sprite.getPosition();
-		return Math.round(position.y + size.y);
+		return Math.round(sprite.getPosition().y + size.y);
+	}
+	
+	/**
+	 * getXPosition - returns the xPosition of the middle of the player sprite
+	 * (behaviour is the same on left or right edge)
+	 * @return int - the xPosition of the player
+	 */
+	public int getXPosition()
+	{
+		return Math.round(sprite.getPosition().x + size.x/2);
 	}
 	
 	/**
 	 * touching - returns true if any part of the player is vertically touching the specified position
-	 * @return boolean - returns true if touching
+	 * @param itemXPosition - x position of (left edge of) item
+	 * @param itemYPosition - y position of (top edge of) item
+	 * @param itemWidth - width of item
+	 * @param itemHeight - height of item
+	 * @return boolean - returns true if player vertically touching item
 	 */
-	public boolean touching(int y)
+	public boolean touching(int itemXPosition, int itemYPosition, int itemWidth, int itemHeight)
 	{
-		//if player yposition + player height >= yInc
-		//  
-		
-		return false;
+		position = sprite.getPosition();
+		// if left of sprite is beyond right of item, then not touching
+		if (Math.round(position.x) > (itemXPosition + itemWidth))
+			return false;
+		// if right of sprite is before left of item, then not touching
+		if (Math.round(position.x + size.x) < itemXPosition)
+			return false;
+		// if top of sprite is below bottom of item, then not touching
+		if (Math.round(position.y) > (itemYPosition + itemHeight))
+			return false;
+		// if bottom of sprite is above top of item, then not touching
+		if (Math.round(position.y + size.y) < itemYPosition)
+			return false;
+		return true;
+	}
+	
+	/**
+	 * standingOn - returns true if bottom edge of player is touching the specified position
+	 * @param itemXPosition - x position of (left edge of) item
+	 * @param itemYPosition - y position of (top edge of) item
+	 * @param itemWidth - width of item
+	 * @param itemHeight - height of item
+	 * @return boolean - returns true if bottom of player touching item
+	 */
+	public boolean standingOn(int itemXPosition, int itemYPosition, int itemWidth, int itemHeight)
+	{
+		position = sprite.getPosition();
+		// if left of sprite is beyond right of item, then not touching
+		if (Math.round(position.x) > (itemXPosition + itemWidth))
+			return false;
+		// if right of sprite is before left of item, then not touching
+		if (Math.round(position.x + size.x) < itemXPosition)
+			return false;
+		// if bottom of sprite is below bottom of item, then not standing on item
+		if (Math.round(position.y + size.y) > (itemYPosition + itemHeight))
+			return false;
+		// if bottom of sprite is above top of item, then not touching
+		if (Math.round(position.y + size.y) < itemYPosition)
+			return false;
+		return true;
 	}
 }	
