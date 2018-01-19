@@ -8,11 +8,17 @@ public class Utils
 	public static final int PlatformGameHeight = 768;
 	public static final int PlayerXPosition = PlatformGameWidth/2;
 
+	public static final int MoveAmountX = 5;
+	public static final int MoveAmountY = 4;
+
 	// define width, height, xPosition, yPosition for all the platforms for each level
-	// to access this array, first index is platform, third index is width, height, xPosition, yPosition
+	// to access this array, first index is platform, second index is width, height, xPosition, yPosition of that platform
 	public static final int PlatformPositions[][] = {	// gameLevel 1
 														{PlatformGameWidth,20,0,PlatformGameHeight - 20},
-														{150,5,300,600}
+														{150,5,300,600},
+														{80,5,100,700},
+														{100,5,500,500},
+														{2,PlatformGameHeight,0,0}
 													};
 
 	// define size of window for puzzle games
