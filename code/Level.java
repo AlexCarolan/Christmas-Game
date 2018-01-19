@@ -1,3 +1,6 @@
+/**
+ * This class plays the platform game for the current level
+ */
 import java.lang.*;
 import java.nio.file.*;
 import java.io.*;
@@ -28,13 +31,15 @@ class Level
 
 		// create all objects
 		Player player = new Player();
-		Platform[] platform = new Platform[2];
 		CircleShape circle = new CircleShape(2);
 		circle.setFillColor(Color.CYAN);
 		circle.setPosition(Utils.PlatformGameWidth/2,player.getYBottomPosition());
 
-		platform[0] = new Platform(Utils.PlatformPositions[0][0],Utils.PlatformPositions[0][1],Utils.PlatformPositions[0][2],Utils.PlatformPositions[0][3]);
-		platform[1] = new Platform(Utils.PlatformPositions[1][0],Utils.PlatformPositions[1][1],Utils.PlatformPositions[1][2],Utils.PlatformPositions[1][3]);
+		int numPlatforms = Utils.PlatformPositions.length;
+		System.out.println("Number of platforms: " + numPlatforms);
+		Platform[] platform = new Platform[numPlatforms];
+		for (int i = 0; i < numPlatforms; i++)
+			platform[i] = new Platform(Utils.PlatformPositions[i][0],Utils.PlatformPositions[i][1],Utils.PlatformPositions[i][2],Utils.PlatformPositions[i][3]);
 
 		CircleShape circCentre = new CircleShape(2);
 		circCentre.setFillColor(Color.YELLOW);
@@ -46,7 +51,7 @@ class Level
 			window.clear(Color.BLACK);
 
 			// add all objects onto the window
-			for (int i = 0; i < platform.length; i++)
+			for (int i = 0; i < numPlatforms; i++)
 				window.draw(platform[i].getPlatform());
 			window.draw(player.getSprite());
 			window.draw(circle);
@@ -94,11 +99,5 @@ class Level
 			// display what was drawn on the window
 			window.display();
 		}
-	}
-
-	public static void main (String args[ ]) 
-	{
-		Level l = new Level( );
-		l.run( );
 	}
 }	
