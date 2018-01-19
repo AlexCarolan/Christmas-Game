@@ -1,3 +1,6 @@
+/**
+ * This class manages the display and movement of each platform that the player can stand on or run under/into
+ */
 import org.jsfml.system.*;
 //import org.jsfml.window.*;
 //import org.jsfml.window.event.*;
