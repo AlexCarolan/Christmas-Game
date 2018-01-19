@@ -84,29 +84,35 @@ class Level
 						}
 						else if ((keyEvent.key == Keyboard.Key.UP) || (keyEvent.key == Keyboard.Key.W))
 						{
-							// Test that we can move the player up
+							// TODO Test that we can move the player up
 							player.move(0,0-Utils.MoveAmountY);
 						}
 						else if ((keyEvent.key == Keyboard.Key.DOWN) || (keyEvent.key == Keyboard.Key.S))
 						{
-							// Test that we can move the player down
+							// TODO Test that we can move the player down
 							player.move(0,Utils.MoveAmountY);
 						}
 						break;
 				}
 			}
 			// if bottom of player sprite within a platform, then stand on platform
+			// (include the distance between vertical moves when doing the check)
+			boolean standing = false;
 			for (int i = 0; i < numPlatforms; i++)
 			{
-				if (player.standingOn(platform[i].getXPosition(),platform[i].getYPosition(),platform[i].getXSize(),platform[i].getYSize()))
+				if (player.standingOn(platform[i].getXPosition(),platform[i].getYPosition()-Utils.MoveAmountY/2,
+										platform[i].getXSize(),platform[i].getYSize()+Utils.MoveAmountY))
 				{
 					System.out.println("Player is standing on platform " + i);
+					standing = true;
 					// TODO move yPosition of player to vertical centre of platform[i]
 					break;
 				}
 			}
 
-			// TODO handle gravity - if the player is not standing on a platform, they're falling
+			// handle gravity - if the player is not standing on a platform, they're falling
+			if (!standing)
+				player.move(0,Utils.Gravity);
 
 			// display what was drawn on the window
 			window.display();
