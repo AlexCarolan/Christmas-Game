@@ -36,7 +36,7 @@ class Level
 		circle.setPosition(Utils.PlatformGameWidth/2,player.getYBottomPosition());
 		
 		//Create and start animations
-		Animation idle = new Animation(player, Utils.idlePath, 4);
+		Animation idle = new Animation(player, Utils.idlePath, 4, 175);
 		idle.start();
 
 		int numPlatforms = Utils.PlatformPositions.length;
