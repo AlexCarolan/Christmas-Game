@@ -9,7 +9,7 @@ import org.jsfml.graphics.*;
 
 class Platform 
 {
-	RectangleShape plat;
+	private RectangleShape plat;
 	
 	/**
 	 * Platform constructor - creates a platform (for the sprite to stand on)

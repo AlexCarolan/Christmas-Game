@@ -12,9 +12,9 @@ import org.jsfml.graphics.*;
 
 class Player
 {
-	Sprite sprite;
-	Vector2i size;
-	Vector2f position;
+	private Sprite sprite;
+	private Vector2i size;
+	private Vector2f position;
 	
 	/**
 	 * Player constructor - creates a player sprite
