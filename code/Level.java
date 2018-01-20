@@ -1,6 +1,3 @@
-/**
- * This class plays the platform game for the current level
- */
 import java.lang.*;
 import java.nio.file.*;
 import java.io.*;
@@ -31,19 +28,13 @@ class Level
 
 		// create all objects
 		Player player = new Player();
+		Platform[] platform = new Platform[2];
 		CircleShape circle = new CircleShape(2);
 		circle.setFillColor(Color.CYAN);
 		circle.setPosition(Utils.PlatformGameWidth/2,player.getYBottomPosition());
-		
-		//Create and start animations
-		Animation idle = new Animation(player, Utils.idlePath, 4, 175);
-		idle.start();
 
-		int numPlatforms = Utils.PlatformPositions.length;
-		System.out.println("Number of platforms: " + numPlatforms);
-		Platform[] platform = new Platform[numPlatforms];
-		for (int i = 0; i < numPlatforms; i++)
-			platform[i] = new Platform(Utils.PlatformPositions[i][0],Utils.PlatformPositions[i][1],Utils.PlatformPositions[i][2],Utils.PlatformPositions[i][3]);
+		platform[0] = new Platform(Utils.PlatformPositions[0][0],Utils.PlatformPositions[0][1],Utils.PlatformPositions[0][2],Utils.PlatformPositions[0][3]);
+		platform[1] = new Platform(Utils.PlatformPositions[1][0],Utils.PlatformPositions[1][1],Utils.PlatformPositions[1][2],Utils.PlatformPositions[1][3]);
 
 		CircleShape circCentre = new CircleShape(2);
 		circCentre.setFillColor(Color.YELLOW);
@@ -55,7 +46,7 @@ class Level
 			window.clear(Color.BLACK);
 
 			// add all objects onto the window
-			for (int i = 0; i < numPlatforms; i++)
+			for (int i = 0; i < platform.length; i++)
 				window.draw(platform[i].getPlatform());
 			window.draw(player.getSprite());
 			window.draw(circle);
@@ -69,80 +60,45 @@ class Level
 				{
 					case CLOSED:
 						window.close();
-						idle.stop();
 						break;
 					case KEY_PRESSED:
 						KeyEvent keyEvent = event.asKeyEvent();
 						if ((keyEvent.key == Keyboard.Key.LEFT) || (keyEvent.key == Keyboard.Key.A))
 						{
-							// check that player is not trying to run into an obstacle
-							boolean touching = false;
-							for (int i = 0; i < numPlatforms; i++)
-								if (player.touchingLeft(platform[i].getXPosition()-Utils.MoveAmountX/2,platform[i].getYPosition(),
-										platform[i].getXSize()+Utils.MoveAmountX,platform[i].getYSize()))
-								{
-									touching = true;
-									break;
-								}
-							if (!touching)
-								// if the player wants to go left, move everything else right
-								for (int i = 0; i < numPlatforms; i++)
-									platform[i].move(Utils.MoveAmountX,0);
+							// if the player wants to go left, move everything else right
+							for (int i = 0; i < platform.length; i++)
+								platform[i].move(2,0);
 						}
 						else if ((keyEvent.key == Keyboard.Key.RIGHT) || (keyEvent.key == Keyboard.Key.D))
 						{
-							// check that player is not trying to run into an obstacle
-							boolean touching = false;
-							for (int i = 0; i < numPlatforms; i++)
-								if (player.touchingRight(platform[i].getXPosition()-Utils.MoveAmountX/2,platform[i].getYPosition(),
-										platform[i].getXSize()+Utils.MoveAmountX,platform[i].getYSize()))
-								{
-									touching = true;
-									break;
-								}
-							if (!touching)
 							// if the player wants to go right, move everything else left
-								for (int i = 0; i < numPlatforms; i++)
-									platform[i].move(0-Utils.MoveAmountX,0);
+							for (int i = 0; i < platform.length; i++)
+								platform[i].move(-2,0);
 						}
 						else if ((keyEvent.key == Keyboard.Key.UP) || (keyEvent.key == Keyboard.Key.W))
 						{
-								player.move(0,0-Utils.JumpAmount);
+							// Test that we can move the player up
+							player.move(0,-2);
 						}
 						else if ((keyEvent.key == Keyboard.Key.DOWN) || (keyEvent.key == Keyboard.Key.S))
 						{
-							// TODO Test that we can move the player down
-							player.move(0,Utils.MoveAmountY);
-						}
-						else if (keyEvent.key == Keyboard.Key.SPACE)
-						{
-							// TODO Test that we can move the player up
-							player.move(0,0-Utils.JumpAmount);
+							// Test that we can move the player down
+							player.move(0,2);
 						}
 						break;
 				}
 			}
-			// if bottom of player sprite within a platform, then stand on platform
-			// (include the distance between vertical moves when doing the check)
-			boolean standing = false;
-			for (int i = 0; i < numPlatforms; i++)
-			{
-				if (player.standingOn(platform[i].getXPosition(),platform[i].getYPosition()-Utils.MoveAmountY/2,
-										platform[i].getXSize(),platform[i].getYSize()+Utils.MoveAmountY))
-				{
-					//System.out.println("Player is standing on platform " + i);
-					standing = true;
-					// TODO move yPosition of player to vertical centre of platform[i]
-					break;
-				}
-			}
 
-			// handle gravity - if the player is not standing on a platform, they're falling
-			if (!standing)
-				player.move(0,Utils.Gravity);
+			// TODO handle gravity - if the player is not standing on a platform, they're falling
 
 			// display what was drawn on the window
 			window.display();
 		}
+	}
+
+	public static void main (String args[ ]) 
+	{
+		Level l = new Level( );
+		l.run( );
 	}
 }	
