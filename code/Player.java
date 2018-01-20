@@ -36,9 +36,8 @@ class Player
 		sprite = new Sprite(texture);
 
 		// put it on the screen
-		// TODO set the yPosition to be on the lowest platform - probably need to pass this as a parameter
 		sprite.setOrigin(0,0);
-		sprite.setPosition(Utils.PlayerXPosition-(size.x/2), 500);
+		resetPosition();
 		System.out.println("Y position of Sprite: " + this.getYBottomPosition());
 	}
 
@@ -50,7 +49,16 @@ class Player
 	{
 		return sprite;
 	}
-		
+
+	/**
+	 * resetSpritePosition - show the sprite at its starting position for the platform game
+	 */
+	public void resetPosition()
+	{
+		// TODO set the yPosition to be on the lowest platform - probably need to pass this as a parameter
+		sprite.setPosition(Utils.PlayerXPosition-(size.x/2), 500);
+	}
+
 	/**
 	 * move - moves the player by the specified amount
 	 * @param xInc - the increment to move on the x-axis
@@ -163,8 +171,22 @@ class Player
 		return(Utils.inVerticalRange(Math.round(position.y), Math.round(position.y + size.y), itemYPosition, itemYPosition + itemHeight));
 	}
 	
+	
 	/**
-	 * touchingLeft - sets a new texture for the sprite
+	 * fallenBelowWindow - returns true if player has fallen off the bottom edge of the window
+	 * @param itemYPosition - y position of bottom edge of window
+	 * @return boolean - returns true if player fallen off bottom edge of window
+	 */
+	public boolean fallenBelowWindow(int bottomOfWindow)
+	{
+		position = sprite.getPosition();
+		// return true if top of sprite is at or below bottom of window
+		int yPos = Math.round(position.y);
+		return(yPos <= bottomOfWindow);
+	}
+
+	/**
+	 * setSprite - sets a new texture for the sprite
 	 * @param texture - the new texture for the sprite
 	 */
 	public void setSprite(Texture texture)
