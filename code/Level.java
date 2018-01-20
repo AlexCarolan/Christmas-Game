@@ -69,6 +69,7 @@ class Level
 				{
 					case CLOSED:
 						window.close();
+						idle.stop();
 						break;
 					case KEY_PRESSED:
 						KeyEvent keyEvent = event.asKeyEvent();
