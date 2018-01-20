@@ -13,7 +13,8 @@ import org.jsfml.graphics.*;
 
 class Level 
 {
-	private static String Title   = "Level";
+	private static String Title   = "Level ";
+	private static int gameLevel = 0;
 
 	/**
 	 * run - handle display and movement of the platform game for this level
@@ -23,7 +24,7 @@ class Level
 		// create the window
 		RenderWindow window = new RenderWindow( );
 		window.create(new VideoMode(Utils.PlatformGameWidth, Utils.PlatformGameHeight),
-					Title,
+					Title + (gameLevel+1),
 					WindowStyle.DEFAULT);
 
 		// limit the framerate
@@ -39,11 +40,13 @@ class Level
 		Animation idle = new Animation(player, Utils.idlePath, 4, 175);
 		idle.start();
 
-		int numPlatforms = Utils.PlatformPositions.length;
+		int numPlatforms = Utils.PlatformPositions[gameLevel].length;
 		System.out.println("Number of platforms: " + numPlatforms);
 		Platform[] platform = new Platform[numPlatforms];
 		for (int i = 0; i < numPlatforms; i++)
-			platform[i] = new Platform(Utils.PlatformPositions[i][0],Utils.PlatformPositions[i][1],Utils.PlatformPositions[i][2],Utils.PlatformPositions[i][3]);
+			platform[i] = new Platform(Utils.PlatformPositions[gameLevel][i][0],Utils.PlatformPositions[gameLevel][i][1],
+										Utils.PlatformPositions[gameLevel][i][2],Utils.PlatformPositions[gameLevel][i][3],
+										Utils.PlatformImages[gameLevel][i]);
 
 		CircleShape circCentre = new CircleShape(2);
 		circCentre.setFillColor(Color.YELLOW);
@@ -146,7 +149,7 @@ class Level
 				{
 					player.resetPosition();
 					for (int i = 0; i < numPlatforms; i++)
-						platform[i].resetPosition(Utils.PlatformPositions[i][2],Utils.PlatformPositions[i][3]);
+						platform[i].resetPosition(Utils.PlatformPositions[gameLevel][i][2],Utils.PlatformPositions[gameLevel][i][3]);
 				}
 			}
 

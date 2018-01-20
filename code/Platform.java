@@ -1,6 +1,9 @@
 /**
  * This class manages the display and movement of each platform that the player can stand on or run under/into
  */
+import java.nio.file.*;
+import java.io.*;
+
 import org.jsfml.system.*;
 //import org.jsfml.window.*;
 //import org.jsfml.window.event.*;
@@ -18,11 +21,21 @@ class Platform
 	 * @param xPosition - the left hand side of the platform
 	 * @param yPosition - the top of the platform
 	 */
-	public Platform(int width, int height, int xPosition, int yPosition)
+	public Platform(int width, int height, int xPosition, int yPosition, String filename)
 	{
 		// create a rectangle shape
 		plat = new RectangleShape(new Vector2f(width, height));
-		plat.setFillColor(Color.GREEN);
+		Texture texture = new Texture();
+		try {
+			// try to load the texture from file
+			texture.loadFromFile(Paths.get(filename));
+		} catch(IOException ex) {
+			System.out.println("Unable to open image file: " + filename);
+		}
+		if (height == Utils.PlatformGameHeight)
+			plat.setFillColor(Color.RED);
+		else
+			plat.setTexture(texture);
 		resetPosition(xPosition, yPosition);
 	}
 	

@@ -18,13 +18,30 @@ public class Utils
 	public static final String runningPath = "Sprites\\Running\\Santa_Elf_Running";
 
 	// define width, height, xPosition, yPosition for all the platforms for each level
-	// to access this array, first index is platform, second index is width, height, xPosition, yPosition of that platform
-	public static final int PlatformPositions[][] = {	// gameLevel 1
-														{PlatformGameWidth,20,0,PlatformGameHeight - 20},
-														{150,5,300,600},
-														{80,5,100,700},
-														{100,5,500,500},
-														{2,PlatformGameHeight,0,0}
+	// to access this array: first index is level, second index is platform, 
+	// third index is width, height, xPosition, yPosition of that platform
+	public static final int PlatformPositions[][][] = {{ // gameLevel 1
+														{PlatformGameWidth,25,0,PlatformGameHeight - 25},	// base
+														{150,30,300,600},
+														{80,25,100,700},
+														{100,35,500,500},
+														{2,PlatformGameHeight,0,0}},						// left hand edge
+														{ // gameLevel 2
+														{PlatformGameWidth,25,0,PlatformGameHeight - 25},	// base
+														{100,25,200,550},
+														{2,PlatformGameHeight,0,0}},						// left hand edge
+													};
+	// define image for each platform on each level, in same order as PlatformPositions array
+	public static final String PlatformImages[][] = {{ // gameLevel 1
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png"},
+														{ // gameLevel 2
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png"},
 													};
 
 	// define size of window for puzzle games
