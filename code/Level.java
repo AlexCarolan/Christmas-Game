@@ -139,7 +139,16 @@ class Level
 
 			// handle gravity - if the player is not standing on a platform, they're falling
 			if (!standing)
+			{
 				player.move(0,Utils.Gravity);
+				// if player has fallen off the bottom of the window, put all the items back to the start
+				if (player.fallenBelowWindow(Utils.PlatformGameHeight))
+				{
+					player.resetPosition();
+					for (int i = 0; i < numPlatforms; i++)
+						platform[i].resetPosition(Utils.PlatformPositions[i][2],Utils.PlatformPositions[i][3]);
+				}
+			}
 
 			// display what was drawn on the window
 			window.display();

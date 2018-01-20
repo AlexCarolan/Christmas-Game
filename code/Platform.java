@@ -23,7 +23,7 @@ class Platform
 		// create a rectangle shape
 		plat = new RectangleShape(new Vector2f(width, height));
 		plat.setFillColor(Color.GREEN);
-		plat.setPosition(xPosition, yPosition);
+		resetPosition(xPosition, yPosition);
 	}
 	
 	/**
@@ -69,6 +69,15 @@ class Platform
 	public int getYSize()
 	{
 		return Math.round(plat.getSize().y);
+	}
+
+	/**
+	 * resetPosition - show the platform at its starting position for the platform game
+	 */
+	public void resetPosition(int xPosition, int yPosition)
+	{
+		// TODO set the yPosition to be on the lowest platform - probably need to pass this as a parameter
+		plat.setPosition(xPosition, yPosition);
 	}
 
 	/**

@@ -51,7 +51,7 @@ class Player
 	}
 
 	/**
-	 * resetSpritePosition - show the sprite at its starting position for the platform game
+	 * resetPosition - show the sprite at its starting position for the platform game
 	 */
 	public void resetPosition()
 	{
@@ -67,6 +67,9 @@ class Player
 	public void move(int xInc, int yInc)
 	{
 		sprite.move(xInc, yInc);
+		position = sprite.getPosition();
+		if (Math.round(position.y) < 0)
+			sprite.setPosition(position.x, 0);
 	}
 	
 	/**
@@ -171,7 +174,6 @@ class Player
 		return(Utils.inVerticalRange(Math.round(position.y), Math.round(position.y + size.y), itemYPosition, itemYPosition + itemHeight));
 	}
 	
-	
 	/**
 	 * fallenBelowWindow - returns true if player has fallen off the bottom edge of the window
 	 * @param itemYPosition - y position of bottom edge of window
@@ -182,7 +184,7 @@ class Player
 		position = sprite.getPosition();
 		// return true if top of sprite is at or below bottom of window
 		int yPos = Math.round(position.y);
-		return(yPos <= bottomOfWindow);
+		return(yPos >= bottomOfWindow);
 	}
 
 	/**
