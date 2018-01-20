@@ -78,8 +78,8 @@ class Level
 							// check that player is not trying to run into an obstacle
 							boolean touching = false;
 							for (int i = 0; i < numPlatforms; i++)
-								if (player.touchingLeft(platform[i].getXPosition(),platform[i].getYPosition(),
-										platform[i].getXSize(),platform[i].getYSize()))
+								if (player.touchingLeft(platform[i].getXPosition()-Utils.MoveAmountX/2,platform[i].getYPosition(),
+										platform[i].getXSize()+Utils.MoveAmountX,platform[i].getYSize()))
 								{
 									touching = true;
 									break;
@@ -94,8 +94,8 @@ class Level
 							// check that player is not trying to run into an obstacle
 							boolean touching = false;
 							for (int i = 0; i < numPlatforms; i++)
-								if (player.touchingRight(platform[i].getXPosition(),platform[i].getYPosition(),
-										platform[i].getXSize(),platform[i].getYSize()))
+								if (player.touchingRight(platform[i].getXPosition()-Utils.MoveAmountX/2,platform[i].getYPosition(),
+										platform[i].getXSize()+Utils.MoveAmountX,platform[i].getYSize()))
 								{
 									touching = true;
 									break;
@@ -130,7 +130,7 @@ class Level
 				if (player.standingOn(platform[i].getXPosition(),platform[i].getYPosition()-Utils.MoveAmountY/2,
 										platform[i].getXSize(),platform[i].getYSize()+Utils.MoveAmountY))
 				{
-					System.out.println("Player is standing on platform " + i);
+					//System.out.println("Player is standing on platform " + i);
 					standing = true;
 					// TODO move yPosition of player to vertical centre of platform[i]
 					break;
