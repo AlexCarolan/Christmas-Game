@@ -55,8 +55,7 @@ class Player
 	 */
 	public void resetPosition()
 	{
-		// TODO set the yPosition to be on the lowest platform - probably need to pass this as a parameter
-		sprite.setPosition(Utils.PlayerXPosition-(size.x/2), 500);
+		sprite.setPosition(Utils.PlayerXPosition-(size.x/2), Utils.PlayerYPosition-size.y);
 	}
 
 	/**

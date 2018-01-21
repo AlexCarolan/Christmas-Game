@@ -7,6 +7,7 @@ public class Utils
 	public static final int PlatformGameWidth = 1024;
 	public static final int PlatformGameHeight = 768;
 	public static final int PlayerXPosition = PlatformGameWidth/2;
+	public static final int PlayerYPosition = PlatformGameHeight - 60;
 
 	public static final int MoveAmountX = 5;
 	public static final int MoveAmountY = 4;
@@ -44,6 +45,25 @@ public class Utils
 														"images\\platform\\grass.png"},
 													};
 
+
+	// define width, height, xPosition, yPosition for the obstables for each level
+	// to access this array: first index is level, second index is obstacle, 
+	// third index is width, height, xPosition, yPosition of that obstacle
+	public static final int ObstaclePositions[][][] = {{ // gameLevel 1
+														{40,40,375,567},
+														{35,35,550,467}},
+														{ // gameLevel 2
+														{40,40,250,520},
+														{35,35,400,PlatformGameHeight - 55}},
+													};
+	// define image for each obstacle on each level, in same order as ObstaclePositions array
+	public static final String ObstacleImages[][] = {{ // gameLevel 1
+														"images\\obstacles\\box.png",
+														"images\\obstacles\\rock.png"},
+														{ // gameLevel 2
+														"images\\obstacles\\box.png",
+														"images\\obstacles\\rock.png"},
+													};
 	// define size of window for puzzle games
 	public static final int PuzzleGameWidth = 1000;
 	public static final int PuzzleGameHeight = 700;
