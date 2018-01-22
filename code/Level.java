@@ -17,6 +17,7 @@ class Level
 	private static String Title   = "Level ";
 	private static int gameLevel = 0;
 	private static int lastNumCollected = 0;
+	private static long lastTimeMoved = 0;
 
 	/**
 	 * run - handle display and movement of the platform game for this level
@@ -40,7 +41,11 @@ class Level
 		
 		//Create and start animations
 		Animation idle = new Animation(player, Utils.IdlePath, 4, 175);
+		Animation running = new Animation(player, Utils.RunningPath, 12, 90);
 		idle.start();
+		idle.setActive(true);
+		running.start();
+		
 
 		int numPlatforms = Utils.PlatformPositions[gameLevel].length;
 		System.out.println("Number of platforms: " + numPlatforms);
@@ -87,6 +92,13 @@ class Level
 			window.draw(player.getSprite());
 			//window.draw(circle);
 			//window.draw(circCentre);
+			
+			// apply idle anumation when still
+			if((System.currentTimeMillis() - lastTimeMoved) > 50)
+			{
+				idle.setActive(true);
+				running.setActive(false);
+			}
 
 			// handle keyboard/mouse events (movement can be via WASD or arrow keys)
 			for (Event event : window.pollEvents()) 
@@ -97,6 +109,7 @@ class Level
 					case CLOSED:
 						window.close();
 						idle.stop();
+						running.stop();
 						break;
 					case KEY_PRESSED:
 						KeyEvent keyEvent = event.asKeyEvent();
@@ -134,6 +147,11 @@ class Level
 						}
 						else if ((keyEvent.key == Keyboard.Key.RIGHT) || (keyEvent.key == Keyboard.Key.D))
 						{
+							// Set player animation as running 
+							idle.setActive(false);
+							running.setActive(true);
+							lastTimeMoved = System.currentTimeMillis();
+							
 							// check that player is not trying to run into an obstacle or the side of a platform
 							boolean touching = false;
 							for (int i = 0; i < numPlatforms; i++)

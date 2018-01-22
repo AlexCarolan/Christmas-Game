@@ -11,6 +11,7 @@ class Animation extends Thread
 	private static Player player;
 	private Texture[] texture;
 	private int interval;
+	private boolean active = false;
 	
 	/**
 	 * Platform constructor - creates a platform (for the sprite to stand on)
@@ -44,17 +45,29 @@ class Animation extends Thread
   {
 		while(true)
 		{
-			for(int i=0; i<texture.length; i++)
+			if(active == true)
 			{
-				player.setSprite(texture[i]);
-				
-				try{
-					this.sleep(interval);
-				}catch(InterruptedException e){
-					System.out.println(e);
+				for(int i=0; i<texture.length; i++)
+				{
+					player.setSprite(texture[i]);
+					
+					try{
+						this.sleep(interval);
+					}catch(InterruptedException e){
+						System.out.println(e);
+					}
 				}
 			}
 		}
   }
+	
+	/**
+	 * Allows the animation to be activated or halted
+	 * @param state - the true/false value that states if the animation is active
+	 */
+	public void setActive(boolean state)
+	{
+		active = state;
+	}
 	
 }
