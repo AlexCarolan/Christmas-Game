@@ -9,7 +9,7 @@ ToDo:
 
 Platform Game
 1. animate player image when it's moving
-2. add collectibles to the platform
+2. add final doorway at end of platform, conditional on collectible
 
 Puzzle Game
 1. Figure out how to play puzzles
