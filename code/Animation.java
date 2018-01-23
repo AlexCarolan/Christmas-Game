@@ -44,23 +44,23 @@ class Animation extends Thread
 	*/
 	public void run()
 	{
-		while(alive = true)
+		while (alive)
 		{
-			try{
+			try {
 				this.sleep(50);
-			}catch(InterruptedException e){
+			} catch(InterruptedException e){
 				System.out.println(e);
 			}
-			if(active == true)
+			if (active)
 			{
 				//System.out.println("ALIVE");
 				for(int i=0; i<texture.length; i++)
 				{
 					player.setSprite(texture[i]);
 					System.out.println(i);
-					try{
+					try {
 						this.sleep(interval);
-					}catch(InterruptedException e){
+					} catch(InterruptedException e){
 						System.out.println(e);
 					}
 				}
@@ -84,5 +84,4 @@ class Animation extends Thread
 	{
 		alive = false;
 	}
-	
 }
