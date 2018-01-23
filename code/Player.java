@@ -70,7 +70,17 @@ class Player
 		if (Math.round(position.y) < 0)
 			sprite.setPosition(position.x, 0);
 	}
-	
+
+	/**
+	 * standOn - moves the player to the specified vertical position
+	 * @param yPosition - the position to move to on the y-axis
+	 */
+	public void standOn(int yPosition)
+	{
+		position = sprite.getPosition();
+		sprite.setPosition(position.x, yPosition-size.y);
+	}
+		
 	/**
 	 * getYBottomPosition - returns the yPosition of the bottom edge of the player
 	 * @return int - the position of the bottom edge of the player
