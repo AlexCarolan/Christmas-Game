@@ -30,27 +30,16 @@ class Level
 					Title + (gameLevel+1),
 					WindowStyle.DEFAULT);
 
-		// limit the framerate
+		// set the frame-rate
 		window.setFramerateLimit(60);
 		
-		int inertiaX = 0;
-		int inertiaY = 0;
+		int moveX = 0;
+		int moveY = 0;
 		int decremJump = Utils.JumpAmount;
 
-		// create all objects
+		// create all objects - player, platforms, obstacles, collectibles
 		Player player = new Player();
-		//CircleShape circle = new CircleShape(2);
-		//circle.setFillColor(Color.CYAN);
-		//circle.setPosition(Utils.PlatformGameWidth/2,player.getYBottomPosition());
 		
-		//Create and start animations
-		Animation idle = new Animation(player, Utils.IdlePath, 4, 175);
-		Animation running = new Animation(player, Utils.RunningPath, 12, 90);
-		idle.start();
-		idle.setActive(true);
-		running.start();
-		
-
 		int numPlatforms = Utils.PlatformPositions[gameLevel].length;
 		System.out.println("Number of platforms: " + numPlatforms);
 		Platform[] platform = new Platform[numPlatforms];
@@ -76,16 +65,18 @@ class Level
 											Utils.CollectiblePositions[gameLevel][i][2],Utils.CollectiblePositions[gameLevel][i][3],
 											Utils.CollectibleImages[gameLevel][i]);
 
-		//CircleShape circCentre = new CircleShape(2);
-		//circCentre.setFillColor(Color.YELLOW);
-		//circCentre.setPosition(Utils.PlatformGameWidth/2,Utils.PlatformGameHeight/2);
+		//Create and start animations
+		Animation idle = new Animation(player, Utils.IdlePath, 4, 175);
+		Animation running = new Animation(player, Utils.RunningPath, 12, 90);
+		idle.start();
+		idle.setActive(true);
+		running.start();
 
-		while (window.isOpen()) 
+		while (window.isOpen())
 		{
-			
 			// fill the window with black
 			window.clear(Color.BLACK);
-			
+
 			// add all objects onto the window
 			for (int i = 0; i < numPlatforms; i++)
 				window.draw(platform[i].getPlatform());
@@ -95,138 +86,55 @@ class Level
 				if (!collectible[i].collected())
 					window.draw(collectible[i].getPlatform());
 			window.draw(player.getSprite());
-			//window.draw(circle);
-			//window.draw(circCentre);
-			
-			//modify intertia per game tick
-			if(inertiaX < 0)
-			{
-				inertiaX++;
-			}
-			if(inertiaX > 0)
-			{
-				inertiaX--;
-			}
+
+			// modify inertial movement per game tick (so that player movement gradually slows down, rather than being jerky)
+			if (moveX < 0)
+				moveX++;
+			else if (moveX > 0)
+				moveX--;
 			decremJump = decremJump/2;
-			if(inertiaY < 0)
+			if (moveY < 0)
 			{
-				if(decremJump == 0)
-				{
-					inertiaY = 0;
-				}
+				if (decremJump == 0)
+					moveY = 0;
 				else
-				{
-					inertiaY = inertiaY + decremJump;
-					System.out.println("inertiaY:" + inertiaY);
-				}
-			}
-			
-			
-			
-			if(inertiaX < 0)
-			{	
-				// check that player is not trying to run into an obstacle or the side of a platform
-				boolean touching = false;
-				for (int i = 0; i < numPlatforms; i++)
-					if (player.touchingLeft(platform[i].getXPosition()-inertiaX/2,platform[i].getYPosition(),
-							platform[i].getXSize()+inertiaX,platform[i].getYSize()))
-					{
-						touching = true;
-						break;
-					}
-				if (!touching)
-				{
-					for (int i = 0; i < numObstacles; i++)
-						if (player.touchingLeft(obstacle[i].getXPosition()-inertiaX/2,obstacle[i].getYPosition(),
-								obstacle[i].getXSize()+inertiaX,obstacle[i].getYSize()))
-						{
-							touching = true;
-							break;
-						}
-				}
-			
-				if (!touching)
-				{
-					// if the player wants to go left, move everything else right
-					for (int i = 0; i < numPlatforms; i++)
-						platform[i].move(inertiaX,0);
-					for (int i = 0; i < numObstacles; i++)
-						obstacle[i].move(inertiaX,0);
-					for (int i = 0; i < numCollectibles; i++)
-						collectible[i].move(inertiaX,0);
-				}
-			}
-			
-			else if(inertiaX > 0)
-			{
-				// check that player is not trying to run into an obstacle or the side of a platform
-				boolean touching = false;
-				for (int i = 0; i < numPlatforms; i++)
-					if (player.touchingRight(platform[i].getXPosition()-inertiaX/2,platform[i].getYPosition(),
-							platform[i].getXSize()+inertiaX,platform[i].getYSize()))
-					{
-						touching = true;
-						break;
-					}
-				if (!touching)
-				{
-					for (int i = 0; i < numObstacles; i++)
-						if (player.touchingRight(obstacle[i].getXPosition()-inertiaX/2,obstacle[i].getYPosition(),
-								obstacle[i].getXSize()+inertiaX,obstacle[i].getYSize()))
-						{
-							touching = true;
-							break;
-						}
-				}
-				if (!touching)
-				{
-					// if the player wants to go right, move everything else left
-					for (int i = 0; i < numPlatforms; i++)
-						platform[i].move(inertiaX,0);
-					for (int i = 0; i < numObstacles; i++)
-						obstacle[i].move(inertiaX,0);
-					for (int i = 0; i < numCollectibles; i++)
-						collectible[i].move(inertiaX,0);
-				}
+					moveY += decremJump;
 			}
 
-			player.move(0,inertiaY);
-			System.out.println("Y move");			
-			
-			// apply idle anumation when still
-			if((System.currentTimeMillis() - lastTimeMoved) > 50)
+			// apply idle animation when still
+			if ((System.currentTimeMillis() - lastTimeMoved) > 50)
 			{
 				idle.setActive(true);
 				running.setActive(false);
 			}
 			
-			if(Keyboard.isKeyPressed(Keyboard.Key.A) || Keyboard.isKeyPressed(Keyboard.Key.LEFT))
+			// handle keyboard events (movement can be via WASD or arrow keys)
+			if (Keyboard.isKeyPressed(Keyboard.Key.A) || Keyboard.isKeyPressed(Keyboard.Key.LEFT))
 			{
 				idle.setActive(false);
 				running.setActive(true);
 				lastTimeMoved = System.currentTimeMillis();
-				inertiaX = Utils.MoveAmountX;
+				moveX = 0-Utils.MoveAmountX;
 			}
-			if(Keyboard.isKeyPressed(Keyboard.Key.D) || Keyboard.isKeyPressed(Keyboard.Key.RIGHT))
+			if (Keyboard.isKeyPressed(Keyboard.Key.D) || Keyboard.isKeyPressed(Keyboard.Key.RIGHT))
 			{
 				idle.setActive(false);
 				running.setActive(true);
 				lastTimeMoved = System.currentTimeMillis();
-				inertiaX = 0-Utils.MoveAmountX;
+				moveX = Utils.MoveAmountX;
 			}
-			if(Keyboard.isKeyPressed(Keyboard.Key.W) || Keyboard.isKeyPressed(Keyboard.Key.UP))
+			if (Keyboard.isKeyPressed(Keyboard.Key.W) || Keyboard.isKeyPressed(Keyboard.Key.UP))
 			{
 				decremJump = Utils.JumpAmount;
-				inertiaY = 0-Utils.JumpAmount;
+				moveY = 0-Utils.JumpAmount;
 			}
-			if(Keyboard.isKeyPressed(Keyboard.Key.S) || Keyboard.isKeyPressed(Keyboard.Key.DOWN))
+			if (Keyboard.isKeyPressed(Keyboard.Key.S) || Keyboard.isKeyPressed(Keyboard.Key.DOWN))
 			{
-				// TODO Test that we can move the player down
-				player.move(0,Utils.MoveAmountY);
+				decremJump = 0;
+				moveY = Utils.MoveAmountY;
 			}
-			
-			/*
-			// handle keyboard/mouse events (movement can be via WASD or arrow keys)
+
+			// handle mouse events
 			for (Event event : window.pollEvents()) 
 			{
 				MouseEvent mouseEvent;
@@ -234,41 +142,74 @@ class Level
 				{
 					case CLOSED:
 						window.close();
-						idle.stop();
-						running.stop();
+						idle.kill();
+						running.kill();
 						break;
-					case KEY_PRESSED:
-						KeyEvent keyEvent = event.asKeyEvent();
-						if ((keyEvent.key == Keyboard.Key.LEFT) || (keyEvent.key == Keyboard.Key.A))
-						{
-							// Set player animation as running 
-							idle.setActive(false);
-							running.setActive(true);
-							lastTimeMoved = System.currentTimeMillis();
-							inertiaX = Utils.MoveAmountX;
-						}
-						if ((keyEvent.key == Keyboard.Key.RIGHT) || (keyEvent.key == Keyboard.Key.D))
-						{
-							// Set player animation as running 
-							idle.setActive(false);
-							running.setActive(true);
-							lastTimeMoved = System.currentTimeMillis();
-							inertiaX = 0-Utils.MoveAmountX;
-						}
-						if ((keyEvent.key == Keyboard.Key.DOWN) || (keyEvent.key == Keyboard.Key.S))
-						{
-							// TODO Test that we can move the player down
-							player.move(0,Utils.MoveAmountY);
-						}
-						if ((keyEvent.key == Keyboard.Key.UP) || (keyEvent.key == Keyboard.Key.W))
-						{
-							decremJump = Utils.JumpAmount;
-							inertiaY = 0-Utils.JumpAmount;
-						}
-					break;
 				}
-			}*/
+			}
 			
+
+			boolean touching = false;
+			if (moveX < 0)	// player moving left
+			{	
+				// check that player is not trying to run into an obstacle or the side of a platform
+				for (int i = 0; i < numPlatforms; i++)
+					if (player.touchingLeft(platform[i].getXPosition()+moveX/2,platform[i].getYPosition(),
+							platform[i].getXSize()-moveX,platform[i].getYSize()))
+					{
+						//System.out.println("touchingLeft platform " + i);
+						touching = true;
+						break;
+					}
+				if (!touching)
+				{
+					for (int i = 0; i < numObstacles; i++)
+						if (player.touchingLeft(obstacle[i].getXPosition()+moveX/2,obstacle[i].getYPosition(),
+								obstacle[i].getXSize()-moveX,obstacle[i].getYSize()))
+						{
+							//System.out.println("touchingLeft obstacle " + i);
+							touching = true;
+							break;
+						}
+				}
+			}
+			else if (moveX > 0)	// player moving right
+			{
+				// check that player is not trying to run into an obstacle or the side of a platform
+				for (int i = 0; i < numPlatforms; i++)
+					if (player.touchingRight(platform[i].getXPosition()-moveX/2,platform[i].getYPosition(),
+							platform[i].getXSize()+moveX,platform[i].getYSize()))
+					{
+						//System.out.println("touchingRight platform " + i);
+						touching = true;
+						break;
+					}
+				if (!touching)
+				{
+					for (int i = 0; i < numObstacles; i++)
+						if (player.touchingRight(obstacle[i].getXPosition()-moveX/2,obstacle[i].getYPosition(),
+								obstacle[i].getXSize()+moveX,obstacle[i].getYSize()))
+						{
+							//System.out.println("touchingRight obstacle " + i);
+							touching = true;
+							break;
+						}
+				}
+			}
+			// if the player wants to move horizontally and there's nothing in the way, move everything else in the opposite direction
+			if ((moveX != 0) && !touching)
+			{
+				for (int i = 0; i < numPlatforms; i++)
+					platform[i].move(0-moveX,0);
+				for (int i = 0; i < numObstacles; i++)
+					obstacle[i].move(0-moveX,0);
+				for (int i = 0; i < numCollectibles; i++)
+					collectible[i].move(0-moveX,0);
+			}
+
+			// do vertical movement
+			player.move(0,moveY);
+
 			// if bottom of player sprite within a platform, then stand on platform
 			// (include the distance between vertical moves when doing the check)
 			boolean standing = false;
@@ -279,6 +220,8 @@ class Level
 				{
 					//System.out.println("Player is standing on platform " + i);
 					standing = true;
+					// make player stand in same vertical position above platform
+					player.standOn(platform[i].getYPosition()-Utils.MoveAmountY/2);
 					break;
 				}
 			}
@@ -289,6 +232,8 @@ class Level
 				{
 					//System.out.println("Player is standing on obstacle " + i);
 					standing = true;
+					// make player stand in same vertical position above obstacle
+					player.standOn(obstacle[i].getYPosition()-Utils.MoveAmountY/2);
 					break;
 				}
 			}
@@ -307,18 +252,21 @@ class Level
 			{
 				player.move(0,Utils.Gravity);
 				System.out.println("gravity move");
-				// if player has fallen off the bottom of the window, put all the items back to the start
-				// except collectibles - only redraw those that are still waiting to be collected
-				if (player.fallenBelowWindow(Utils.PlatformGameHeight))
-				{
-					player.resetPosition();
-					for (int i = 0; i < numPlatforms; i++)
-						platform[i].resetPosition(Utils.PlatformPositions[gameLevel][i][2],Utils.PlatformPositions[gameLevel][i][3]);
-					for (int i = 0; i < numObstacles; i++)
-						obstacle[i].resetPosition(Utils.ObstaclePositions[gameLevel][i][2],Utils.ObstaclePositions[gameLevel][i][3]);
-					for (int i = 0; i < numCollectibles; i++)
-						collectible[i].resetPosition(Utils.CollectiblePositions[gameLevel][i][2],Utils.CollectiblePositions[gameLevel][i][3]);
-				}
+			}
+
+			// if player has fallen off the bottom of the window, put all the items back to the start
+			if (player.fallenBelowWindow(Utils.PlatformGameHeight))
+			{
+				player.resetPosition();
+				for (int i = 0; i < numPlatforms; i++)
+					platform[i].resetPosition(Utils.PlatformPositions[gameLevel][i][2],Utils.PlatformPositions[gameLevel][i][3]);
+				for (int i = 0; i < numObstacles; i++)
+					obstacle[i].resetPosition(Utils.ObstaclePositions[gameLevel][i][2],Utils.ObstaclePositions[gameLevel][i][3]);
+				for (int i = 0; i < numCollectibles; i++)
+					collectible[i].resetPosition(Utils.CollectiblePositions[gameLevel][i][2],Utils.CollectiblePositions[gameLevel][i][3]);
+				moveX = 0;
+				moveY = 0;
+				decremJump = 0;
 			}
 
 			// display what was drawn on the window

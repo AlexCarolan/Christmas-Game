@@ -10,7 +10,7 @@ public class Utils
 	public static final int PlayerYPosition = PlatformGameHeight - 60;
 
 	public static final int MoveAmountX = 5;
-	public static final int MoveAmountY = 4;
+	public static final int MoveAmountY = 2;
 	public static final int JumpAmount = 40;
 	public static final int Gravity = 2;
 	
@@ -50,7 +50,7 @@ public class Utils
 													};
 
 
-	// define width, height, xPosition, yPosition for the obstables for each level
+	// define width, height, xPosition, yPosition for the obstacles for each level
 	// to access this array: first index is level, second index is obstacle, 
 	// third index is width, height, xPosition, yPosition of that obstacle
 	public static final int ObstaclePositions[][][] = {{ // gameLevel 1
@@ -58,7 +58,7 @@ public class Utils
 														{35,35,550,467}},
 														{ // gameLevel 2
 														{40,40,250,520},
-														{35,35,400,PlatformGameHeight - 55}},
+														{35,35,800,PlatformGameHeight - 55}},
 													};
 	// define image for each obstacle on each level, in same order as ObstaclePositions array
 	public static final String ObstacleImages[][] = {{ // gameLevel 1
@@ -77,7 +77,7 @@ public class Utils
 														{35,35,570,467}},
 														{ // gameLevel 2
 														{15,15,220,540},
-														{20,20,600,PlatformGameHeight - 35}},
+														{20,20,PlatformGameWidth+200,PlatformGameHeight - 55}},
 													};
 	// define image for each collectible on each level, in same order as CollectiblePositions array
 	public static final String CollectibleImages[][] = {{ // gameLevel 1
