@@ -14,7 +14,7 @@ import org.jsfml.graphics.*;
 
 class Level 
 {
-	private static String Title   = "Level ";
+	private static String Title = "Level ";
 	private static int gameLevel = 0;
 	private static int lastNumCollected = 0;
 	private static long lastTimeMoved = 0;
@@ -35,7 +35,8 @@ class Level
 		
 		int moveX = 0;
 		int moveY = 0;
-		int decremJump = Utils.JumpAmount;
+		int inertiaX = 1;
+		int inertiaY = Utils.JumpAmount;
 
 		// create all objects - player, platforms, obstacles, collectibles
 		Player player = new Player();
@@ -88,26 +89,30 @@ class Level
 			window.draw(player.getSprite());
 
 			// modify inertial movement per game tick (so that player movement gradually slows down, rather than being jerky)
+			// apply inertia to left and right movement, and to movement upwards
+			// movement downwards is gravity (or an extra boost from the keyboard)
 			if (moveX < 0)
-				moveX++;
+				moveX += inertiaX;
 			else if (moveX > 0)
-				moveX--;
-			decremJump = decremJump/2;
+				moveX -= inertiaX;
 			if (moveY < 0)
 			{
-				if (decremJump == 0)
+				inertiaY = inertiaY/2;
+				if (inertiaY == 0)
 					moveY = 0;
 				else
-					moveY += decremJump;
+					moveY += inertiaY;
 			}
 
 			// apply idle animation when still
-			if ((System.currentTimeMillis() - lastTimeMoved) > 50)
+			if (running.getActive() &&
+				((System.currentTimeMillis() - lastTimeMoved) > 100))
 			{
-				idle.setActive(true);
 				running.setActive(false);
+				idle.setActive(true);
+				//System.out.println("Set idle");
 			}
-			
+
 			// handle keyboard events (movement can be via WASD or arrow keys)
 			if (Keyboard.isKeyPressed(Keyboard.Key.A) || Keyboard.isKeyPressed(Keyboard.Key.LEFT))
 			{
@@ -125,12 +130,12 @@ class Level
 			}
 			if (Keyboard.isKeyPressed(Keyboard.Key.W) || Keyboard.isKeyPressed(Keyboard.Key.UP))
 			{
-				decremJump = Utils.JumpAmount;
+				inertiaY = Utils.JumpAmount;
 				moveY = 0-Utils.JumpAmount;
 			}
 			if (Keyboard.isKeyPressed(Keyboard.Key.S) || Keyboard.isKeyPressed(Keyboard.Key.DOWN))
 			{
-				decremJump = 0;
+				inertiaY = 0;
 				moveY = Utils.MoveAmountY;
 			}
 
@@ -208,6 +213,8 @@ class Level
 			}
 
 			// do vertical movement
+			// player can jump past platforms/obstacles, so don't need to check if touching
+			// if player ends up touching the platform/obstacle, then they'll be moved to stand on the item
 			player.move(0,moveY);
 
 			// if bottom of player sprite within a platform, then stand on platform
@@ -251,7 +258,7 @@ class Level
 			if (!standing)
 			{
 				player.move(0,Utils.Gravity);
-				System.out.println("gravity move");
+				//System.out.println("gravity move");
 			}
 
 			// if player has fallen off the bottom of the window, put all the items back to the start
@@ -266,7 +273,7 @@ class Level
 					collectible[i].resetPosition(Utils.CollectiblePositions[gameLevel][i][2],Utils.CollectiblePositions[gameLevel][i][3]);
 				moveX = 0;
 				moveY = 0;
-				decremJump = 0;
+				inertiaY = 0;
 			}
 
 			// display what was drawn on the window

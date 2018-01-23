@@ -27,7 +27,7 @@ class Animation extends Thread
 		texture = new Texture[frames];
 		interval = delay;
 		
-		for(int i=0; i<frames; i++)
+		for (int i = 0; i<frames; i++)
 		{
 			texture[i] = new Texture();
 			try {
@@ -44,26 +44,20 @@ class Animation extends Thread
 	*/
 	public void run()
 	{
+		int i = 0;
 		while (alive)
 		{
 			try {
-				this.sleep(50);
+				this.sleep(interval);
 			} catch(InterruptedException e){
 				System.out.println(e);
 			}
 			if (active)
 			{
+				player.setSprite(texture[i]);
 				//System.out.println("ALIVE");
-				for(int i=0; i<texture.length; i++)
-				{
-					player.setSprite(texture[i]);
-					System.out.println(i);
-					try {
-						this.sleep(interval);
-					} catch(InterruptedException e){
-						System.out.println(e);
-					}
-				}
+				if (++i == texture.length)
+					i = 0;
 			}
 		}
 	}
@@ -75,6 +69,11 @@ class Animation extends Thread
 	public void setActive(boolean state)
 	{
 		active = state;
+	}
+
+	public boolean getActive()
+	{
+		return active;
 	}
 	
 	/**
