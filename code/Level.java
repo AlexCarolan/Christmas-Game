@@ -18,6 +18,7 @@ class Level
 	private static int gameLevel = 0;
 	private static int lastNumCollected = 0;
 	private static long lastTimeMoved = 0;
+	private static boolean runDirectionRight = true;
 
 	/**
 	 * run - handle display and movement of the platform game for this level
@@ -67,13 +68,15 @@ class Level
 											Utils.CollectibleImages[gameLevel][i]);
 
 		//Create and start animations
-		Animation idle = new Animation(player, Utils.IdlePath, 4, 175);
+		Animation idleRight = new Animation(player, Utils.IdleRightPath, 4, 175);
+		Animation idleLeft = new Animation(player, Utils.IdleLeftPath, 4, 175);
 		Animation runningLeft = new Animation(player, Utils.RunningLeftPath, 12, 90);
 		Animation runningRight = new Animation(player, Utils.RunningRightPath, 12, 90);
-		idle.start();
-		idle.setActive(true);
+		idleRight.start();
+		idleLeft.start();
 		runningLeft.start();
 		runningRight.start();
+		idleRight.setActive(true);
 		
 
 		while (window.isOpen())
@@ -113,22 +116,31 @@ class Level
 			{
 				runningRight.setActive(false);
 				runningLeft.setActive(false);
-				idle.setActive(true);
+				if(runDirectionRight == true)
+				{
+					idleRight.setActive(true);
+				}else{
+					idleLeft.setActive(true);
+				}
 			}
 
 			// handle keyboard events (movement can be via WASD or arrow keys)
 			if (Keyboard.isKeyPressed(Keyboard.Key.A) || Keyboard.isKeyPressed(Keyboard.Key.LEFT))
 			{
-				idle.setActive(false);
+				idleRight.setActive(false);
+				idleLeft.setActive(false);
 				runningLeft.setActive(true);
 				lastTimeMoved = System.currentTimeMillis();
+				runDirectionRight = false;
 				moveX = 0-Utils.MoveAmountX;
 			}
 			if (Keyboard.isKeyPressed(Keyboard.Key.D) || Keyboard.isKeyPressed(Keyboard.Key.RIGHT))
 			{
-				idle.setActive(false);
+				idleRight.setActive(false);
+				idleLeft.setActive(false);
 				runningRight.setActive(true);
 				lastTimeMoved = System.currentTimeMillis();
+				runDirectionRight = true;
 				moveX = Utils.MoveAmountX;
 			}
 			if (Keyboard.isKeyPressed(Keyboard.Key.W) || Keyboard.isKeyPressed(Keyboard.Key.UP))
@@ -150,7 +162,8 @@ class Level
 				{
 					case CLOSED:
 						window.close();
-						idle.kill();
+						idleRight.kill();
+						idleLeft.kill();
 						runningLeft.kill();
 						runningRight.kill();
 						break;
