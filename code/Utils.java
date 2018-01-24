@@ -16,7 +16,8 @@ public class Utils
 	
 	//File paths for sprites
 	public static final String IdlePath = "Sprites\\Idle\\Santa_Elf_Idle";
-	public static final String RunningPath = "Sprites\\Running\\Santa_Elf_Running";
+	public static final String RunningRightPath = "Sprites\\Running_Right\\Santa_Elf_Running";
+	public static final String RunningLeftPath = "Sprites\\Running_Left\\Santa_Elf_Running";
 
 	// define width, height, xPosition, yPosition for all the platforms for each level
 	// to access this array: first index is level, second index is platform, 

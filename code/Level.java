@@ -68,10 +68,13 @@ class Level
 
 		//Create and start animations
 		Animation idle = new Animation(player, Utils.IdlePath, 4, 175);
-		Animation running = new Animation(player, Utils.RunningPath, 12, 90);
+		Animation runningLeft = new Animation(player, Utils.RunningLeftPath, 12, 90);
+		Animation runningRight = new Animation(player, Utils.RunningRightPath, 12, 90);
 		idle.start();
 		idle.setActive(true);
-		running.start();
+		runningLeft.start();
+		runningRight.start();
+		
 
 		while (window.isOpen())
 		{
@@ -105,26 +108,26 @@ class Level
 			}
 
 			// apply idle animation when still
-			if (running.getActive() &&
+			if (runningRight.getActive() || runningLeft.getActive() &&
 				((System.currentTimeMillis() - lastTimeMoved) > 100))
 			{
-				running.setActive(false);
+				runningRight.setActive(false);
+				runningLeft.setActive(false);
 				idle.setActive(true);
-				//System.out.println("Set idle");
 			}
 
 			// handle keyboard events (movement can be via WASD or arrow keys)
 			if (Keyboard.isKeyPressed(Keyboard.Key.A) || Keyboard.isKeyPressed(Keyboard.Key.LEFT))
 			{
 				idle.setActive(false);
-				running.setActive(true);
+				runningLeft.setActive(true);
 				lastTimeMoved = System.currentTimeMillis();
 				moveX = 0-Utils.MoveAmountX;
 			}
 			if (Keyboard.isKeyPressed(Keyboard.Key.D) || Keyboard.isKeyPressed(Keyboard.Key.RIGHT))
 			{
 				idle.setActive(false);
-				running.setActive(true);
+				runningRight.setActive(true);
 				lastTimeMoved = System.currentTimeMillis();
 				moveX = Utils.MoveAmountX;
 			}
@@ -148,7 +151,8 @@ class Level
 					case CLOSED:
 						window.close();
 						idle.kill();
-						running.kill();
+						runningLeft.kill();
+						runningRight.kill();
 						break;
 				}
 			}

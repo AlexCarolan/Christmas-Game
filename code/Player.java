@@ -24,7 +24,7 @@ class Player
 		Texture texture = new Texture();
 		try {
 			// try to load the texture from file
-			texture.loadFromFile(Paths.get("Sprites\\Running\\Santa_Elf_Running12.png"));
+			texture.loadFromFile(Paths.get("Sprites\\Running_Right\\Santa_Elf_Running12.png"));
 
 			// texture was loaded successfully - retrieve and print size
 			size = texture.getSize();
