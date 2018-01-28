@@ -76,7 +76,7 @@ public class Utils
 
 	// define width, height, xPosition, yPosition for the collectibles for each level
 	// to access this array: first index is level, second index is collectible, 
-	// third index is width, height, xPosition, yPosition of that collectible
+	// third index is width, height, xPosition, yPosition of that collectible,
 	public static final int CollectiblePositions[][][] = {{ // gameLevel 1
 														{15,15,125,685},
 														{35,35,570,467}},
@@ -92,10 +92,34 @@ public class Utils
 														"images\\collectibles\\RedBauble.png",
 														"images\\collectibles\\Star.png"},
 													};
+	// define whether each collectible on each level in a key to the exit door, in same order as CollectiblePositions array
+	public static final boolean CollectibleKeys[][] = {{ // gameLevel 1
+														false,
+														true},
+														{ // gameLevel 2
+														false,
+														true},
+													};
+
+	public static final int numKeys[] = {	1,	// gameLevel 1
+											1	// gameLevel 2
+										};
+
+	// define width, height, xPosition, yPosition for the door for each level
+	// to access this array: first index is level, 
+	// second index is width, height, xPosition, yPosition of the door
+	public static final int DoorPosition[][] = { // gameLevel 1
+												{50,100,1500,640},
+												 // gameLevel 2
+												{50,100,1500,640}
+												};
+	// define images for shut and open doors
+	public static final String ShutDoorImage = "images\\platform\\shutdoor.png";
+	public static final String OpenDoorImage = "images\\platform\\opendoor.png";
 
 	// define size of window for puzzle games
-	public static final int PuzzleGameWidth = 1000;
-	public static final int PuzzleGameHeight = 700;
+	public static final int PuzzleGameWidth = 600;
+	public static final int PuzzleGameHeight = 600;
 
 
 	/**

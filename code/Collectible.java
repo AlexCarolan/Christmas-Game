@@ -4,6 +4,7 @@
 class Collectible extends Platform
 {
 	private boolean itemCollected;
+	private boolean keyItem;
 
 	/**
 	 * Collectible constructor - creates an item for the player to collect
@@ -12,9 +13,10 @@ class Collectible extends Platform
 	 * @param xPosition - the left hand side of the collectible
 	 * @param yPosition - the top of the collectible
 	 */
-	public Collectible(int width, int height, int xPosition, int yPosition, String filename)
+	public Collectible(int width, int height, int xPosition, int yPosition, String filename, boolean key)
 	{
-		super(width, height, xPosition, yPosition,filename);
+		super(width, height, xPosition, yPosition, filename);
+		keyItem = key;
 		itemCollected = false;
 	}
 	
@@ -33,6 +35,15 @@ class Collectible extends Platform
 	public void collect()
 	{
 		itemCollected = true;
+	}
+	
+	/**
+	 * isKey - returns true if item is a key (to the door)
+	 * @return boolean, true if item is a key
+	 */
+	public boolean isKey()
+	{
+		return keyItem;
 	}
 }
  

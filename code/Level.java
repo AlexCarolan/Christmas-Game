@@ -66,9 +66,16 @@ class Level
 		for (int i = 0; i < numCollectibles; i++)
 			collectible[i] = new Collectible(Utils.CollectiblePositions[gameLevel][i][0],Utils.CollectiblePositions[gameLevel][i][1],
 											Utils.CollectiblePositions[gameLevel][i][2],Utils.CollectiblePositions[gameLevel][i][3],
-											Utils.CollectibleImages[gameLevel][i]);
+											Utils.CollectibleImages[gameLevel][i],Utils.CollectibleKeys[gameLevel][i]);
 
-		//Create and start animations
+		int numKeysToCollect = Utils.numKeys[gameLevel];
+		int numKeysCollected = 0;
+
+		Platform door = new Platform(Utils.DoorPosition[gameLevel][0],Utils.DoorPosition[gameLevel][1],
+										Utils.DoorPosition[gameLevel][2],Utils.DoorPosition[gameLevel][3],
+										Utils.ShutDoorImage);
+
+		// create and start animations
 		Animation idleRight = new Animation(player, Utils.IdleRightPath, 4, 175);
 		Animation idleLeft = new Animation(player, Utils.IdleLeftPath, 4, 175);
 		Animation runningLeft = new Animation(player, Utils.RunningLeftPath, 12, 90);
@@ -79,8 +86,8 @@ class Level
 		runningRight.start();
 		idleRight.setActive(true);
 		
-
-		while (window.isOpen())
+		boolean finished = false;
+		while (window.isOpen() && !finished)
 		{
 			// fill the window with black
 			window.clear(Color.BLACK);
@@ -93,6 +100,7 @@ class Level
 			for (int i = 0; i < numCollectibles; i++)
 				if (!collectible[i].collected())
 					window.draw(collectible[i].getPlatform());
+			window.draw(door.getPlatform());
 			window.draw(player.getSprite());
 
 			// modify inertial movement per game tick (so that player movement gradually slows down, rather than being jerky)
@@ -128,12 +136,10 @@ class Level
 			{
 				runningRight.setActive(false);
 				runningLeft.setActive(false);
-				if(runDirectionRight == true)
-				{
+				if (runDirectionRight == true)
 					idleRight.setActive(true);
-				}else{
+				else
 					idleLeft.setActive(true);
-				}
 			}
 
 			// handle keyboard events (movement can be via WASD or arrow keys)
@@ -173,11 +179,11 @@ class Level
 				switch(event.type) 
 				{
 					case CLOSED:
-						window.close();
 						idleRight.kill();
 						idleLeft.kill();
 						runningLeft.kill();
 						runningRight.kill();
+						window.close();
 						break;
 				}
 			}
@@ -239,6 +245,7 @@ class Level
 					obstacle[i].move(0-moveX,0);
 				for (int i = 0; i < numCollectibles; i++)
 					collectible[i].move(0-moveX,0);
+				door.move(0-moveX,0);
 			}
 
 			// do vertical movement
@@ -280,8 +287,21 @@ class Level
 				if (!collectible[i].collected())
 					if (player.touching(collectible[i].getXPosition()-Utils.MoveAmountX/2,collectible[i].getYPosition()-Utils.MoveAmountY/2,
 										collectible[i].getXSize()+Utils.MoveAmountX,collectible[i].getYSize()+Utils.MoveAmountY))
+					{
 						collectible[i].collect();
+						if (collectible[i].isKey())
+							if (++numKeysCollected >= numKeysToCollect)
+							{
+								door.setImage(Utils.OpenDoorImage);
+								System.out.println("Collected the key(s) to the exit door");
+							}
+					}
 			}
+
+			if (player.touching(door.getXPosition()-Utils.MoveAmountX/2,door.getYPosition()-Utils.MoveAmountY/2,
+								door.getXPosition()+Utils.MoveAmountX,door.getYPosition()+Utils.MoveAmountY) &&
+				numKeysCollected >= numKeysToCollect)
+				finished = true;
 
 			// handle gravity - if the player is not standing on a platform, they're falling
 			if (!standing)
@@ -309,6 +329,7 @@ class Level
 					obstacle[i].resetPosition(Utils.ObstaclePositions[gameLevel][i][2],Utils.ObstaclePositions[gameLevel][i][3]);
 				for (int i = 0; i < numCollectibles; i++)
 					collectible[i].resetPosition(Utils.CollectiblePositions[gameLevel][i][2],Utils.CollectiblePositions[gameLevel][i][3]);
+				door.resetPosition(Utils.DoorPosition[gameLevel][2],Utils.DoorPosition[gameLevel][3]);
 				moveX = 0;
 				moveY = 0;
 				inertiaY = 0;
@@ -332,5 +353,10 @@ class Level
 				lastNumCollected = itemsCollected;
 			}
 		}
+		idleRight.kill();
+		idleLeft.kill();
+		runningLeft.kill();
+		runningRight.kill();
+		window.close();
 	}
 }
