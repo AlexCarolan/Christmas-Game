@@ -38,6 +38,7 @@ class Level
 		int moveY = 0;
 		int inertiaX = 1;
 		int inertiaY = Utils.JumpAmount;
+		double gravity = Utils.MinGravity;
 
 		// create all objects - player, platforms, obstacles, collectibles
 		Player player = new Player();
@@ -101,13 +102,24 @@ class Level
 				moveX += inertiaX;
 			else if (moveX > 0)
 				moveX -= inertiaX;
-			if (moveY < 0)
+			if (moveY < 0)					// if moving upwards
 			{
-				inertiaY = inertiaY/2;
+				inertiaY = inertiaY/2;		// then gradually slow down
 				if (inertiaY == 0)
 					moveY = 0;
 				else
 					moveY += inertiaY;
+			}
+			else							// otherwise gradually speed up moving down
+			{
+				if (gravity < Utils.MaxGravity)
+				{
+					gravity = gravity * Utils.GravityMultiplier;
+					if (gravity > Utils.MaxGravity)
+						gravity = Utils.MaxGravity;
+					//if (gravity > 0)
+					//	System.out.println("gravity set to " + gravity);
+				}
 			}
 
 			// apply idle animation when still
@@ -274,8 +286,17 @@ class Level
 			// handle gravity - if the player is not standing on a platform, they're falling
 			if (!standing)
 			{
-				player.move(0,Utils.Gravity);
-				//System.out.println("gravity move");
+				if (gravity < Utils.MinGravity)
+				{
+					gravity = Utils.MinGravity;
+					//System.out.println("gravity set to " + Utils.MinGravity);
+				}
+				player.move(0,(int)gravity);
+			}
+			else
+			{
+				moveY = 0;
+				gravity = Utils.MinGravity;
 			}
 
 			// if player has fallen off the bottom of the window, put all the items back to the start
@@ -291,6 +312,7 @@ class Level
 				moveX = 0;
 				moveY = 0;
 				inertiaY = 0;
+				gravity = Utils.MinGravity;
 			}
 
 			// display what was drawn on the window

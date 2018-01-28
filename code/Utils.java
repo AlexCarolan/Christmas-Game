@@ -13,6 +13,9 @@ public class Utils
 	public static final int MoveAmountY = 2;
 	public static final int JumpAmount = 40;
 	public static final int Gravity = 2;
+	public static final int MinGravity = 3;
+	public static final int MaxGravity = 30;
+	public static final double GravityMultiplier = 1.04;
 	
 	//File paths for sprites
 	public static final String IdleRightPath = "Sprites\\Idle_Right\\Santa_Elf_Idle";
