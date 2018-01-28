@@ -34,19 +34,34 @@ class Puzzle1
 		blankTile[1] = 1;
 		switchTile[0] = 1;
 		switchTile[1] = 1;
-		PuzzleTile[][] Tiles = new PuzzleTile[3][3];
-		
-		Tiles[0][0] = new PuzzleTile(0,0,"images\\tilePuzzle\\T7.png");
-		Tiles[0][1] = new PuzzleTile(200,0,"images\\tilePuzzle\\T2.png");
-		Tiles[0][2] = new PuzzleTile(400,0,"images\\tilePuzzle\\T4.png");
-		Tiles[1][0] = new PuzzleTile(0,200,"images\\tilePuzzle\\T5.png");
-		Tiles[1][1] = new PuzzleTile(200,200,"images\\tilePuzzle\\T0.png"); //blank default
-		Tiles[1][2] = new PuzzleTile(400,200,"images\\tilePuzzle\\T6.png");
-		Tiles[2][0] = new PuzzleTile(0,400,"images\\tilePuzzle\\T8.png");
-		Tiles[2][1] = new PuzzleTile(200,400,"images\\tilePuzzle\\T3.png");
-		Tiles[2][2] = new PuzzleTile(400,400,"images\\tilePuzzle\\T1.png");
+		PuzzleTile[][] tiles = new PuzzleTile[3][3];
+		PuzzleTile[][] endTiles = new PuzzleTile[3][3];
 
-		while (window.isOpen()) 
+		// tiles at start of puzzle game
+		tiles[0][0] = new PuzzleTile(0,0,"images\\tilePuzzle\\T7.png");
+		tiles[0][1] = new PuzzleTile(200,0,"images\\tilePuzzle\\T2.png");
+		tiles[0][2] = new PuzzleTile(400,0,"images\\tilePuzzle\\T4.png");
+		tiles[1][0] = new PuzzleTile(0,200,"images\\tilePuzzle\\T5.png");
+		tiles[1][1] = new PuzzleTile(200,200,"images\\tilePuzzle\\T0.png"); //blank default
+		tiles[1][2] = new PuzzleTile(400,200,"images\\tilePuzzle\\T6.png");
+		tiles[2][0] = new PuzzleTile(0,400,"images\\tilePuzzle\\T8.png");
+		tiles[2][1] = new PuzzleTile(200,400,"images\\tilePuzzle\\T3.png");
+		tiles[2][2] = new PuzzleTile(400,400,"images\\tilePuzzle\\T1.png");
+
+		// position of tiles to successfully complete puzzle game
+		endTiles[0][0] = new PuzzleTile(0,0,"images\\tilePuzzle\\T0.png");
+		endTiles[0][1] = new PuzzleTile(200,0,"images\\tilePuzzle\\T1.png");
+		endTiles[0][2] = new PuzzleTile(400,0,"images\\tilePuzzle\\T2.png");
+		endTiles[1][0] = new PuzzleTile(0,200,"images\\tilePuzzle\\T3.png");
+		endTiles[1][1] = new PuzzleTile(200,200,"images\\tilePuzzle\\T4.png");
+		endTiles[1][2] = new PuzzleTile(400,200,"images\\tilePuzzle\\T5.png");
+		endTiles[2][0] = new PuzzleTile(0,400,"images\\tilePuzzle\\T6.png");
+		endTiles[2][1] = new PuzzleTile(200,400,"images\\tilePuzzle\\T7.png");
+		endTiles[2][2] = new PuzzleTile(400,400,"images\\tilePuzzle\\T8.png");
+
+		boolean finished = false;
+
+		while (window.isOpen() && !finished) 
 		{
 			// fill the window with black
 			window.clear(Color.BLACK);
@@ -56,7 +71,7 @@ class Puzzle1
 			{
 				for (int j = 0; j < 3; j++)
 				{
-					window.draw(Tiles[i][j].getTile());
+					window.draw(tiles[i][j].getTile());
 				}
 			}
 			
@@ -73,62 +88,67 @@ class Puzzle1
 						KeyEvent keyEvent = event.asKeyEvent();
 						if ((keyEvent.key == Keyboard.Key.LEFT) || (keyEvent.key == Keyboard.Key.A))
 						{
-							if(blankTile[1] != 2)
+							if (blankTile[1] != 2)
 							{
 								switchTile[1] = blankTile[1] + 1;
-								String temp = Tiles[switchTile[0]][switchTile[1]].getPicture();
-								Tiles[switchTile[0]][switchTile[1]].setPicture(Tiles[blankTile[0]][blankTile[1]].getPicture());
-								Tiles[blankTile[0]][blankTile[1]].setPicture(temp);
+								String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
+								tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
+								tiles[blankTile[0]][blankTile[1]].setPicture(temp);
 								blankTile[1] = switchTile[1];
 							}
 						}
 						else if ((keyEvent.key == Keyboard.Key.RIGHT) || (keyEvent.key == Keyboard.Key.D))
 						{
-							if(blankTile[1] != 0)
+							if (blankTile[1] != 0)
 							{
 								switchTile[1] = blankTile[1] - 1;
-								String temp = Tiles[switchTile[0]][switchTile[1]].getPicture();
-								Tiles[switchTile[0]][switchTile[1]].setPicture(Tiles[blankTile[0]][blankTile[1]].getPicture());
-								Tiles[blankTile[0]][blankTile[1]].setPicture(temp);
+								String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
+								tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
+								tiles[blankTile[0]][blankTile[1]].setPicture(temp);
 								blankTile[1] = switchTile[1];
 							}
 						}
 						else if ((keyEvent.key == Keyboard.Key.UP) || (keyEvent.key == Keyboard.Key.W))
 						{
 							// if possible, get tile above blank tile
-							if(blankTile[0] != 2)
+							if (blankTile[0] != 2)
 							{
+								// swap tiles
 								switchTile[0] = blankTile[0] + 1;
-								String temp = Tiles[switchTile[0]][switchTile[1]].getPicture();
-								Tiles[switchTile[0]][switchTile[1]].setPicture(Tiles[blankTile[0]][blankTile[1]].getPicture());
-								Tiles[blankTile[0]][blankTile[1]].setPicture(temp);
+								String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
+								tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
+								tiles[blankTile[0]][blankTile[1]].setPicture(temp);
 								blankTile[0] = switchTile[0];
 							}
-							// swap tiles
-							
 						}
 						else if ((keyEvent.key == Keyboard.Key.DOWN) || (keyEvent.key == Keyboard.Key.S))
 						{
-							if(blankTile[0] != 0)
+							if (blankTile[0] != 0)
 							{
+								// swap tiles
 								switchTile[0] = blankTile[0] - 1;
-								String temp = Tiles[switchTile[0]][switchTile[1]].getPicture();
-								Tiles[switchTile[0]][switchTile[1]].setPicture(Tiles[blankTile[0]][blankTile[1]].getPicture());
-								Tiles[blankTile[0]][blankTile[1]].setPicture(temp);
+								String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
+								tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
+								tiles[blankTile[0]][blankTile[1]].setPicture(temp);
 								blankTile[0] = switchTile[0];
 							}
-							// swap tiles
-							
-							
 						}
 						break;
 				}
 			}
 
-			// TODO handle gravity - if the player is not standing on a platform, they're falling
-
 			// display what was drawn on the window
 			window.display();
+
+			// check whether images are all in the right place
+			finished = true;
+			for (int i = 0; i < 3; i++)
+				if (finished)
+					for (int j = 0; j < 3; j++)
+						if (tiles[i][j].getPicture() != endTiles[i][j].getPicture())
+							finished = false;
+			if (finished)
+				System.out.println("Well done, you completed the picture!");
 		}
 	}
 
