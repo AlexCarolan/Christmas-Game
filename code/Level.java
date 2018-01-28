@@ -285,8 +285,8 @@ class Level
 			for (int i = 0; i < numCollectibles; i++)
 			{
 				if (!collectible[i].collected())
-					if (player.touching(collectible[i].getXPosition()-Utils.MoveAmountX/2,collectible[i].getYPosition()-Utils.MoveAmountY/2,
-										collectible[i].getXSize()+Utils.MoveAmountX,collectible[i].getYSize()+Utils.MoveAmountY))
+					if (player.touching(collectible[i].getXPosition(),collectible[i].getYPosition(),
+										collectible[i].getXSize(),collectible[i].getYSize()))
 					{
 						collectible[i].collect();
 						if (collectible[i].isKey())
@@ -298,8 +298,8 @@ class Level
 					}
 			}
 
-			if (player.touching(door.getXPosition()-Utils.MoveAmountX/2,door.getYPosition()-Utils.MoveAmountY/2,
-								door.getXPosition()+Utils.MoveAmountX,door.getYPosition()+Utils.MoveAmountY) &&
+			if (player.touching(door.getXPosition(),door.getYPosition(),
+								door.getXSize(),door.getYSize()) &&
 				numKeysCollected >= numKeysToCollect)
 				finished = true;
 
