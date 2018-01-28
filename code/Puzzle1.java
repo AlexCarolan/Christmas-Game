@@ -148,7 +148,10 @@ class Puzzle1
 						if (tiles[i][j].getPicture() != endTiles[i][j].getPicture())
 							finished = false;
 			if (finished)
+			{
 				System.out.println("Well done, you completed the picture!");
+				window.close();
+			}
 		}
 	}
 
