@@ -19,7 +19,7 @@ class Puzzle1
 	{
 		// create the window
 		RenderWindow window = new RenderWindow( );
-		window.create(new VideoMode(Utils.PlatformGameWidth, Utils.PlatformGameHeight),
+		window.create(new VideoMode(Utils.PuzzleGameWidth, Utils.PuzzleGameHeight),
 					Title,
 					WindowStyle.DEFAULT);
 
