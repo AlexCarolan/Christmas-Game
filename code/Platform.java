@@ -13,6 +13,7 @@ import org.jsfml.graphics.*;
 class Platform 
 {
 	private RectangleShape plat;
+	private Texture texture = new Texture();
 	
 	/**
 	 * Platform constructor - creates a platform (for the sprite to stand on)
@@ -25,7 +26,7 @@ class Platform
 	{
 		// create a rectangle shape
 		plat = new RectangleShape(new Vector2f(width, height));
-		Texture texture = new Texture();
+		//texture = new Texture();
 		try {
 			// try to load the texture from file
 			texture.loadFromFile(Paths.get(filename));
@@ -101,6 +102,21 @@ class Platform
 	public void move(int xInc, int yInc)
 	{
 		plat.move(xInc, yInc);
+	}
+
+	/**
+	 * setImage - changes the image for the platform
+	 * @param filename - the path and file for the image
+	 */
+	public void setImage(String filename)
+	{
+		try {
+			// try to load the texture from file
+			texture.loadFromFile(Paths.get(filename));
+		} catch(IOException ex) {
+			System.out.println("Unable to open image file: " + filename);
+		}
+		plat.setTexture(texture);
 	}
 }
  
