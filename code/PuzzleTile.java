@@ -15,14 +15,14 @@ class PuzzleTile
 	int x;
 	int y;
 	
-	public PuzzleTile(int xPosition, int yPosition, String picture)
+	public PuzzleTile(int xPosition, int yPosition, String picture, int xSize, int ySize)
 	{
 		// create a rectangle shape
 		int x = xPosition;
 		int y = yPosition;
 		shownPicture = picture;
 		
-		Tile = new RectangleShape(new Vector2f(200, 200));
+		Tile = new RectangleShape(new Vector2f(xSize, ySize));
 		Tile.setFillColor(Color.WHITE);
 		setPicture(shownPicture);
 		Tile.setPosition(xPosition,yPosition);

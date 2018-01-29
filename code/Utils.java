@@ -120,6 +120,10 @@ public class Utils
 	// define size of window for puzzle games
 	public static final int PuzzleGameWidth = 600;
 	public static final int PuzzleGameHeight = 600;
+	
+	//Tile Puzzle Tile Sizes
+	public static final int tileX = 200;
+	public static final int tileY = 200;
 
 
 	/**

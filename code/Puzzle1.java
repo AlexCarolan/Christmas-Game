@@ -38,26 +38,26 @@ class Puzzle1
 		PuzzleTile[][] endTiles = new PuzzleTile[3][3];
 
 		// tiles at start of puzzle game
-		tiles[0][0] = new PuzzleTile(0,0,"images\\tilePuzzle\\T7.png");
-		tiles[0][1] = new PuzzleTile(200,0,"images\\tilePuzzle\\T2.png");
-		tiles[0][2] = new PuzzleTile(400,0,"images\\tilePuzzle\\T4.png");
-		tiles[1][0] = new PuzzleTile(0,200,"images\\tilePuzzle\\T5.png");
-		tiles[1][1] = new PuzzleTile(200,200,"images\\tilePuzzle\\T0.png"); //blank default
-		tiles[1][2] = new PuzzleTile(400,200,"images\\tilePuzzle\\T6.png");
-		tiles[2][0] = new PuzzleTile(0,400,"images\\tilePuzzle\\T8.png");
-		tiles[2][1] = new PuzzleTile(200,400,"images\\tilePuzzle\\T3.png");
-		tiles[2][2] = new PuzzleTile(400,400,"images\\tilePuzzle\\T1.png");
+		tiles[0][0] = new PuzzleTile(0,0,"images\\tilePuzzle\\T7.png", Utils.tileX, Utils.tileY);
+		tiles[0][1] = new PuzzleTile(200,0,"images\\tilePuzzle\\T2.png", Utils.tileX, Utils.tileY);
+		tiles[0][2] = new PuzzleTile(400,0,"images\\tilePuzzle\\T4.png", Utils.tileX, Utils.tileY);
+		tiles[1][0] = new PuzzleTile(0,200,"images\\tilePuzzle\\T5.png", Utils.tileX, Utils.tileY);
+		tiles[1][1] = new PuzzleTile(200,200,"images\\tilePuzzle\\T0.png", Utils.tileX, Utils.tileY); //blank default
+		tiles[1][2] = new PuzzleTile(400,200,"images\\tilePuzzle\\T6.png", Utils.tileX, Utils.tileY);
+		tiles[2][0] = new PuzzleTile(0,400,"images\\tilePuzzle\\T8.png", Utils.tileX, Utils.tileY);
+		tiles[2][1] = new PuzzleTile(200,400,"images\\tilePuzzle\\T3.png", Utils.tileX, Utils.tileY);
+		tiles[2][2] = new PuzzleTile(400,400,"images\\tilePuzzle\\T1.png", Utils.tileX, Utils.tileY);
 
 		// position of tiles to successfully complete puzzle game
-		endTiles[0][0] = new PuzzleTile(0,0,"images\\tilePuzzle\\T0.png");
-		endTiles[0][1] = new PuzzleTile(200,0,"images\\tilePuzzle\\T1.png");
-		endTiles[0][2] = new PuzzleTile(400,0,"images\\tilePuzzle\\T2.png");
-		endTiles[1][0] = new PuzzleTile(0,200,"images\\tilePuzzle\\T3.png");
-		endTiles[1][1] = new PuzzleTile(200,200,"images\\tilePuzzle\\T4.png");
-		endTiles[1][2] = new PuzzleTile(400,200,"images\\tilePuzzle\\T5.png");
-		endTiles[2][0] = new PuzzleTile(0,400,"images\\tilePuzzle\\T6.png");
-		endTiles[2][1] = new PuzzleTile(200,400,"images\\tilePuzzle\\T7.png");
-		endTiles[2][2] = new PuzzleTile(400,400,"images\\tilePuzzle\\T8.png");
+		endTiles[0][0] = new PuzzleTile(0,0,"images\\tilePuzzle\\T0.png", Utils.tileX, Utils.tileY);
+		endTiles[0][1] = new PuzzleTile(200,0,"images\\tilePuzzle\\T1.png", Utils.tileX, Utils.tileY);
+		endTiles[0][2] = new PuzzleTile(400,0,"images\\tilePuzzle\\T2.png", Utils.tileX, Utils.tileY);
+		endTiles[1][0] = new PuzzleTile(0,200,"images\\tilePuzzle\\T3.png", Utils.tileX, Utils.tileY);
+		endTiles[1][1] = new PuzzleTile(200,200,"images\\tilePuzzle\\T4.png", Utils.tileX, Utils.tileY);
+		endTiles[1][2] = new PuzzleTile(400,200,"images\\tilePuzzle\\T5.png", Utils.tileX, Utils.tileY);
+		endTiles[2][0] = new PuzzleTile(0,400,"images\\tilePuzzle\\T6.png", Utils.tileX, Utils.tileY);
+		endTiles[2][1] = new PuzzleTile(200,400,"images\\tilePuzzle\\T7.png", Utils.tileX, Utils.tileY);
+		endTiles[2][2] = new PuzzleTile(400,400,"images\\tilePuzzle\\T8.png", Utils.tileX, Utils.tileY);
 
 		boolean finished = false;
 
