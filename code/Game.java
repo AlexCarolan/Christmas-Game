@@ -14,7 +14,7 @@ import org.jsfml.graphics.*;
 
 class Game 
 {
-	private static int fontSize     = 30;
+	private static int fontSize = 30;
 
 	public static void main (String args[ ]) 
 	{

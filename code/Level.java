@@ -141,6 +141,8 @@ class Level
 				else
 					idleLeft.setActive(true);
 			}
+			
+			System.out.println(gravity);
 
 			// handle keyboard events (movement can be via WASD or arrow keys)
 			if (Keyboard.isKeyPressed(Keyboard.Key.A) || Keyboard.isKeyPressed(Keyboard.Key.LEFT))
@@ -161,10 +163,13 @@ class Level
 				runDirectionRight = true;
 				moveX = Utils.MoveAmountX;
 			}
-			if (Keyboard.isKeyPressed(Keyboard.Key.W) || Keyboard.isKeyPressed(Keyboard.Key.UP))
+			if (Keyboard.isKeyPressed(Keyboard.Key.W) || Keyboard.isKeyPressed(Keyboard.Key.UP) || Keyboard.isKeyPressed(Keyboard.Key.SPACE))
 			{
-				inertiaY = Utils.JumpAmount;
-				moveY = 0-Utils.JumpAmount;
+				if (Utils.MinGravity * Utils.GravityMultiplier == gravity)
+				{
+					inertiaY = Utils.JumpAmount;
+					moveY = 0-Utils.JumpAmount;
+				}
 			}
 			if (Keyboard.isKeyPressed(Keyboard.Key.S) || Keyboard.isKeyPressed(Keyboard.Key.DOWN))
 			{
