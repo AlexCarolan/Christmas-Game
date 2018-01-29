@@ -14,18 +14,7 @@ import org.jsfml.graphics.*;
 
 class Game 
 {
-	private static String JavaVersion = 
-		Runtime.class.getPackage( ).getImplementationVersion( );
-	private static String JdkFontPath =
-		"C:\\Program Files\\Java\\jdk" + JavaVersion +
-		"\\jre\\lib\\fonts\\";
-	private static String JreFontPath =
-		"C:\\Program Files\\Java\\jre" + JavaVersion +
-		"\\lib\\fonts\\";
-
 	private static int fontSize     = 30;
-	private static String FontFile  = "LucidaSansRegular.ttf";
-	private static String FontPath;
 
 	public static void main (String args[ ]) 
 	{
@@ -38,20 +27,12 @@ class Game
 						"Christmas Game Menu",
 						WindowStyle.DEFAULT);
 		//
-		// Check whether we're running from a JDK or JRE install
-		// ...and set FontPath appropriately.
-		//
-		if ((new File(JreFontPath)).exists( ))
-			FontPath = JreFontPath;
-		else
-			FontPath = JdkFontPath;
-		//
 		// Load the font
 		//
 		Font sansRegular = new Font( );
 		try {
 			sansRegular.loadFromFile(
-					Paths.get(FontPath+FontFile));
+					Paths.get("fonts\\LucidaSansRegular.ttf"));
 		} catch (IOException ex) {
 			ex.printStackTrace( );
 		}
