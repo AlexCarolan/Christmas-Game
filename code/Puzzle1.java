@@ -10,7 +10,7 @@ import org.jsfml.graphics.*;
 
 class Puzzle1
 {
-	private static String Title   = "Puzzle1";
+	private static String Title   = "Puzzle 1";
 
 	/**
 	 * run - handle display and movement of the platform game for this level
@@ -21,10 +21,10 @@ class Puzzle1
 		RenderWindow window = new RenderWindow( );
 		window.create(new VideoMode(Utils.PuzzleGameWidth, Utils.PuzzleGameHeight),
 					Title,
-					WindowStyle.DEFAULT);
+					WindowStyle.CLOSE | WindowStyle.TITLEBAR);	// window can't be resized
 
 		// limit the framerate
-		window.setFramerateLimit(24);
+		window.setFramerateLimit(60);
 
 		// create all object
 		//PuzzleTile t = new PuzzleTile(0,0,"T0.png");
@@ -74,16 +74,12 @@ class Puzzle1
 					window.draw(tiles[i][j].getTile());
 				}
 			}
-			
+
 			// handle keyboard/mouse events (movement can be via WASD or arrow keys)
 			for (Event event : window.pollEvents()) 
 			{
-				MouseEvent mouseEvent;
 				switch(event.type) 
 				{
-					case CLOSED:
-						window.close();
-						break;
 					case KEY_PRESSED:
 						KeyEvent keyEvent = event.asKeyEvent();
 						if ((keyEvent.key == Keyboard.Key.LEFT) || (keyEvent.key == Keyboard.Key.A))
@@ -134,30 +130,38 @@ class Puzzle1
 							}
 						}
 						break;
+					case CLOSED:
+						System.out.println("Close clicked");
+						window.close();
+						break;
 				}
 			}
 
-			// display what was drawn on the window
-			window.display();
-
-			// check whether images are all in the right place
-			finished = true;
-			for (int i = 0; i < 3; i++)
-				if (finished)
-					for (int j = 0; j < 3; j++)
-						if (tiles[i][j].getPicture() != endTiles[i][j].getPicture())
-							finished = false;
-			if (finished)
+			if (window.isOpen())
 			{
-				System.out.println("Well done, you completed the picture!");
-				window.close();
+				// display what was drawn on the window
+				window.display();
+
+				// check whether images are all in the right place
+				finished = true;
+				for (int i = 0; i < 3; i++)
+					if (finished)
+						for (int j = 0; j < 3; j++)
+							if (tiles[i][j].getPicture() != endTiles[i][j].getPicture())
+								finished = false;
+				if (finished)
+				{
+					System.out.println("Well done, you completed the picture!");
+					window.close();
+				}
 			}
 		}
 	}
 
-	public static void main (String args[ ]) 
+	public static void main (String args[ ])
 	{
 		Puzzle1 p = new Puzzle1( );
 		p.run( );
+		p = null;
 	}
 }	
