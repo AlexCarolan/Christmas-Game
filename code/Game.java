@@ -16,19 +16,24 @@ class Game
 {
 	private static int fontSize = 30;
 
-	public static void main (String args[ ]) 
+	public static void run() 
 	{
-		// TODO: display the ChristmasRoom
-		// FOR NOW, display a menu
+		// create the game level
+		Level level = new Level();
 
-		// create a menu window
+		// create a window
 		RenderWindow window = new RenderWindow( );
 		window.create(new VideoMode(Utils.PlatformGameWidth, Utils.PlatformGameHeight),
 						"Christmas Game Menu",
 						WindowStyle.DEFAULT);
-		//
-		// Load the font
-		//
+
+		// set the frame-rate
+		window.setFramerateLimit(60);
+
+		// display the Christmas Room (as a platform)
+		Platform room = new Platform(Utils.PlatformGameWidth, Utils.PlatformGameHeight-200,0,0,Utils.RoomImage[level.getLevel()]);
+										
+		// Load the font for the menu options
 		Font sansRegular = new Font( );
 		try {
 			sansRegular.loadFromFile(
@@ -38,18 +43,17 @@ class Game
 		}
 		// create the menu text
 		Text text1 = new Text("1. Play Platform Game", sansRegular, 18);
-		text1.setPosition(100, 100);
+		text1.setPosition(100, Utils.PlatformGameHeight-180);
 		Text text2 = new Text("2. Play Puzzle Game", sansRegular, 18);
-		text2.setPosition(100, 200);
-		
-		// create the game level
-		Level level = new Level();
+		text2.setPosition(100, Utils.PlatformGameHeight-160);
 
 		while (window.isOpen() && level.getLevel() < Utils.MaxLevel)
 		{
-			window.clear();
+			window.clear(Color.BLACK);
+			window.draw(room.getPlatform());
 			window.draw(text1);
 			window.draw(text2);
+
 			// display what was drawn on the window
 			window.display();
 
@@ -78,9 +82,18 @@ class Game
 				{
 					case CLOSED:
 						window.close();
+						level = null;
+						room = null;
 						break;
 				}
 			}
 		}
+	}
+
+	public static void main (String args[ ]) 
+	{
+		Game game = new Game();
+		game.run();
+		game = null;
 	}
 }
