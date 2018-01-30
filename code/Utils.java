@@ -8,6 +8,9 @@ public class Utils
 	public static final int PlatformGameHeight = 768;
 	public static final int PlayerXPosition = PlatformGameWidth/2;
 	public static final int PlayerYPosition = PlatformGameHeight - 60;
+	
+	// define maximum game Level 
+	public static final int MaxLevel = 2;	// first level is 0.  Max level will be 3 when implementation finished
 
 	public static final int MoveAmountX = 5;
 	public static final int MoveAmountY = 2;

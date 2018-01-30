@@ -41,8 +41,11 @@ class Game
 		text1.setPosition(100, 100);
 		Text text2 = new Text("2. Play Puzzle Game", sansRegular, 18);
 		text2.setPosition(100, 200);
+		
+		// create the game level
+		Level level = new Level();
 
-		while (window.isOpen())
+		while (window.isOpen() && level.getLevel() < Utils.MaxLevel)
 		{
 			window.clear();
 			window.draw(text1);
@@ -55,15 +58,16 @@ class Game
 			// if we're playing a puzzle, play it at the current level
 			if (Keyboard.isKeyPressed(Keyboard.Key.NUM1))
 			{
-				Level level = new Level();
-				level.run();
-				level = null;
+				PlatformGame platGame = new PlatformGame();
+				platGame.run(level.getLevel());
+				platGame = null;
+				level.incrementLevel();
 			}
 			else if (Keyboard.isKeyPressed(Keyboard.Key.NUM2))
 			{
 				Puzzle1 puzzle = new Puzzle1();
 				puzzle.run();
-				puzzle = null;;
+				puzzle = null;
 			}
 
 			// handle mouse events
