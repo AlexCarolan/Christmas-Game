@@ -76,15 +76,18 @@ class PlatformGame
 										Utils.ShutDoorImage);
 
 		// create and start animations
-		Animation idleRight = new Animation(player, Utils.IdleRightPath, 4, 175);
-		Animation idleLeft = new Animation(player, Utils.IdleLeftPath, 4, 175);
-		Animation runningLeft = new Animation(player, Utils.RunningLeftPath, 12, 90);
-		Animation runningRight = new Animation(player, Utils.RunningRightPath, 12, 90);
+		AnimatedPlayer idleRight = new AnimatedPlayer(player, Utils.IdleRightPath, 4, 175);
+		AnimatedPlayer idleLeft = new AnimatedPlayer(player, Utils.IdleLeftPath, 4, 175);
+		AnimatedPlayer runningLeft = new AnimatedPlayer(player, Utils.RunningLeftPath, 12, 90);
+		AnimatedPlayer runningRight = new AnimatedPlayer(player, Utils.RunningRightPath, 12, 90);
+		AnimatedCollectible bauble = new AnimatedCollectible(collectible[0], Utils.Bauble1Path, 2, 200);
+		bauble.start();
 		idleRight.start();
 		idleLeft.start();
 		runningLeft.start();
 		runningRight.start();
 		idleRight.setActive(true);
+		bauble.setActive(true);
 		
 		boolean finished = false;
 		while (window.isOpen() && !finished)
@@ -132,7 +135,7 @@ class PlatformGame
 
 			// apply idle animation when still
 			if (runningRight.getActive() || runningLeft.getActive() &&
-				((System.currentTimeMillis() - lastTimeMoved) > 100))
+				((System.currentTimeMillis() - lastTimeMoved) > 10))
 			{
 				runningRight.setActive(false);
 				runningLeft.setActive(false);
@@ -141,8 +144,6 @@ class PlatformGame
 				else
 					idleLeft.setActive(true);
 			}
-			
-			System.out.println(gravity);
 
 			// handle keyboard events (movement can be via WASD or arrow keys)
 			if (Keyboard.isKeyPressed(Keyboard.Key.A) || Keyboard.isKeyPressed(Keyboard.Key.LEFT))
@@ -165,9 +166,10 @@ class PlatformGame
 			}
 			if (Keyboard.isKeyPressed(Keyboard.Key.W) || Keyboard.isKeyPressed(Keyboard.Key.UP) || Keyboard.isKeyPressed(Keyboard.Key.SPACE))
 			{
+				
 				if (Utils.MinGravity * Utils.GravityMultiplier == gravity)
 				{
-					inertiaY = Utils.JumpAmount;
+					inertiaY += Utils.JumpAmount;
 					moveY = 0-Utils.JumpAmount;
 				}
 			}
@@ -188,6 +190,7 @@ class PlatformGame
 						idleLeft.kill();
 						runningLeft.kill();
 						runningRight.kill();
+						bauble.kill();
 						window.close();
 						break;
 				}

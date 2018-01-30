@@ -118,5 +118,14 @@ class Platform
 		}
 		plat.setTexture(texture);
 	}
+	
+	/**
+	 * setSprite - sets a new texture for the sprite
+	 * @param texture - the new texture for the sprite
+	 */
+	public void setSprite(Texture texture)
+	{
+		plat.setTexture(texture);
+	}
 }
  
