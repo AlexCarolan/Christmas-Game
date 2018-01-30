@@ -18,8 +18,8 @@ class PuzzleTile
 	public PuzzleTile(int xPosition, int yPosition, String picture, int xSize, int ySize)
 	{
 		// create a rectangle shape
-		int x = xPosition;
-		int y = yPosition;
+		x = xPosition;
+		y = yPosition;
 		shownPicture = picture;
 		
 		Tile = new RectangleShape(new Vector2f(xSize, ySize));
