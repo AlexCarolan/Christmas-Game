@@ -47,19 +47,19 @@ class Game
 		Text textPuzzle1 = new Text("2. Play Level 1 Puzzle Game", sansRegular, 18);
 		textPuzzle1.setPosition(100, Utils.PlatformGameHeight-260);
 		Text textPlatform2 = new Text("3. Play Level 2 Platform Game", sansRegular, 18);
-		textPlatform2.setPosition(100, Utils.PlatformGameHeight-240);
+		textPlatform2.setPosition(100, Utils.PlatformGameHeight-230);
 		Text textPuzzle2 = new Text("4. Play Level 2 Puzzle Game", sansRegular, 18);
-		textPuzzle2.setPosition(100, Utils.PlatformGameHeight-220);
+		textPuzzle2.setPosition(100, Utils.PlatformGameHeight-210);
 		Text textPlatform3 = new Text("5. Play Level 3 Platform Game", sansRegular, 18);
-		textPlatform3.setPosition(100, Utils.PlatformGameHeight-200);
+		textPlatform3.setPosition(100, Utils.PlatformGameHeight-180);
 		Text textPuzzle3 = new Text("6. Play Level 3 Puzzle Game", sansRegular, 18);
-		textPuzzle3.setPosition(100, Utils.PlatformGameHeight-180);
+		textPuzzle3.setPosition(100, Utils.PlatformGameHeight-160);
 		Text textPlatform4 = new Text("7. Play Level 4 Platform Game", sansRegular, 18);
-		textPlatform4.setPosition(100, Utils.PlatformGameHeight-160);
+		textPlatform4.setPosition(100, Utils.PlatformGameHeight-130);
 		Text textPuzzle4 = new Text("8. Play Level 4 Puzzle Game", sansRegular, 18);
-		textPuzzle4.setPosition(100, Utils.PlatformGameHeight-140);
+		textPuzzle4.setPosition(100, Utils.PlatformGameHeight-110);
 
-		while (window.isOpen() && level.getLevel() < Utils.MaxLevel)
+		while (window.isOpen())
 		{
 			room.setImage(Utils.RoomImage[level.getLevel()]);
 			window.clear(Color.BLACK);
@@ -110,6 +110,40 @@ class Game
 				platGame = null;
 				if (level.getLevel() == 1)
 					level.incrementLevel();
+			}
+			else if (Keyboard.isKeyPressed(Keyboard.Key.NUM4) && level.getLevel() > 0)
+			{
+				//Puzzle1 puzzle = new Puzzle1();
+				//puzzle.run();
+				;//puzzle = null;
+			}
+			else if (Keyboard.isKeyPressed(Keyboard.Key.NUM5) && level.getLevel() > 1)
+			{
+				PlatformGame platGame = new PlatformGame();
+				platGame.run(2);
+				platGame = null;
+				if (level.getLevel() == 2)
+					level.incrementLevel();
+			}
+			else if (Keyboard.isKeyPressed(Keyboard.Key.NUM6) && level.getLevel() > 1)
+			{
+				//Puzzle1 puzzle = new Puzzle1();
+				//puzzle.run();
+				;//puzzle = null;
+			}
+			else if (Keyboard.isKeyPressed(Keyboard.Key.NUM7) && level.getLevel() > 2)
+			{
+				PlatformGame platGame = new PlatformGame();
+				platGame.run(3);
+				platGame = null;
+				if (level.getLevel() == 3)
+					level.incrementLevel();
+			}
+			else if (Keyboard.isKeyPressed(Keyboard.Key.NUM8) && level.getLevel() > 2)
+			{
+				//Puzzle1 puzzle = new Puzzle1();
+				//puzzle.run();
+				;//puzzle = null;
 			}
 
 			// handle mouse events
