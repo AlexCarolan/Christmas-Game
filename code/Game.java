@@ -31,7 +31,7 @@ class Game
 		window.setFramerateLimit(60);
 
 		// display the Christmas Room (as a platform)
-		Platform room = new Platform(Utils.PlatformGameWidth, Utils.PlatformGameHeight-200,0,0,Utils.RoomImage[level.getLevel()]);
+		Platform room = new Platform(Utils.PlatformGameWidth, Utils.PlatformGameHeight-350,0,0,Utils.RoomImage[level.getLevel()]);
 										
 		// Load the font for the menu options
 		Font sansRegular = new Font( );
@@ -43,12 +43,13 @@ class Game
 		}
 		// create the menu text
 		Text text1 = new Text("1. Play Platform Game", sansRegular, 18);
-		text1.setPosition(100, Utils.PlatformGameHeight-180);
+		text1.setPosition(100, Utils.PlatformGameHeight-280);
 		Text text2 = new Text("2. Play Puzzle Game", sansRegular, 18);
-		text2.setPosition(100, Utils.PlatformGameHeight-160);
+		text2.setPosition(100, Utils.PlatformGameHeight-260);
 
 		while (window.isOpen() && level.getLevel() < Utils.MaxLevel)
 		{
+			room.setImage(Utils.RoomImage[level.getLevel()]);
 			window.clear(Color.BLACK);
 			window.draw(room.getPlatform());
 			window.draw(text1);
