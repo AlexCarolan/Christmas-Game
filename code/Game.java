@@ -16,7 +16,7 @@ class Game
 {
 	private static int fontSize = 30;
 
-	public static void run() 
+	public static void main (String args[ ]) 
 	{
 		// create the game level
 		Level level = new Level();
@@ -61,25 +61,28 @@ class Game
 
 		while (window.isOpen())
 		{
-			room.setImage(Utils.RoomImage[level.getLevel()]);
+			int gameLevel = level.getLevel();
+			room.setImage(Utils.RoomImage[gameLevel]);
 			window.clear(Color.BLACK);
 			window.draw(room.getPlatform());
 			window.draw(textPlatform1);
-			window.draw(textPuzzle1);
-			int gameLevel = level.getLevel();
 			if (gameLevel > 0)
 			{
+				window.draw(textPuzzle1);
 				window.draw(textPlatform2);
-				window.draw(textPuzzle2);
 			}
 			if (gameLevel > 1)
 			{
+				window.draw(textPuzzle2);
 				window.draw(textPlatform3);
-				window.draw(textPuzzle3);
 			}
 			if (gameLevel > 2)
 			{
+				window.draw(textPuzzle3);
 				window.draw(textPlatform4);
+			}
+			if (gameLevel > 3)
+			{
 				window.draw(textPuzzle4);
 			}
 
@@ -95,7 +98,12 @@ class Game
 				platGame.run(0);
 				platGame = null;
 				if (level.getLevel() == 0)
+				{
 					level.incrementLevel();
+					Puzzle1 puzzle = new Puzzle1();
+					puzzle.run();
+					puzzle = null;
+				}
 			}
 			else if (Keyboard.isKeyPressed(Keyboard.Key.NUM2))
 			{
@@ -109,11 +117,16 @@ class Game
 				platGame.run(1);
 				platGame = null;
 				if (level.getLevel() == 1)
+				{
 					level.incrementLevel();
+					//Puzzle2 puzzle = new Puzzle2();
+					//puzzle.run();
+					//puzzle = null;
+				}
 			}
 			else if (Keyboard.isKeyPressed(Keyboard.Key.NUM4) && level.getLevel() > 0)
 			{
-				//Puzzle1 puzzle = new Puzzle1();
+				//Puzzle2 puzzle = new Puzzle2();
 				//puzzle.run();
 				;//puzzle = null;
 			}
@@ -123,11 +136,16 @@ class Game
 				platGame.run(2);
 				platGame = null;
 				if (level.getLevel() == 2)
+				{
 					level.incrementLevel();
+					//Puzzle3 puzzle = new Puzzle3();
+					//puzzle.run();
+					//puzzle = null;
+				}
 			}
 			else if (Keyboard.isKeyPressed(Keyboard.Key.NUM6) && level.getLevel() > 1)
 			{
-				//Puzzle1 puzzle = new Puzzle1();
+				//Puzzle3 puzzle = new Puzzle3();
 				//puzzle.run();
 				;//puzzle = null;
 			}
@@ -137,11 +155,16 @@ class Game
 				platGame.run(3);
 				platGame = null;
 				if (level.getLevel() == 3)
+				{
 					level.incrementLevel();
+					//Puzzle4 puzzle = new Puzzle4();
+					//puzzle.run();
+					//puzzle = null;
+				}
 			}
 			else if (Keyboard.isKeyPressed(Keyboard.Key.NUM8) && level.getLevel() > 2)
 			{
-				//Puzzle1 puzzle = new Puzzle1();
+				//Puzzle4 puzzle = new Puzzle4();
 				//puzzle.run();
 				;//puzzle = null;
 			}
@@ -154,18 +177,10 @@ class Game
 				{
 					case CLOSED:
 						window.close();
-						level = null;
-						room = null;
+						System.exit(0);
 						break;
 				}
 			}
 		}
-	}
-
-	public static void main (String args[ ]) 
-	{
-		Game game = new Game();
-		game.run();
-		game = null;
 	}
 }
