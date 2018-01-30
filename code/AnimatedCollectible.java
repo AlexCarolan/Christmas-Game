@@ -6,9 +6,9 @@ import java.io.*;
 import org.jsfml.graphics.*;
 import java.util.ArrayList;
 
-class Animation extends Thread
+class AnimatedCollectible extends Thread
 {
-	private static Player player;
+	private static Collectible col;
 	private Texture[] texture;
 	private int interval;
 	private boolean active = false;
@@ -16,14 +16,14 @@ class Animation extends Thread
 	
 	/**
 	 * Platform constructor - creates a platform (for the sprite to stand on)
-	 * @param p - the player instance to be animated
+	 * @param c - the Collectible instance to be animated
 	 * @param path - the file path to the sprites
 	 * @param frames - the number of frames in the animation
 	 * @param delay - the delay between each frame of the animation in milliseconds
 	 */
-	public Animation(Player p, String path, int frames, int delay)
+	public AnimatedCollectible(Collectible c, String path, int frames, int delay)
 	{
-		player = p;
+		col = c;
 		texture = new Texture[frames];
 		interval = delay;
 		
@@ -54,7 +54,7 @@ class Animation extends Thread
 			}
 			if (active)
 			{
-				player.setSprite(texture[i]);
+				col.setSprite(texture[i]);
 				//System.out.println("ALIVE");
 				if (++i == texture.length)
 					i = 0;
