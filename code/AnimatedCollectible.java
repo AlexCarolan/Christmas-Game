@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 class AnimatedCollectible extends Thread
 {
-	private static Collectible col;
+	private Collectible col;
 	private Texture[] texture;
 	private int interval;
 	private boolean active = false;

@@ -33,6 +33,7 @@ public class Utils
 	public static final String RunningRightPath = "Sprites\\Running_Right\\Santa_Elf_Running";
 	public static final String RunningLeftPath = "Sprites\\Running_Left\\Santa_Elf_Running";
 	public static final String Bauble1Path = "Sprites\\Baubles\\Bauble";
+	public static final String AxePath = "Sprites\\Axe\\Axe";
 
 	// define width, height, xPosition, yPosition for all the platforms for each level
 	// to access this array: first index is level, second index is platform, 

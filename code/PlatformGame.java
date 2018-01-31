@@ -80,14 +80,17 @@ class PlatformGame
 		AnimatedPlayer idleLeft = new AnimatedPlayer(player, Utils.IdleLeftPath, 4, 175);
 		AnimatedPlayer runningLeft = new AnimatedPlayer(player, Utils.RunningLeftPath, 12, 90);
 		AnimatedPlayer runningRight = new AnimatedPlayer(player, Utils.RunningRightPath, 12, 90);
-		AnimatedCollectible bauble = new AnimatedCollectible(collectible[0], Utils.Bauble1Path, 2, 200);
+		AnimatedCollectible bauble = new AnimatedCollectible(collectible[0], Utils.Bauble1Path, 2, 250);
+		AnimatedCollectible axe = new AnimatedCollectible(collectible[1], Utils.AxePath, 10, 100);
 		bauble.start();
+		axe.start();
 		idleRight.start();
 		idleLeft.start();
 		runningLeft.start();
 		runningRight.start();
 		idleRight.setActive(true);
 		bauble.setActive(true);
+		axe.setActive(true);
 		
 		boolean finished = false;
 		while (window.isOpen() && !finished)
