@@ -28,8 +28,8 @@ public class Utils
 												"images\\christmasRoom\\fullRoom.png"};	// game level 4 end
 	
 	//File paths for sprites
-	public static final String IdleRightPath = "Sprites\\Idle_Right\\Santa_Elf_Idle";
-	public static final String IdleLeftPath = "Sprites\\Idle_Left\\Santa_Elf_Idle";
+	public static final String IdleRightPath = "Sprites\\Idle_Right\\Idle";
+	public static final String IdleLeftPath = "Sprites\\Idle_Left\\Idle";
 	public static final String RunningRightPath = "Sprites\\Running_Right\\Santa_Elf_Running";
 	public static final String RunningLeftPath = "Sprites\\Running_Left\\Santa_Elf_Running";
 	public static final String Bauble1Path = "Sprites\\Baubles\\Bauble";
