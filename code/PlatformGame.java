@@ -14,22 +14,24 @@ import org.jsfml.graphics.*;
 
 class PlatformGame 
 {
-	private static String Title = "Level ";
-	private static int lastNumCollected = 0;
-	private static long lastTimeMoved = 0;
-	private static boolean runDirectionRight = true;
+	private String Title = "Level ";
+	private int lastNumCollected = 0;
+	private long lastTimeMoved = 0;
+	private boolean runDirectionRight = true;
 
 	/**
 	 * run - handle display and movement of the platform game for this level
 	 * @param gameLevel - the current game level
+	 * @return true is platform level completed successfully
+	 *         if window closed without finishing, returns false
 	 */
-	public static void run (int gameLevel)
+	public boolean run(int gameLevel)
 	{
 		// create the window
 		RenderWindow window = new RenderWindow( );
 		window.create(new VideoMode(Utils.PlatformGameWidth, Utils.PlatformGameHeight),
 					Title + (gameLevel+1),
-					WindowStyle.DEFAULT);
+					WindowStyle.CLOSE | WindowStyle.TITLEBAR);	// window can't be resized
 
 		// set the frame-rate
 		window.setFramerateLimit(60);
@@ -185,7 +187,6 @@ class PlatformGame
 			// handle mouse events
 			for (Event event : window.pollEvents()) 
 			{
-				MouseEvent mouseEvent;
 				switch(event.type) 
 				{
 					case CLOSED:
@@ -369,5 +370,7 @@ class PlatformGame
 		runningLeft.kill();
 		runningRight.kill();
 		window.close();
+		return finished;	// returns true if platform completed successfully
+							// if window closed without finishing, returns false
 	}
 }

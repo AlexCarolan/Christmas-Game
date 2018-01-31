@@ -1,10 +1,10 @@
 /**
  * This class handles the game level
  */
-
 class Level 
 {
 	private int level;
+
 	/**
 	 * constructor - create level
 	 */
