@@ -5,6 +5,7 @@ class Collectible extends Platform
 {
 	private boolean itemCollected;
 	private boolean keyItem;
+	private static Score playerScore;
 
 	/**
 	 * Collectible constructor - creates an item for the player to collect
@@ -12,12 +13,14 @@ class Collectible extends Platform
 	 * @param height - the height of the collectible
 	 * @param xPosition - the left hand side of the collectible
 	 * @param yPosition - the top of the collectible
+	 * @param score - the score class tracking the players score
 	 */
-	public Collectible(int width, int height, int xPosition, int yPosition, String filename, boolean key)
+	public Collectible(int width, int height, int xPosition, int yPosition, String filename, boolean key, Score score)
 	{
 		super(width, height, xPosition, yPosition, filename);
 		keyItem = key;
 		itemCollected = false;
+		playerScore = score;
 	}
 	
 	/**
@@ -35,6 +38,8 @@ class Collectible extends Platform
 	public void collect()
 	{
 		itemCollected = true;
+		playerScore.increaseScore(100);
+		
 	}
 	
 	/**

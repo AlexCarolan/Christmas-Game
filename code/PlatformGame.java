@@ -41,6 +41,9 @@ class PlatformGame
 		int inertiaX = 1;
 		int inertiaY = Utils.JumpAmount;
 		double gravity = Utils.MinGravity;
+		
+		// create new score object
+		Score playerScore = new Score(0);
 
 		// create all objects - player, platforms, obstacles, collectibles
 		Player player = new Player();
@@ -68,7 +71,7 @@ class PlatformGame
 		for (int i = 0; i < numCollectibles; i++)
 			collectible[i] = new Collectible(Utils.CollectiblePositions[gameLevel][i][0],Utils.CollectiblePositions[gameLevel][i][1],
 											Utils.CollectiblePositions[gameLevel][i][2],Utils.CollectiblePositions[gameLevel][i][3],
-											Utils.CollectibleImages[gameLevel][i],Utils.CollectibleKeys[gameLevel][i]);
+											Utils.CollectibleImages[gameLevel][i],Utils.CollectibleKeys[gameLevel][i],playerScore);
 
 		int numKeysToCollect = Utils.numKeys[gameLevel];
 		int numKeysCollected = 0;
@@ -94,11 +97,28 @@ class PlatformGame
 		bauble.setActive(true);
 		axe.setActive(true);
 		
+		// load the font
+		Font sansRegular = new Font( );
+		try {
+			sansRegular.loadFromFile(
+					Paths.get("fonts\\LucidaSansRegular.ttf"));
+		} catch (IOException ex) {
+			ex.printStackTrace( );
+		}
+		
+		// add the score tracker
+		Text scoreText = new Text("Score:0", sansRegular, 18);
+		scoreText.setPosition(10, Utils.PlatformGameHeight-(Utils.PlatformGameHeight-10));
+		
 		boolean finished = false;
 		while (window.isOpen() && !finished)
 		{
 			// fill the window with black
 			window.clear(Color.BLACK);
+			
+			// add the players score to the window
+			scoreText.setString("Score:" + playerScore.getScore());
+			window.draw(scoreText);
 
 			// add all objects onto the window
 			for (int i = 0; i < numPlatforms; i++)
