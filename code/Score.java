@@ -9,7 +9,7 @@ class Score
 	 * Score constructor - creates an object to track the players score
 	 * @param s - the score starting value
 	 */
-	public score(int score)
+	public void score(int score)
 	{
 		playerScore = score;
 	}
