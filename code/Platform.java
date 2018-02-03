@@ -5,9 +5,6 @@ import java.nio.file.*;
 import java.io.*;
 
 import org.jsfml.system.*;
-//import org.jsfml.window.*;
-//import org.jsfml.window.event.*;
-//import org.jsfml.window.Keyboard.*;
 import org.jsfml.graphics.*;
 
 class Platform 
@@ -17,12 +14,13 @@ class Platform
 	
 	/**
 	 * Platform constructor - creates a platform (for the sprite to stand on)
-	 * @param width - the width of the platform
-	 * @param height - the height of the platform
 	 * @param xPosition - the left hand side of the platform
 	 * @param yPosition - the top of the platform
+	 * @param width - the width of the platform
+	 * @param height - the height of the platform
+	 * @param filename - the filename for the platform image
 	 */
-	public Platform(int width, int height, int xPosition, int yPosition, String filename)
+	public Platform(int xPosition, int yPosition, int width, int height, String filename)
 	{
 		// create a rectangle shape
 		plat = new RectangleShape(new Vector2f(width, height));

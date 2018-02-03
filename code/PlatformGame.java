@@ -356,12 +356,12 @@ class PlatformGame
 			{
 				player.resetPosition();
 				for (int i = 0; i < numPlatforms; i++)
-					platform[i].resetPosition(Utils.PlatformPositions[gameLevel][i][2],Utils.PlatformPositions[gameLevel][i][3]);
+					platform[i].resetPosition(Utils.PlatformPositions[gameLevel][i][0],Utils.PlatformPositions[gameLevel][i][1]);
 				for (int i = 0; i < numObstacles; i++)
-					obstacle[i].resetPosition(Utils.ObstaclePositions[gameLevel][i][2],Utils.ObstaclePositions[gameLevel][i][3]);
+					obstacle[i].resetPosition(Utils.ObstaclePositions[gameLevel][i][0],Utils.ObstaclePositions[gameLevel][i][1]);
 				for (int i = 0; i < numCollectibles; i++)
-					collectible[i].resetPosition(Utils.CollectiblePositions[gameLevel][i][2],Utils.CollectiblePositions[gameLevel][i][3]);
-				door.resetPosition(Utils.DoorPosition[gameLevel][2],Utils.DoorPosition[gameLevel][3]);
+					collectible[i].resetPosition(Utils.CollectiblePositions[gameLevel][i][0],Utils.CollectiblePositions[gameLevel][i][1]);
+				door.resetPosition(Utils.DoorPosition[gameLevel][0],Utils.DoorPosition[gameLevel][1]);
 				moveX = 0;
 				moveY = 0;
 				inertiaY = 0;

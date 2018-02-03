@@ -31,7 +31,7 @@ class Game
 		window.setFramerateLimit(60);
 
 		// display the Christmas Room (as a platform)
-		Platform room = new Platform(Utils.PlatformGameWidth, Utils.PlatformGameHeight-350,0,0,Utils.RoomImage[level.getLevel()]);
+		Platform room = new Platform(0,0,Utils.PlatformGameWidth,Utils.PlatformGameHeight-350,Utils.RoomImage[level.getLevel()]);
 										
 		// Load the font for the menu options
 		Font sansRegular = new Font( );
