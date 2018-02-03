@@ -39,8 +39,8 @@ public class Utils
 	// to access this array: first index is level, second index is platform, 
 	// third index is xPosition, yPosition, width, height of that platform
 	public static final int PlatformPositions[][][] = {{ // gameLevel 1
-														{0,700,4450,50},	// base 1
-														{4500,700,800,50},	// base 2
+														{0,700,5200,50},	// base 1
+														{5300,700,800,50},	// base 2
 														{1150,600,100,100},
 														{1250,650,100,50},
 														{1400,500,100,50},
@@ -51,6 +51,13 @@ public class Utils
 														{2250,600,200,100},
 														{2600,620,50,80},
 														{2600,540,150,80},
+														{3200,500,200,200},
+														{3400,600,600,100},
+														{4300,500,250,200},
+														{4600,500,200,200},
+														{4800,600,400,100},
+														{4900,400,200,100},
+														{5000,300,100,100},
 														{0,0,2,PlatformGameHeight}},						// left hand edge
 														{ // gameLevel 2
 														{0,PlatformGameHeight - 25,PlatformGameWidth,25},	// base
@@ -72,6 +79,13 @@ public class Utils
 													};
 	// define image for each platform on each level, in same order as PlatformPositions array
 	public static final String PlatformImages[][] = {{ // gameLevel 1
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
 														"images\\platform\\bricks.png",
 														"images\\platform\\bricks.png",
 														"images\\platform\\bricks.png",
@@ -112,7 +126,12 @@ public class Utils
 														{680,660,50,50},
 														{720,620,100,100},
 														{800,670,50,50},
-														{2350,570,40,40}},
+														{2350,570,40,40},
+														{3000,660,50,50},
+														{3680,560,50,50},
+														{3720,520,100,100},
+														{3800,570,50,50},
+														{4420,470,40,40}},
 														{ // gameLevel 2
 														{375,567,40,40},
 														{550,467,35,35}},
@@ -125,6 +144,11 @@ public class Utils
 													};
 	// define image for each obstacle on each level, in same order as ObstaclePositions array
 	public static final String ObstacleImages[][] = {{ // gameLevel 1
+														"images\\obstacles\\box.png",
+														"images\\obstacles\\box.png",
+														"images\\obstacles\\box.png",
+														"images\\obstacles\\box.png",
+														"images\\obstacles\\box.png",
 														"images\\obstacles\\box.png",
 														"images\\obstacles\\box.png",
 														"images\\obstacles\\box.png",
@@ -145,9 +169,10 @@ public class Utils
 	// third index is xPosition, yPosition, width, height of that collectible,
 	public static final int CollectiblePositions[][][] = {{ // gameLevel 1
 														{1510,530,15,15},
-														{2120,650,25,25},
+														{2120,675,15,15},
 														{1650,675,35,35},
-														{2660,675,15,15}},
+														{2660,675,15,15},
+														{4980,385,15,15}},
 														{ // gameLevel 2
 														{125,685,15,15},
 														{570,467,35,35}},
@@ -161,8 +186,9 @@ public class Utils
 	// define image for each collectible on each level, in same order as CollectiblePositions array
 	public static final String CollectibleImages[][] = {{ // gameLevel 1
 														"images\\collectibles\\OrangeBauble.png",
-														"images\\collectibles\\RedBauble.png",
+														"images\\collectibles\\OrangeBauble.png",
 														"images\\collectibles\\Axe.png",
+														"images\\collectibles\\OrangeBauble.png",
 														"images\\collectibles\\OrangeBauble.png"},
 														{ // gameLevel 2
 														"images\\collectibles\\OrangeBauble.png",
@@ -179,6 +205,7 @@ public class Utils
 														false,
 														false,
 														true,
+														false,
 														false},
 														{ // gameLevel 2
 														false,
@@ -202,7 +229,7 @@ public class Utils
 	// to access this array: first index is level, 
 	// second index is xPosition, yPosition, width, height of the door
 	public static final int DoorPosition[][] = { // gameLevel 1
-												{3500,600,50,100},
+												{5800,600,50,100},
 												 // gameLevel 2
 												{1500,640,50,100},
 												 // gameLevel 3
