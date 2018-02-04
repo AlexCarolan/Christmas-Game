@@ -14,7 +14,7 @@ public class Utils
 
 	public static final int MoveAmountX = 5;
 	public static final int MoveAmountY = 2;
-	public static final int JumpAmount = 40;
+	public static final int JumpAmount = 20;	//40;
 	public static final int Gravity = 2;
 	public static final int MinGravity = 3;
 	public static final int MaxGravity = 30;
@@ -302,10 +302,10 @@ public class Utils
 	// to access this array: first index is level, second index is collectible, 
 	// third index is xPosition, yPosition, width, height of that collectible,
 	public static final int CollectiblePositions[][][] = {{ // gameLevel 1
-														{1510,530,15,15},
-														{2120,675,15,15},
-														{1650,675,35,35},
-														{2660,675,15,15},
+														{1510,535,15,15},
+														{1650,670,35,35},	// axe
+														{2120,685,15,15},
+														{2660,685,15,15},
 														{4980,385,15,15}},
 														{ // gameLevel 2
 														{125,685,15,15},
@@ -313,19 +313,19 @@ public class Utils
 														{ // gameLevel 3
 														{220,540,15,15},
 														{200,650,35,35},
-														{1900,280,15,15},
-														{2020,680,15,15}},
+														{1900,285,15,15},
+														{2020,685,15,15}},
 														{ // gameLevel 4
-														{220,540,15,15},
-														{PlatformGameWidth+200,PlatformGameHeight - 55,35,35}},
+														{220,535,15,15},
+														{PlatformGameWidth+200,PlatformGameHeight - 80,35,35}},
 													};
 	// define image for each collectible on each level, in same order as CollectiblePositions array
 	public static final String CollectibleImages[][] = {{ // gameLevel 1
 														"images\\collectibles\\OrangeBauble.png",
-														"images\\collectibles\\OrangeBauble.png",
 														"images\\collectibles\\Axe.png",
-														"images\\collectibles\\OrangeBauble.png",
-														"images\\collectibles\\OrangeBauble.png"},
+														"images\\collectibles\\RedBauble.png",
+														"images\\collectibles\\GreenBauble.png",
+														"images\\collectibles\\BlueBauble.png"},
 														{ // gameLevel 2
 														"images\\collectibles\\OrangeBauble.png",
 														"images\\collectibles\\Axe.png"},
@@ -341,8 +341,8 @@ public class Utils
 	// define whether each collectible on each level in a key to the exit door, in same order as CollectiblePositions array
 	public static final boolean CollectibleKeys[][] = {{ // gameLevel 1
 														false,
-														false,
 														true,
+														false,
 														false,
 														false},
 														{ // gameLevel 2
