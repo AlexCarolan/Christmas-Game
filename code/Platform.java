@@ -11,6 +11,7 @@ class Platform
 {
 	private RectangleShape plat;
 	private Texture texture = new Texture();
+	private boolean ceiling;
 	
 	/**
 	 * Platform constructor - creates a platform (for the sprite to stand on)
@@ -19,8 +20,9 @@ class Platform
 	 * @param width - the width of the platform
 	 * @param height - the height of the platform
 	 * @param filename - the filename for the platform image
+	 * @param noJump - true if this platform is a ceiling that cannot be jumped up through
 	 */
-	public Platform(int xPosition, int yPosition, int width, int height, String filename)
+	public Platform(int xPosition, int yPosition, int width, int height, String filename, boolean noJump)
 	{
 		// create a rectangle shape
 		plat = new RectangleShape(new Vector2f(width, height));
@@ -36,6 +38,7 @@ class Platform
 		else
 			plat.setTexture(texture);
 		resetPosition(xPosition, yPosition);
+		ceiling = noJump;
 	}
 	
 	/**
@@ -81,6 +84,15 @@ class Platform
 	public int getYSize()
 	{
 		return Math.round(plat.getSize().y);
+	}
+	
+	/**
+	 * isCeiling - returns true if this platform is a ceiling that cannot be jumped up through
+	 * @return boolean, true if this is a ceiling
+	 */
+	public boolean isCeiling()
+	{
+		return ceiling;
 	}
 
 	/**

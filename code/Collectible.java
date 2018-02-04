@@ -17,7 +17,7 @@ class Collectible extends Platform
 	 */
 	public Collectible(int width, int height, int xPosition, int yPosition, String filename, boolean key, Score score)
 	{
-		super(width, height, xPosition, yPosition, filename);
+		super(width, height, xPosition, yPosition, filename, false);
 		keyItem = key;
 		itemCollected = false;
 		playerScore = score;

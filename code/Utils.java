@@ -19,6 +19,8 @@ public class Utils
 	public static final int MinGravity = 3;
 	public static final int MaxGravity = 30;
 
+	public static final int SleighGameLevel = 3;
+
 	//  gravity gradually increases over time
 	// except last level, where the sleigh floats like a feather
 	public static final double GravityMultiplier[] = {1.04,1.04,1.04,1};
@@ -35,6 +37,7 @@ public class Utils
 	public static final String IdleLeftPath = "Sprites\\Idle_Left\\Idle";
 	public static final String RunningRightPath = "Sprites\\Running_Right\\Santa_Elf_Running";
 	public static final String RunningLeftPath = "Sprites\\Running_Left\\Santa_Elf_Running";
+	//public static final String SleighRightPath = "Sprites\\Sleigh_Right\\";
 	public static final String Bauble1Path = "Sprites\\Baubles\\Bauble";
 	public static final String AxePath = "Sprites\\Axe\\Axe";
 
@@ -171,6 +174,72 @@ public class Utils
 														"images\\platform\\bricks.png",
 														"images\\platform\\grass.png",
 														"images\\platform\\grass.png"}
+													};
+	// specify whether platform is a ceiling (can't be jumped up through)
+	public static final boolean PlatformCeilings[][] = {{ // gameLevel 1
+														true,	// base1
+														true,	// base 2
+														false,
+														false,
+														true,
+														true,
+														false,
+														false,
+														true,
+														false,
+														true,
+														true,
+														false,
+														false,
+														false,
+														false,
+														false,
+														true,
+														true,
+														false,	// left edge
+														false},	// right edge
+														{ // gameLevel 2
+														false,
+														false,
+														false,
+														false,
+														false,
+														false},
+														{ // gameLevel 3
+														true,
+														true,
+														true,
+														true,
+														true,
+														true,
+														true,
+														true,
+														true,
+														true,
+														true,
+														true,
+														true,
+														true,
+														true,
+														true,
+														true,
+														true,
+														true,
+														true,
+														true,
+														true,
+														true,
+														false,
+														false,
+														true,
+														true,
+														true,
+														false},
+														{ // gameLevel 4
+														true,
+														true,
+														true,
+														true}
 													};
 
 

@@ -46,7 +46,7 @@ class PlatformGame
 		Score playerScore = new Score(0);
 
 		// create all objects - player, platforms, obstacles, collectibles
-		Player player = new Player();
+		Player player = new Player(gameLevel);
 		
 		int numPlatforms = Utils.PlatformPositions[gameLevel].length;
 		System.out.println("Number of platforms: " + numPlatforms);
@@ -54,7 +54,7 @@ class PlatformGame
 		for (int i = 0; i < numPlatforms; i++)
 			platform[i] = new Platform(Utils.PlatformPositions[gameLevel][i][0],Utils.PlatformPositions[gameLevel][i][1],
 										Utils.PlatformPositions[gameLevel][i][2],Utils.PlatformPositions[gameLevel][i][3],
-										Utils.PlatformImages[gameLevel][i]);
+										Utils.PlatformImages[gameLevel][i],Utils.PlatformCeilings[gameLevel][i]);
 
 		int numObstacles = Utils.ObstaclePositions[gameLevel].length;
 		System.out.println("Number of obstacles: " + numObstacles);
@@ -62,7 +62,7 @@ class PlatformGame
 		for (int i = 0; i < numObstacles; i++)
 			obstacle[i] = new Platform(Utils.ObstaclePositions[gameLevel][i][0],Utils.ObstaclePositions[gameLevel][i][1],
 										Utils.ObstaclePositions[gameLevel][i][2],Utils.ObstaclePositions[gameLevel][i][3],
-										Utils.ObstacleImages[gameLevel][i]);
+										Utils.ObstacleImages[gameLevel][i],true);
 
 
 		int numCollectibles = Utils.CollectiblePositions[gameLevel].length;
@@ -78,13 +78,14 @@ class PlatformGame
 
 		Platform door = new Platform(Utils.DoorPosition[gameLevel][0],Utils.DoorPosition[gameLevel][1],
 										Utils.DoorPosition[gameLevel][2],Utils.DoorPosition[gameLevel][3],
-										Utils.ShutDoorImage);
+										Utils.ShutDoorImage,true);
 
 		// create and start animations
 		AnimatedPlayer idleRight = new AnimatedPlayer(player, Utils.IdleRightPath, 4, 175);
 		AnimatedPlayer idleLeft = new AnimatedPlayer(player, Utils.IdleLeftPath, 4, 175);
 		AnimatedPlayer runningLeft = new AnimatedPlayer(player, Utils.RunningLeftPath, 12, 90);
 		AnimatedPlayer runningRight = new AnimatedPlayer(player, Utils.RunningRightPath, 12, 90);
+		//AnimatedPlayer sleighRight = new AnimatedPlayer(player, Utils.SleighRightPath, 2, 100);
 		AnimatedCollectible bauble = new AnimatedCollectible(collectible[0], Utils.Bauble1Path, 2, 250);
 		AnimatedCollectible axe = new AnimatedCollectible(collectible[1], Utils.AxePath, 10, 100);
 		bauble.start();
@@ -93,7 +94,11 @@ class PlatformGame
 		idleLeft.start();
 		runningLeft.start();
 		runningRight.start();
-		idleRight.setActive(true);
+		//sleighRight.start();
+		//if (gameLevel != Utils.SleighGameLevel)
+			idleRight.setActive(true);
+		//else
+			//sleighRight.setActive(true);
 		bauble.setActive(true);
 		axe.setActive(true);
 		
@@ -162,36 +167,54 @@ class PlatformGame
 			if (runningRight.getActive() || runningLeft.getActive() &&
 				((System.currentTimeMillis() - lastTimeMoved) > 10))
 			{
-				runningRight.setActive(false);
-				runningLeft.setActive(false);
-				if (runDirectionRight == true)
-					idleRight.setActive(true);
-				else
-					idleLeft.setActive(true);
+				//if (gameLevel != Utils.SleighGameLevel)
+				{
+					runningRight.setActive(false);
+					runningLeft.setActive(false);
+					if (runDirectionRight == true)
+						idleRight.setActive(true);
+					else
+						idleLeft.setActive(true);
+				}
 			}
 
 			// handle keyboard events (movement can be via WASD or arrow keys)
-			if (Keyboard.isKeyPressed(Keyboard.Key.A) || Keyboard.isKeyPressed(Keyboard.Key.LEFT))
+			if (Keyboard.isKeyPressed(Keyboard.Key.A) || Keyboard.isKeyPressed(Keyboard.Key.LEFT))	// going left
 			{
-				idleRight.setActive(false);
-				idleLeft.setActive(false);
-				runningLeft.setActive(true);
+				//if (gameLevel != Utils.SleighGameLevel)
+				{
+					// turn off animation for runningRight and idleRight/Left
+					idleRight.setActive(false);
+					idleLeft.setActive(false);
+					runningRight.setActive(false);
+					// turn on animation for runningLeft
+					runningLeft.setActive(true);
+				}
+				//else
+					//sleighRight.setActive(true);
 				lastTimeMoved = System.currentTimeMillis();
 				runDirectionRight = false;
 				moveX = 0-Utils.MoveAmountX;
 			}
-			if (Keyboard.isKeyPressed(Keyboard.Key.D) || Keyboard.isKeyPressed(Keyboard.Key.RIGHT))
+			if (Keyboard.isKeyPressed(Keyboard.Key.D) || Keyboard.isKeyPressed(Keyboard.Key.RIGHT))	// going right
 			{
-				idleRight.setActive(false);
-				idleLeft.setActive(false);
-				runningRight.setActive(true);
+				//if (gameLevel != Utils.SleighGameLevel)
+				{
+					// turn off animation for runningLeft and idleRight/Left
+					idleRight.setActive(false);
+					idleLeft.setActive(false);
+					runningLeft.setActive(false);
+					// turn on animation for runningRight
+					runningRight.setActive(true);
+				}
+				//else
+					//sleighRight.setActive(true);
 				lastTimeMoved = System.currentTimeMillis();
 				runDirectionRight = true;
 				moveX = Utils.MoveAmountX;
 			}
 			if (Keyboard.isKeyPressed(Keyboard.Key.W) || Keyboard.isKeyPressed(Keyboard.Key.UP) || Keyboard.isKeyPressed(Keyboard.Key.SPACE))
 			{
-				
 				if (Utils.MinGravity * Utils.GravityMultiplier[gameLevel] == gravity)
 				{
 					inertiaY += Utils.JumpAmount;
@@ -214,7 +237,9 @@ class PlatformGame
 						idleLeft.kill();
 						runningLeft.kill();
 						runningRight.kill();
+						//sleighRight.kill();
 						bauble.kill();
+						axe.kill();
 						window.close();
 						break;
 				}
@@ -281,9 +306,28 @@ class PlatformGame
 			}
 
 			// do vertical movement
-			// player can jump past platforms/obstacles, so don't need to check if touching
+			// player can jump up through some platforms/obstacles
 			// if player ends up touching the platform/obstacle, then they'll be moved to stand on the item
-			player.move(0,moveY);
+
+			if (moveY < 0)	// player moving up
+			{	
+				// check that player is not trying to jump up into a ceiling
+				for (int i = 0; i < numPlatforms; i++)
+					if (player.touchingAbove(platform[i].getXPosition(),platform[i].getYPosition()+moveY/2,
+							platform[i].getXSize(),platform[i].getYSize()-moveY))
+					{
+						System.out.println("touchingAbove platform " + i);
+						// if this is a ceiling, we're not allowed to jump through it
+						if (platform[i].isCeiling())
+						{
+							touching = true;
+							break;
+						}
+					}
+			}
+
+			if ((moveY != 0) && !touching)
+				player.move(0,moveY);
 
 			// if bottom of player sprite within a platform, then stand on platform
 			// (include the distance between vertical moves when doing the check)
@@ -389,6 +433,9 @@ class PlatformGame
 		idleLeft.kill();
 		runningLeft.kill();
 		runningRight.kill();
+		//sleighRight.kill();
+		bauble.kill();
+		axe.kill();
 		window.close();
 		return finished;	// returns true if platform completed successfully
 							// if window closed without finishing, returns false

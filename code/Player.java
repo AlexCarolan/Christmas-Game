@@ -19,12 +19,15 @@ class Player
 	/**
 	 * Player constructor - creates a player sprite
 	 */
-	public Player()
+	public Player(int gameLevel)
 	{
 		Texture texture = new Texture();
 		try {
 			// try to load the texture from file
-			texture.loadFromFile(Paths.get("Sprites\\Running_Right\\Santa_Elf_Running12.png"));
+			//if (gameLevel != Utils.SleighGameLevel)
+				texture.loadFromFile(Paths.get("Sprites\\Running_Right\\Santa_Elf_Running12.png"));
+			//else
+			//	texture.loadFromFile(Paths.get("Sprites\\Sleigh_Right\\Sleigh1.png"));
 
 			// texture was loaded successfully - retrieve and print size
 			size = texture.getSize();
