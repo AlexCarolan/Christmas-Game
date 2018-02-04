@@ -150,7 +150,7 @@ class PlatformGame
 			{
 				if (gravity < Utils.MaxGravity)
 				{
-					gravity = gravity * Utils.GravityMultiplier;
+					gravity = gravity * Utils.GravityMultiplier[gameLevel];
 					if (gravity > Utils.MaxGravity)
 						gravity = Utils.MaxGravity;
 					//if (gravity > 0)
@@ -192,7 +192,7 @@ class PlatformGame
 			if (Keyboard.isKeyPressed(Keyboard.Key.W) || Keyboard.isKeyPressed(Keyboard.Key.UP) || Keyboard.isKeyPressed(Keyboard.Key.SPACE))
 			{
 				
-				if (Utils.MinGravity * Utils.GravityMultiplier == gravity)
+				if (Utils.MinGravity * Utils.GravityMultiplier[gameLevel] == gravity)
 				{
 					inertiaY += Utils.JumpAmount;
 					moveY = 0-Utils.JumpAmount;

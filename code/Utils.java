@@ -18,7 +18,10 @@ public class Utils
 	public static final int Gravity = 2;
 	public static final int MinGravity = 3;
 	public static final int MaxGravity = 30;
-	public static final double GravityMultiplier = 1.04;
+
+	//  gravity gradually increases over time
+	// except last level, where the sleigh floats like a feather
+	public static final double GravityMultiplier[] = {1.04,1.04,1.04,1};
 
 	// file path for Christmas Room image
 	public static final String RoomImage[] = {"images\\christmasRoom\\bareRoom.png",	// game level 1 start
@@ -39,8 +42,8 @@ public class Utils
 	// to access this array: first index is level, second index is platform, 
 	// third index is xPosition, yPosition, width, height of that platform
 	public static final int PlatformPositions[][][] = {{ // gameLevel 1
-														{0,700,5200,50},	// base 1
-														{5300,700,1200,50},	// base 2
+														{0,700,5200,50},					// base 1
+														{5300,700,1200,50},					// base 2
 														{1150,600,100,100},
 														{1250,650,100,50},
 														{1400,500,100,50},
@@ -66,14 +69,9 @@ public class Utils
 														{300,600,150,30},
 														{100,700,80,25},
 														{500,500,100,35},
-														{0,0,2,PlatformGameHeight}},						// left hand edge
+														{0,0,2,PlatformGameHeight}},			// left hand edge
 														{ // gameLevel 3
-														{0,PlatformGameHeight - 25,PlatformGameWidth,25},	// base
-														{PlatformGameWidth+150,PlatformGameHeight - 50,500,50},
-														{200,550,100,25},
-														{0,0,2,PlatformGameHeight}},						// left hand edge
-														{ // gameLevel 4
-														{0,700,5200,50},			// base
+														{0,700,5200,50},						// base
 														{700,650,100,50},
 														{750,600,100,50},
 														{800,500,50,100},
@@ -101,7 +99,12 @@ public class Utils
 														{1750,300,300,300},
 														{2050,200,200,500},
 														{1950,100,200,200},
-														{0,0,2,PlatformGameHeight}}						// left hand edge
+														{0,0,2,PlatformGameHeight}},						// left hand edge
+														{ // gameLevel 4
+														{0,PlatformGameHeight - 25,PlatformGameWidth,25},	// base
+														{PlatformGameWidth+150,PlatformGameHeight - 50,500,50},
+														{200,550,100,25},
+														{0,0,2,PlatformGameHeight}}							// left hand edge
 													};
 	// define image for each platform on each level, in same order as PlatformPositions array
 	public static final String PlatformImages[][] = {{ // gameLevel 1
@@ -135,37 +138,37 @@ public class Utils
 														"images\\platform\\bricks.png"},
 														{ // gameLevel 3
 														"images\\platform\\grass.png",
-														"images\\platform\\bricks.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
+														"images\\platform\\grass.png",
 														"images\\platform\\grass.png",
 														"images\\platform\\grass.png"},
 														{ // gameLevel 4
 														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
+														"images\\platform\\bricks.png",
 														"images\\platform\\grass.png",
 														"images\\platform\\grass.png"}
 													};
@@ -240,12 +243,12 @@ public class Utils
 														{570,467,35,35}},
 														{ // gameLevel 3
 														{220,540,15,15},
-														{PlatformGameWidth+200,PlatformGameHeight - 55,35,35}},
-														{ // gameLevel 4
-														{220,540,15,15},
 														{200,650,35,35},
 														{1900,280,15,15},
 														{2020,680,15,15}},
+														{ // gameLevel 4
+														{220,540,15,15},
+														{PlatformGameWidth+200,PlatformGameHeight - 55,35,35}},
 													};
 	// define image for each collectible on each level, in same order as CollectiblePositions array
 	public static final String CollectibleImages[][] = {{ // gameLevel 1
@@ -259,12 +262,12 @@ public class Utils
 														"images\\collectibles\\Axe.png"},
 														{ // gameLevel 3
 														"images\\collectibles\\RedBauble.png",
-														"images\\collectibles\\Axe.png"},
-														{ // gameLevel 4
-														"images\\collectibles\\RedBauble.png",
 														"images\\collectibles\\Axe.png",
 														"images\\collectibles\\BlueBauble.png",
 														"images\\collectibles\\OrangeBauble.png"},
+														{ // gameLevel 4
+														"images\\collectibles\\RedBauble.png",
+														"images\\collectibles\\Axe.png"},
 													};
 	// define whether each collectible on each level in a key to the exit door, in same order as CollectiblePositions array
 	public static final boolean CollectibleKeys[][] = {{ // gameLevel 1
@@ -278,12 +281,12 @@ public class Utils
 														true},
 														{ // gameLevel 3
 														false,
-														true},
-														{ // gameLevel 4
-														false,
 														true,
 														false,
-														false}
+														false},
+														{ // gameLevel 4
+														false,
+														true},
 													};
 
 	// number of keys to be collected at each level before the exit door will open (should match number of trues in CollectibleKeys)
@@ -301,9 +304,9 @@ public class Utils
 												 // gameLevel 2
 												{1500,640,50,100},
 												 // gameLevel 3
-												{1500,640,50,100},
+												{2500,640,50,100},
 												 // gameLevel 4
-												{2500,640,50,100}
+												{1500,640,50,100},
 												};
 	// define images for shut and open doors
 	public static final String ShutDoorImage = "images\\platform\\shutdoor.png";
