@@ -12,7 +12,7 @@ import org.jsfml.window.event.*;
 import org.jsfml.window.Keyboard.*;
 import org.jsfml.graphics.*;
 
-class PlatformGame 
+class PlatformGame
 {
 	private String Title = "Level ";
 	private int lastNumCollected = 0;
@@ -49,7 +49,7 @@ class PlatformGame
 		Player player = new Player(gameLevel);
 		
 		int numPlatforms = Utils.PlatformPositions[gameLevel].length;
-		System.out.println("Number of platforms: " + numPlatforms);
+		//System.out.println("Number of platforms: " + numPlatforms);
 		Platform[] platform = new Platform[numPlatforms];
 		for (int i = 0; i < numPlatforms; i++)
 			platform[i] = new Platform(Utils.PlatformPositions[gameLevel][i][0],Utils.PlatformPositions[gameLevel][i][1],
@@ -57,7 +57,7 @@ class PlatformGame
 										Utils.PlatformImages[gameLevel][i],Utils.PlatformCeilings[gameLevel][i]);
 
 		int numObstacles = Utils.ObstaclePositions[gameLevel].length;
-		System.out.println("Number of obstacles: " + numObstacles);
+		//System.out.println("Number of obstacles: " + numObstacles);
 		Platform[] obstacle = new Platform[numObstacles];
 		for (int i = 0; i < numObstacles; i++)
 			obstacle[i] = new Platform(Utils.ObstaclePositions[gameLevel][i][0],Utils.ObstaclePositions[gameLevel][i][1],
@@ -66,7 +66,7 @@ class PlatformGame
 
 
 		int numCollectibles = Utils.CollectiblePositions[gameLevel].length;
-		System.out.println("Number of collectibles: " + numCollectibles);
+		//System.out.println("Number of collectibles: " + numCollectibles);
 		Collectible[] collectible = new Collectible[numCollectibles];
 		for (int i = 0; i < numCollectibles; i++)
 			collectible[i] = new Collectible(Utils.CollectiblePositions[gameLevel][i][0],Utils.CollectiblePositions[gameLevel][i][1],
@@ -114,7 +114,8 @@ class PlatformGame
 		// add the score tracker
 		Text scoreText = new Text("Score:0", sansRegular, 18);
 		scoreText.setPosition(10, Utils.PlatformGameHeight-(Utils.PlatformGameHeight-10));
-		
+
+		//System.out.println("At start: moveY=" + moveY + ", inertiaY=" + inertiaY + ", gravity=" + gravity);
 		boolean finished = false;
 		while (window.isOpen() && !finished)
 		{
@@ -148,6 +149,8 @@ class PlatformGame
 				inertiaY = inertiaY/2;		// then gradually slow down
 				if (inertiaY == 0)
 					moveY = 0;
+				else if (moveY < 0)
+					moveY -= inertiaY;
 				else
 					moveY += inertiaY;
 			}
@@ -162,6 +165,7 @@ class PlatformGame
 					//	System.out.println("gravity set to " + gravity);
 				}
 			}
+			//System.out.println("moveY=" + moveY + ", inertiaY=" + inertiaY + ", gravity=" + gravity);
 
 			// apply idle animation when still
 			if (runningRight.getActive() || runningLeft.getActive() &&
@@ -215,16 +219,45 @@ class PlatformGame
 			}
 			if (Keyboard.isKeyPressed(Keyboard.Key.W) || Keyboard.isKeyPressed(Keyboard.Key.UP) || Keyboard.isKeyPressed(Keyboard.Key.SPACE))
 			{
-				//if (Utils.MinGravity * Utils.GravityMultiplier[gameLevel] == gravity) //??WHAT IS THIS LINE?
+				// can only jump if bottom of player sprite standing on a platform or obstacle
+				boolean standing = false;
+				for (int i = 0; i < numPlatforms; i++)
 				{
-					inertiaY += Utils.JumpAmount;
-					moveY = 0-Utils.JumpAmount;
+					if (player.standingOn(platform[i].getXPosition(),platform[i].getYPosition()-Utils.MoveAmountY/2,
+											platform[i].getXSize(),platform[i].getYSize()+Utils.MoveAmountY/2))
+					{
+						//System.out.println("Player is standing on platform " + i);
+						standing = true;
+						break;
+					}
 				}
+				if (!standing)
+				{
+					for (int i = 0; i < numObstacles; i++)
+					{
+						if (player.standingOn(obstacle[i].getXPosition(),obstacle[i].getYPosition()-Utils.MoveAmountY/2,
+												obstacle[i].getXSize(),obstacle[i].getYSize()+Utils.MoveAmountY/2))
+						{
+							//System.out.println("Player is standing on obstacle " + i);
+							standing = true;
+							break;
+						}
+					}
+				}
+				//if (Utils.MinGravity * Utils.GravityMultiplier[gameLevel] == gravity) //??WHAT IS THIS LINE?
+				if (standing)
+				{
+					inertiaY = 0-Utils.JumpAmount/2;
+					moveY = 0-Utils.JumpAmount;
+					//System.out.println("Standing on something, so moveY="+moveY);
+				}
+				//System.out.println("Up pressed: moveY=" + moveY + ", inertiaY=" + inertiaY + ", gravity=" + gravity);
 			}
 			if (Keyboard.isKeyPressed(Keyboard.Key.S) || Keyboard.isKeyPressed(Keyboard.Key.DOWN))
 			{
 				inertiaY = 0;
 				moveY = Utils.MoveAmountY;
+				//System.out.println("Down pressed: moveY=" + moveY + ", inertiaY=" + inertiaY + ", gravity=" + gravity);
 			}
 
 			// handle mouse events
@@ -306,8 +339,7 @@ class PlatformGame
 			}
 
 			// do vertical movement
-			// player can jump up through some platforms/obstacles
-			// if player ends up touching the platform/obstacle, then they'll be moved to stand on the item
+			// player cannot jump up through some platforms
 			touching = false;	// don't care if touching left/right; check touchingAbove
 			if (moveY < 0)	// player moving up
 			{	
@@ -316,7 +348,7 @@ class PlatformGame
 					if (player.touchingAbove(platform[i].getXPosition(),platform[i].getYPosition()+moveY/2,
 							platform[i].getXSize(),platform[i].getYSize()-moveY))
 					{
-						System.out.println("touchingAbove platform " + i);
+						//System.out.println("touchingAbove platform " + i);
 						// if this is a ceiling, we're not allowed to jump through it
 						if (platform[i].isCeiling())
 						{
@@ -327,7 +359,10 @@ class PlatformGame
 			}
 
 			if ((moveY != 0) && !touching)
+			{
+				//System.out.println("move player by " + moveY);
 				player.move(0,moveY);
+			}
 
 			// if bottom of player sprite within a platform, then stand on platform
 			// (include the distance between vertical moves when doing the check)
@@ -337,7 +372,7 @@ class PlatformGame
 				if (player.standingOn(platform[i].getXPosition(),platform[i].getYPosition()-Utils.MoveAmountY/2,
 										platform[i].getXSize(),platform[i].getYSize()+Utils.MoveAmountY))
 				{
-					//System.out.println("Player is standing on platform " + i);
+					//System.out.println("Player is NOW standing on platform " + i);
 					standing = true;
 					// make player stand in same vertical position above platform
 					player.standOn(platform[i].getYPosition()-Utils.MoveAmountY/2);
@@ -349,7 +384,7 @@ class PlatformGame
 				if (player.standingOn(obstacle[i].getXPosition(),obstacle[i].getYPosition()-Utils.MoveAmountY/2,
 										obstacle[i].getXSize(),obstacle[i].getYSize()+Utils.MoveAmountY))
 				{
-					//System.out.println("Player is standing on obstacle " + i);
+					//System.out.println("Player is NOW standing on obstacle " + i);
 					standing = true;
 					// make player stand in same vertical position above obstacle
 					player.standOn(obstacle[i].getYPosition()-Utils.MoveAmountY/2);
@@ -388,10 +423,11 @@ class PlatformGame
 					//System.out.println("gravity set to " + Utils.MinGravity);
 				}
 				player.move(0,(int)gravity);
+				//System.out.println("Move player by gravity=" + (int)gravity);
 			}
 			else
 			{
-				moveY = 0;
+				//moveY = 0;
 				gravity = Utils.MinGravity;
 			}
 
