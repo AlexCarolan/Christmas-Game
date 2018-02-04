@@ -430,7 +430,7 @@ class PlatformGame
 			{
 				for (int i = 0; i < numCollectibles; i++)
 					if (collectible[i].collected())
-						System.out.println("Collected: " + Utils.CollectibleImages[gameLevel][i]);
+						System.out.println("Collected item " + i + ": " + Utils.CollectibleImages[gameLevel][i]);
 				System.out.println();
 				lastNumCollected = itemsCollected;
 			}

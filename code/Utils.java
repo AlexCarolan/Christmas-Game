@@ -93,15 +93,15 @@ public class Utils
 														{1350,300,100,50},
 														{1400,250,100,50},
 														{1450,200,100,50},
-														{1500,150,500,50},
+														{1500,150,450,50},
 														{1550,100,50,50},
 														{1300,650,150,50},
 														{1350,600,50,50},
 														{1450,500,150,50},
 														{1550,350,150,50},
-														{1750,300,300,300},
-														{2050,200,200,500},
-														{1950,100,200,200},
+														{1750,300,250,300},
+														{2000,200,100,500},
+														{1850,100,150,200},
 														{0,0,2,PlatformGameHeight}},						// left hand edge
 														{ // gameLevel 4
 														{0,PlatformGameHeight - 25,PlatformGameWidth,25},	// base
@@ -265,8 +265,8 @@ public class Utils
 														{375,567,40,40},
 														{550,467,35,35}},
 														{ // gameLevel 3
-														{250,520,40,40},
-														{800,PlatformGameHeight - 55,35,35}},
+														{2700,670,40,40},
+														{2800,665,35,35}},
 														{ // gameLevel 4
 														{250,520,40,40},
 														{800,PlatformGameHeight - 55,35,35}}
@@ -311,10 +311,11 @@ public class Utils
 														{125,685,15,15},
 														{570,467,35,35}},
 														{ // gameLevel 3
-														{220,540,15,15},
-														{200,650,35,35},
-														{1900,285,15,15},
-														{2020,685,15,15}},
+														{1830,285,15,15},
+														{1960,665,35,35},
+														{2005,185,15,15},
+														{2750,685,15,15},
+														{2850,685,15,15}},
 														{ // gameLevel 4
 														{220,535,15,15},
 														{PlatformGameWidth+200,PlatformGameHeight - 80,35,35}},
@@ -332,8 +333,9 @@ public class Utils
 														{ // gameLevel 3
 														"images\\collectibles\\RedBauble.png",
 														"images\\collectibles\\Axe.png",
-														"images\\collectibles\\BlueBauble.png",
-														"images\\collectibles\\OrangeBauble.png"},
+														"images\\collectibles\\OrangeBauble.png",
+														"images\\collectibles\\RedBauble.png",
+														"images\\collectibles\\BlueBauble.png"},
 														{ // gameLevel 4
 														"images\\collectibles\\RedBauble.png",
 														"images\\collectibles\\Axe.png"},
@@ -351,6 +353,7 @@ public class Utils
 														{ // gameLevel 3
 														false,
 														true,
+														false,
 														false,
 														false},
 														{ // gameLevel 4
@@ -373,7 +376,7 @@ public class Utils
 												 // gameLevel 2
 												{1500,640,50,100},
 												 // gameLevel 3
-												{2500,640,50,100},
+												{2500,600,50,100},
 												 // gameLevel 4
 												{1500,640,50,100},
 												};
