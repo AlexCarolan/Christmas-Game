@@ -215,7 +215,7 @@ class PlatformGame
 			}
 			if (Keyboard.isKeyPressed(Keyboard.Key.W) || Keyboard.isKeyPressed(Keyboard.Key.UP) || Keyboard.isKeyPressed(Keyboard.Key.SPACE))
 			{
-				if (Utils.MinGravity * Utils.GravityMultiplier[gameLevel] == gravity)
+				//if (Utils.MinGravity * Utils.GravityMultiplier[gameLevel] == gravity) //??WHAT IS THIS LINE?
 				{
 					inertiaY += Utils.JumpAmount;
 					moveY = 0-Utils.JumpAmount;
@@ -308,7 +308,7 @@ class PlatformGame
 			// do vertical movement
 			// player can jump up through some platforms/obstacles
 			// if player ends up touching the platform/obstacle, then they'll be moved to stand on the item
-
+			touching = false;	// don't care if touching left/right; check touchingAbove
 			if (moveY < 0)	// player moving up
 			{	
 				// check that player is not trying to jump up into a ceiling
@@ -414,6 +414,12 @@ class PlatformGame
 
 			// display what was drawn on the window
 			window.display();
+			try {
+				Thread.sleep(1); }
+			catch (InterruptedException e) {
+				System.out.println("My sleep was interrupted"); }
+
+			//System.out.println("moveY="+moveY+", inertiaY="+inertiaY+", gravity="+gravity);
 
 			// if any items were collected this time, then list all the items collected
 			int itemsCollected = 0;
