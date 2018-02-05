@@ -33,6 +33,7 @@ class AnimatedPlayer extends Thread
 			try {
 				// try to load the texture from file
 				texture[i].loadFromFile(Paths.get(path + (i+1) + ".png"));
+				texture[i].setSmooth(true);
 			} catch(IOException ex) {
 				System.out.println("Unable to open image file");
 			}

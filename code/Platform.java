@@ -135,7 +135,6 @@ class Platform
 	 */
 	public void setSprite(Texture texture)
 	{
-		texture.setSmooth(true);
 		plat.setTexture(texture);
 	}
 }
