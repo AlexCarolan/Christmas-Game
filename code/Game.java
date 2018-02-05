@@ -92,7 +92,7 @@ class Game
 			// handle keyboard events (movement can be via WASD or arrow keys)
 			// if we're playing a platform game, play it at the current level
 			// if we're playing a puzzle, play it at the current level
-			if (Keyboard.isKeyPressed(Keyboard.Key.NUM1))
+			if (Keyboard.isKeyPressed(Keyboard.Key.NUM1) || Keyboard.isKeyPressed(Keyboard.Key.NUMPAD1))
 			{
 				PlatformGame platGame = new PlatformGame();
 				if ((platGame.run(0) == true) && (level.getLevel() == 0))
@@ -104,13 +104,13 @@ class Game
 				}
 				platGame = null;
 			}
-			else if (Keyboard.isKeyPressed(Keyboard.Key.NUM2))
+			else if (Keyboard.isKeyPressed(Keyboard.Key.NUM2) || Keyboard.isKeyPressed(Keyboard.Key.NUMPAD2))
 			{
 				Puzzle1 puzzle = new Puzzle1();
 				puzzle.run();
 				puzzle = null;
 			}
-			else if (Keyboard.isKeyPressed(Keyboard.Key.NUM3) && level.getLevel() > 0)
+			else if ((Keyboard.isKeyPressed(Keyboard.Key.NUM3) || Keyboard.isKeyPressed(Keyboard.Key.NUMPAD3)) && level.getLevel() > 0)
 			{
 				PlatformGame platGame = new PlatformGame();
 				if (platGame.run(1) && (level.getLevel() == 1))
@@ -122,13 +122,13 @@ class Game
 				}
 				platGame = null;
 			}
-			else if (Keyboard.isKeyPressed(Keyboard.Key.NUM4) && level.getLevel() > 0)
+			else if ((Keyboard.isKeyPressed(Keyboard.Key.NUM4) || Keyboard.isKeyPressed(Keyboard.Key.NUMPAD4)) && level.getLevel() > 0)
 			{
 				//Puzzle2 puzzle = new Puzzle2();
 				//puzzle.run();
 				;//puzzle = null;
 			}
-			else if (Keyboard.isKeyPressed(Keyboard.Key.NUM5) && level.getLevel() > 1)
+			else if ((Keyboard.isKeyPressed(Keyboard.Key.NUM5) || Keyboard.isKeyPressed(Keyboard.Key.NUMPAD5)) && level.getLevel() > 1)
 			{
 				PlatformGame platGame = new PlatformGame();
 				if (platGame.run(2) && (level.getLevel() == 2))
@@ -140,13 +140,13 @@ class Game
 				}
 				platGame = null;
 			}
-			else if (Keyboard.isKeyPressed(Keyboard.Key.NUM6) && level.getLevel() > 1)
+			else if ((Keyboard.isKeyPressed(Keyboard.Key.NUM6) || Keyboard.isKeyPressed(Keyboard.Key.NUMPAD6)) && level.getLevel() > 1)
 			{
 				//Puzzle3 puzzle = new Puzzle3();
 				//puzzle.run();
 				;//puzzle = null;
 			}
-			else if (Keyboard.isKeyPressed(Keyboard.Key.NUM7) && level.getLevel() > 2)
+			else if ((Keyboard.isKeyPressed(Keyboard.Key.NUM7)|| Keyboard.isKeyPressed(Keyboard.Key.NUMPAD7)) && level.getLevel() > 2)
 			{
 				PlatformGame platGame = new PlatformGame();
 				if (platGame.run(3) && (level.getLevel() == 3))
@@ -158,7 +158,7 @@ class Game
 				}
 				platGame = null;
 			}
-			else if (Keyboard.isKeyPressed(Keyboard.Key.NUM8) && level.getLevel() > 2)
+			else if ((Keyboard.isKeyPressed(Keyboard.Key.NUM8) || Keyboard.isKeyPressed(Keyboard.Key.NUMPAD8)) && level.getLevel() > 2)
 			{
 				//Puzzle4 puzzle = new Puzzle4();
 				//puzzle.run();
