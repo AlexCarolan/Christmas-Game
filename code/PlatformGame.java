@@ -103,16 +103,16 @@ class PlatformGame
 		axe.setActive(true);
 		
 		// load the font
-		Font sansRegular = new Font( );
+		Font scoreFont = new Font( );
 		try {
-			sansRegular.loadFromFile(
-					Paths.get("fonts\\LucidaSansRegular.ttf"));
+			scoreFont.loadFromFile(
+					Paths.get("fonts\\joystix monospace.ttf"));
 		} catch (IOException ex) {
 			ex.printStackTrace( );
 		}
 		
 		// add the score tracker
-		Text scoreText = new Text("Score:0", sansRegular, 18);
+		Text scoreText = new Text("Score:0", scoreFont, 18);
 		scoreText.setPosition(10, Utils.PlatformGameHeight-(Utils.PlatformGameHeight-10));
 
 		//System.out.println("At start: moveY=" + moveY + ", inertiaY=" + inertiaY + ", gravity=" + gravity);
