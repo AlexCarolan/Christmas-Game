@@ -21,9 +21,8 @@ class AnimatedPlayer extends Thread
 	 * @param frames - the number of frames in the animation
 	 * @param delay - the delay between each frame of the animation in milliseconds
 	 */
-	public AnimatedPlayer(Player p, String path, int frames, int delay)
+	public AnimatedPlayer(String path, int frames, int delay)
 	{
-		player = p;
 		texture = new Texture[frames];
 		interval = delay;
 		
@@ -38,6 +37,8 @@ class AnimatedPlayer extends Thread
 				System.out.println("Unable to open image file");
 			}
 		}
+		
+		this.start();
 	}
 	
 	/**
@@ -83,6 +84,14 @@ class AnimatedPlayer extends Thread
 	public void kill()
 	{
 		alive = false;
+	}
+	
+	/**
+	* sets the player to be animated
+	*/
+	public void setPlayer(Player play)
+	{
+		player = play;
 	}
 }
 

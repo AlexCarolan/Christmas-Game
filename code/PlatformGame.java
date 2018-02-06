@@ -50,7 +50,7 @@ class PlatformGame
 											Utils.PlatformBackgroundImage[gameLevel],false);
 
 		// create all objects - player, platforms, obstacles, collectibles
-		Player player = new Player(gameLevel);
+		Player player;
 		
 		int numPlatforms = Utils.PlatformPositions[gameLevel].length;
 		//System.out.println("Number of platforms: " + numPlatforms);
@@ -85,26 +85,23 @@ class PlatformGame
 										Utils.ShutDoorImage,true);
 
 		// create and start animations
-		AnimatedPlayer idleRight = new AnimatedPlayer(player, Utils.IdleRightPath, 4, 175);
-		AnimatedPlayer idleLeft = new AnimatedPlayer(player, Utils.IdleLeftPath, 4, 175);
-		AnimatedPlayer runningLeft = new AnimatedPlayer(player, Utils.RunningLeftPath, 12, 90);
-		AnimatedPlayer runningRight = new AnimatedPlayer(player, Utils.RunningRightPath, 12, 90);
+		AnimatedPlayer idleRight = new AnimatedPlayer(Utils.IdleRightPath, 4, 175);
+		AnimatedPlayer idleLeft = new AnimatedPlayer(Utils.IdleLeftPath, 4, 175);
+		AnimatedPlayer runningLeft = new AnimatedPlayer(Utils.RunningLeftPath, 12, 90);
+		AnimatedPlayer runningRight = new AnimatedPlayer(Utils.RunningRightPath, 12, 90);
 		//AnimatedPlayer sleighRight = new AnimatedPlayer(player, Utils.SleighRightPath, 2, 100);
-		AnimatedCollectible bauble = new AnimatedCollectible(collectible[0], Utils.Bauble1Path, 2, 250);
-		AnimatedCollectible axe = new AnimatedCollectible(collectible[1], Utils.AxePath, 10, 100);
-		bauble.start();
-		axe.start();
-		idleRight.start();
-		idleLeft.start();
-		runningLeft.start();
-		runningRight.start();
+		AnimatedCollectible bauble = new AnimatedCollectible(Utils.Bauble1Path, 2, 250);
+		AnimatedCollectible axe = new AnimatedCollectible(Utils.AxePath, 10, 100);
+		collectible[0].setAnimation(bauble);
+		collectible[1].setAnimation(axe);
+		
 		//sleighRight.start();
 		//if (gameLevel != Utils.SleighGameLevel)
-			idleRight.setActive(true);
 		//else
 			//sleighRight.setActive(true);
-		bauble.setActive(true);
-		axe.setActive(true);
+		
+		player = new Player(gameLevel);
+		player.setAnimation(idleRight);
 		
 		// load the font
 		Font scoreFont = new Font( );
@@ -178,12 +175,10 @@ class PlatformGame
 			{
 				//if (gameLevel != Utils.SleighGameLevel)
 				{
-					runningRight.setActive(false);
-					runningLeft.setActive(false);
 					if (runDirectionRight == true)
-						idleRight.setActive(true);
+						player.setAnimation(idleRight);
 					else
-						idleLeft.setActive(true);
+						player.setAnimation(idleLeft);
 				}
 			}
 
@@ -192,12 +187,8 @@ class PlatformGame
 			{
 				//if (gameLevel != Utils.SleighGameLevel)
 				{
-					// turn off animation for runningRight and idleRight/Left
-					idleRight.setActive(false);
-					idleLeft.setActive(false);
-					runningRight.setActive(false);
 					// turn on animation for runningLeft
-					runningLeft.setActive(true);
+					player.setAnimation(runningLeft);
 				}
 				//else
 					//sleighRight.setActive(true);
@@ -209,12 +200,8 @@ class PlatformGame
 			{
 				//if (gameLevel != Utils.SleighGameLevel)
 				{
-					// turn off animation for runningLeft and idleRight/Left
-					idleRight.setActive(false);
-					idleLeft.setActive(false);
-					runningLeft.setActive(false);
 					// turn on animation for runningRight
-					runningRight.setActive(true);
+					player.setAnimation(runningRight);
 				}
 				//else
 					//sleighRight.setActive(true);

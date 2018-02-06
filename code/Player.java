@@ -15,12 +15,16 @@ class Player
 	private Sprite sprite;
 	private Vector2i size;
 	private Vector2f position;
+	private AnimatedPlayer animation;
 	
 	/**
 	 * Player constructor - creates a player sprite
+	 * @param gameLevel - The games current level number
+	 * @param ani - the starting animation of the player 
 	 */
 	public Player(int gameLevel)
 	{
+
 		Texture texture = new Texture();
 		try {
 			// try to load the texture from file
@@ -207,4 +211,20 @@ class Player
 	{
 		sprite.setTexture(texture);
 	}
+	
+	/**
+	 * Changes the current animation
+	 * @param ani - the new animation
+	 */
+	public void setAnimation(AnimatedPlayer ani)
+	{
+		if (animation != null)
+		{
+			animation.setActive(false);
+		}
+		animation = ani;
+		animation.setPlayer(this);
+		animation.setActive(true);
+	}
+	
 }	
