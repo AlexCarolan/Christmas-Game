@@ -59,32 +59,35 @@ public class Utils
 														{1280,550,100,50},	//4
 														{1405,510,100,50},	//5
 														{1530,560,100,50},	//6
-														{1680,610,200,100},	//7 
+														{1680,610,200,90},	//7 
 														{1550,420,300,50},	//8 frozen pond
 														{1900,570,80,30},	//9
 														{2050,590,80,30},	//10
-														{2150,640,150,80},	//11
+														{2150,650,200,80},	//11
 														{2200,440,400,80},	//12 bigger frozen pond
-														{2360,670,100,50},	//13
-														{2500,680,100,50},	//14
-														{2650,670,100,50},	//15
-														{2800,650,100,50},	//16
-														{2900,630,100,50},	//17
-														{3100,620,100,50},	//18
-														{3300,670,100,50},	//19
-														{3500,670,100,50},	//20
-														{3650,670,100,50},	//21
-														{3800,670,100,50},	//22
-														{3950,670,100,50},	//23
-														{4100,670,100,50},	//24
-														{4250,670,100,50},	//25
-														{4400,670,100,50},	//26
-														{4550,670,100,50},	//27
-														{4700,670,100,50},	//28
-														{4850,670,100,50},	//29
-														{5000,670,100,50},	//30
-														{5150,670,100,50},	//31
-														{5300,670,100,50},	//32
+														{2350,670,100,50},	//13
+														{2500,660,100,50},	//14
+														{2650,645,100,50},	//15
+														{2800,615,100,50},	//16
+														{2920,600,100,50},	//17
+														{3100,570,100,50},	//18
+														{3300,540,100,50},	//19
+														{3500,510,100,50},	//20
+														{3650,480,100,50},	//21
+														{3800,460,100,50},	//22
+														{3950,450,100,50},	//23
+														{4100,480,100,50},	//24
+														{4250,500,80,30},	//25
+														{4400,520,80,30},	//26
+														{4550,545,80,35},	//27
+														{4700,560,90,40},	//28
+														{4850,580,100,50},	//29
+														{5000,610,100,50},	//30
+														{5150,640,80,30},	//31
+														{5300,660,100,50},	//32
+														{6000,650,100,50},	//33
+														{6100,600,100,50},	//34
+														{6230,550,100,50},	//35
 														{-250,500,250,400},		// left hand edge
 														{6500,0,PlatformGameWidth/2,PlatformGameHeight+1}},	// right hand edge
 														{ // gameLevel 2
@@ -179,6 +182,9 @@ public class Utils
 														"images\\platform\\Rock_Platform.png",	//30
 														"images\\platform\\Rock_Platform.png",	//31
 														"images\\platform\\Rock_Platform.png",	//32
+														"images\\platform\\Rock_Platform.png",	//33
+														"images\\platform\\Rock_Platform.png",	//34
+														"images\\platform\\Rock_Platform.png",	//35
 														"images\\obstacles\\long-logpile.png",	//left hand edge
 														"images\\obstacles\\ForestOne.png"},	// right hand edge
 														{ // gameLevel 2
@@ -250,7 +256,7 @@ public class Utils
 														false,
 														true,
 														true,
-														false,
+														false,	//10
 														true,
 														true,
 														false,
@@ -260,6 +266,7 @@ public class Utils
 														false,
 														true,
 														true,
+														false,	//20
 														false,
 														false,
 														false,
@@ -268,6 +275,8 @@ public class Utils
 														false,
 														false,
 														false,
+														false,
+														false,	//30
 														false,
 														false,
 														false,
@@ -341,12 +350,7 @@ public class Utils
 	public static final int ObstaclePositions[][][] = {{ // gameLevel 1
 														{680,660,50,50},
 														{720,620,100,100},
-														{800,670,50,50},
-														{6113,660,50,50},
-														{6150,620,100,100},
-														{6230,620,100,100},
-														{6195,555,100,100},
-														{6230,525,50,50}},
+														{800,670,50,50}},
 														{ // gameLevel 2
 														{680,660,50,50},
 														{720,620,100,100},
@@ -373,12 +377,7 @@ public class Utils
 	public static final String ObstacleImages[][] = {{ // gameLevel 1
 														"images\\obstacles\\big-log.png",
 														"images\\obstacles\\big-log.png",
-														"images\\obstacles\\logs1.png",
-														"images\\obstacles\\long-logpile.png",
-														"images\\obstacles\\long-logpile.png",
-														"images\\obstacles\\long-logpile.png",
-														"images\\obstacles\\long-logpile.png",
-														"images\\obstacles\\long-logpile.png"},
+														"images\\obstacles\\logs1.png"},
 														{ // gameLevel 2
 														"images\\obstacles\\box.png",
 														"images\\obstacles\\box.png",
@@ -409,7 +408,7 @@ public class Utils
 														{1630,400,15,15},
 														{2400,400,35,35},	// axe
 														{800,500,15,15},
-														{4980,385,15,15}},
+														{6400,520,15,15}},
 														{ // gameLevel 2
 														{1510,535,15,15},
 														{1650,670,35,35},	// axe
