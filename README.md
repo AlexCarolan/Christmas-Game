@@ -29,3 +29,8 @@ Graphics - Leo
 1. platform images
 2. Christmas Room images (bare, + tree, +tree+decorations, +tree+decor+food, +tree+decor+food+gifts)
 3. Exit door for each platform level
+
+Misc - Alex
+1. Add lives
+2. Improve puzzle graphics
+3. Collected items tracker
