@@ -406,10 +406,9 @@ public class Utils
 	// to access this array: first index is level, second index is collectible, 
 	// third index is xPosition, yPosition, width, height of that collectible,
 	public static final int CollectiblePositions[][][] = {{ // gameLevel 1
-														{1510,535,15,15},
-														{1650,670,35,35},	// axe
-														{2120,685,15,15},
-														{2660,685,15,15},
+														{1630,400,15,15},
+														{2400,400,35,35},	// axe
+														{800,500,15,15},
 														{4980,385,15,15}},
 														{ // gameLevel 2
 														{1510,535,15,15},
@@ -431,9 +430,8 @@ public class Utils
 	public static final String CollectibleImages[][] = {{ // gameLevel 1
 														"images\\collectibles\\OrangeBauble.png",
 														"images\\collectibles\\Axe.png",
-														"images\\collectibles\\RedBauble.png",
-														"images\\collectibles\\GreenBauble.png",
-														"images\\collectibles\\BlueBauble.png"},
+														"images\\collectibles\\BlueBauble.png",
+														"images\\collectibles\\RedBauble.png"},
 														{ // gameLevel 2
 														"images\\collectibles\\OrangeBauble.png",
 														"images\\collectibles\\Axe.png",
@@ -454,7 +452,6 @@ public class Utils
 	public static final boolean CollectibleKeys[][] = {{ // gameLevel 1
 														false,
 														true,
-														false,
 														false,
 														false},
 														{ // gameLevel 2
