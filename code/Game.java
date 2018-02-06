@@ -41,23 +41,36 @@ class Game
 		} catch (IOException ex) {
 			ex.printStackTrace( );
 		}
+		// create the game introduction text
+		Text textIntro1 = new Text("Can you help us give Tiny Tim's family a great Christmas?", sansRegular, 18);
+		Text textIntro2 = new Text("Complete each level to add something special to the Christmas Room.", sansRegular, 18);
+		Text textIntro3 = new Text("Look out for items to collect along the way. And there's a fun puzzle to solve at the end of each level.", sansRegular, 18);
+		textIntro1.setColor(Color.RED);
+		textIntro2.setColor(Color.RED);
+		textIntro3.setColor(Color.RED);
+		textIntro1.setStyle(Text.ITALIC);
+		textIntro2.setStyle(Text.ITALIC);
+		textIntro3.setStyle(Text.ITALIC);
+		textIntro1.setPosition(50, Utils.PlatformGameHeight-340);
+		textIntro2.setPosition(50, Utils.PlatformGameHeight-320);
+		textIntro3.setPosition(50, Utils.PlatformGameHeight-300);
 		// create the menu text
 		Text textPlatform1 = new Text("1. Play Level 1 Platform Game", sansRegular, 18);
-		textPlatform1.setPosition(100, Utils.PlatformGameHeight-280);
+		textPlatform1.setPosition(100, Utils.PlatformGameHeight-250);
 		Text textPuzzle1 = new Text("2. Play Level 1 Puzzle Game", sansRegular, 18);
-		textPuzzle1.setPosition(100, Utils.PlatformGameHeight-260);
+		textPuzzle1.setPosition(100, Utils.PlatformGameHeight-230);
 		Text textPlatform2 = new Text("3. Play Level 2 Platform Game", sansRegular, 18);
-		textPlatform2.setPosition(100, Utils.PlatformGameHeight-230);
+		textPlatform2.setPosition(100, Utils.PlatformGameHeight-200);
 		Text textPuzzle2 = new Text("4. Play Level 2 Puzzle Game", sansRegular, 18);
-		textPuzzle2.setPosition(100, Utils.PlatformGameHeight-210);
+		textPuzzle2.setPosition(100, Utils.PlatformGameHeight-180);
 		Text textPlatform3 = new Text("5. Play Level 3 Platform Game", sansRegular, 18);
-		textPlatform3.setPosition(100, Utils.PlatformGameHeight-180);
+		textPlatform3.setPosition(100, Utils.PlatformGameHeight-150);
 		Text textPuzzle3 = new Text("6. Play Level 3 Puzzle Game", sansRegular, 18);
-		textPuzzle3.setPosition(100, Utils.PlatformGameHeight-160);
+		textPuzzle3.setPosition(100, Utils.PlatformGameHeight-130);
 		Text textPlatform4 = new Text("7. Play Level 4 Platform Game", sansRegular, 18);
-		textPlatform4.setPosition(100, Utils.PlatformGameHeight-130);
+		textPlatform4.setPosition(100, Utils.PlatformGameHeight-100);
 		Text textPuzzle4 = new Text("8. Play Level 4 Puzzle Game", sansRegular, 18);
-		textPuzzle4.setPosition(100, Utils.PlatformGameHeight-110);
+		textPuzzle4.setPosition(100, Utils.PlatformGameHeight-80);
 
 		while (window.isOpen())
 		{
@@ -65,6 +78,9 @@ class Game
 			room.setImage(Utils.RoomImage[gameLevel]);
 			window.clear(Color.BLACK);
 			window.draw(room.getPlatform());
+			window.draw(textIntro1);
+			window.draw(textIntro2);
+			window.draw(textIntro3);
 			window.draw(textPlatform1);
 			if (gameLevel > 0)
 			{
