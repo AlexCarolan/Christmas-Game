@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 class AnimatedCollectible extends Thread
 {
-	private Collectible col;
+	private Platform collectible;
 	private Texture[] texture;
 	private int interval;
 	private boolean active = false;
@@ -21,9 +21,8 @@ class AnimatedCollectible extends Thread
 	 * @param frames - the number of frames in the animation
 	 * @param delay - the delay between each frame of the animation in milliseconds
 	 */
-	public AnimatedCollectible(Collectible c, String path, int frames, int delay)
+	public AnimatedCollectible(String path, int frames, int delay)
 	{
-		col = c;
 		texture = new Texture[frames];
 		interval = delay;
 		
@@ -38,6 +37,8 @@ class AnimatedCollectible extends Thread
 				System.out.println("Unable to open image file");
 			}
 		}
+		
+		this.start();
 	}
 	
 	/**
@@ -55,7 +56,7 @@ class AnimatedCollectible extends Thread
 			}
 			if (active)
 			{
-				col.setSprite(texture[i]);
+				collectible.setSprite(texture[i]);
 				//System.out.println("ALIVE");
 				if (++i == texture.length)
 					i = 0;
@@ -83,5 +84,13 @@ class AnimatedCollectible extends Thread
 	public void kill()
 	{
 		alive = false;
+	}
+	
+	/**
+	* sets the Collectible to be animated
+	*/
+	public void setCollectible(Platform col)
+	{
+		collectible = col;
 	}
 }

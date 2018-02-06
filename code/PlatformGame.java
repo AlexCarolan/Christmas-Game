@@ -92,16 +92,16 @@ class PlatformGame
 		//AnimatedPlayer sleighRight = new AnimatedPlayer(player, Utils.SleighRightPath, 2, 100);
 		AnimatedCollectible bauble = new AnimatedCollectible(Utils.Bauble1Path, 2, 250);
 		AnimatedCollectible axe = new AnimatedCollectible(Utils.AxePath, 10, 100);
-		bauble.start();
-		axe.start();
+		collectible[0].setAnimation(bauble);
+		collectible[1].setAnimation(axe);
+		
 		//sleighRight.start();
 		//if (gameLevel != Utils.SleighGameLevel)
 		//else
 			//sleighRight.setActive(true);
-		bauble.setActive(true);
-		axe.setActive(true);
 		
 		player = new Player(gameLevel);
+		player.setAnimation(idleRight);
 		
 		// load the font
 		Font scoreFont = new Font( );

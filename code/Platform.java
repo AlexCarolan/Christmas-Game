@@ -12,6 +12,7 @@ class Platform
 	private RectangleShape plat;
 	private Texture texture = new Texture();
 	private boolean ceiling;
+	private AnimatedCollectible animation;
 	
 	/**
 	 * Platform constructor - creates a platform (for the sprite to stand on)
@@ -26,7 +27,11 @@ class Platform
 	{
 		// create a rectangle shape
 		plat = new RectangleShape(new Vector2f(width, height));
-		//texture = new Texture();
+		//IntRect rect = new IntRect(0,0,width,height);
+		//plat.setTextureRect(rect);
+		//texture.setRepeated(true);
+		
+
 		try {
 			// try to load the texture from file
 			texture.loadFromFile(Paths.get(filename));
@@ -136,6 +141,21 @@ class Platform
 	public void setSprite(Texture texture)
 	{
 		plat.setTexture(texture);
+	}
+	
+	/**
+	 * Changes the current animation
+	 * @param ani - the new animation
+	 */
+	public void setAnimation(AnimatedCollectible ani)
+	{
+		if(animation != null)
+		{
+			animation.setActive(false);
+		}
+		animation = ani;
+		animation.setCollectible(this);
+		animation.setActive(true);
 	}
 }
  
