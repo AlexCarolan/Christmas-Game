@@ -11,6 +11,10 @@ import org.jsfml.graphics.*;
 class Puzzle0
 {
 	private static String Title   = "Puzzle 0";
+	private static String wall   = "images\\NewTiles\\Trees2.png";
+	private static String floor   = "images\\NewTiles\\Ice.png";
+	private static String player   = "images\\NewTiles\\Player.png";
+	
 
 	/**
 	 * run - handle display and movement of the platform game for this level
@@ -42,146 +46,146 @@ class Puzzle0
 		{
 			for (int j = 0; j < 19; j++)
 			{
-				tiles[i][j] = new MazeTile((i*35),(j*35),"images\\maze\\wall.png",35,35,false);
+				tiles[i][j] = new MazeTile((i*35),(j*35),wall,35,35,false);
 			}
 		}
-		tiles[18][17] = new MazeTile((18*35),(17*35),"images\\maze\\blank.png",35,35,true);
+		tiles[18][17] = new MazeTile((18*35),(17*35),floor,35,35,true);
 		for(int i = 0; i < 8; i++)
 		{
-			tiles[1][i] = new MazeTile((1*35),(i*35),"images\\maze\\blank.png",35,35,true);
+			tiles[1][i] = new MazeTile((1*35),(i*35),floor,35,35,true);
 		}
 		for(int i = 2; i < 3; i++)
 		{
-			tiles[i][7] = new MazeTile((i*35),(7*35),"images\\maze\\blank.png",35,35,true);
+			tiles[i][7] = new MazeTile((i*35),(7*35),floor,35,35,true);
 		}
 		for(int i = 1; i < 3; i++)
 		{
-			tiles[i][9] = new MazeTile((i*35),(9*35),"images\\maze\\blank.png",35,35,true);
+			tiles[i][9] = new MazeTile((i*35),(9*35),floor,35,35,true);
 		}
 		for(int i = 1; i < 3; i++)
 		{
-			tiles[i][7] = new MazeTile((i*35),(7*35),"images\\maze\\blank.png",35,35,true);
+			tiles[i][7] = new MazeTile((i*35),(7*35),floor,35,35,true);
 		}
 		for(int i = 7; i < 12; i++)
 		{
-			tiles[3][i] = new MazeTile((3*35),(i*35),"images\\maze\\blank.png",35,35,true);
+			tiles[3][i] = new MazeTile((3*35),(i*35),floor,35,35,true);
 		}
 		for(int i = 1; i < 3; i++)
 		{
-			tiles[i][11] = new MazeTile((i*35),(11*35),"images\\maze\\blank.png",35,35,true);
+			tiles[i][11] = new MazeTile((i*35),(11*35),floor,35,35,true);
 		}
-		tiles[1][12] = new MazeTile((1*35),(12*35),"images\\maze\\blank.png",35,35,true);
+		tiles[1][12] = new MazeTile((1*35),(12*35),floor,35,35,true);
 		for(int i = 1; i < 8; i++)
 		{
-			tiles[i][13] = new MazeTile((i*35),(13*35),"images\\maze\\blank.png",35,35,true);
+			tiles[i][13] = new MazeTile((i*35),(13*35),floor,35,35,true);
 		}
 		for(int i = 1; i < 4; i++)
 		{
-			tiles[i][15] = new MazeTile((i*35),(15*35),"images\\maze\\blank.png",35,35,true);
+			tiles[i][15] = new MazeTile((i*35),(15*35),floor,35,35,true);
 		}
-		tiles[1][16] = new MazeTile((1*35),(16*35),"images\\maze\\blank.png",35,35,true);
+		tiles[1][16] = new MazeTile((1*35),(16*35),floor,35,35,true);
 		for(int i = 1; i < 6; i++)
 		{
-			tiles[i][17] = new MazeTile((i*35),(17*35),"images\\maze\\blank.png",35,35,true);
+			tiles[i][17] = new MazeTile((i*35),(17*35),floor,35,35,true);
 		}
 		for(int i = 14; i < 17; i++)
 		{
-			tiles[5][i] = new MazeTile((5*35),(i*35),"images\\maze\\blank.png",35,35,true);
+			tiles[5][i] = new MazeTile((5*35),(i*35),floor,35,35,true);
 		}
 		for(int i = 14; i < 17; i++)
 		{
-			tiles[7][i] = new MazeTile((7*35),(i*35),"images\\maze\\blank.png",35,35,true);
+			tiles[7][i] = new MazeTile((7*35),(i*35),floor,35,35,true);
 		}
 		for(int i = 7; i < 14; i++)
 		{
-			tiles[i][17] = new MazeTile((i*35),(17*35),"images\\maze\\blank.png",35,35,true);
+			tiles[i][17] = new MazeTile((i*35),(17*35),floor,35,35,true);
 		}
 		for(int i = 15; i < 17; i++)
 		{
-			tiles[13][i] = new MazeTile((13*35),(i*35),"images\\maze\\blank.png",35,35,true);
+			tiles[13][i] = new MazeTile((13*35),(i*35),floor,35,35,true);
 		}
 		for(int i = 15; i < 18; i++)
 		{
-			tiles[15][i] = new MazeTile((15*35),(i*35),"images\\maze\\blank.png",35,35,true);
+			tiles[15][i] = new MazeTile((15*35),(i*35),floor,35,35,true);
 		}
-		tiles[14][15] = new MazeTile((14*35),(15*35),"images\\maze\\blank.png",35,35,true);
+		tiles[14][15] = new MazeTile((14*35),(15*35),floor,35,35,true);
 		for(int i = 3; i < 18; i++)
 		{
-			tiles[i][1] = new MazeTile((i*35),(1*35),"images\\maze\\blank.png",35,35,true);
+			tiles[i][1] = new MazeTile((i*35),(1*35),floor,35,35,true);
 		}
-		tiles[2][3] = new MazeTile((2*35),(3*35),"images\\maze\\blank.png",35,35,true);
-		tiles[3][2] = new MazeTile((3*35),(2*35),"images\\maze\\blank.png",35,35,true);
-		tiles[3][3] = new MazeTile((3*35),(3*35),"images\\maze\\blank.png",35,35,true);
-		tiles[7][2] = new MazeTile((7*35),(2*35),"images\\maze\\blank.png",35,35,true);
-		tiles[7][3] = new MazeTile((7*35),(3*35),"images\\maze\\blank.png",35,35,true);
-		tiles[6][3] = new MazeTile((6*35),(3*35),"images\\maze\\blank.png",35,35,true);
-		tiles[5][3] = new MazeTile((5*35),(3*35),"images\\maze\\blank.png",35,35,true);
-		tiles[5][4] = new MazeTile((5*35),(4*35),"images\\maze\\blank.png",35,35,true);
-		tiles[5][5] = new MazeTile((5*35),(5*35),"images\\maze\\blank.png",35,35,true);
-		tiles[4][5] = new MazeTile((4*35),(5*35),"images\\maze\\blank.png",35,35,true);
-		tiles[3][5] = new MazeTile((3*35),(5*35),"images\\maze\\blank.png",35,35,true);
-		tiles[9][2] = new MazeTile((9*35),(2*35),"images\\maze\\blank.png",35,35,true);
-		tiles[9][3] = new MazeTile((9*35),(3*35),"images\\maze\\blank.png",35,35,true);
+		tiles[2][3] = new MazeTile((2*35),(3*35),floor,35,35,true);
+		tiles[3][2] = new MazeTile((3*35),(2*35),floor,35,35,true);
+		tiles[3][3] = new MazeTile((3*35),(3*35),floor,35,35,true);
+		tiles[7][2] = new MazeTile((7*35),(2*35),floor,35,35,true);
+		tiles[7][3] = new MazeTile((7*35),(3*35),floor,35,35,true);
+		tiles[6][3] = new MazeTile((6*35),(3*35),floor,35,35,true);
+		tiles[5][3] = new MazeTile((5*35),(3*35),floor,35,35,true);
+		tiles[5][4] = new MazeTile((5*35),(4*35),floor,35,35,true);
+		tiles[5][5] = new MazeTile((5*35),(5*35),floor,35,35,true);
+		tiles[4][5] = new MazeTile((4*35),(5*35),floor,35,35,true);
+		tiles[3][5] = new MazeTile((3*35),(5*35),floor,35,35,true);
+		tiles[9][2] = new MazeTile((9*35),(2*35),floor,35,35,true);
+		tiles[9][3] = new MazeTile((9*35),(3*35),floor,35,35,true);
 		for(int i = 9; i < 18; i++)
 		{
-			tiles[i][3] = new MazeTile((i*35),(3*35),"images\\maze\\blank.png",35,35,true);
+			tiles[i][3] = new MazeTile((i*35),(3*35),floor,35,35,true);
 		}
-		tiles[15][4] = new MazeTile((15*35),(4*35),"images\\maze\\blank.png",35,35,true);
-		tiles[15][5] = new MazeTile((15*35),(5*35),"images\\maze\\blank.png",35,35,true);
+		tiles[15][4] = new MazeTile((15*35),(4*35),floor,35,35,true);
+		tiles[15][5] = new MazeTile((15*35),(5*35),floor,35,35,true);
 		for(int i = 3; i < 12; i++)
 		{
-			tiles[17][i] = new MazeTile((17*35),(i*35),"images\\maze\\blank.png",35,35,true);
+			tiles[17][i] = new MazeTile((17*35),(i*35),floor,35,35,true);
 		}
-		tiles[16][7] = new MazeTile((16*35),(7*35),"images\\maze\\blank.png",35,35,true);
-		tiles[15][7] = new MazeTile((15*35),(7*35),"images\\maze\\blank.png",35,35,true);
+		tiles[16][7] = new MazeTile((16*35),(7*35),floor,35,35,true);
+		tiles[15][7] = new MazeTile((15*35),(7*35),floor,35,35,true);
 		for(int i = 8; i < 12; i++)
 		{
-			tiles[15][i] = new MazeTile((15*35),(i*35),"images\\maze\\blank.png",35,35,true);
+			tiles[15][i] = new MazeTile((15*35),(i*35),floor,35,35,true);
 		}
-		tiles[14][11] = new MazeTile((14*35),(11*35),"images\\maze\\blank.png",35,35,true);
+		tiles[14][11] = new MazeTile((14*35),(11*35),floor,35,35,true);
 		for(int i = 5; i < 12; i++)
 		{
-			tiles[13][i] = new MazeTile((13*35),(i*35),"images\\maze\\blank.png",35,35,true);
+			tiles[13][i] = new MazeTile((13*35),(i*35),floor,35,35,true);
 		}
 		for(int i = 7; i < 13; i++)
 		{
-			tiles[i][5] = new MazeTile((i*35),(5*35),"images\\maze\\blank.png",35,35,true);
+			tiles[i][5] = new MazeTile((i*35),(5*35),floor,35,35,true);
 		}
-		tiles[7][6] = new MazeTile((7*35),(6*35),"images\\maze\\blank.png",35,35,true);
+		tiles[7][6] = new MazeTile((7*35),(6*35),floor,35,35,true);
 		for(int i = 5; i < 12; i++)
 		{
-			tiles[i][7] = new MazeTile((i*35),(7*35),"images\\maze\\blank.png",35,35,true);
+			tiles[i][7] = new MazeTile((i*35),(7*35),floor,35,35,true);
 		}
 		for(int i = 8; i < 12; i++)
 		{
-			tiles[11][i] = new MazeTile((11*35),(i*35),"images\\maze\\blank.png",35,35,true);
+			tiles[11][i] = new MazeTile((11*35),(i*35),floor,35,35,true);
 		}
 		for(int i = 8; i < 12; i++)
 		{
-			tiles[5][i] = new MazeTile((5*35),(i*35),"images\\maze\\blank.png",35,35,true);
+			tiles[5][i] = new MazeTile((5*35),(i*35),floor,35,35,true);
 		}
-		tiles[6][11] = new MazeTile((6*35),(11*35),"images\\maze\\blank.png",35,35,true);
-		tiles[7][11] = new MazeTile((7*35),(11*35),"images\\maze\\blank.png",35,35,true);
-		tiles[7][10] = new MazeTile((7*35),(10*35),"images\\maze\\blank.png",35,35,true);
-		tiles[7][9] = new MazeTile((7*35),(9*35),"images\\maze\\blank.png",35,35,true);
-		tiles[8][9] = new MazeTile((8*35),(9*35),"images\\maze\\blank.png",35,35,true);
-		tiles[9][9] = new MazeTile((9*35),(9*35),"images\\maze\\blank.png",35,35,true);
+		tiles[6][11] = new MazeTile((6*35),(11*35),floor,35,35,true);
+		tiles[7][11] = new MazeTile((7*35),(11*35),floor,35,35,true);
+		tiles[7][10] = new MazeTile((7*35),(10*35),floor,35,35,true);
+		tiles[7][9] = new MazeTile((7*35),(9*35),floor,35,35,true);
+		tiles[8][9] = new MazeTile((8*35),(9*35),floor,35,35,true);
+		tiles[9][9] = new MazeTile((9*35),(9*35),floor,35,35,true);
 		for(int i = 10; i < 16; i++)
 		{
-			tiles[9][i] = new MazeTile((9*35),(i*35),"images\\maze\\blank.png",35,35,true);
+			tiles[9][i] = new MazeTile((9*35),(i*35),floor,35,35,true);
 		}
-		tiles[10][15] = new MazeTile((10*35),(15*35),"images\\maze\\blank.png",35,35,true);
-		tiles[11][15] = new MazeTile((11*35),(15*35),"images\\maze\\blank.png",35,35,true);
-		tiles[11][14] = new MazeTile((11*35),(14*35),"images\\maze\\blank.png",35,35,true);
+		tiles[10][15] = new MazeTile((10*35),(15*35),floor,35,35,true);
+		tiles[11][15] = new MazeTile((11*35),(15*35),floor,35,35,true);
+		tiles[11][14] = new MazeTile((11*35),(14*35),floor,35,35,true);
 		for(int i = 11; i < 18; i++)
 		{
-			tiles[i][13] = new MazeTile((i*35),(13*35),"images\\maze\\blank.png",35,35,true);
+			tiles[i][13] = new MazeTile((i*35),(13*35),floor,35,35,true);
 		}
 		for(int i = 14; i < 18; i++)
 		{
-			tiles[17][i] = new MazeTile((17*35),(i*35),"images\\maze\\blank.png",35,35,true);
+			tiles[17][i] = new MazeTile((17*35),(i*35),floor,35,35,true);
 		}
-		tiles[1][0] = new MazeTile((1*35),(0*35),"images\\maze\\player.png",35,35,true);
+		tiles[1][0] = new MazeTile((1*35),(0*35),player,35,35,true);
 		
 
 		boolean finished = false;
@@ -303,7 +307,7 @@ class Puzzle0
 				// check whether images are all in the right place
 				
 				finished = true;
-				if (tiles[18][17].getPicture() != "images\\maze\\player.png")
+				if (tiles[18][17].getPicture() != player)
 					finished = false;
 				if (finished)
 				{
