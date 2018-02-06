@@ -47,12 +47,47 @@ public class Utils
 															"images\\platform\\attic.png",		// platform level 3
 															"images\\platform\\rooftops.png"	// platform level 4
 															};
-	public static final int PlatformBackgroundWidth[] = {7564, 3000, 4000, 2*PlatformGameWidth+652};
+	public static final int PlatformBackgroundWidth[] = {7564, 7564, 4000, 2*PlatformGameWidth+652};
 
 	// define width, height, xPosition, yPosition for all the platforms for each level
 	// to access this array: first index is level, second index is platform, 
 	// third index is xPosition, yPosition, width, height of that platform
 	public static final int PlatformPositions[][][] = {{ // gameLevel 1
+														{0,700,1200,50},				// base 1
+														{5300,700,1200,50},				// base 2
+														{1150,600,100,50},	//3
+														{1280,550,100,50},	//4
+														{1405,510,100,50},	//5
+														{1530,560,100,50},	//6
+														{1680,610,200,100},	//7 
+														{1550,420,300,50},	//8 frozen pond
+														{1900,570,80,30},	//9
+														{2050,590,80,30},	//10
+														{2150,640,150,80},	//11
+														{2200,440,400,80},	//12 bigger frozen pond
+														{2360,670,100,50},	//13
+														{2500,680,100,50},	//14
+														{2650,670,100,50},	//15
+														{2800,650,100,50},	//16
+														{2900,630,100,50},	//17
+														{3100,620,100,50},	//18
+														{3300,670,100,50},	//19
+														{3500,670,100,50},	//20
+														{3650,670,100,50},	//21
+														{3800,670,100,50},	//22
+														{3950,670,100,50},	//23
+														{4100,670,100,50},	//24
+														{4250,670,100,50},	//25
+														{4400,670,100,50},	//26
+														{4550,670,100,50},	//27
+														{4700,670,100,50},	//28
+														{4850,670,100,50},	//29
+														{5000,670,100,50},	//30
+														{5150,670,100,50},	//31
+														{5300,670,100,50},	//32
+														{-250,500,250,400},		// left hand edge
+														{6500,0,PlatformGameWidth/2,PlatformGameHeight+1}},	// right hand edge
+														{ // gameLevel 2
 														{0,700,5200,50},				// base 1
 														{5300,700,1200,50},				// base 2
 														{1150,600,100,100},	//3
@@ -74,13 +109,6 @@ public class Utils
 														{5000,300,100,100},	//19
 														{-250,500,250,400},		// left hand edge
 														{6500,0,PlatformGameWidth/2,PlatformGameHeight+1}},	// right hand edge
-														{ // gameLevel 2
-														{0,PlatformGameHeight - 25,PlatformGameWidth,25},	// base
-														{PlatformGameWidth+100,PlatformGameHeight - 30,PlatformGameWidth,30},
-														{300,600,150,30},
-														{100,700,80,25},
-														{500,500,100,35},
-														{0,0,2,PlatformGameHeight}},	// left hand edge
 														{ // gameLevel 3
 														{0,700,5200,50},				// base
 														{700,650,100,50},	//2
@@ -119,28 +147,56 @@ public class Utils
 													};
 	// define image for each platform on each level, in same order as PlatformPositions array
 	public static final String PlatformImages[][] = {{ // gameLevel 1
-														"images\\platform\\rocky-platform.png",
-														"images\\platform\\rocky-platform.png",
-														"images\\platform\\Rock_Platform.png",
-														"images\\platform\\Rock_Platform.png",
-														"images\\platform\\Rock_Platform.png",
-														"images\\platform\\Rock_Platform.png",
-														"images\\platform\\Rock_Platform.png",
-														"images\\platform\\Rock_Platform.png",
-														"images\\platform\\FrozenPond.png",
-														"images\\platform\\Rock_Platform.png",
-														"images\\platform\\Rock_Platform.png",
-														"images\\platform\\FrozenPond_Two.png",
-														"images\\platform\\Rock_Platform.png",
-														"images\\platform\\Rock_Platform.png",
-														"images\\platform\\Rock_Platform.png",
-														"images\\platform\\Rock_Platform.png",
-														"images\\platform\\Rock_Platform.png",
-														"images\\platform\\Rock_Platform.png",
-														"images\\platform\\Rock_Platform.png",
-														"images\\obstacles\\long-logpile.png",
-														"images\\obstacles\\ForestOne.png"},
+														"images\\platform\\rocky-platform.png",	//base 1
+														"images\\platform\\rocky-platform.png",	//base 2
+														"images\\platform\\Rock_Platform.png",	//3
+														"images\\platform\\Rock_Platform.png",	//4
+														"images\\platform\\Rock_Platform.png",	//5	
+														"images\\platform\\Rock_Platform.png",	//6
+														"images\\platform\\Rock_Platform.png",	//7
+														"images\\platform\\FrozenPond.png",		//8
+														"images\\platform\\Rock_Platform.png",	//9
+														"images\\platform\\Rock_Platform.png",	//10
+														"images\\platform\\Rock_Platform.png",	//11
+														"images\\platform\\FrozenPond_Two.png",	//12
+														"images\\platform\\Rock_Platform.png",	//13
+														"images\\platform\\Rock_Platform.png",	//14
+														"images\\platform\\Rock_Platform.png",	//15
+														"images\\platform\\Rock_Platform.png",	//16
+														"images\\platform\\Rock_Platform.png",	//17
+														"images\\platform\\Rock_Platform.png",	//18
+														"images\\platform\\Rock_Platform.png",	//19
+														"images\\platform\\Rock_Platform.png",	//20
+														"images\\platform\\Rock_Platform.png",	//21
+														"images\\platform\\Rock_Platform.png",	//22
+														"images\\platform\\Rock_Platform.png",	//23
+														"images\\platform\\Rock_Platform.png",	//24
+														"images\\platform\\Rock_Platform.png",	//25
+														"images\\platform\\Rock_Platform.png",	//26
+														"images\\platform\\Rock_Platform.png",	//27
+														"images\\platform\\Rock_Platform.png",	//28
+														"images\\platform\\Rock_Platform.png",	//29
+														"images\\platform\\Rock_Platform.png",	//30
+														"images\\platform\\Rock_Platform.png",	//31
+														"images\\platform\\Rock_Platform.png",	//32
+														"images\\obstacles\\long-logpile.png",	//left hand edge
+														"images\\obstacles\\ForestOne.png"},	// right hand edge
 														{ // gameLevel 2
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
 														"images\\platform\\bricks.png",
 														"images\\platform\\bricks.png",
 														"images\\platform\\bricks.png",
@@ -189,6 +245,41 @@ public class Utils
 														true,	// base 2
 														false,
 														false,
+														false,
+														false,
+														false,
+														true,
+														true,
+														false,
+														true,
+														true,
+														false,
+														false,
+														false,
+														false,
+														false,
+														true,
+														true,
+														false,
+														false,
+														false,
+														false,
+														false,
+														false,
+														false,
+														false,
+														false,
+														false,
+														false,
+														false,
+														false,
+														false,	// left edge
+														false},	// right edge
+														{ // gameLevel 2
+														true,	// base1
+														true,	// base 2
+														false,
+														false,
 														true,
 														true,
 														false,
@@ -206,13 +297,6 @@ public class Utils
 														true,
 														false,	// left edge
 														false},	// right edge
-														{ // gameLevel 2
-														false,
-														false,
-														false,
-														false,
-														false,
-														false},
 														{ // gameLevel 3
 														true,
 														true,
@@ -258,6 +342,15 @@ public class Utils
 														{680,660,50,50},
 														{720,620,100,100},
 														{800,670,50,50},
+														{6113,660,50,50},
+														{6150,620,100,100},
+														{6230,620,100,100},
+														{6195,555,100,100},
+														{6230,525,50,50}},
+														{ // gameLevel 2
+														{680,660,50,50},
+														{720,620,100,100},
+														{800,670,50,50},
 														{2350,570,40,40},
 														{3150,660,50,50},
 														{3680,560,50,50},
@@ -269,9 +362,6 @@ public class Utils
 														{6230,620,100,100},
 														{6195,555,100,100},
 														{6230,525,50,50}},
-														{ // gameLevel 2
-														{375,567,40,40},
-														{550,467,35,35}},
 														{ // gameLevel 3
 														{2700,670,40,40},
 														{2800,665,35,35}},
@@ -284,18 +374,24 @@ public class Utils
 														"images\\obstacles\\big-log.png",
 														"images\\obstacles\\big-log.png",
 														"images\\obstacles\\logs1.png",
-														"images\\obstacles\\big-log.png",
-														"images\\obstacles\\logs1.png",
-														"images\\obstacles\\logs1.png",
-														"images\\obstacles\\logs1.png",
-														"images\\obstacles\\logs1.png",
-														"images\\obstacles\\logs1.png",
 														"images\\obstacles\\long-logpile.png",
 														"images\\obstacles\\long-logpile.png",
 														"images\\obstacles\\long-logpile.png",
 														"images\\obstacles\\long-logpile.png",
 														"images\\obstacles\\long-logpile.png"},
 														{ // gameLevel 2
+														"images\\obstacles\\box.png",
+														"images\\obstacles\\box.png",
+														"images\\obstacles\\box.png",
+														"images\\obstacles\\box.png",
+														"images\\obstacles\\box.png",
+														"images\\obstacles\\box.png",
+														"images\\obstacles\\box.png",
+														"images\\obstacles\\box.png",
+														"images\\obstacles\\box.png",
+														"images\\obstacles\\box.png",
+														"images\\obstacles\\box.png",
+														"images\\obstacles\\box.png",
 														"images\\obstacles\\box.png",
 														"images\\obstacles\\rock.png"},
 														{ // gameLevel 3
@@ -316,8 +412,11 @@ public class Utils
 														{2660,685,15,15},
 														{4980,385,15,15}},
 														{ // gameLevel 2
-														{125,685,15,15},
-														{570,467,35,35}},
+														{1510,535,15,15},
+														{1650,670,35,35},	// axe
+														{2120,685,15,15},
+														{2660,685,15,15},
+														{4980,385,15,15}},
 														{ // gameLevel 3
 														{1830,285,15,15},
 														{1960,665,35,35},
@@ -337,7 +436,10 @@ public class Utils
 														"images\\collectibles\\BlueBauble.png"},
 														{ // gameLevel 2
 														"images\\collectibles\\OrangeBauble.png",
-														"images\\collectibles\\Axe.png"},
+														"images\\collectibles\\Axe.png",
+														"images\\collectibles\\RedBauble.png",
+														"images\\collectibles\\GreenBauble.png",
+														"images\\collectibles\\BlueBauble.png"},
 														{ // gameLevel 3
 														"images\\collectibles\\RedBauble.png",
 														"images\\collectibles\\Axe.png",
@@ -357,7 +459,10 @@ public class Utils
 														false},
 														{ // gameLevel 2
 														false,
-														true},
+														true,
+														false,
+														false,
+														false},
 														{ // gameLevel 3
 														false,
 														true,
@@ -382,7 +487,7 @@ public class Utils
 	public static final int DoorPosition[][] = { // gameLevel 1
 												{6240,425,50,100},
 												 // gameLevel 2
-												{1500,640,50,100},
+												{6240,425,50,100},
 												 // gameLevel 3
 												{2500,600,50,100},
 												 // gameLevel 4
