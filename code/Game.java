@@ -98,7 +98,7 @@ class Game
 				if ((platGame.run(0) == true) && (level.getLevel() == 0))
 				{
 					level.incrementLevel();
-					Puzzle1 puzzle = new Puzzle1();
+					Puzzle0 puzzle = new Puzzle0();
 					puzzle.run();
 					puzzle = null;
 				}
@@ -106,7 +106,7 @@ class Game
 			}
 			else if (Keyboard.isKeyPressed(Keyboard.Key.NUM2) || Keyboard.isKeyPressed(Keyboard.Key.NUMPAD2))
 			{
-				Puzzle1 puzzle = new Puzzle1();
+				Puzzle0 puzzle = new Puzzle0();
 				puzzle.run();
 				puzzle = null;
 			}
@@ -116,17 +116,17 @@ class Game
 				if (platGame.run(1) && (level.getLevel() == 1))
 				{
 					level.incrementLevel();
-					//Puzzle2 puzzle = new Puzzle2();
-					//puzzle.run();
-					//puzzle = null;
+					Puzzle1 puzzle = new Puzzle1();
+					puzzle.run();
+					puzzle = null;
 				}
 				platGame = null;
 			}
 			else if ((Keyboard.isKeyPressed(Keyboard.Key.NUM4) || Keyboard.isKeyPressed(Keyboard.Key.NUMPAD4)) && level.getLevel() > 0)
 			{
-				//Puzzle2 puzzle = new Puzzle2();
-				//puzzle.run();
-				;//puzzle = null;
+				Puzzle1 puzzle = new Puzzle1();
+				puzzle.run();
+				puzzle = null;
 			}
 			else if ((Keyboard.isKeyPressed(Keyboard.Key.NUM5) || Keyboard.isKeyPressed(Keyboard.Key.NUMPAD5)) && level.getLevel() > 1)
 			{
@@ -134,17 +134,17 @@ class Game
 				if (platGame.run(2) && (level.getLevel() == 2))
 				{
 					level.incrementLevel();
-					//Puzzle3 puzzle = new Puzzle3();
-					//puzzle.run();
-					//puzzle = null;
+					Puzzle2 puzzle = new Puzzle2();
+					puzzle.run();
+					puzzle = null;
 				}
 				platGame = null;
 			}
 			else if ((Keyboard.isKeyPressed(Keyboard.Key.NUM6) || Keyboard.isKeyPressed(Keyboard.Key.NUMPAD6)) && level.getLevel() > 1)
 			{
-				//Puzzle3 puzzle = new Puzzle3();
-				//puzzle.run();
-				;//puzzle = null;
+				Puzzle2 puzzle = new Puzzle2();
+				puzzle.run();
+				puzzle = null;
 			}
 			else if ((Keyboard.isKeyPressed(Keyboard.Key.NUM7)|| Keyboard.isKeyPressed(Keyboard.Key.NUMPAD7)) && level.getLevel() > 2)
 			{
