@@ -41,6 +41,14 @@ public class Utils
 	public static final String Bauble1Path = "Sprites\\Baubles\\Bauble";
 	public static final String AxePath = "Sprites\\Axe\\Axe";
 
+	// file path for platform background images, and the width of these
+	public static final String PlatformBackgroundImage[] = {"images\\platform\\forest.png",	// platform level 1
+															"images\\platform\\kitchen.png",	// platform level 2
+															"images\\platform\\attic.png",		// platform level 3
+															"images\\platform\\rooftops.png"	// platform level 4
+															};
+	public static final int PlatformBackgroundWidth[] = {7564, 3000, 4000, 2*PlatformGameWidth+652};
+
 	// define width, height, xPosition, yPosition for all the platforms for each level
 	// to access this array: first index is level, second index is platform, 
 	// third index is xPosition, yPosition, width, height of that platform
@@ -64,8 +72,8 @@ public class Utils
 														{4800,600,400,100},	//17
 														{4900,400,200,100},	//18
 														{5000,300,100,100},	//19
-														{0,0,2,PlatformGameHeight},		// left hand edge
-														{6500,0,2,PlatformGameHeight}},	// right hand edge
+														{-250,500,250,400},		// left hand edge
+														{6500,0,PlatformGameWidth/2,PlatformGameHeight+1}},	// right hand edge
 														{ // gameLevel 2
 														{0,PlatformGameHeight - 25,PlatformGameWidth,25},	// base
 														{PlatformGameWidth+100,PlatformGameHeight - 30,PlatformGameWidth,30},
@@ -111,27 +119,27 @@ public class Utils
 													};
 	// define image for each platform on each level, in same order as PlatformPositions array
 	public static final String PlatformImages[][] = {{ // gameLevel 1
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png"},
+														"images\\platform\\rocky-platform.png",
+														"images\\platform\\rocky-platform.png",
+														"images\\platform\\Rock_Platform.png",
+														"images\\platform\\Rock_Platform.png",
+														"images\\platform\\Rock_Platform.png",
+														"images\\platform\\Rock_Platform.png",
+														"images\\platform\\Rock_Platform.png",
+														"images\\platform\\Rock_Platform.png",
+														"images\\platform\\FrozenPond.png",
+														"images\\platform\\Rock_Platform.png",
+														"images\\platform\\Rock_Platform.png",
+														"images\\platform\\FrozenPond_Two.png",
+														"images\\platform\\Rock_Platform.png",
+														"images\\platform\\Rock_Platform.png",
+														"images\\platform\\Rock_Platform.png",
+														"images\\platform\\Rock_Platform.png",
+														"images\\platform\\Rock_Platform.png",
+														"images\\platform\\Rock_Platform.png",
+														"images\\platform\\Rock_Platform.png",
+														"images\\obstacles\\long-logpile.png",
+														"images\\obstacles\\ForestOne.png"},
 														{ // gameLevel 2
 														"images\\platform\\bricks.png",
 														"images\\platform\\bricks.png",
@@ -170,10 +178,10 @@ public class Utils
 														"images\\platform\\grass.png",
 														"images\\platform\\grass.png"},
 														{ // gameLevel 4
-														"images\\platform\\grass.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png"}
+														"images\\platform\\Rock_Platform.png",
+														"images\\platform\\Rock_Platform.png",
+														"images\\platform\\Rock_Platform.png",
+														"images\\platform\\Rock_Platform.png"}
 													};
 	// specify whether platform is a ceiling (can't be jumped up through)
 	public static final boolean PlatformCeilings[][] = {{ // gameLevel 1
@@ -256,11 +264,11 @@ public class Utils
 														{3720,520,100,100},
 														{3800,570,50,50},
 														{4420,520,40,40},
-														{5730,620,100,100},
-														{5650,620,100,100},
-														{5613,660,50,50},
-														{5695,545,100,100},
-														{5730,515,50,50}},
+														{6113,660,50,50},
+														{6150,620,100,100},
+														{6230,620,100,100},
+														{6195,555,100,100},
+														{6230,525,50,50}},
 														{ // gameLevel 2
 														{375,567,40,40},
 														{550,467,35,35}},
@@ -273,20 +281,20 @@ public class Utils
 													};
 	// define image for each obstacle on each level, in same order as ObstaclePositions array
 	public static final String ObstacleImages[][] = {{ // gameLevel 1
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png"},
+														"images\\obstacles\\big-log.png",
+														"images\\obstacles\\big-log.png",
+														"images\\obstacles\\logs1.png",
+														"images\\obstacles\\big-log.png",
+														"images\\obstacles\\logs1.png",
+														"images\\obstacles\\logs1.png",
+														"images\\obstacles\\logs1.png",
+														"images\\obstacles\\logs1.png",
+														"images\\obstacles\\logs1.png",
+														"images\\obstacles\\long-logpile.png",
+														"images\\obstacles\\long-logpile.png",
+														"images\\obstacles\\long-logpile.png",
+														"images\\obstacles\\long-logpile.png",
+														"images\\obstacles\\long-logpile.png"},
 														{ // gameLevel 2
 														"images\\obstacles\\box.png",
 														"images\\obstacles\\rock.png"},
@@ -372,7 +380,7 @@ public class Utils
 	// to access this array: first index is level, 
 	// second index is xPosition, yPosition, width, height of the door
 	public static final int DoorPosition[][] = { // gameLevel 1
-												{6300,600,50,100},
+												{6240,425,50,100},
 												 // gameLevel 2
 												{1500,640,50,100},
 												 // gameLevel 3

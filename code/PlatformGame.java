@@ -45,6 +45,10 @@ class PlatformGame
 		// create new score object
 		Score playerScore = new Score(0);
 
+		// create the background
+		Platform background = new Platform(0-Utils.PlatformGameWidth/2,0,Utils.PlatformBackgroundWidth[gameLevel],Utils.PlatformGameHeight+1,
+											Utils.PlatformBackgroundImage[gameLevel],false);
+
 		// create all objects - player, platforms, obstacles, collectibles
 		Player player = new Player(gameLevel);
 		
@@ -121,6 +125,7 @@ class PlatformGame
 		{
 			// fill the window with black
 			window.clear(Color.BLACK);
+			window.draw(background.getPlatform());
 			
 			// add the players score to the window
 			scoreText.setString("Score:" + playerScore.getScore());
@@ -220,32 +225,36 @@ class PlatformGame
 			if (Keyboard.isKeyPressed(Keyboard.Key.W) || Keyboard.isKeyPressed(Keyboard.Key.UP) || Keyboard.isKeyPressed(Keyboard.Key.SPACE))
 			{
 				// can only jump if bottom of player sprite standing on a platform or obstacle
+				// or if in sleigh gameLevel
 				boolean standing = false;
-				for (int i = 0; i < numPlatforms; i++)
+				if (gameLevel != Utils.SleighGameLevel)
 				{
-					if (player.standingOn(platform[i].getXPosition(),platform[i].getYPosition()-Utils.MoveAmountY/2,
-											platform[i].getXSize(),platform[i].getYSize()+Utils.MoveAmountY/2))
+					for (int i = 0; i < numPlatforms; i++)
 					{
-						//System.out.println("Player is standing on platform " + i);
-						standing = true;
-						break;
-					}
-				}
-				if (!standing)
-				{
-					for (int i = 0; i < numObstacles; i++)
-					{
-						if (player.standingOn(obstacle[i].getXPosition(),obstacle[i].getYPosition()-Utils.MoveAmountY/2,
-												obstacle[i].getXSize(),obstacle[i].getYSize()+Utils.MoveAmountY/2))
+						if (player.standingOn(platform[i].getXPosition(),platform[i].getYPosition()-Utils.MoveAmountY/2,
+												platform[i].getXSize(),platform[i].getYSize()+Utils.MoveAmountY/2))
 						{
-							//System.out.println("Player is standing on obstacle " + i);
+							//System.out.println("Player is standing on platform " + i);
 							standing = true;
 							break;
 						}
 					}
+					if (!standing)
+					{
+						for (int i = 0; i < numObstacles; i++)
+						{
+							if (player.standingOn(obstacle[i].getXPosition(),obstacle[i].getYPosition()-Utils.MoveAmountY/2,
+													obstacle[i].getXSize(),obstacle[i].getYSize()+Utils.MoveAmountY/2))
+							{
+								//System.out.println("Player is standing on obstacle " + i);
+								standing = true;
+								break;
+							}
+						}
+					}
 				}
 				//if (Utils.MinGravity * Utils.GravityMultiplier[gameLevel] == gravity) //??WHAT IS THIS LINE?
-				if (standing)
+				if (standing || gameLevel == Utils.SleighGameLevel)
 				{
 					inertiaY = 0-Utils.JumpAmount/2;
 					moveY = 0-Utils.JumpAmount;
@@ -329,6 +338,7 @@ class PlatformGame
 			// if the player wants to move horizontally and there's nothing in the way, move everything else in the opposite direction
 			if ((moveX != 0) && !touching)
 			{
+				background.move(0-moveX,0);
 				for (int i = 0; i < numPlatforms; i++)
 					platform[i].move(0-moveX,0);
 				for (int i = 0; i < numObstacles; i++)
@@ -435,6 +445,7 @@ class PlatformGame
 			if (player.fallenBelowWindow(Utils.PlatformGameHeight))
 			{
 				player.resetPosition();
+				background.resetPosition(0-Utils.PlatformGameWidth/2,0);
 				for (int i = 0; i < numPlatforms; i++)
 					platform[i].resetPosition(Utils.PlatformPositions[gameLevel][i][0],Utils.PlatformPositions[gameLevel][i][1]);
 				for (int i = 0; i < numObstacles; i++)
