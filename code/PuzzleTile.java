@@ -52,6 +52,7 @@ class PuzzleTile
 		return Tile;
 	}
 	
+	
 	/**
 	 * move - moves the platform by the specified amount
 	 * @param xInc - the increment to move on the x-axis
