@@ -18,6 +18,7 @@ class MazeTile extends PuzzleTile
 		passable = p;
 	}
 	
+	
 	public boolean isPassable()
 	{
 		return passable;
