@@ -14,8 +14,8 @@ public class Utils
 
 	public static final int MoveAmountX = 5;
 	public static final int MoveAmountY = 2;
-	public static final int JumpAmount = 60;
-	public static final int Gravity = 2;
+	public static final int JumpAmount = 18;	//60
+	public static final int Gravity = 1;
 	public static final int MinGravity = 3;
 	public static final int MaxGravity = 30;
 
@@ -65,29 +65,30 @@ public class Utils
 														{2050,590,80,30},	//10
 														{2150,650,200,80},	//11
 														{2200,440,400,80},	//12 bigger frozen pond
-														{2350,670,100,50},	//13
-														{2500,660,100,50},	//14
-														{2650,645,100,50},	//15
-														{2800,615,100,50},	//16
-														{2920,600,100,50},	//17
-														{3100,570,100,50},	//18
-														{3300,540,100,50},	//19
-														{3500,510,100,50},	//20
-														{3650,480,100,50},	//21
-														{3800,460,100,50},	//22
-														{3950,450,100,50},	//23
-														{4100,480,100,50},	//24
-														{4250,500,80,30},	//25
-														{4400,520,80,30},	//26
-														{4550,545,80,35},	//27
-														{4700,560,90,40},	//28
-														{4850,580,100,50},	//29
-														{5000,610,100,50},	//30
-														{5150,640,80,30},	//31
-														{5300,660,100,50},	//32
-														{6000,650,100,50},	//33
-														{6100,600,100,50},	//34
-														{6230,550,100,50},	//35
+														{2360,670,90,40},	//13
+														{2460,670,90,54},	//14
+														{2570,660,90,40},	//15
+														{2665,645,100,50},	//16
+														{2800,615,100,50},	//17
+														{2920,600,100,50},	//18
+														{3100,570,100,50},	//19
+														{3300,540,100,50},	//20
+														{3500,510,100,50},	//21
+														{3650,480,100,50},	//22
+														{3800,460,100,50},	//23
+														{3950,450,100,50},	//24
+														{4100,480,100,50},	//25
+														{4250,500,80,30},	//26
+														{4400,520,80,30},	//27
+														{4550,545,80,35},	//28
+														{4700,560,90,40},	//29
+														{4850,580,100,50},	//30
+														{5000,610,100,50},	//31
+														{5150,640,80,30},	//32
+														{5300,660,100,50},	//33
+														{6000,650,100,50},	//34
+														{6100,600,100,50},	//35
+														{6230,550,100,50},	//36
 														{-250,500,250,400},		// left hand edge
 														{6500,0,PlatformGameWidth/2,PlatformGameHeight+1}},	// right hand edge
 														{ // gameLevel 2
@@ -185,6 +186,7 @@ public class Utils
 														"images\\platform\\Rock_Platform.png",	//33
 														"images\\platform\\Rock_Platform.png",	//34
 														"images\\platform\\Rock_Platform.png",	//35
+														"images\\platform\\Rock_Platform.png",	//36
 														"images\\obstacles\\long-logpile.png",	//left hand edge
 														"images\\obstacles\\ForestOne.png"},	// right hand edge
 														{ // gameLevel 2
@@ -264,9 +266,9 @@ public class Utils
 														false,
 														false,
 														false,
+														false,
 														true,
-														true,
-														false,	//20
+														true,	//20
 														false,
 														false,
 														false,
@@ -277,6 +279,7 @@ public class Utils
 														false,
 														false,
 														false,	//30
+														false,
 														false,
 														false,
 														false,
