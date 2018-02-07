@@ -105,96 +105,115 @@ class Puzzle3
 						{
 							if(dictionary[selected][0][1] < dictionary[selected][1][1])
 							{
-								System.out.println(dictionary[selected].length);
+								//System.out.println(dictionary[selected].length);
 								for(int i = dictionary[selected].length-1; i > -1; i--)
 								{
 									switchTile[1] = dictionary[selected][i][1] + 1;
 									switchTile[0] = dictionary[selected][i][0];
-									if(tiles[switchTile[0]][switchTile[1]].isPassable())
+									if (switchTile[1] < 6)
 									{
-										System.out.println(i+"passable");
-										if (dictionary[selected][dictionary[selected].length-1][1] != 5)
+										if(tiles[switchTile[0]][switchTile[1]].isPassable())
 										{
-											System.out.println(tiles[switchTile[0]][switchTile[1]].getY());
-											System.out.println(tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getY());
 											MazeTile temp = new MazeTile(tiles[switchTile[0]][switchTile[1]].getX(),tiles[switchTile[0]][switchTile[1]].getY(),tiles[switchTile[0]][switchTile[1]].getPicture(),100,100,tiles[switchTile[0]][switchTile[1]].isPassable());
-											tiles[switchTile[0]][switchTile[1]] = new MazeTile(tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getX(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getY(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getPicture(),100,100,tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].isPassable());
-											tiles[dictionary[selected][i][0]][dictionary[selected][i][1]] = new MazeTile(temp.getX(),temp.getY(),temp.getPicture(),100,100,temp.isPassable());
-											//switchTile[1] = blankTile[1] + 1;
-											/*
-											String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
-											tiles[switchTile[0]][switchTile[1]].setPicture(tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getPicture());
-											tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].setPicture(temp);
-											*/
+											//tiles[switchTile[0]][switchTile[1]] = new MazeTile(tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getX(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getY(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getPicture(),100,100,tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].isPassable());
+											tiles[switchTile[0]][switchTile[1]] = new MazeTile(tiles[switchTile[0]][switchTile[1]].getX(), tiles[switchTile[0]][switchTile[1]].getY(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getPicture(),100,100,tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].isPassable());
+											//tiles[dictionary[selected][i][0]][dictionary[selected][i][1]] = new MazeTile(temp.getX(),temp.getY(),temp.getPicture(),100,100,temp.isPassable());
+											tiles[dictionary[selected][i][0]][dictionary[selected][i][1]] = new MazeTile(tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getX(),tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getY(),temp.getPicture(),100,100,temp.isPassable());
 											//dictionary[selected][i][1] = switchTile[1];
+											dictionary[selected][i][1]+=1;
 										}
-									}
-									else
-									{
-										switchTile[1] = dictionary[selected][i][1]+1;
 									}
 								}
 							}
 						}
 						else if ((keyEvent.key == Keyboard.Key.UP) || (keyEvent.key == Keyboard.Key.W))
 						{
-							switchTile[1] = blankTile[1] - 1;
-							if (blankTile[1] != 0)
+							if(dictionary[selected][0][1] < dictionary[selected][1][1])
 							{
-								if(tiles[switchTile[0]][switchTile[1]].isPassable())
+								System.out.println("1");
+								for(int i = 0; i < dictionary[selected].length; i++)
 								{
-									String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
-									tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
-									tiles[blankTile[0]][blankTile[1]].setPicture(temp);
-									blankTile[1] = switchTile[1];
-									
-								}
-								else
-								{
-									switchTile[1] = blankTile[1];
+									System.out.println("original "+dictionary[selected][i][1]);
+									switchTile[1] = dictionary[selected][i][1] -1;
+									switchTile[0] = dictionary[selected][i][0];
+									System.out.println(switchTile[1]);
+									if (switchTile[1] >= 0)
+									{
+										System.out.println("3");
+										System.out.println(tiles[switchTile[0]][switchTile[1]].getX()+" "+tiles[switchTile[0]][switchTile[1]].getY());
+										if(tiles[switchTile[0]][switchTile[1]].isPassable())
+										{
+											System.out.println("4");
+											MazeTile temp = new MazeTile(tiles[switchTile[0]][switchTile[1]].getX(),tiles[switchTile[0]][switchTile[1]].getY(),tiles[switchTile[0]][switchTile[1]].getPicture(),100,100,tiles[switchTile[0]][switchTile[1]].isPassable());
+											//tiles[switchTile[0]][switchTile[1]] = new MazeTile(tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getX(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getY(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getPicture(),100,100,tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].isPassable());
+											tiles[switchTile[0]][switchTile[1]] = new MazeTile(tiles[switchTile[0]][switchTile[1]].getX(), tiles[switchTile[0]][switchTile[1]].getY(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getPicture(),100,100,tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].isPassable());
+											//tiles[dictionary[selected][i][0]][dictionary[selected][i][1]] = new MazeTile(temp.getX(),temp.getY(),temp.getPicture(),100,100,temp.isPassable());
+											tiles[dictionary[selected][i][0]][dictionary[selected][i][1]] = new MazeTile(tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getX(),tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getY(),temp.getPicture(),100,100,temp.isPassable());
+											//dictionary[selected][i][1] = switchTile[1];
+											dictionary[selected][i][1]-=1;
+										}
+									}
 								}
 							}
 						}
 						else if ((keyEvent.key == Keyboard.Key.RIGHT) || (keyEvent.key == Keyboard.Key.D))
 						{
-							// if possible, get tile above blank tile
-							if (blankTile[0] != 5)
+							if(dictionary[selected][0][0] < dictionary[selected][1][0])
 							{
-								switchTile[0] = blankTile[0] + 1;
-								if(tiles[switchTile[0]][switchTile[1]].isPassable())
+								System.out.println("1");
+								for(int i = dictionary[selected].length-1; i > -1; i--)
 								{
-									// swap tiles
-									switchTile[0] = blankTile[0] + 1;
-									String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
-									tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
-									tiles[blankTile[0]][blankTile[1]].setPicture(temp);
-									blankTile[0] = switchTile[0];
-									
-								}
-								else
-								{
-									switchTile[0] = blankTile[0];
+									System.out.println("original "+dictionary[selected][i][0]);
+									switchTile[1] = dictionary[selected][i][1];
+									switchTile[0] = dictionary[selected][i][0]+1;
+									System.out.println(switchTile[1]);
+									if (switchTile[0] < 6)
+									{
+										System.out.println("3");
+										System.out.println(tiles[switchTile[0]][switchTile[1]].getX()+" "+tiles[switchTile[0]][switchTile[1]].getY());
+										if(tiles[switchTile[0]][switchTile[1]].isPassable())
+										{
+											System.out.println("4");
+											MazeTile temp = new MazeTile(tiles[switchTile[0]][switchTile[1]].getX(),tiles[switchTile[0]][switchTile[1]].getY(),tiles[switchTile[0]][switchTile[1]].getPicture(),100,100,tiles[switchTile[0]][switchTile[1]].isPassable());
+											//tiles[switchTile[0]][switchTile[1]] = new MazeTile(tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getX(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getY(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getPicture(),100,100,tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].isPassable());
+											tiles[switchTile[0]][switchTile[1]] = new MazeTile(tiles[switchTile[0]][switchTile[1]].getX(), tiles[switchTile[0]][switchTile[1]].getY(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getPicture(),100,100,tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].isPassable());
+											//tiles[dictionary[selected][i][0]][dictionary[selected][i][1]] = new MazeTile(temp.getX(),temp.getY(),temp.getPicture(),100,100,temp.isPassable());
+											tiles[dictionary[selected][i][0]][dictionary[selected][i][1]] = new MazeTile(tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getX(),tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getY(),temp.getPicture(),100,100,temp.isPassable());
+											//dictionary[selected][i][1] = switchTile[1];
+											dictionary[selected][i][0]+=1;
+										}
+									}
 								}
 							}
 						}
 						else if ((keyEvent.key == Keyboard.Key.LEFT) || (keyEvent.key == Keyboard.Key.A))
 						{
-							switchTile[0] = blankTile[0] - 1;
-							if(tiles[switchTile[0]][switchTile[1]].isPassable())
+							if(dictionary[selected][0][0] < dictionary[selected][1][0])
 							{
-								if (blankTile[0] != 0)
+								System.out.println("1");
+								for(int i = 0; i < dictionary[selected].length; i++)
 								{
-									// swap tiles
-									
-									String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
-									tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
-									tiles[blankTile[0]][blankTile[1]].setPicture(temp);
-									blankTile[0] = switchTile[0];
+									System.out.println("original "+dictionary[selected][i][0]);
+									switchTile[1] = dictionary[selected][i][1];
+									switchTile[0] = dictionary[selected][i][0]-1;
+									System.out.println(switchTile[1]);
+									if (switchTile[0] >= 0)
+									{
+										System.out.println("3");
+										System.out.println(tiles[switchTile[0]][switchTile[1]].getX()+" "+tiles[switchTile[0]][switchTile[1]].getY());
+										if(tiles[switchTile[0]][switchTile[1]].isPassable())
+										{
+											System.out.println("4");
+											MazeTile temp = new MazeTile(tiles[switchTile[0]][switchTile[1]].getX(),tiles[switchTile[0]][switchTile[1]].getY(),tiles[switchTile[0]][switchTile[1]].getPicture(),100,100,tiles[switchTile[0]][switchTile[1]].isPassable());
+											//tiles[switchTile[0]][switchTile[1]] = new MazeTile(tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getX(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getY(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getPicture(),100,100,tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].isPassable());
+											tiles[switchTile[0]][switchTile[1]] = new MazeTile(tiles[switchTile[0]][switchTile[1]].getX(), tiles[switchTile[0]][switchTile[1]].getY(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getPicture(),100,100,tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].isPassable());
+											//tiles[dictionary[selected][i][0]][dictionary[selected][i][1]] = new MazeTile(temp.getX(),temp.getY(),temp.getPicture(),100,100,temp.isPassable());
+											tiles[dictionary[selected][i][0]][dictionary[selected][i][1]] = new MazeTile(tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getX(),tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getY(),temp.getPicture(),100,100,temp.isPassable());
+											//dictionary[selected][i][1] = switchTile[1];
+											dictionary[selected][i][0]-=1;
+										}
+									}
 								}
-							}
-							else
-							{
-								switchTile[0] = blankTile[0];
 							}
 						}
 						else if(keyEvent.key == Keyboard.Key.NUM1)
