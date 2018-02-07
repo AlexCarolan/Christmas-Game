@@ -40,6 +40,7 @@ public class Utils
 	//public static final String SleighRightPath = "Sprites\\Sleigh_Right\\";
 	public static final String Bauble1Path = "Sprites\\Baubles\\Bauble";
 	public static final String AxePath = "Sprites\\Axe\\Axe";
+	public static final String HeartPath = "Sprites\\Heart\\heart.png";
 
 	// file path for platform background images, and the width of these
 	public static final String PlatformBackgroundImage[] = {"images\\platform\\forest.png",	// platform level 1

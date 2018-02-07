@@ -16,6 +16,7 @@ class Player
 	private Vector2i size;
 	private Vector2f position;
 	private AnimatedPlayer animation;
+	private int lives = 3;
 	
 	/**
 	 * Player constructor - creates a player sprite
@@ -225,6 +226,23 @@ class Player
 		animation = ani;
 		animation.setPlayer(this);
 		animation.setActive(true);
+	}
+	
+	/**
+	 * Removes a single life from the player
+	 */
+	public void takeLife()
+	{
+		lives--;
+	}
+	
+	/**
+	 * Changes the current animation
+	 * @return lives - the number of lives the player has
+	 */
+	public int getLives()
+	{
+		return lives;
 	}
 	
 }	

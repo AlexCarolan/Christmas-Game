@@ -112,6 +112,22 @@ class PlatformGame
 		// add the score tracker
 		Text scoreText = new Text("Score:0", scoreFont, 18);
 		scoreText.setPosition(10, Utils.PlatformGameHeight-(Utils.PlatformGameHeight-10));
+		
+		// create and add life counter
+		Texture heart = new Texture();
+		try{
+		heart.loadFromFile(Paths.get(Utils.HeartPath));
+		} catch(IOException ex) {
+			System.out.println(ex);
+		}
+		
+		Sprite[] lives = new Sprite[3];
+		for(int i=0; i<3; i++)
+		{
+			lives[i] = new Sprite(heart);
+			lives[i].setOrigin(0,0);
+			lives[i].setPosition(13 + (i*40),Utils.PlatformGameHeight-(Utils.PlatformGameHeight-35));
+		}
 
 		boolean finished = false;
 		while (window.isOpen() && !finished)
@@ -123,7 +139,14 @@ class PlatformGame
 			// add the players score to the window
 			scoreText.setString("Score:" + playerScore.getScore());
 			window.draw(scoreText);
-
+			
+			
+			// add the life counter to the window
+			for(int i = 0; i<player.getLives(); i++)
+			{
+				window.draw(lives[i]);
+			}
+				
 			// add all objects onto the window
 			for (int i = 0; i < numPlatforms; i++)
 				window.draw(platform[i].getPlatform());
@@ -394,6 +417,7 @@ class PlatformGame
 			if (player.fallenBelowWindow(Utils.PlatformGameHeight))
 			{
 				player.resetPosition();
+				player.takeLife();
 				background.resetPosition(0-Utils.PlatformGameWidth/2,0);
 				for (int i = 0; i < numPlatforms; i++)
 					platform[i].resetPosition(Utils.PlatformPositions[gameLevel][i][0],Utils.PlatformPositions[gameLevel][i][1]);
