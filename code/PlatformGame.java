@@ -38,9 +38,6 @@ class PlatformGame
 		
 		int moveX = 0;
 		int moveY = 0;
-		int inertiaX = 1;
-		int inertiaY = Utils.JumpAmount;
-		double gravity = Utils.MinGravity;
 		
 		// create new score object
 		Score playerScore = new Score(0);
@@ -116,7 +113,6 @@ class PlatformGame
 		Text scoreText = new Text("Score:0", scoreFont, 18);
 		scoreText.setPosition(10, Utils.PlatformGameHeight-(Utils.PlatformGameHeight-10));
 
-		//System.out.println("At start: moveY=" + moveY + ", inertiaY=" + inertiaY + ", gravity=" + gravity);
 		boolean finished = false;
 		while (window.isOpen() && !finished)
 		{
@@ -143,31 +139,9 @@ class PlatformGame
 			// apply inertia to left and right movement, and to movement upwards
 			// movement downwards is gravity (or an extra boost from the keyboard)
 			if (moveX < 0)
-				moveX += inertiaX;
+				moveX++;
 			else if (moveX > 0)
-				moveX -= inertiaX;
-			if (moveY < 0)					// if moving upwards
-			{
-				inertiaY = inertiaY/2;		// then gradually slow down
-				if (inertiaY == 0)
-					moveY = 0;
-				else if (moveY < 0)
-					moveY -= inertiaY;
-				else
-					moveY += inertiaY;
-			}
-			else							// otherwise gradually speed up moving down
-			{
-				if (gravity < Utils.MaxGravity)
-				{
-					gravity = gravity * Utils.GravityMultiplier[gameLevel];
-					if (gravity > Utils.MaxGravity)
-						gravity = Utils.MaxGravity;
-					//if (gravity > 0)
-					//	System.out.println("gravity set to " + gravity);
-				}
-			}
-			//System.out.println("moveY=" + moveY + ", inertiaY=" + inertiaY + ", gravity=" + gravity);
+				moveX--;
 
 			// apply idle animation when still
 			if (runningRight.getActive() || runningLeft.getActive() &&
@@ -240,20 +214,17 @@ class PlatformGame
 						}
 					}
 				}
-				//if (Utils.MinGravity * Utils.GravityMultiplier[gameLevel] == gravity) //??WHAT IS THIS LINE?
 				if (standing || gameLevel == Utils.SleighGameLevel)
 				{
-					inertiaY = 0-Utils.JumpAmount/2;
 					moveY = 0-Utils.JumpAmount;
 					//System.out.println("Standing on something, so moveY="+moveY);
 				}
-				//System.out.println("Up pressed: moveY=" + moveY + ", inertiaY=" + inertiaY + ", gravity=" + gravity);
+				//System.out.println("Up pressed: moveY=" + moveY);
 			}
 			if (Keyboard.isKeyPressed(Keyboard.Key.S) || Keyboard.isKeyPressed(Keyboard.Key.DOWN))
 			{
-				inertiaY = 0;
-				moveY = Utils.MoveAmountY;
-				//System.out.println("Down pressed: moveY=" + moveY + ", inertiaY=" + inertiaY + ", gravity=" + gravity);
+				moveY += Utils.MoveAmountY;
+				//System.out.println("Down pressed: moveY=" + moveY);
 			}
 
 			// handle mouse events
@@ -350,12 +321,13 @@ class PlatformGame
 						if (platform[i].isCeiling())
 						{
 							touching = true;
+							moveY = 0;
 							break;
 						}
 					}
 			}
 
-			if ((moveY != 0) && !touching)
+			if (moveY != 0)
 			{
 				//System.out.println("move player by " + moveY);
 				player.move(0,moveY);
@@ -369,10 +341,11 @@ class PlatformGame
 				if (player.standingOn(platform[i].getXPosition(),platform[i].getYPosition()-Utils.MoveAmountY/2,
 										platform[i].getXSize(),platform[i].getYSize()+Utils.MoveAmountY))
 				{
-					//System.out.println("Player is NOW standing on platform " + i);
 					standing = true;
 					// make player stand in same vertical position above platform
 					player.standOn(platform[i].getYPosition()-Utils.MoveAmountY/2);
+					moveY = 0;
+					//System.out.println("Player is NOW standing on platform " + i + ", moveY=0");
 					break;
 				}
 			}
@@ -381,12 +354,18 @@ class PlatformGame
 				if (player.standingOn(obstacle[i].getXPosition(),obstacle[i].getYPosition()-Utils.MoveAmountY/2,
 										obstacle[i].getXSize(),obstacle[i].getYSize()+Utils.MoveAmountY))
 				{
-					//System.out.println("Player is NOW standing on obstacle " + i);
 					standing = true;
 					// make player stand in same vertical position above obstacle
 					player.standOn(obstacle[i].getYPosition()-Utils.MoveAmountY/2);
+					moveY = 0;
+					//System.out.println("Player is NOW standing on obstacle " + i + ", moveY=0");
 					break;
 				}
+			}
+			if (!standing)
+			{
+				moveY += Utils.Gravity;
+				//System.out.println("Not standing, so gravity; moveY=" + moveY);
 			}
 
 			// if touching a collectible, then pick it up
@@ -411,23 +390,6 @@ class PlatformGame
 				numKeysCollected >= numKeysToCollect)
 				finished = true;
 
-			// handle gravity - if the player is not standing on a platform, they're falling
-			if (!standing)
-			{
-				if (gravity < Utils.MinGravity)
-				{
-					gravity = Utils.MinGravity;
-					//System.out.println("gravity set to " + Utils.MinGravity);
-				}
-				player.move(0,(int)gravity);
-				//System.out.println("Move player by gravity=" + (int)gravity);
-			}
-			else
-			{
-				//moveY = 0;
-				gravity = Utils.MinGravity;
-			}
-
 			// if player has fallen off the bottom of the window, put all the items back to the start
 			if (player.fallenBelowWindow(Utils.PlatformGameHeight))
 			{
@@ -442,8 +404,6 @@ class PlatformGame
 				door.resetPosition(Utils.DoorPosition[gameLevel][0],Utils.DoorPosition[gameLevel][1]);
 				moveX = 0;
 				moveY = 0;
-				inertiaY = 0;
-				gravity = Utils.MinGravity;
 			}
 
 			// display what was drawn on the window
@@ -452,8 +412,6 @@ class PlatformGame
 				Thread.sleep(1); }
 			catch (InterruptedException e) {
 				System.out.println("My sleep was interrupted"); }
-
-			//System.out.println("moveY="+moveY+", inertiaY="+inertiaY+", gravity="+gravity);
 
 			// if any items were collected this time, then list all the items collected
 			int itemsCollected = 0;
