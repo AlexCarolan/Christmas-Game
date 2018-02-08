@@ -28,7 +28,7 @@ class Puzzle0
 						WindowStyle.CLOSE | WindowStyle.TITLEBAR);	// window can't be resized
 
 		// limit the framerate
-		window.setFramerateLimit(25);	// was 60
+		window.setFramerateLimit(60);
 
 		// create all object
 		//PuzzleTile t = new PuzzleTile(0,0,"T0.png");
