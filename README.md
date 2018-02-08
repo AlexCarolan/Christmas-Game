@@ -7,10 +7,16 @@ Compile and run the code with the commands:
 
 ToDo:
 
+Christmas Room
+1. display collectibles from each level
+
 Platform Game
-1. Sort out jumping (currently too high, and sometimes seems to fall off bottom of screen)
+1. when lives drops to zero and causes game restart, then lives should reset to 3
 2. make key collectibles flash (but not other collectibles)
-3. consider adding hazards
+3. add hazards (needed for kitchen)
+4. display n/m items collected
+5. sleigh level should move right automatically
+6. consider adding moving obstacles
 
 Puzzle Game
 1. Puzzle class needs to return true on successful completion (like platformGame) - 
@@ -18,12 +24,8 @@ Puzzle Game
    Can't do this while class is static (while file contains main)
 2. If cursor moves off puzzle window onto ChristmasRoom window, then puzzle window seems
    to lose focus and can't be closed (or clicked on to re-focus)
-3. Finish tree bauble puzzle
-4. Do Maze puzzle
-5. Do Traffic puzzle (perhaps using joined/grouped tiles)
-
-Design - Gary
-1. Design layout of all platform levels - where are the various platforms and obstacles
+3. Do Traffic puzzle (perhaps using joined/grouped tiles)
+4. Display instructions where it's not obvious
 
 Graphics - Leo
 1. platform images
@@ -31,6 +33,6 @@ Graphics - Leo
 3. Exit door for each platform level
 
 Misc - Alex
-1. Add lives
-2. Improve puzzle graphics
-3. Collected items tracker
+1. Improve food puzzle graphics
+2. Collected items tracker
+3. consider adding timer

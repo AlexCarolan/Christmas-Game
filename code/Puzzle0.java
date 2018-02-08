@@ -205,93 +205,91 @@ class Puzzle0
 			}
 
 			// handle keyboard/mouse events (movement can be via WASD or arrow keys)
+			if (Keyboard.isKeyPressed(Keyboard.Key.S) || Keyboard.isKeyPressed(Keyboard.Key.DOWN))
+			{
+				switchTile[1] = blankTile[1] + 1;
+				if(tiles[switchTile[0]][switchTile[1]].isPassable())
+				{
+					if (blankTile[1] != 19)
+					{
+						//switchTile[1] = blankTile[1] + 1;
+						String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
+						tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
+						tiles[blankTile[0]][blankTile[1]].setPicture(temp);
+						blankTile[1] = switchTile[1];
+					}
+				}
+				else
+				{
+					switchTile[1] = blankTile[1];
+				}
+			}
+			else if (Keyboard.isKeyPressed(Keyboard.Key.W) || Keyboard.isKeyPressed(Keyboard.Key.UP))
+			{
+				switchTile[1] = blankTile[1] - 1;
+				if (blankTile[1] != 0)
+				{
+					if(tiles[switchTile[0]][switchTile[1]].isPassable())
+					{
+						String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
+						tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
+						tiles[blankTile[0]][blankTile[1]].setPicture(temp);
+						blankTile[1] = switchTile[1];
+						
+					}
+					else
+					{
+						switchTile[1] = blankTile[1];
+					}
+				}
+			}
+			else if (Keyboard.isKeyPressed(Keyboard.Key.D) || Keyboard.isKeyPressed(Keyboard.Key.RIGHT))
+			{
+				// if possible, get tile above blank tile
+				if (blankTile[0] != 18)
+				{
+					switchTile[0] = blankTile[0] + 1;
+					if(tiles[switchTile[0]][switchTile[1]].isPassable())
+					{
+						// swap tiles
+						switchTile[0] = blankTile[0] + 1;
+						String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
+						tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
+						tiles[blankTile[0]][blankTile[1]].setPicture(temp);
+						blankTile[0] = switchTile[0];
+						
+					}
+					else
+					{
+						switchTile[0] = blankTile[0];
+					}
+				}
+			}
+			else if (Keyboard.isKeyPressed(Keyboard.Key.A) || Keyboard.isKeyPressed(Keyboard.Key.LEFT))
+			{
+				switchTile[0] = blankTile[0] - 1;
+				if(tiles[switchTile[0]][switchTile[1]].isPassable())
+				{
+					if (blankTile[0] != 0)
+					{
+						// swap tiles
+						
+						String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
+						tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
+						tiles[blankTile[0]][blankTile[1]].setPicture(temp);
+						blankTile[0] = switchTile[0];
+					}
+				}
+				else
+				{
+					switchTile[0] = blankTile[0];
+				}
+			}
+
 			for (Event event : window.pollEvents()) 
 			{
 				switch(event.type) 
 				{
-					case KEY_PRESSED:
-						KeyEvent keyEvent = event.asKeyEvent();
-						if ((keyEvent.key == Keyboard.Key.DOWN) || (keyEvent.key == Keyboard.Key.S))
-						{
-							switchTile[1] = blankTile[1] + 1;
-							if(tiles[switchTile[0]][switchTile[1]].isPassable())
-							{
-								if (blankTile[1] != 19)
-								{
-									//switchTile[1] = blankTile[1] + 1;
-									String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
-									tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
-									tiles[blankTile[0]][blankTile[1]].setPicture(temp);
-									blankTile[1] = switchTile[1];
-								}
-							}
-							else
-							{
-								switchTile[1] = blankTile[1];
-							}
-						}
-						else if ((keyEvent.key == Keyboard.Key.UP) || (keyEvent.key == Keyboard.Key.W))
-						{
-							switchTile[1] = blankTile[1] - 1;
-							if (blankTile[1] != 0)
-							{
-								if(tiles[switchTile[0]][switchTile[1]].isPassable())
-								{
-									String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
-									tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
-									tiles[blankTile[0]][blankTile[1]].setPicture(temp);
-									blankTile[1] = switchTile[1];
-									
-								}
-								else
-								{
-									switchTile[1] = blankTile[1];
-								}
-							}
-						}
-						else if ((keyEvent.key == Keyboard.Key.RIGHT) || (keyEvent.key == Keyboard.Key.D))
-						{
-							// if possible, get tile above blank tile
-							if (blankTile[0] != 18)
-							{
-								switchTile[0] = blankTile[0] + 1;
-								if(tiles[switchTile[0]][switchTile[1]].isPassable())
-								{
-									// swap tiles
-									switchTile[0] = blankTile[0] + 1;
-									String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
-									tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
-									tiles[blankTile[0]][blankTile[1]].setPicture(temp);
-									blankTile[0] = switchTile[0];
-									
-								}
-								else
-								{
-									switchTile[0] = blankTile[0];
-								}
-							}
-						}
-						else if ((keyEvent.key == Keyboard.Key.LEFT) || (keyEvent.key == Keyboard.Key.A))
-						{
-							switchTile[0] = blankTile[0] - 1;
-							if(tiles[switchTile[0]][switchTile[1]].isPassable())
-							{
-								if (blankTile[0] != 0)
-								{
-									// swap tiles
-									
-									String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
-									tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
-									tiles[blankTile[0]][blankTile[1]].setPicture(temp);
-									blankTile[0] = switchTile[0];
-								}
-							}
-							else
-							{
-								switchTile[0] = blankTile[0];
-							}
-						}
-						break;
 					case CLOSED:
 						System.out.println("Close clicked");
 						window.close();
@@ -312,11 +310,22 @@ class Puzzle0
 				if (finished)
 				{
 					System.out.println("Well done, you completed the maze!");
+					try {					// pause so player can see success message
+						Thread.sleep(1000);
+					} catch (Exception e) {
+						System.out.println();
+					}
 					window.close();
 				}
-				
+			}
+			try {							// pause so key repeat is not too fast
+				Thread.sleep(80);
+			} catch (Exception e) {
+				System.out.println();
 			}
 		}
+		if (window.isOpen())
+			window.close();
 	}
 
 	public static void main (String args[ ])
