@@ -483,17 +483,17 @@ public class Utils
 	// to access this array: first index is level, 
 	// second index is xPosition, yPosition, width, height of the door
 	public static final int DoorPosition[][] = { // gameLevel 1
-												{6240,425,50,100},
+												{6220,425,48,66},
 												 // gameLevel 2
-												{6240,425,50,100},
+												{6240,425,48,66},
 												 // gameLevel 3
-												{6300,600,50,100},
+												{6300,600,48,66},
 												 // gameLevel 4
-												{1500,640,50,100},
+												{1500,640,48,66},
 												};
 	// define images for shut and open doors
-	public static final String ShutDoorImage = "images\\platform\\shutdoor.png";
-	public static final String OpenDoorImage = "images\\platform\\opendoor.png";
+	public static final String ShutDoorImage = "Sprites\\Scroll\\LockScroll.png";
+	public static final String OpenDoorImage = "Sprites\\Scroll\\OpenScroll.png";
 
 	// define size of window for puzzle games
 	public static final int PuzzleGameWidth = 600;
