@@ -43,19 +43,19 @@ public class Utils
 	public static final String HeartPath = "Sprites\\Heart\\heart.png";
 
 	// file path for platform background images, and the width of these
-	public static final String PlatformBackgroundImage[] = {"images\\platform\\forest.png",	// platform level 1
-															"images\\platform\\Kitchen.png",	// platform level 2
-															"images\\platform\\attic.png",		// platform level 3
-															"images\\platform\\Village.png"	// platform level 4
+	public static final String PlatformBackgroundImage[] = {"images\\platform\\forest.png",		// platform level 1
+															"images\\platform\\attic.png",		// platform level 2
+															"images\\platform\\Kitchen.png",	// platform level 3
+															"images\\platform\\Village.png"		// platform level 4
 															};
-	public static final int PlatformBackgroundWidth[] = {7564, 7564, 4000, 2*PlatformGameWidth+652};
+	public static final int PlatformBackgroundWidth[] = {7564, 7564, 7564, 2*PlatformGameWidth+652};
 
 	// define width, height, xPosition, yPosition for all the platforms for each level
 	// to access this array: first index is level, second index is platform, 
 	// third index is xPosition, yPosition, width, height of that platform
 	public static final int PlatformPositions[][][] = {{ // gameLevel 1
-														{0,700,1200,50},				// base 1
-														{5300,700,1200,50},				// base 2
+														{0,700,1200,50},	// base 1
+														{5300,700,1200,50},	// base 2
 														{1150,600,100,50},	//3
 														{1280,550,100,50},	//4
 														{1405,510,100,50},	//5
@@ -90,11 +90,11 @@ public class Utils
 														{6000,650,100,50},	//34
 														{6100,600,100,50},	//35
 														{6230,550,100,50},	//36
-														{-250,500,250,400},		// left hand edge
+														{-250,500,250,400},	// left hand edge
 														{6500,0,PlatformGameWidth/2,PlatformGameHeight+1}},	// right hand edge
 														{ // gameLevel 2
-														{0,700,5200,50},				// base 1
-														{5300,700,1200,50},				// base 2
+														{0,700,5200,50},	// base 1
+														{5300,700,1200,50},	// base 2
 														{1150,600,100,100},	//3
 														{1250,650,100,50},	//4
 														{1400,500,100,50},	//5
@@ -112,38 +112,36 @@ public class Utils
 														{4800,600,400,100},	//17
 														{4900,400,200,100},	//18
 														{5000,300,100,100},	//19
-														{-250,500,250,400},		// left hand edge
+														{-250,500,250,400},	// left hand edge
 														{6500,0,PlatformGameWidth/2,PlatformGameHeight+1}},	// right hand edge
 														{ // gameLevel 3
-														{0,700,5200,50},				// base
-														{700,650,100,50},	//2
-														{750,600,100,50},	//3
-														{800,500,50,100},	//4
-														{800,450,100,50},	//5
-														{850,400,100,50},	//6
-														{900,300,50,100},	//7
-														{900,250,100,50},	//8
-														{950,200,100,50},	//9
-														{1000,150,350,50},	//10
-														{970,450,80,250},	//11
-														{1100,550,100,50},	//12
-														{1150,500,100,50},	//13
-														{1200,450,100,50},	//14
-														{1250,400,100,50},	//15
-														{1300,350,100,50},	//16
-														{1350,300,100,50},	//17
-														{1400,250,100,50},	//18
-														{1450,200,100,50},	//19
-														{1500,150,450,50},	//20
-														{1550,100,50,50},	//21
-														{1300,650,150,50},	//22
-														{1350,600,50,50},	//23
-														{1450,500,150,50},	//24
-														{1550,350,150,50},	//25
-														{1750,300,250,300},	//26
-														{1850,100,150,200},	//27
-														{2000,200,100,500},
-														{0,0,2,PlatformGameHeight}},	// left hand edge
+														{0,700,3900,50},	// base 1
+														{4000,700,1200,50},	// base 2
+														{5300,700,1200,50},	// base 3
+														{600,550,200,50},	//4
+														{700,450,50,50},	//5
+														{900,600,200,100},	//6
+														{1150,500,150,50},	//7
+														{1400,500,150,50},	//8
+														{1550,600,150,100},	//9
+														{1900,650,50,50},	//10
+														{1950,600,150,100},	//11
+														{2150,500,200,50},	//12
+														{2350,650,50,50},	//13
+														{2400,600,750,100},	//14
+														{2550,500,150,100},	//15
+														{2750,400,350,50},	//16
+														{3150,450,300,250},	//17
+														{3450,450,150,30},	//18
+														{3450,515,100,30},	//19
+														{3450,580,50,30},	//20
+														{3700,450,150,30},	//
+														{3900,520,150,30},	//
+														{4100,600,150,50},	//21
+														{4300,500,200,50},	//22
+														{4650,650,300,50},	//23
+														{20-PlatformGameWidth/2,510,PlatformGameWidth/2+20,PlatformGameHeight-510},	// left hand edge
+														{6500,510,PlatformGameWidth/2,PlatformGameHeight-510}},	// right hand edge
 														{ // gameLevel 4
 														{0,PlatformGameHeight - 25,PlatformGameWidth,25},	// base
 														{PlatformGameWidth+150,PlatformGameHeight - 50,500,50},
@@ -191,6 +189,16 @@ public class Utils
 														"images\\obstacles\\long-logpile.png",	//left hand edge
 														"images\\obstacles\\ForestOne.png"},	// right hand edge
 														{ // gameLevel 2
+														"images\\platform\\bricks.png",	//base1
+														"images\\platform\\bricks.png",	//base2
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",	//10
 														"images\\platform\\bricks.png",
 														"images\\platform\\bricks.png",
 														"images\\platform\\bricks.png",
@@ -200,48 +208,36 @@ public class Utils
 														"images\\platform\\bricks.png",
 														"images\\platform\\bricks.png",
 														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",	//20
 														"images\\platform\\bricks.png"},
 														{ // gameLevel 3
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png",
-														"images\\platform\\grass.png"},
+														"images\\platform\\LogLarge.png",	//base1
+														"images\\platform\\LogLarge.png",	//base2
+														"images\\platform\\logLarge.png",	//base3
+														"images\\platform\\LogLarge.png",	//4
+														"images\\platform\\LogLarge.png",	//5
+														"images\\platform\\KitchenCounter.png",	//6
+														"images\\platform\\LogLarge.png",	//7
+														"images\\platform\\LogLarge.png",	//8
+														"images\\platform\\Fireplace.png",	//9
+														"images\\platform\\LogLarge.png",	//10
+														"images\\platform\\KitchenCounter.png",	//11
+														"images\\platform\\LogLarge.png",	//12
+														"images\\platform\\LogLarge.png",	//13
+														"images\\platform\\KitchenCounter.png",	//14
+														"images\\platform\\Fireplace.png",	//15
+														"images\\platform\\LogLarge.png",	//16
+														"images\\platform\\Shelf.png",	//17
+														"images\\platform\\LogLarge.png",	//18
+														"images\\platform\\LogLarge.png",	//19
+														"images\\platform\\LogLarge.png",	//20
+														"images\\platform\\LogLarge.png",	//
+														"images\\platform\\LogLarge.png",	//
+														"images\\platform\\LogLarge.png",	//21
+														"images\\platform\\LogLarge.png",	//22
+														"images\\platform\\KitchenCounter.png",	//23
+														"images\\platform\\KitchenCounter.png",	//left hand edge
+														"images\\platform\\KitchenCounter.png"},	//right hand edge
 														{ // gameLevel 4
 														"images\\platform\\Rock_Platform.png",
 														"images\\platform\\Rock_Platform.png",
@@ -311,6 +307,16 @@ public class Utils
 														false,	// left edge
 														false},	// right edge
 														{ // gameLevel 3
+														true,	// base1
+														true,	// base2
+														true,	// base3
+														true,
+														true,
+														true,
+														true,
+														true,
+														true,
+														true,	// 10
 														true,
 														true,
 														true,
@@ -320,26 +326,14 @@ public class Utils
 														true,
 														true,
 														true,
+														true,	// 20
 														true,
 														true,
 														true,
 														true,
 														true,
 														true,
-														true,
-														true,
-														true,
-														true,
-														true,
-														true,
-														true,
-														true,
-														false,
-														false,
-														true,
-														true,
-														true,
-														false},
+														true},
 														{ // gameLevel 4
 														true,
 														true,
@@ -399,7 +393,7 @@ public class Utils
 														"images\\obstacles\\rock.png"},
 														{ // gameLevel 3
 														"images\\obstacles\\box.png",
-														"images\\obstacles\\rock.png"},
+														"images\\obstacles\\box.png"},
 														{ // gameLevel 4
 														"images\\obstacles\\box.png",
 														"images\\obstacles\\rock.png"}
@@ -420,11 +414,11 @@ public class Utils
 														{2660,685,15,15},
 														{4980,385,15,15}},
 														{ // gameLevel 3
-														{1830,285,15,15},
-														{1960,665,35,35},
-														{2005,185,15,15},
-														{2750,685,15,15},
-														{2850,685,15,15}},
+														{1800,685,15,15},
+														{3450,665,35,35},	// key
+														{2900,585,15,15},
+														{4500,685,15,15},
+														{4850,635,15,15}},
 														{ // gameLevel 4
 														{220,535,15,15},
 														{PlatformGameWidth+200,PlatformGameHeight - 80,35,35}},
@@ -489,7 +483,7 @@ public class Utils
 												 // gameLevel 2
 												{6240,425,50,100},
 												 // gameLevel 3
-												{2500,600,50,100},
+												{6300,600,50,100},
 												 // gameLevel 4
 												{1500,640,50,100},
 												};
