@@ -1,4 +1,4 @@
-import java.lang.*;
+//import java.lang.*;
 import java.nio.file.*;
 import java.io.*;
 
@@ -10,7 +10,6 @@ import org.jsfml.graphics.*;
 
 class Puzzle0
 {
-	private static String Title   = "Puzzle 0";
 	private static String wall   = "images\\NewTiles\\Trees2.png";
 	private static String floor   = "images\\NewTiles\\Ice.png";
 	private static String player   = "images\\NewTiles\\Player.png";
@@ -23,12 +22,13 @@ class Puzzle0
 	{
 		// create the window
 		RenderWindow window = new RenderWindow( );
-		window.create(new VideoMode((19*35), (19*35)),
-					Title,
-					WindowStyle.CLOSE | WindowStyle.TITLEBAR);	// window can't be resized
+		//window.create(new VideoMode((19*35), (19*35)),
+		window.create(new VideoMode((19*35), Utils.PlatformGameHeight),
+						"Maze Puzzle, Level 1",
+						WindowStyle.CLOSE | WindowStyle.TITLEBAR);	// window can't be resized
 
 		// limit the framerate
-		window.setFramerateLimit(60);
+		window.setFramerateLimit(25);	// was 60
 
 		// create all object
 		//PuzzleTile t = new PuzzleTile(0,0,"T0.png");
@@ -39,7 +39,7 @@ class Puzzle0
 		switchTile[0] = 1;
 		switchTile[1] = 1;
 		MazeTile[][] tiles = new MazeTile[19][19];
-		//PuzzleTile[][] endTiles = new PuzzleTile[3][3];
+		PuzzleTile[][] endTiles = new PuzzleTile[3][3];
 
 		// tiles at start of puzzle game
 		for (int i = 0; i < 19; i++)
@@ -186,6 +186,27 @@ class Puzzle0
 			tiles[17][i] = new MazeTile((17*35),(i*35),floor,35,35,true);
 		}
 		tiles[1][0] = new MazeTile((1*35),(0*35),player,35,35,true);
+
+		// set up instructions
+										
+		// Load the font for the instructions
+		Font sansRegular = new Font( );
+		try {
+			sansRegular.loadFromFile(
+					Paths.get("fonts\\LucidaSansRegular.ttf"));
+		} catch (IOException ex) {
+			ex.printStackTrace( );
+		}
+		Text text1 = new Text("Can you help the Christmas Elf to find her way through the Maze?", sansRegular, 18);
+		Text text2 = new Text("Use the arrow keys, or WASD, to move", sansRegular, 18);
+		Text text3 = new Text("Well done, you completed the maze!", sansRegular, 18);
+		text1.setColor(Color.RED);
+		text2.setColor(Color.RED);
+		text3.setColor(Color.WHITE);
+		text2.setStyle(Text.ITALIC);
+		text1.setPosition(50, Utils.PlatformGameHeight-80);
+		text2.setPosition(50, Utils.PlatformGameHeight-60);
+		text3.setPosition(50, Utils.PlatformGameHeight-40);
 		
 
 		boolean finished = false;
@@ -203,6 +224,13 @@ class Puzzle0
 					window.draw(tiles[i][j].getTile());
 				}
 			}
+
+			// display instructions
+			window.draw(text1);
+			window.draw(text2);
+
+			// display what was drawn on the window
+			window.display();
 
 			// handle keyboard/mouse events (movement can be via WASD or arrow keys)
 			if (Keyboard.isKeyPressed(Keyboard.Key.S) || Keyboard.isKeyPressed(Keyboard.Key.DOWN))
@@ -235,7 +263,6 @@ class Puzzle0
 						tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
 						tiles[blankTile[0]][blankTile[1]].setPicture(temp);
 						blankTile[1] = switchTile[1];
-						
 					}
 					else
 					{
@@ -257,7 +284,6 @@ class Puzzle0
 						tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
 						tiles[blankTile[0]][blankTile[1]].setPicture(temp);
 						blankTile[0] = switchTile[0];
-						
 					}
 					else
 					{
@@ -299,9 +325,6 @@ class Puzzle0
 
 			if (window.isOpen())
 			{
-				// display what was drawn on the window
-				window.display();
-
 				// check whether images are all in the right place
 				
 				finished = true;
@@ -310,6 +333,8 @@ class Puzzle0
 				if (finished)
 				{
 					System.out.println("Well done, you completed the maze!");
+					window.draw(text3);
+					window.display();
 					try {					// pause so player can see success message
 						Thread.sleep(1000);
 					} catch (Exception e) {
@@ -328,10 +353,10 @@ class Puzzle0
 			window.close();
 	}
 
-	public static void main (String args[ ])
-	{
-		Puzzle0 p = new Puzzle0( );
-		p.run( );
-		p = null;
-	}
+	//public static void main (String args[ ])
+	//{
+	//	Puzzle0 p = new Puzzle0( );
+	//	p.run( );
+	//	p = null;
+	//}
 }	
