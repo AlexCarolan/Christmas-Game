@@ -44,9 +44,9 @@ public class Utils
 
 	// file path for platform background images, and the width of these
 	public static final String PlatformBackgroundImage[] = {"images\\platform\\forest.png",	// platform level 1
-															"images\\platform\\kitchen.png",	// platform level 2
+															"images\\platform\\Kitchen.png",	// platform level 2
 															"images\\platform\\attic.png",		// platform level 3
-															"images\\platform\\rooftops.png"	// platform level 4
+															"images\\platform\\Village.png"	// platform level 4
 															};
 	public static final int PlatformBackgroundWidth[] = {7564, 7564, 4000, 2*PlatformGameWidth+652};
 
