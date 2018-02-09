@@ -138,7 +138,7 @@ class Puzzle1
 						}
 						break;
 					case CLOSED:
-						System.out.println("Close clicked");
+						//System.out.println("Close clicked");
 						window.close();
 						break;
 				}

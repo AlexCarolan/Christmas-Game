@@ -22,10 +22,7 @@ Puzzle Game
 1. Puzzle class needs to return true on successful completion (like platformGame) - 
    needed for setting menu options correctly
    Can't do this while class is static (while file contains main)
-2. If cursor moves off puzzle window onto ChristmasRoom window, then puzzle window seems
-   to lose focus and can't be closed (or clicked on to re-focus)
-3. Do Traffic puzzle (perhaps using joined/grouped tiles)
-4. Display instructions where it's not obvious
+2. Do Traffic puzzle (perhaps using joined/grouped tiles)
 
 Graphics - Leo
 1. platform images
