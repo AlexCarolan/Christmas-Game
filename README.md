@@ -12,7 +12,6 @@ Christmas Room
 
 Platform Game
 1. when lives drops to zero and causes game restart, then lives should reset to 3
-2. make key collectibles flash (but not other collectibles)
 3. add hazards (needed for kitchen)
 4. display n/m items collected
 5. sleigh level should move right automatically
@@ -27,7 +26,6 @@ Puzzle Game
 Graphics - Leo
 1. platform images
 2. Christmas Room images (bare, + tree, +tree+decorations, +tree+decor+food, +tree+decor+food+gifts)
-3. Exit door for each platform level
 
 Misc - Alex
 1. Improve food puzzle graphics
