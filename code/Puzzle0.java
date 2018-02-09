@@ -28,7 +28,7 @@ class Puzzle0
 						WindowStyle.CLOSE | WindowStyle.TITLEBAR);	// window can't be resized
 
 		// limit the framerate
-		window.setFramerateLimit(60);
+		window.setFramerateLimit(18);
 
 		// create all object
 		//PuzzleTile t = new PuzzleTile(0,0,"T0.png");
@@ -210,28 +210,8 @@ class Puzzle0
 		
 
 		boolean finished = false;
-
 		while (window.isOpen() && !finished) 
 		{
-			// fill the window with black
-			window.clear(Color.BLACK);
-
-			// add all objects onto the window
-			for (int i = 0; i < 19; i++)
-			{
-				for (int j = 0; j < 19; j++)
-				{
-					window.draw(tiles[i][j].getTile());
-				}
-			}
-
-			// display instructions
-			window.draw(text1);
-			window.draw(text2);
-
-			// display what was drawn on the window
-			window.display();
-
 			// handle keyboard/mouse events (movement can be via WASD or arrow keys)
 			if (Keyboard.isKeyPressed(Keyboard.Key.S) || Keyboard.isKeyPressed(Keyboard.Key.DOWN))
 			{
@@ -323,30 +303,40 @@ class Puzzle0
 				}
 			}
 
-			if (window.isOpen())
+			// fill the window with black
+			window.clear(Color.BLACK);
+
+			// add all objects onto the window
+			for (int i = 0; i < 19; i++)
 			{
-				// check whether images are all in the right place
-				
-				finished = true;
-				if (tiles[18][17].getPicture() != player)
-					finished = false;
-				if (finished)
+				for (int j = 0; j < 19; j++)
 				{
-					System.out.println("Well done, you completed the maze!");
-					window.draw(text3);
-					window.display();
-					try {					// pause so player can see success message
-						Thread.sleep(1000);
-					} catch (Exception e) {
-						System.out.println();
-					}
-					window.close();
+					window.draw(tiles[i][j].getTile());
 				}
 			}
-			try {							// pause so key repeat is not too fast
-				Thread.sleep(80);
-			} catch (Exception e) {
-				System.out.println();
+
+			// add instructions
+			window.draw(text1);
+			window.draw(text2);
+
+			// check whether images are all in the right place
+			if (tiles[18][17].getPicture() == player)
+			{
+				finished = true;
+				System.out.println("Well done, you completed the maze!");
+				window.draw(text3);
+			}
+
+			// display what was drawn on the window
+			window.display();
+
+			if (finished)
+			{
+				try {					// pause so player can see success message
+					Thread.sleep(600);
+				} catch (Exception e) {
+					System.out.println();
+				}
 			}
 		}
 		if (window.isOpen())
