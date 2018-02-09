@@ -10,8 +10,6 @@ import org.jsfml.graphics.*;
 
 class Puzzle1
 {
-	private static String Title   = "Puzzle 1";
-
 	/**
 	 * run - handle display and movement of the platform game for this level
 	 */
@@ -19,14 +17,14 @@ class Puzzle1
 	{
 		// create the window
 		RenderWindow window = new RenderWindow( );
-		window.create(new VideoMode(Utils.PuzzleGameWidth, Utils.PuzzleGameHeight),
-					Title,
+		window.create(new VideoMode(Utils.PuzzleGameWidth, Utils.PlatformGameHeight),
+					"Picture Puzzle, Level 2",
 					WindowStyle.CLOSE | WindowStyle.TITLEBAR);	// window can't be resized
 
 		// limit the framerate
-		window.setFramerateLimit(60);
+		window.setFramerateLimit(20);	// was 60
 
-		// create all object
+		// create all objects
 		//PuzzleTile t = new PuzzleTile(0,0,"T0.png");
 		int[] blankTile = new int[2];
 		int[] switchTile = new int[2];
@@ -59,22 +57,31 @@ class Puzzle1
 		endTiles[2][1] = new PuzzleTile(200,400,"images\\tilePuzzle\\T7.png", Utils.tileX, Utils.tileY);
 		endTiles[2][2] = new PuzzleTile(400,400,"images\\tilePuzzle\\T8.png", Utils.tileX, Utils.tileY);
 
-		boolean finished = false;
+		// set up instructions
+										
+		// Load the font for the instructions
+		Font sansRegular = new Font( );
+		try {
+			sansRegular.loadFromFile(
+					Paths.get("fonts\\LucidaSansRegular.ttf"));
+		} catch (IOException ex) {
+			ex.printStackTrace( );
+		}
+		Text text1 = new Text("Can you re-arrange the pieces to find the Christmas picture?", sansRegular, 18);
+		Text text2 = new Text("Use the arrow keys, or WASD, to move", sansRegular, 18);
+		Text text3 = new Text("Well done, you completed the picture!", sansRegular, 18);
+		text1.setColor(Color.RED);
+		text2.setColor(Color.RED);
+		text3.setColor(Color.WHITE);
+		text2.setStyle(Text.ITALIC);
+		text1.setPosition(50, Utils.PuzzleGameHeight+20);
+		text2.setPosition(50, Utils.PuzzleGameHeight+40);
+		text3.setPosition(50, Utils.PuzzleGameHeight+60);
+		
 
+		boolean finished = false;
 		while (window.isOpen() && !finished) 
 		{
-			// fill the window with black
-			window.clear(Color.BLACK);
-
-			// add all objects onto the window
-			for (int i = 0; i < 3; i++)
-			{
-				for (int j = 0; j < 3; j++)
-				{
-					window.draw(tiles[i][j].getTile());
-				}
-			}
-
 			// handle keyboard/mouse events (movement can be via WASD or arrow keys)
 			for (Event event : window.pollEvents()) 
 			{
@@ -139,8 +146,21 @@ class Puzzle1
 
 			if (window.isOpen())
 			{
-				// display what was drawn on the window
-				window.display();
+				// fill the window with black
+				window.clear(Color.BLACK);
+
+				// add all objects onto the window
+				for (int i = 0; i < 3; i++)
+				{
+					for (int j = 0; j < 3; j++)
+					{
+						window.draw(tiles[i][j].getTile());
+					}
+				}
+
+				// add instructions
+				window.draw(text1);
+				window.draw(text2);
 
 				// check whether images are all in the right place
 				finished = true;
@@ -149,19 +169,35 @@ class Puzzle1
 						for (int j = 0; j < 3; j++)
 							if (tiles[i][j].getPicture() != endTiles[i][j].getPicture())
 								finished = false;
+
 				if (finished)
 				{
 					System.out.println("Well done, you completed the picture!");
+					window.draw(text3);
+				}
+
+				// display what was drawn on the window
+				window.display();
+
+				if (finished)
+				{
+					try {					// pause so player can see success message
+						Thread.sleep(1000);
+					} catch (Exception e) {
+						System.out.println();
+					}
 					window.close();
 				}
 			}
 		}
+		if (window.isOpen())
+			window.close();
 	}
 
-	public static void main (String args[ ])
-	{
-		Puzzle1 p = new Puzzle1( );
-		p.run( );
-		p = null;
-	}
+	//public static void main (String args[ ])
+	//{
+	//	Puzzle1 p = new Puzzle1( );
+	//	p.run( );
+	//	p = null;
+	//}
 }	

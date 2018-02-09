@@ -207,7 +207,7 @@ class Puzzle0
 		text1.setPosition(50, Utils.PlatformGameHeight-80);
 		text2.setPosition(50, Utils.PlatformGameHeight-60);
 		text3.setPosition(50, Utils.PlatformGameHeight-40);
-		
+
 
 		boolean finished = false;
 		while (window.isOpen() && !finished) 
@@ -297,45 +297,48 @@ class Puzzle0
 				switch(event.type) 
 				{
 					case CLOSED:
-						System.out.println("Close clicked");
+						//System.out.println("Close clicked");
 						window.close();
 						break;
 				}
 			}
 
-			// fill the window with black
-			window.clear(Color.BLACK);
-
-			// add all objects onto the window
-			for (int i = 0; i < 19; i++)
+			if (window.isOpen())
 			{
-				for (int j = 0; j < 19; j++)
+				// fill the window with black
+				window.clear(Color.BLACK);
+
+				// add all objects onto the window
+				for (int i = 0; i < 19; i++)
 				{
-					window.draw(tiles[i][j].getTile());
+					for (int j = 0; j < 19; j++)
+					{
+						window.draw(tiles[i][j].getTile());
+					}
 				}
-			}
 
-			// add instructions
-			window.draw(text1);
-			window.draw(text2);
+				// add instructions
+				window.draw(text1);
+				window.draw(text2);
 
-			// check whether images are all in the right place
-			if (tiles[18][17].getPicture() == player)
-			{
-				finished = true;
-				System.out.println("Well done, you completed the maze!");
-				window.draw(text3);
-			}
+				// check whether images are all in the right place
+				if (tiles[18][17].getPicture() == player)
+				{
+					finished = true;
+					System.out.println("Well done, you completed the maze!");
+					window.draw(text3);
+				}
 
-			// display what was drawn on the window
-			window.display();
+				// display what was drawn on the window
+				window.display();
 
-			if (finished)
-			{
-				try {					// pause so player can see success message
-					Thread.sleep(600);
-				} catch (Exception e) {
-					System.out.println();
+				if (finished)
+				{
+					try {					// pause so player can see success message
+						Thread.sleep(600);
+					} catch (Exception e) {
+						System.out.println();
+					}
 				}
 			}
 		}
