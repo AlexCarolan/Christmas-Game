@@ -39,7 +39,7 @@ public class Utils
 	public static final String RunningLeftPath = "Sprites\\Running_Left\\Santa_Elf_Running";
 	//public static final String SleighRightPath = "Sprites\\Sleigh_Right\\";
 	public static final String Bauble1Path = "Sprites\\Baubles\\Bauble";
-	public static final String AxePath = "Sprites\\Axe\\Axe";
+	public static final String KeyPath = "Sprites\\Key\\Key";
 	public static final String HeartPath = "Sprites\\Heart\\heart.png";
 
 	// file path for platform background images, and the width of these
@@ -408,46 +408,46 @@ public class Utils
 	// third index is xPosition, yPosition, width, height of that collectible,
 	public static final int CollectiblePositions[][][] = {{ // gameLevel 1
 														{1630,400,15,15},
-														{2400,400,35,35},	// axe
+														{2400,400,37,35},	// key
 														{800,500,15,15},
 														{6400,520,15,15}},
 														{ // gameLevel 2
 														{1510,535,15,15},
-														{1650,670,35,35},	// axe
+														{1650,670,37,35},	// key
 														{2120,685,15,15},
 														{2660,685,15,15},
 														{4980,385,15,15}},
 														{ // gameLevel 3
 														{1800,685,15,15},
-														{3450,665,35,35},	// key
+														{3450,665,37,35},	// key
 														{2900,585,15,15},
 														{4500,685,15,15},
 														{4850,635,15,15}},
 														{ // gameLevel 4
 														{220,535,15,15},
-														{PlatformGameWidth+200,PlatformGameHeight - 80,35,35}},
+														{PlatformGameWidth+200,PlatformGameHeight - 80,37,35}}, 	// key
 													};
 	// define image for each collectible on each level, in same order as CollectiblePositions array
 	public static final String CollectibleImages[][] = {{ // gameLevel 1
 														"images\\collectibles\\OrangeBauble.png",
-														"images\\collectibles\\Axe.png",
+														"Sprites\\Key\\KeyMain.png",
 														"images\\collectibles\\BlueBauble.png",
 														"images\\collectibles\\RedBauble.png"},
 														{ // gameLevel 2
 														"images\\collectibles\\OrangeBauble.png",
-														"images\\collectibles\\Axe.png",
+														"Sprites\\Key\\KeyMain.png",
 														"images\\collectibles\\RedBauble.png",
 														"images\\collectibles\\GreenBauble.png",
 														"images\\collectibles\\BlueBauble.png"},
 														{ // gameLevel 3
 														"images\\collectibles\\RedBauble.png",
-														"images\\collectibles\\Axe.png",
+														"Sprites\\Key\\KeyMain.png",
 														"images\\collectibles\\OrangeBauble.png",
 														"images\\collectibles\\RedBauble.png",
 														"images\\collectibles\\BlueBauble.png"},
 														{ // gameLevel 4
 														"images\\collectibles\\RedBauble.png",
-														"images\\collectibles\\Axe.png"},
+														"Sprites\\Key\\KeyMain.png"},
 													};
 	// define whether each collectible on each level in a key to the exit door, in same order as CollectiblePositions array
 	public static final boolean CollectibleKeys[][] = {{ // gameLevel 1

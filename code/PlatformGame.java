@@ -87,10 +87,8 @@ class PlatformGame
 		AnimatedPlayer runningLeft = new AnimatedPlayer(Utils.RunningLeftPath, 12, 90);
 		AnimatedPlayer runningRight = new AnimatedPlayer(Utils.RunningRightPath, 12, 90);
 		//AnimatedPlayer sleighRight = new AnimatedPlayer(player, Utils.SleighRightPath, 2, 100);
-		AnimatedCollectible bauble = new AnimatedCollectible(Utils.Bauble1Path, 2, 250);
-		AnimatedCollectible axe = new AnimatedCollectible(Utils.AxePath, 10, 100);
-		collectible[0].setAnimation(bauble);
-		collectible[1].setAnimation(axe);
+		AnimatedCollectible key = new AnimatedCollectible(Utils.KeyPath, 4, 250);
+		collectible[1].setAnimation(key);
 		
 		//sleighRight.start();
 		//if (gameLevel != Utils.SleighGameLevel)
@@ -261,8 +259,7 @@ class PlatformGame
 						runningLeft.kill();
 						runningRight.kill();
 						//sleighRight.kill();
-						bauble.kill();
-						axe.kill();
+						key.kill();
 						window.close();
 						break;
 				}
@@ -456,8 +453,7 @@ class PlatformGame
 		runningLeft.kill();
 		runningRight.kill();
 		//sleighRight.kill();
-		bauble.kill();
-		axe.kill();
+		key.kill();
 		window.close();
 		return finished;	// returns true if platform completed successfully
 							// if window closed without finishing, returns false
