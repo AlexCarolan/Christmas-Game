@@ -16,14 +16,8 @@ public class Utils
 	public static final int MoveAmountY = 2;
 	public static final int JumpAmount = 18;	//60
 	public static final int Gravity = 1;
-	public static final int MinGravity = 3;
-	public static final int MaxGravity = 30;
 
 	public static final int SleighGameLevel = 3;
-
-	//  gravity gradually increases over time
-	// except last level, where the sleigh floats like a feather
-	public static final double GravityMultiplier[] = {1.04,1.04,1.04,1};
 
 	// file path for Christmas Room image
 	public static final String RoomImage[] = {"images\\christmasRoom\\bareRoom.png",	// game level 1 start
@@ -32,7 +26,7 @@ public class Utils
 												"images\\christmasRoom\\fullRoom.png",	// game level 4 start
 												"images\\christmasRoom\\fullRoom.png"};	// game level 4 end
 	
-	//File paths for sprites
+	// File paths for sprites
 	public static final String IdleRightPath = "Sprites\\Idle_Right\\Idle";
 	public static final String IdleLeftPath = "Sprites\\Idle_Left\\Idle";
 	public static final String RunningRightPath = "Sprites\\Running_Right\\Santa_Elf_Running";
@@ -48,7 +42,7 @@ public class Utils
 															"images\\platform\\Kitchen.png",	// platform level 3
 															"images\\platform\\Village.png"		// platform level 4
 															};
-	public static final int PlatformBackgroundWidth[] = {7564, 7564, 7564, 2*PlatformGameWidth+652};
+	public static final int PlatformBackgroundWidth[] = {7564, 7564, 7564, 7564};
 
 	// define width, height, xPosition, yPosition for all the platforms for each level
 	// to access this array: first index is level, second index is platform, 
@@ -146,7 +140,8 @@ public class Utils
 														{0,PlatformGameHeight - 25,PlatformGameWidth,25},	// base
 														{PlatformGameWidth+150,PlatformGameHeight - 50,500,50},
 														{200,550,100,25},
-														{0,0,2,PlatformGameHeight}}		// left hand edge
+														{0,0,2,PlatformGameHeight},		// left hand edge
+														{6500,0,2,PlatformGameHeight}}	// right hand edge
 													};
 	// define image for each platform on each level, in same order as PlatformPositions array
 	public static final String PlatformImages[][] = {{ // gameLevel 1
@@ -239,6 +234,7 @@ public class Utils
 														"images\\platform\\KitchenCounter.png",	//left hand edge
 														"images\\platform\\KitchenCounter.png"},	//right hand edge
 														{ // gameLevel 4
+														"images\\platform\\Rock_Platform.png",
 														"images\\platform\\Rock_Platform.png",
 														"images\\platform\\Rock_Platform.png",
 														"images\\platform\\Rock_Platform.png",
@@ -338,6 +334,7 @@ public class Utils
 														true,
 														true,
 														true,
+														true,
 														true}
 													};
 
@@ -425,7 +422,7 @@ public class Utils
 														{4850,635,15,15}},
 														{ // gameLevel 4
 														{220,535,15,15},
-														{PlatformGameWidth+200,PlatformGameHeight - 80,37,35}}, 	// key
+														{PlatformGameWidth+200,PlatformGameHeight - 80,37,35}} 	// key
 													};
 	// define image for each collectible on each level, in same order as CollectiblePositions array
 	public static final String CollectibleImages[][] = {{ // gameLevel 1
@@ -447,9 +444,9 @@ public class Utils
 														"images\\collectibles\\BlueBauble.png"},
 														{ // gameLevel 4
 														"images\\collectibles\\RedBauble.png",
-														"Sprites\\Key\\KeyMain.png"},
+														"Sprites\\Key\\KeyMain.png"}
 													};
-	// define whether each collectible on each level in a key to the exit door, in same order as CollectiblePositions array
+	// define whether each collectible on each level is a key to the exit door, in same order as CollectiblePositions array
 	public static final boolean CollectibleKeys[][] = {{ // gameLevel 1
 														false,
 														true,
@@ -469,7 +466,7 @@ public class Utils
 														false},
 														{ // gameLevel 4
 														false,
-														true},
+														true}
 													};
 
 	// number of keys to be collected at each level before the exit door will open (should match number of trues in CollectibleKeys)
@@ -489,7 +486,7 @@ public class Utils
 												 // gameLevel 3
 												{6300,600,48,66},
 												 // gameLevel 4
-												{1500,640,48,66},
+												{6300,300,48,66}
 												};
 	// define images for shut and open doors
 	public static final String ShutDoorImage = "Sprites\\Scroll\\LockScroll.png";

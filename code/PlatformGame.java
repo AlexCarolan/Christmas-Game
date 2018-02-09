@@ -88,7 +88,10 @@ class PlatformGame
 		AnimatedPlayer runningRight = new AnimatedPlayer(Utils.RunningRightPath, 12, 90);
 		//AnimatedPlayer sleighRight = new AnimatedPlayer(player, Utils.SleighRightPath, 2, 100);
 		AnimatedCollectible key = new AnimatedCollectible(Utils.KeyPath, 4, 250);
-		collectible[1].setAnimation(key);
+
+		// TODO - fix this line, so it animates whichever collectible is the key - there could be more than one!!
+		collectible[1].setAnimation(key);		// HARD CODING WHICH COLLECTIBLE IS THE KEY !!!!  YUK  !!!!
+												// THAT EXPLAINS WHY THE KEY HAS TO BE THE 2nd COLLECTIBLE in Utils !!!!
 		
 		//sleighRight.start();
 		//if (gameLevel != Utils.SleighGameLevel)
@@ -109,22 +112,22 @@ class PlatformGame
 		
 		// add the score tracker
 		Text scoreText = new Text("Score:0", scoreFont, 18);
-		scoreText.setPosition(10, Utils.PlatformGameHeight-(Utils.PlatformGameHeight-10));
+		scoreText.setPosition(10, 10);
 		
 		// create and add life counter
 		Texture heart = new Texture();
-		try{
+		try {
 		heart.loadFromFile(Paths.get(Utils.HeartPath));
 		} catch(IOException ex) {
 			System.out.println(ex);
 		}
 		
 		Sprite[] lives = new Sprite[3];
-		for(int i=0; i<3; i++)
+		for (int i=0; i<3; i++)
 		{
 			lives[i] = new Sprite(heart);
 			lives[i].setOrigin(0,0);
-			lives[i].setPosition(13 + (i*40),Utils.PlatformGameHeight-(Utils.PlatformGameHeight-35));
+			lives[i].setPosition(13 + (i*40), 35);
 		}
 
 		boolean finished = false;
@@ -137,13 +140,10 @@ class PlatformGame
 			// add the players score to the window
 			scoreText.setString("Score:" + playerScore.getScore());
 			window.draw(scoreText);
-			
-			
+
 			// add the life counter to the window
-			for(int i = 0; i<player.getLives(); i++)
-			{
+			for (int i = 0; i < player.getLives(); i++)
 				window.draw(lives[i]);
-			}
 				
 			// add all objects onto the window
 			for (int i = 0; i < numPlatforms; i++)
@@ -156,13 +156,14 @@ class PlatformGame
 			window.draw(door.getPlatform());
 			window.draw(player.getSprite());
 
-			// modify inertial movement per game tick (so that player movement gradually slows down, rather than being jerky)
-			// apply inertia to left and right movement, and to movement upwards
-			// movement downwards is gravity (or an extra boost from the keyboard)
-			if (moveX < 0)
-				moveX++;
-			else if (moveX > 0)
-				moveX--;
+			// modify horizontal movement per game tick so that player gradually slows down, rather than being jerky
+			if (gameLevel != Utils.SleighGameLevel)
+			{
+				if (moveX < 0)
+					moveX++;
+				else if (moveX > 0)
+					moveX--;
+			}
 
 			// apply idle animation when still
 			if (runningRight.getActive() || runningLeft.getActive() &&
@@ -235,7 +236,9 @@ class PlatformGame
 						}
 					}
 				}
-				if (standing || gameLevel == Utils.SleighGameLevel)
+				if (gameLevel == Utils.SleighGameLevel)
+					moveY = 0-Utils.MoveAmountY;
+				else if (standing)
 				{
 					moveY = 0-Utils.JumpAmount;
 					//System.out.println("Standing on something, so moveY="+moveY);
@@ -244,7 +247,10 @@ class PlatformGame
 			}
 			if (Keyboard.isKeyPressed(Keyboard.Key.S) || Keyboard.isKeyPressed(Keyboard.Key.DOWN))
 			{
-				moveY += Utils.MoveAmountY;
+				if (gameLevel == Utils.SleighGameLevel)
+					moveY = Utils.MoveAmountY;
+				else
+					moveY += Utils.MoveAmountY;
 				//System.out.println("Down pressed: moveY=" + moveY);
 			}
 
@@ -382,7 +388,7 @@ class PlatformGame
 					break;
 				}
 			}
-			if (!standing)
+			if (!standing && gameLevel != Utils.SleighGameLevel)
 			{
 				moveY += Utils.Gravity;
 				//System.out.println("Not standing, so gravity; moveY=" + moveY);
