@@ -10,8 +10,6 @@ import org.jsfml.graphics.*;
 
 class Puzzle2
 {
-	private static String Title   = "Puzzle1";
-
 	/**
 	 * run - handle display and movement of the platform game for this level
 	 */
@@ -30,21 +28,23 @@ class Puzzle2
 		selectPositions[2][1] = 295;
 		selectPositions[3][0] = 25;
 		selectPositions[3][1] = 360;
+		int puzzleHeight = 601;
+
 		RenderWindow window = new RenderWindow( );
-		window.create(new VideoMode(520, 601),
-					Title,
+		window.create(new VideoMode(520, Utils.PlatformGameHeight),
+					"Christmas Tree Lights Puzzle, Level 3",
 					WindowStyle.DEFAULT);
 
 		// limit the framerate
 		window.setFramerateLimit(24);
 
-		// create all object
+		// create all objects
 		PuzzleTile[][] Strings = new PuzzleTile[4][5];
 		PuzzleTile[][] endStrings = new PuzzleTile[4][5];
 		PuzzleTile[] TempHolder = new PuzzleTile[5];
 		PuzzleTile ConstantBulb = new PuzzleTile(302,161,"images\\knotPuzzle\\pinkB.png", 35, 35);
+
 		// strings at start of puzzle game
-		
 		Strings[0][0] = new PuzzleTile(135,213,"images\\knotPuzzle\\orangeB.png", 35, 35);
 		Strings[0][1] = new PuzzleTile(185,210,"images\\knotPuzzle\\purpleB.png", 35, 35);
 		Strings[0][2] = new PuzzleTile(230,195,"images\\knotPuzzle\\pinkB.png", 35, 35);
@@ -69,7 +69,7 @@ class Puzzle2
 		Strings[3][3] = new PuzzleTile(345,455,"images\\knotPuzzle\\orangeB.png", 35, 35);
 		Strings[3][4] = new PuzzleTile(430,464,"images\\knotPuzzle\\pinkB.png", 35, 35);
 		
-		//strings at end of puzzle
+		// strings at end of puzzle
 		endStrings[0][0] = new PuzzleTile(135,213,"images\\knotPuzzle\\silverB.png", 35, 35);
 		endStrings[0][1] = new PuzzleTile(185,210,"images\\knotPuzzle\\redB.png", 35, 35);
 		endStrings[0][2] = new PuzzleTile(230,195,"images\\knotPuzzle\\orangeB.png", 35, 35);
@@ -94,35 +94,44 @@ class Puzzle2
 		endStrings[3][3] = new PuzzleTile(345,455,"images\\knotPuzzle\\pinkB.png", 35, 35);
 		endStrings[3][4] = new PuzzleTile(430,464,"images\\knotPuzzle\\redB.png", 35, 35);
 
-
-		// position of tiles to successfully complete puzzle game
+		// set up instructions
+										
+		// Load the font for the instructions
+		Font sansRegular = new Font( );
+		try {
+			sansRegular.loadFromFile(
+					Paths.get("fonts\\LucidaSansRegular.ttf"));
+		} catch (IOException ex) {
+			ex.printStackTrace( );
+		}
+		Text text1a = new Text("Can you untangle the lights?", sansRegular, 18);
+		Text text1b = new Text("Each row should have no repeat colours", sansRegular, 18);
+		Text text2a = new Text("Use Up/Down (or WS) keys to select the row", sansRegular, 18);
+		Text text2b = new Text("and Left/Right (or AD) keys to rotate the lights", sansRegular, 18);
+		Text text2c = new Text("Top and bottom rows are fixed", sansRegular, 18);
+		Text text3 = new Text("Well done, you untangled the lights!", sansRegular, 18);
+		text1a.setColor(Color.BLACK);
+		text1b.setColor(Color.BLACK);
+		text2a.setColor(Color.BLUE);
+		text2b.setColor(Color.BLUE);
+		text2c.setColor(Color.BLACK);
+		text3.setColor(Color.RED);
+		text2a.setStyle(Text.ITALIC);
+		text2b.setStyle(Text.ITALIC);
+		text1a.setPosition(50, puzzleHeight+20);
+		text1b.setPosition(50, puzzleHeight+40);
+		text2a.setPosition(50, puzzleHeight+60);
+		text2b.setPosition(50, puzzleHeight+80);
+		text2c.setPosition(50, puzzleHeight+100);
+		text3.setPosition(50, puzzleHeight+120);
 
 
 		boolean finished = false;
-
 		while (window.isOpen() && !finished) 
 		{
-			// fill the window with black
-			window.clear(Color.WHITE);
-			window.draw(background.getTile());
-			// add all objects onto the window
-			
-			
-			for (int i = 0; i < 5; i++)
-			{
-				for (int j = 0; j < 4; j++)
-				{
-					window.draw(Strings[j][i].getTile());
-				}
-			}
-			
-			window.draw(ConstantBulb.getTile());
-			
 			// handle keyboard/mouse events (movement can be via WASD or arrow keys)
-			
 			for (Event event : window.pollEvents()) 
 			{
-				MouseEvent mouseEvent;
 				switch(event.type) 
 				{
 					case CLOSED:
@@ -174,29 +183,66 @@ class Puzzle2
 						break;
 				}
 			}
-			window.draw(selectTool.getTile());
 
-			// display what was drawn on the window
-			window.display();
-
-			// check whether images are all in the right place
-			finished = true;
-			for (int i = 0; i < 4; i++)
-				if (finished)
-					for (int j = 0; j < 5; j++)
-						if (Strings[i][j].getPicture() != endStrings[i][j].getPicture())
-							finished = false;
-			if (finished)
+			if (window.isOpen())
 			{
-				System.out.println("Well done, you completed the picture!");
-				//window.close();
+				// fill the window with white
+				window.clear(Color.WHITE);
+				window.draw(background.getTile());
+
+				// add all objects onto the window
+				for (int i = 0; i < 5; i++)
+				{
+					for (int j = 0; j < 4; j++)
+					{
+						window.draw(Strings[j][i].getTile());
+					}
+				}
+				window.draw(ConstantBulb.getTile());
+				window.draw(selectTool.getTile());
+
+				// add instructions
+				window.draw(text1a);
+				window.draw(text1b);
+				window.draw(text2a);
+				window.draw(text2b);
+				window.draw(text2c);
+
+				// check whether images are all in the right place
+				finished = true;
+				for (int i = 0; i < 4; i++)
+					if (finished)
+						for (int j = 0; j < 5; j++)
+							if (Strings[i][j].getPicture() != endStrings[i][j].getPicture())
+								finished = false;
+
+				if (finished)
+				{
+					System.out.println("Well done, you completed the picture!");
+					window.draw(text3);
+				}
+
+				// display what was drawn on the window
+				window.display();
+
+				if (finished)
+				{
+					try {					// pause so player can see success message
+						Thread.sleep(2000);
+					} catch (Exception e) {
+						System.out.println();
+					}
+					window.close();
+				}
 			}
 		}
+		if (window.isOpen())
+			window.close();
 	}
 
-	public static void main (String args[ ]) 
-	{
-		Puzzle2 p = new Puzzle2( );
-		p.run( );
-	}
+	//public static void main (String args[ ]) 
+	//{
+	//	Puzzle2 p = new Puzzle2( );
+	//	p.run( );
+	//}
 }	
