@@ -12,10 +12,9 @@ Christmas Room
 
 Platform Game
 1. when lives drops to zero and causes game restart, then lives should reset to 3
-3. add hazards (needed for kitchen)
-4. display n/m items collected
-5. sleigh level should move right automatically
-6. consider adding moving obstacles
+2. add hazards (needed for kitchen)
+3. display n/m items collected
+4. consider adding moving obstacles
 
 Puzzle Game
 1. Puzzle class needs to return true on successful completion (like platformGame) - 
@@ -24,8 +23,9 @@ Puzzle Game
 2. Do Traffic puzzle (perhaps using joined/grouped tiles)
 
 Graphics - Leo
-1. platform images
-2. Christmas Room images (bare, + tree, +tree+decorations, +tree+decor+food, +tree+decor+food+gifts)
+1. images for Level 4 houses/roofs
+2. Level4 Sprite: Christmas Elf in sleigh
+3. Christmas Room images (bare, + tree, +tree+decorations, +tree+decor+food, +tree+decor+food+gifts)
 
 Misc - Alex
 1. Improve food puzzle graphics
