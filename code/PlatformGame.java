@@ -397,7 +397,7 @@ class PlatformGame
 			{
 				if (gameLevel == Utils.SleighGameLevel)
 				{
-					sleighGravity += 0.05;
+					sleighGravity += Utils.SleighGravity;
 					if (sleighGravity >= 1)
 					{
 						if (moveY < Utils.Gravity)
