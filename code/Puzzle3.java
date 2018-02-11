@@ -10,7 +10,7 @@ import org.jsfml.graphics.*;
 
 class Puzzle3
 {
-	private static String Title   = "Puzzle 3";
+	private static String Title   = "Sleigh Puzzle, Level 4";
 	private static String square1   = "images\\trafficPuzzle\\square1.png";
 	private static String square2   = "images\\trafficPuzzle\\square2.png";
 
@@ -21,7 +21,7 @@ class Puzzle3
 	{
 		// create the window
 		RenderWindow window = new RenderWindow( );
-		window.create(new VideoMode((7*100), (7*100)),
+		window.create(new VideoMode((7*100), Utils.PlatformGameHeight),
 					Title,
 					WindowStyle.CLOSE | WindowStyle.TITLEBAR);	// window can't be resized
 
@@ -60,14 +60,14 @@ class Puzzle3
 		
 		//System.out.println(dictionary[0].length);
 		//System.out.println(car8.length+""+""+car2.length);
-		for(int i = 0; i < 2; i++)
+		for (int i = 0; i < 2; i++)
 		{
 			tiles[player[i][0]][player[i][1]] = new MazeTile((player[i][0]*100),(player[i][1]*100),"images\\trafficPuzzle\\player.png",100,100,false);
 			tiles[car2[i][0]][car2[i][1]] = new MazeTile((car2[i][0]*100),(car2[i][1]*100),"images\\trafficPuzzle\\car2.png",100,100,false);
 			tiles[car4[i][0]][car4[i][1]] = new MazeTile((car4[i][0]*100),(car4[i][1]*100),"images\\trafficPuzzle\\car4.png",100,100,false);
 			tiles[car6[i][0]][car6[i][1]] = new MazeTile((car6[i][0]*100),(car6[i][1]*100),"images\\trafficPuzzle\\car6.png",100,100,false);
 		}
-		for(int i = 0; i < 3; i++)
+		for (int i = 0; i < 3; i++)
 		{
 			tiles[car3[i][0]][car3[i][1]] = new MazeTile((car3[i][0]*100),(car3[i][1]*100),"images\\trafficPuzzle\\car3.png",100,100,false);
 			tiles[car5[i][0]][car5[i][1]] = new MazeTile((car5[i][0]*100),(car5[i][1]*100),"images\\trafficPuzzle\\car5.png",100,100,false);
@@ -87,16 +87,16 @@ class Puzzle3
 		} catch (IOException ex) {
 			ex.printStackTrace( );
 		}
-		Text text1 = new Text("Can you move the reindeer to unblock santa's sleigh?", sansRegular, 18);
-		Text text2 = new Text("Select the object with num keys, Use the arrow keys, or WASD, to move", sansRegular, 18);
-		Text text3 = new Text("Well done, you completed the picture!", sansRegular, 18);
+		Text text1 = new Text("Can you move the reindeer to unblock Santa's sleigh?", sansRegular, 18);
+		Text text2 = new Text("Select the object with number keys; use the arrow keys, or WASD, to move", sansRegular, 18);
+		Text text3 = new Text("Well done, you unblocked the sleigh!", sansRegular, 18);
 		text1.setColor(Color.RED);
 		text2.setColor(Color.RED);
 		text3.setColor(Color.WHITE);
 		text2.setStyle(Text.ITALIC);
-		text1.setPosition(50, Utils.PuzzleGameHeight+20);
-		text2.setPosition(50, Utils.PuzzleGameHeight+40);
-		text3.setPosition(50, Utils.PuzzleGameHeight+60);
+		text1.setPosition(20, Utils.PuzzleGameHeight+20);
+		text2.setPosition(20, Utils.PuzzleGameHeight+40);
+		text3.setPosition(20, Utils.PuzzleGameHeight+60);
 		
 		
 		boolean finished = false;
