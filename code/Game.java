@@ -97,9 +97,10 @@ class Game
 				window.draw(textPuzzle3);
 				window.draw(textPlatform4);
 			}
-			if (gameLevel > 3)
+			if (gameLevel > 2)//should be 3, changed for debugging. TODO: CHANGE BACK
 			{
 				window.draw(textPuzzle4);
+				
 			}
 
 			// display what was drawn on the window
@@ -168,17 +169,17 @@ class Game
 				if (platGame.run(3) && (level.getLevel() == 3))
 				{
 					level.incrementLevel();
-					//Puzzle4 puzzle = new Puzzle4();
-					//puzzle.run();
-					//puzzle = null;
+					Puzzle3 puzzle = new Puzzle3();
+					puzzle.run();
+					puzzle = null;
 				}
 				platGame = null;
 			}
 			else if ((Keyboard.isKeyPressed(Keyboard.Key.NUM8) || Keyboard.isKeyPressed(Keyboard.Key.NUMPAD8)) && level.getLevel() > 2)
 			{
-				//Puzzle4 puzzle = new Puzzle4();
-				//puzzle.run();
-				;//puzzle = null;
+				Puzzle3 puzzle = new Puzzle3();
+				puzzle.run();
+				;puzzle = null;
 			}
 
 			// handle keyboard/mouse events

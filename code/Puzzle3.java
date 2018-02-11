@@ -21,7 +21,7 @@ class Puzzle3
 	{
 		// create the window
 		RenderWindow window = new RenderWindow( );
-		window.create(new VideoMode((7*100), (6*100)),
+		window.create(new VideoMode((7*100), (7*100)),
 					Title,
 					WindowStyle.CLOSE | WindowStyle.TITLEBAR);	// window can't be resized
 
@@ -76,6 +76,28 @@ class Puzzle3
 		}
 		
 		MazeTile exit = new MazeTile((6*100),(2*100),"images\\trafficPuzzle\\exit.png",100,100,true);
+		
+		// set up instructions
+										
+		// Load the font for the instructions
+		Font sansRegular = new Font( );
+		try {
+			sansRegular.loadFromFile(
+					Paths.get("fonts\\LucidaSansRegular.ttf"));
+		} catch (IOException ex) {
+			ex.printStackTrace( );
+		}
+		Text text1 = new Text("Can you move the reindeer to unblock santa's sleigh?", sansRegular, 18);
+		Text text2 = new Text("Select the object with num keys, Use the arrow keys, or WASD, to move", sansRegular, 18);
+		Text text3 = new Text("Well done, you completed the picture!", sansRegular, 18);
+		text1.setColor(Color.RED);
+		text2.setColor(Color.RED);
+		text3.setColor(Color.WHITE);
+		text2.setStyle(Text.ITALIC);
+		text1.setPosition(50, Utils.PuzzleGameHeight+20);
+		text2.setPosition(50, Utils.PuzzleGameHeight+40);
+		text3.setPosition(50, Utils.PuzzleGameHeight+60);
+		
 		
 		boolean finished = false;
 
@@ -266,22 +288,40 @@ class Puzzle3
 
 			if (window.isOpen())
 			{
-				// display what was drawn on the window
-				window.display();
+				// add instructions
+				window.draw(text1);
+				window.draw(text2);
+				
+				
 
 				// check whether images are all in the right place
-				/*
-				finished = true;
-				if (tiles[5][2].getPicture() != player)
-					finished = false;
+				
+				
+				if (dictionary[0][1][0] == 5)
+					finished = true;
 				if (finished)
 				{
-					System.out.println("Well done, you completed the maze!");
+					System.out.println("Well done, you completed the picture!");
+					window.draw(text3);
+				}
+				
+				// display what was drawn on the window
+				window.display();
+				
+				if (finished)
+				{
+					try {					// pause so player can see success message
+						Thread.sleep(1000);
+					} catch (Exception e) {
+						System.out.println();
+					}
 					window.close();
 				}
-				*/
+				
 			}
 		}
+		if (window.isOpen())
+			window.close();
 	}
 
 	public static void main (String args[ ])
