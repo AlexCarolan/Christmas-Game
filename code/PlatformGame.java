@@ -38,6 +38,7 @@ class PlatformGame
 		
 		int moveX = 0;
 		int moveY = 0;
+		double sleighGravity = 0.0;
 		
 		// create new score object
 		Score playerScore = new Score(0);
@@ -241,6 +242,7 @@ class PlatformGame
 				else if (standing)
 				{
 					moveY = 0-Utils.JumpAmount;
+					sleighGravity = 0.0;
 					//System.out.println("Standing on something, so moveY="+moveY);
 				}
 				//System.out.println("Up pressed: moveY=" + moveY);
@@ -370,7 +372,6 @@ class PlatformGame
 					standing = true;
 					// make player stand in same vertical position above platform
 					player.standOn(platform[i].getYPosition()-Utils.MoveAmountY/2);
-					moveY = 0;
 					//System.out.println("Player is NOW standing on platform " + i + ", moveY=0");
 					break;
 				}
@@ -383,15 +384,30 @@ class PlatformGame
 					standing = true;
 					// make player stand in same vertical position above obstacle
 					player.standOn(obstacle[i].getYPosition()-Utils.MoveAmountY/2);
-					moveY = 0;
 					//System.out.println("Player is NOW standing on obstacle " + i + ", moveY=0");
 					break;
 				}
 			}
-			if (!standing && gameLevel != Utils.SleighGameLevel)
+			if (standing)
 			{
-				moveY += Utils.Gravity;
-				//System.out.println("Not standing, so gravity; moveY=" + moveY);
+				moveY = 0;
+				sleighGravity = 0.0;
+			}
+			else
+			{
+				if (gameLevel == Utils.SleighGameLevel)
+				{
+					sleighGravity += 0.05;
+					if (sleighGravity >= 1)
+					{
+						if (moveY < Utils.Gravity)
+							moveY += 1;
+						sleighGravity = 0.0;
+					}
+				}
+				else
+					moveY += Utils.Gravity;
+					//System.out.println("Not standing, so gravity; moveY=" + moveY);
 			}
 
 			// if touching a collectible, then pick it up

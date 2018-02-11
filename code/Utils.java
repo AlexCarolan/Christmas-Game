@@ -16,6 +16,7 @@ public class Utils
 	public static final int MoveAmountY = 2;
 	public static final int JumpAmount = 18;	//60
 	public static final int Gravity = 1;
+	public static final double SleighGravity = 0.05;
 
 	public static final int SleighGameLevel = 3;
 
