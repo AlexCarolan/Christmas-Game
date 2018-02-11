@@ -86,9 +86,9 @@ public class Utils
 														{6230,550,100,50},	//36
 														{-250,500,250,400},	// left hand edge
 														{6500,0,PlatformGameWidth/2,PlatformGameHeight+1}},	// right hand edge
-														{ // gameLevel 2
-														{0,700,5200,50},	// base 1
-														{5300,700,1200,50},	// base 2
+														{ // gameLevel 2 - attic
+														{0,700,5400,100},	// base 1
+														{5500,700,1200,100},	// base 2
 														{1150,600,100,100},	//3
 														{1250,650,100,50},	//4
 														{1400,500,100,50},	//5
@@ -97,17 +97,17 @@ public class Utils
 														{1900,500,100,100},	//8
 														{2050,540,150,80},	//9
 														{2250,600,200,100},	//10
-														{2600,620,50,80},	//11
-														{2600,540,150,80},	//12
+														{2600,620,100,80},	//11
+														{2600,540,200,80},	//12
 														{3200,500,200,200},	//13
 														{3400,600,600,100},	//14
-														{4300,550,250,150},	//15
-														{4600,500,200,200},	//16
-														{4800,600,400,100},	//17
-														{4900,400,200,100},	//18
-														{5000,300,100,100},	//19
-														{-250,500,250,400},	// left hand edge
-														{6500,0,PlatformGameWidth/2,PlatformGameHeight+1}},	// right hand edge
+														{4500,550,250,150},	//15
+														{4800,500,200,200},	//16
+														{5000,600,400,100},	//17
+														{5130,400,200,100},	//18
+														{5230,300,100,100},	//19
+														{-250,200,250,650},	// left hand edge
+														{6500,200,250,650}},	// right hand edge
 														{ // gameLevel 3
 														{0,700,3950,50},	// base 1
 														{4000,700,1200,50},	// base 2
@@ -203,8 +203,8 @@ public class Utils
 														"images\\platform\\bricks.png",
 														"images\\platform\\bricks.png",
 														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",	//20
-														"images\\platform\\bricks.png"},
+														"images\\obstacles\\Shelf_Single.png",	//20
+														"images\\obstacles\\Shelf_Single.png"},
 														{ // gameLevel 3
 														"images\\platform\\LogLarge.png",	//base1
 														"images\\platform\\LogLarge.png",	//base2
@@ -347,24 +347,25 @@ public class Utils
 														{720,620,100,100},
 														{800,670,50,50}},
 														{ // gameLevel 2
-														{680,660,50,50},
-														{720,620,100,100},
-														{800,670,50,50},
-														{2350,570,40,40},
+														{600,610,95,90},
+														{680,580,140,125},
+														{823,642,100,60},
+														{2330,540,60,60},
 														{3150,660,50,50},
-														{3680,560,50,50},
-														{3720,520,100,100},
-														{3800,570,50,50},
-														{4420,520,40,40},
-														{6113,660,50,50},
-														{6150,620,100,100},
-														{6230,620,100,100},
-														{6195,555,100,100},
-														{6230,525,50,50}},
+														{3630,530,80,70},
+														{3710,510,100,95},
+														{3810,558,120,50},
+														{4100,480,260,220},	// this one
+														{4540,485,105,65},
+														{5700,600,245,100},
+														{5950,600,200,105},
+														{6220,640,100,60},
+														{5835,500,230,100},
+														{5923,435,90,65}},
 														{ // gameLevel 3
 														{5760,660,50,50},
 														{5800,620,100,100},
-														{5835,590,50,50},	// change this one
+														{5835,590,50,50},
 														{5890,660,50,50}},
 														{ // gameLevel 4
 														{250,520,40,40},
@@ -376,20 +377,21 @@ public class Utils
 														"images\\obstacles\\big-log.png",
 														"images\\obstacles\\logs1.png"},
 														{ // gameLevel 2
+														"images\\obstacles\\Box_Brown.png",
+														"images\\obstacles\\Box_Tan.png",
+														"images\\obstacles\\Box_Brown.png",
+														"images\\obstacles\\Box_Tan.png",
 														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\rock.png"},
+														"images\\obstacles\\Box_Tan.png",
+														"images\\obstacles\\Box_Brown.png",
+														"images\\obstacles\\Box_Tan.png",
+														"images\\obstacles\\Box_Tan.png",
+														"images\\obstacles\\Box_Tan.png",
+														"images\\obstacles\\Box_Brown.png",
+														"images\\obstacles\\Box_Tan.png",
+														"images\\obstacles\\Box_Brown.png",
+														"images\\obstacles\\Box_Tan.png",
+														"images\\obstacles\\Box_Brown.png"},
 														{ // gameLevel 3
 														"images\\obstacles\\box.png",
 														"images\\obstacles\\box.png",
@@ -408,17 +410,17 @@ public class Utils
 														{2400,400,37,35},	// key
 														{800,500,15,15},
 														{6400,520,15,15}},
-														{ // gameLevel 2
+														{ // gameLevel 2 attic
 														{1510,535,15,15},
-														{1650,670,37,35},	// key
+														{2700,665,37,35},	// key
+														{1670,685,15,15},
 														{2120,685,15,15},
-														{2660,685,15,15},
-														{4980,385,15,15}},
-														{ // gameLevel 3
+														{5180,385,15,15}},
+														{ // gameLevel 3 kitchen
 														{1800,685,15,15},
 														{3450,665,37,35},	// key
 														{2900,585,15,15},
-														{4500,685,15,15},
+														{4460,685,15,15},
 														{4850,635,15,15}},
 														{ // gameLevel 4
 														{220,535,15,15},
@@ -482,7 +484,7 @@ public class Utils
 	public static final int DoorPosition[][] = { // gameLevel 1
 												{6220,425,48,66},
 												 // gameLevel 2
-												{6240,425,48,66},
+												{5950,265,48,66},
 												 // gameLevel 3
 												{6300,600,48,66},
 												 // gameLevel 4
