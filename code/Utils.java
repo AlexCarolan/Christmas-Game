@@ -407,77 +407,48 @@ public class Utils
 	// to access this array: first index is level, second index is collectible, 
 	// third index is xPosition, yPosition, width, height of that collectible,
 	public static final int CollectiblePositions[][][] = {{ // gameLevel 1
-														{1630,400,15,15},
 														{2400,400,37,35},	// key
 														{800,500,15,15},
+														{1630,400,15,15},
 														{6400,520,15,15}},
 														{ // gameLevel 2 attic
-														{1510,535,15,15},
 														{2700,665,37,35},	// key
+														{1510,535,15,15},
 														{1670,685,15,15},
 														{2120,685,15,15},
 														{5180,385,15,15}},
 														{ // gameLevel 3 kitchen
-														{1800,685,15,15},
 														{3450,665,37,35},	// key
+														{1800,685,15,15},
 														{2900,585,15,15},
 														{4460,685,15,15},
 														{4850,635,15,15}},
 														{ // gameLevel 4
-														{220,535,15,15},
-														{PlatformGameWidth+200,PlatformGameHeight - 80,37,35}} 	// key
+														{PlatformGameWidth+200,PlatformGameHeight - 80,37,35}, // key
+														{220,535,15,15}}
 													};
 	// define image for each collectible on each level, in same order as CollectiblePositions array
 	public static final String CollectibleImages[][] = {{ // gameLevel 1
-														"images\\collectibles\\OrangeBauble.png",
 														"Sprites\\Key\\KeyMain.png",
 														"images\\collectibles\\BlueBauble.png",
+														"images\\collectibles\\OrangeBauble.png",
 														"images\\collectibles\\RedBauble.png"},
 														{ // gameLevel 2
-														"images\\collectibles\\OrangeBauble.png",
 														"Sprites\\Key\\KeyMain.png",
+														"images\\collectibles\\OrangeBauble.png",
 														"images\\collectibles\\RedBauble.png",
 														"images\\collectibles\\GreenBauble.png",
 														"images\\collectibles\\BlueBauble.png"},
 														{ // gameLevel 3
-														"images\\collectibles\\RedBauble.png",
 														"Sprites\\Key\\KeyMain.png",
+														"images\\collectibles\\RedBauble.png",
 														"images\\collectibles\\OrangeBauble.png",
 														"images\\collectibles\\RedBauble.png",
 														"images\\collectibles\\BlueBauble.png"},
 														{ // gameLevel 4
-														"images\\collectibles\\RedBauble.png",
-														"Sprites\\Key\\KeyMain.png"}
+														"Sprites\\Key\\KeyMain.png",
+														"images\\collectibles\\RedBauble.png"}
 													};
-	// define whether each collectible on each level is a key to the exit door, in same order as CollectiblePositions array
-	public static final boolean CollectibleKeys[][] = {{ // gameLevel 1
-														false,
-														true,
-														false,
-														false},
-														{ // gameLevel 2
-														false,
-														true,
-														false,
-														false,
-														false},
-														{ // gameLevel 3
-														false,
-														true,
-														false,
-														false,
-														false},
-														{ // gameLevel 4
-														false,
-														true}
-													};
-
-	// number of keys to be collected at each level before the exit door will open (should match number of trues in CollectibleKeys)
-	public static final int numKeys[] = {	1,	// gameLevel 1
-											1,	// gameLevel 2
-											1,	// gameLevel 3
-											1	// gameLevel 4
-										};
 
 	// define width, height, xPosition, yPosition for the door for each level
 	// to access this array: first index is level, 
