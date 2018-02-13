@@ -13,8 +13,7 @@ Christmas Room
 Platform Game
 1. add hazards (needed for kitchen)
 2. consider adding moving obstacles
-3. display key collected image - Alex
-4. consider adding timer
+3. consider adding timer
 
 Puzzle Game
 1. Puzzle class needs to return true on successful completion (like platformGame) - 
