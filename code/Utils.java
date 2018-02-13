@@ -36,7 +36,8 @@ public class Utils
 	public static final String Bauble1Path = "Sprites\\Baubles\\Bauble";
 	public static final String KeyPath = "Sprites\\Key\\Key";
 	public static final String HeartPath = "Sprites\\Heart\\heart.png";
-
+	public static final String StaticKeyPath = "Sprites\\Key\\Key1.png";
+	
 	// file path for platform background images, and the width of these
 	public static final String PlatformBackgroundImage[] = {"images\\platform\\forest.png",		// platform level 1
 															"images\\platform\\attic.png",		// platform level 2

@@ -111,7 +111,9 @@ class PlatformGame
 			ex.printStackTrace( );
 		}
 		
-		// add the score tracker
+		
+		
+		// add the score tracker to the UI
 		Text scoreText = new Text("Score:0", scoreFont, 18);
 		scoreText.setPosition(10, 10);
 		
@@ -131,6 +133,21 @@ class PlatformGame
 			lives[i].setPosition(13 + (i*40), 35);
 		}
 
+		// Create and add key tracker to the UI
+ 		Texture keySprite = new Texture();
+ 		
+ 		try {
+ 		keySprite.loadFromFile(Paths.get(Utils.StaticKeyPath));
+ 		} catch(IOException ex) {
+ 			System.out.println(ex);
+ 		}
+  
+ 		Sprite invKey = new Sprite(keySprite);
+		invKey.setOrigin(0,0);
+ 		invKey.setPosition(13, 65);
+		
+		boolean keyCollected = false;
+		
 		boolean finished = false;
 		while (window.isOpen() && !finished)
 		{
@@ -145,7 +162,11 @@ class PlatformGame
 			// add the life counter to the window
 			for (int i = 0; i < player.getLives(); i++)
 				window.draw(lives[i]);
-				
+			
+			// add the key collected display
+ 			if (keyCollected == true)
+ 				window.draw(invKey);
+			
 			// add all objects onto the window
 			for (int i = 0; i < numPlatforms; i++)
 				window.draw(platform[i].getPlatform());
@@ -419,6 +440,7 @@ class PlatformGame
 					{
 						collectible[i].collect();
 						if (collectible[i].isKey())
+							keyCollected = true;
 							if (++numKeysCollected >= numKeysToCollect)
 							{
 								door.setImage(Utils.OpenDoorImage);
