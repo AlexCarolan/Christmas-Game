@@ -145,7 +145,7 @@ class PlatformGame
 		boolean keyCollected = false;
 		
 		boolean finished = false;
-		while (window.isOpen() && !finished)
+		while (window.isOpen() && !finished && (player.getLives() > 0))
 		{
 			// fill the window with black
 			window.clear(Color.BLACK);
@@ -500,6 +500,8 @@ class PlatformGame
 		//sleighRight.kill();
 		key.kill();
 		window.close();
+		if (player.getLives() <= 0)
+			return false;	// return false if all lives lost
 		return finished;	// returns true if platform completed successfully
 							// if window closed without finishing, returns false
 	}
