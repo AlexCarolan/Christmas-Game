@@ -108,11 +108,11 @@ class PlatformGame
 			ex.printStackTrace( );
 		}
 		
-		// add the score tracker
+		// add the score tracker to the UI
 		Text scoreText = new Text("Score:0", scoreFont, 18);
 		scoreText.setPosition(10, 10);
 		
-		// create and add life counter
+		// create and add life counter to the UI
 		Texture heart = new Texture();
 		try {
 		heart.loadFromFile(Paths.get(Utils.HeartPath));
@@ -127,7 +127,21 @@ class PlatformGame
 			lives[i].setOrigin(0,0);
 			lives[i].setPosition(13 + (i*40), 35);
 		}
+		
+		// Create and add key tracker to the UI
+		Texture keySprite = new Texture();
+		
+		try {
+		keySprite.loadFromFile(Paths.get(Utils.StaticKeyPath));
+		} catch(IOException ex) {
+			System.out.println(ex);
+		}
 
+		Sprite invKey = new Sprite(keySprite);
+		invKey.setOrigin(0,0);
+		invKey.setPosition(13, 65);
+		
+		
 		boolean finished = false;
 		while (window.isOpen() && !finished && (player.getLives() > 0))
 		{
@@ -142,6 +156,10 @@ class PlatformGame
 			// add the life counter to the window
 			for (int i = 0; i < player.getLives(); i++)
 				window.draw(lives[i]);
+			
+			// add the key collected display
+			if (keyCollected == true)
+				window.draw(invKey);
 				
 			// add all objects onto the window
 			for (int i = 0; i < numPlatforms; i++)
