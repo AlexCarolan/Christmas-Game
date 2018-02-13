@@ -16,6 +16,7 @@ class Puzzle0
 
 	/**
 	 * run - handle display and movement of the platform game for this level
+	 * @return boolean - success indicator (true if puzzle completed)
 	 */
 	public boolean run() 
 	{

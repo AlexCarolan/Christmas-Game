@@ -12,8 +12,9 @@ class Puzzle1
 {
 	/**
 	 * run - handle display and movement of the platform game for this level
+	 * @return boolean - success indicator (true if puzzle completed)
 	 */
-	public static void run () 
+	public boolean run() 
 	{
 		// create the window
 		RenderWindow window = new RenderWindow( );
@@ -192,12 +193,6 @@ class Puzzle1
 		}
 		if (window.isOpen())
 			window.close();
+		return finished;
 	}
-
-	//public static void main (String args[ ])
-	//{
-	//	Puzzle1 p = new Puzzle1( );
-	//	p.run( );
-	//	p = null;
-	//}
 }	
