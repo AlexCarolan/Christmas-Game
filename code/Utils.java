@@ -50,8 +50,8 @@ public class Utils
 	// to access this array: first index is level, second index is platform, 
 	// third index is xPosition, yPosition, width, height of that platform
 	public static final int PlatformPositions[][][] = {{ // gameLevel 1
-														{0,700,1200,50},	// base 1
-														{5300,700,1200,50},	// base 2
+														{0,700,1150,50},	// base 1
+														{5350,700,1200,50},	// base 2
 														{1150,600,100,50},	//3
 														{1280,550,100,50},	//4
 														{1405,510,100,50},	//5
