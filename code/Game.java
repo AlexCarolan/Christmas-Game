@@ -42,7 +42,7 @@ class Game
 			ex.printStackTrace( );
 		}
 		// create the game introduction text
-		Text textIntro1 = new Text("Can you help us give Tiny Tim's family a great Christmas?", sansRegular, 18);
+		Text textIntro1 = new Text("Can you help give this poor family a great Christmas?", sansRegular, 18);
 		Text textIntro2 = new Text("Complete each level to add something special to the Christmas Room.", sansRegular, 18);
 		Text textIntro3 = new Text("Look out for items to collect along the way. And there's a fun puzzle to solve at the end of each level.", sansRegular, 18);
 		textIntro1.setColor(Color.RED);
@@ -72,14 +72,14 @@ class Game
 		Text textPuzzle4 = new Text("8. Play Level 4 Puzzle Game", sansRegular, 18);
 		textPuzzle4.setPosition(100, Utils.PlatformGameHeight-80);
 		
-		//show collectables:
+		//show collectibles:
 		Score playerScore = new Score(0);
 		int numCollectibles = 16;
-		int numCollectablesPerLevel = 4;
+		int numCollectiblesPerLevel = 4;
 		Collectible[][] collectible = new Collectible[4][4];
 		for (int gameLevel = 0; gameLevel < Utils.MaxLevel; gameLevel++)
 		{
-			for (int i = 0; i < numCollectablesPerLevel; i++)
+			for (int i = 0; i < numCollectiblesPerLevel; i++)
 				collectible[gameLevel][i] = new Collectible((i*100)+gameLevel*25,740,
 												Utils.CollectiblePositions[gameLevel][i][2],Utils.CollectiblePositions[gameLevel][i][3],
 												Utils.CollectibleImages[gameLevel][i],playerScore);
@@ -96,19 +96,6 @@ class Game
 			window.draw(textIntro2);
 			window.draw(textIntro3);
 			window.draw(textPlatform1);
-			for(int i = 0; i < numCollectablesPerLevel; i++)
-			{
-				for(int j = 0; j < numCollectablesPerLevel; j++)
-				{
-					//System.out.println(Utils.isCollected[i][j]);
-					if(Utils.isCollected[i][j] == true)
-					{
-						//System.out.println("output");
-						window.draw(collectible[i][j].getPlatform());
-					}
-				}
-				
-			}
 			if (gameLevel > 0)
 			{
 				window.draw(textPuzzle1);
@@ -124,10 +111,22 @@ class Game
 				window.draw(textPuzzle3);
 				window.draw(textPlatform4);
 			}
-			if (gameLevel > 2)//should be 3, changed for debugging. TODO: CHANGE BACK
+			if (gameLevel > 3)
 			{
 				window.draw(textPuzzle4);
-				
+			}
+
+			for (int i = 0; i < numCollectiblesPerLevel; i++)
+			{
+				for (int j = 0; j < numCollectiblesPerLevel; j++)
+				{
+					//System.out.println(Utils.isCollected[i][j]);
+					if (Utils.isCollected[i][j] == true)
+					{
+						//System.out.println("output");
+						window.draw(collectible[i][j].getPlatform());
+					}
+				}
 			}
 
 			// display what was drawn on the window
@@ -206,7 +205,7 @@ class Game
 			{
 				Puzzle3 puzzle = new Puzzle3();
 				puzzle.run();
-				;puzzle = null;
+				puzzle = null;
 			}
 
 			// handle keyboard/mouse events

@@ -106,8 +106,10 @@ class PlatformGame
 		} catch (IOException ex) {
 			ex.printStackTrace( );
 		}
-		
-		
+
+		// set all collectibles for this level as Not collected
+		for (int i = 0; i < numCollectibles; i++)
+			Utils.isCollected[gameLevel][i] = false;
 		
 		// add the score tracker to the UI
 		Text scoreText = new Text("Score:0", scoreFont, 18);
@@ -501,7 +503,12 @@ class PlatformGame
 		key.kill();
 		window.close();
 		if (player.getLives() <= 0)
+		{
+			// set all collectibles for this level as Not collected
+			for (int i = 0; i < numCollectibles; i++)
+				Utils.isCollected[gameLevel][i] = false;
 			return false;	// return false if all lives lost
+		}
 		return finished;	// returns true if platform completed successfully
 							// if window closed without finishing, returns false
 	}
