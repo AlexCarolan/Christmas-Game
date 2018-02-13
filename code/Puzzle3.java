@@ -16,8 +16,9 @@ class Puzzle3
 
 	/**
 	 * run - handle display and movement of the platform game for this level
+	 * @return boolean - success indicator (true if puzzle completed)
 	 */
-	public static void run () 
+	public boolean run()
 	{
 		// create the window
 		RenderWindow window = new RenderWindow( );
@@ -100,22 +101,8 @@ class Puzzle3
 		
 		
 		boolean finished = false;
-
 		while (window.isOpen() && !finished) 
 		{
-			// fill the window with black
-			window.clear(Color.BLACK);
-
-			// add all objects onto the window
-			for (int i = 0; i < 6; i++)
-			{
-				for (int j = 0; j < 6; j++)
-				{
-					window.draw(tiles[i][j].getTile());
-				}
-			}
-			window.draw(exit.getTile());
-
 			// handle keyboard/mouse events (movement can be via WASD or arrow keys)
 			for (Event event : window.pollEvents()) 
 			{
@@ -125,16 +112,16 @@ class Puzzle3
 						KeyEvent keyEvent = event.asKeyEvent();
 						if ((keyEvent.key == Keyboard.Key.DOWN) || (keyEvent.key == Keyboard.Key.S))
 						{
-							if(dictionary[selected][0][1] < dictionary[selected][1][1])
+							if (dictionary[selected][0][1] < dictionary[selected][1][1])
 							{
 								//System.out.println(dictionary[selected].length);
-								for(int i = dictionary[selected].length-1; i > -1; i--)
+								for (int i = dictionary[selected].length-1; i > -1; i--)
 								{
 									switchTile[1] = dictionary[selected][i][1] + 1;
 									switchTile[0] = dictionary[selected][i][0];
 									if (switchTile[1] < 6)
 									{
-										if(tiles[switchTile[0]][switchTile[1]].isPassable())
+										if (tiles[switchTile[0]][switchTile[1]].isPassable())
 										{
 											MazeTile temp = new MazeTile(tiles[switchTile[0]][switchTile[1]].getX(),tiles[switchTile[0]][switchTile[1]].getY(),tiles[switchTile[0]][switchTile[1]].getPicture(),100,100,tiles[switchTile[0]][switchTile[1]].isPassable());
 											//tiles[switchTile[0]][switchTile[1]] = new MazeTile(tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getX(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getY(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getPicture(),100,100,tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].isPassable());
@@ -150,22 +137,22 @@ class Puzzle3
 						}
 						else if ((keyEvent.key == Keyboard.Key.UP) || (keyEvent.key == Keyboard.Key.W))
 						{
-							if(dictionary[selected][0][1] < dictionary[selected][1][1])
+							if (dictionary[selected][0][1] < dictionary[selected][1][1])
 							{
-								System.out.println("1");
-								for(int i = 0; i < dictionary[selected].length; i++)
+								//System.out.println("1");
+								for (int i = 0; i < dictionary[selected].length; i++)
 								{
-									System.out.println("original "+dictionary[selected][i][1]);
+									//System.out.println("original "+dictionary[selected][i][1]);
 									switchTile[1] = dictionary[selected][i][1] -1;
 									switchTile[0] = dictionary[selected][i][0];
-									System.out.println(switchTile[1]);
+									//System.out.println(switchTile[1]);
 									if (switchTile[1] >= 0)
 									{
-										System.out.println("3");
-										System.out.println(tiles[switchTile[0]][switchTile[1]].getX()+" "+tiles[switchTile[0]][switchTile[1]].getY());
-										if(tiles[switchTile[0]][switchTile[1]].isPassable())
+										//System.out.println("3");
+										//System.out.println(tiles[switchTile[0]][switchTile[1]].getX()+" "+tiles[switchTile[0]][switchTile[1]].getY());
+										if (tiles[switchTile[0]][switchTile[1]].isPassable())
 										{
-											System.out.println("4");
+											//System.out.println("4");
 											MazeTile temp = new MazeTile(tiles[switchTile[0]][switchTile[1]].getX(),tiles[switchTile[0]][switchTile[1]].getY(),tiles[switchTile[0]][switchTile[1]].getPicture(),100,100,tiles[switchTile[0]][switchTile[1]].isPassable());
 											//tiles[switchTile[0]][switchTile[1]] = new MazeTile(tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getX(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getY(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getPicture(),100,100,tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].isPassable());
 											tiles[switchTile[0]][switchTile[1]] = new MazeTile(tiles[switchTile[0]][switchTile[1]].getX(), tiles[switchTile[0]][switchTile[1]].getY(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getPicture(),100,100,tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].isPassable());
@@ -180,22 +167,22 @@ class Puzzle3
 						}
 						else if ((keyEvent.key == Keyboard.Key.RIGHT) || (keyEvent.key == Keyboard.Key.D))
 						{
-							if(dictionary[selected][0][0] < dictionary[selected][1][0])
+							if (dictionary[selected][0][0] < dictionary[selected][1][0])
 							{
-								System.out.println("1");
-								for(int i = dictionary[selected].length-1; i > -1; i--)
+								//System.out.println("1");
+								for (int i = dictionary[selected].length-1; i > -1; i--)
 								{
-									System.out.println("original "+dictionary[selected][i][0]);
+									//System.out.println("original "+dictionary[selected][i][0]);
 									switchTile[1] = dictionary[selected][i][1];
 									switchTile[0] = dictionary[selected][i][0]+1;
-									System.out.println(switchTile[1]);
+									//System.out.println(switchTile[1]);
 									if (switchTile[0] < 6)
 									{
-										System.out.println("3");
-										System.out.println(tiles[switchTile[0]][switchTile[1]].getX()+" "+tiles[switchTile[0]][switchTile[1]].getY());
-										if(tiles[switchTile[0]][switchTile[1]].isPassable())
+										//System.out.println("3");
+										//System.out.println(tiles[switchTile[0]][switchTile[1]].getX()+" "+tiles[switchTile[0]][switchTile[1]].getY());
+										if (tiles[switchTile[0]][switchTile[1]].isPassable())
 										{
-											System.out.println("4");
+											//System.out.println("4");
 											MazeTile temp = new MazeTile(tiles[switchTile[0]][switchTile[1]].getX(),tiles[switchTile[0]][switchTile[1]].getY(),tiles[switchTile[0]][switchTile[1]].getPicture(),100,100,tiles[switchTile[0]][switchTile[1]].isPassable());
 											//tiles[switchTile[0]][switchTile[1]] = new MazeTile(tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getX(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getY(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getPicture(),100,100,tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].isPassable());
 											tiles[switchTile[0]][switchTile[1]] = new MazeTile(tiles[switchTile[0]][switchTile[1]].getX(), tiles[switchTile[0]][switchTile[1]].getY(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getPicture(),100,100,tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].isPassable());
@@ -210,22 +197,22 @@ class Puzzle3
 						}
 						else if ((keyEvent.key == Keyboard.Key.LEFT) || (keyEvent.key == Keyboard.Key.A))
 						{
-							if(dictionary[selected][0][0] < dictionary[selected][1][0])
+							if (dictionary[selected][0][0] < dictionary[selected][1][0])
 							{
-								System.out.println("1");
-								for(int i = 0; i < dictionary[selected].length; i++)
+								//System.out.println("1");
+								for (int i = 0; i < dictionary[selected].length; i++)
 								{
-									System.out.println("original "+dictionary[selected][i][0]);
+									//System.out.println("original "+dictionary[selected][i][0]);
 									switchTile[1] = dictionary[selected][i][1];
 									switchTile[0] = dictionary[selected][i][0]-1;
-									System.out.println(switchTile[1]);
+									//System.out.println(switchTile[1]);
 									if (switchTile[0] >= 0)
 									{
-										System.out.println("3");
-										System.out.println(tiles[switchTile[0]][switchTile[1]].getX()+" "+tiles[switchTile[0]][switchTile[1]].getY());
-										if(tiles[switchTile[0]][switchTile[1]].isPassable())
+										//System.out.println("3");
+										//System.out.println(tiles[switchTile[0]][switchTile[1]].getX()+" "+tiles[switchTile[0]][switchTile[1]].getY());
+										if (tiles[switchTile[0]][switchTile[1]].isPassable())
 										{
-											System.out.println("4");
+											//System.out.println("4");
 											MazeTile temp = new MazeTile(tiles[switchTile[0]][switchTile[1]].getX(),tiles[switchTile[0]][switchTile[1]].getY(),tiles[switchTile[0]][switchTile[1]].getPicture(),100,100,tiles[switchTile[0]][switchTile[1]].isPassable());
 											//tiles[switchTile[0]][switchTile[1]] = new MazeTile(tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getX(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getY(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getPicture(),100,100,tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].isPassable());
 											tiles[switchTile[0]][switchTile[1]] = new MazeTile(tiles[switchTile[0]][switchTile[1]].getX(), tiles[switchTile[0]][switchTile[1]].getY(), tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].getPicture(),100,100,tiles[dictionary[selected][i][0]][dictionary[selected][i][1]].isPassable());
@@ -238,49 +225,49 @@ class Puzzle3
 								}
 							}
 						}
-						else if(keyEvent.key == Keyboard.Key.NUM1)
+						else if ((keyEvent.key == Keyboard.Key.NUM1) || (keyEvent.key == Keyboard.Key.NUMPAD1))
 						{
-							System.out.println("SELECTED: PLAYER");
+							//System.out.println("SELECTED: PLAYER");
 							selected = 0;
 						}
-						else if(keyEvent.key == Keyboard.Key.NUM2)
+						else if ((keyEvent.key == Keyboard.Key.NUM2) || (keyEvent.key == Keyboard.Key.NUMPAD2))
 						{
-							System.out.println("SELECTED: 2");
+							//System.out.println("SELECTED: 2");
 							selected = 1;
 						}
-						else if(keyEvent.key == Keyboard.Key.NUM3)
+						else if ((keyEvent.key == Keyboard.Key.NUM3) ||(keyEvent.key == Keyboard.Key.NUMPAD3))
 						{
-							System.out.println("SELECTED: 3");
+							//System.out.println("SELECTED: 3");
 							selected = 2;
 						}
-						else if(keyEvent.key == Keyboard.Key.NUM4)
+						else if ((keyEvent.key == Keyboard.Key.NUM4) || (keyEvent.key == Keyboard.Key.NUMPAD4))
 						{
-							System.out.println("SELECTED: 4");
+							//System.out.println("SELECTED: 4");
 							selected = 3;
 						}
-						else if(keyEvent.key == Keyboard.Key.NUM5)
+						else if ((keyEvent.key == Keyboard.Key.NUM5) || (keyEvent.key == Keyboard.Key.NUMPAD5))
 						{
-							System.out.println("SELECTED: 5");
+							//System.out.println("SELECTED: 5");
 							selected = 4;
 						}
-						else if(keyEvent.key == Keyboard.Key.NUM6)
+						else if ((keyEvent.key == Keyboard.Key.NUM6) || (keyEvent.key == Keyboard.Key.NUMPAD6))
 						{
-							System.out.println("SELECTED: 6");
+							//System.out.println("SELECTED: 6");
 							selected = 5;
 						}
-						else if(keyEvent.key == Keyboard.Key.NUM7)
+						else if ((keyEvent.key == Keyboard.Key.NUM7) || (keyEvent.key == Keyboard.Key.NUMPAD7))
 						{
-							System.out.println("SELECTED: 7");
+							//System.out.println("SELECTED: 7");
 							selected = 6;
 						}
-						else if(keyEvent.key == Keyboard.Key.NUM8)
+						else if ((keyEvent.key == Keyboard.Key.NUM8) || (keyEvent.key == Keyboard.Key.NUMPAD8))
 						{
-							System.out.println("SELECTED: 8");
+							//System.out.println("SELECTED: 8");
 							selected = 7;
 						}
 						break;
 					case CLOSED:
-						System.out.println("Close clicked");
+						//System.out.println("Close clicked");
 						window.close();
 						break;
 				}
@@ -288,20 +275,30 @@ class Puzzle3
 
 			if (window.isOpen())
 			{
+				// fill the window with black
+				window.clear(Color.BLACK);
+
+				// add all objects onto the window
+				for (int i = 0; i < 6; i++)
+				{
+					for (int j = 0; j < 6; j++)
+					{
+						window.draw(tiles[i][j].getTile());
+					}
+				}
+				window.draw(exit.getTile());
+
 				// add instructions
 				window.draw(text1);
 				window.draw(text2);
-				
-				
 
 				// check whether images are all in the right place
-				
-				
 				if (dictionary[0][1][0] == 5)
 					finished = true;
+
 				if (finished)
 				{
-					System.out.println("Well done, you completed the picture!");
+					System.out.println("Well done, you unblocked the sleigh!");
 					window.draw(text3);
 				}
 				
@@ -317,17 +314,10 @@ class Puzzle3
 					}
 					window.close();
 				}
-				
 			}
 		}
 		if (window.isOpen())
 			window.close();
-	}
-
-	public static void main (String args[ ])
-	{
-		Puzzle3 p = new Puzzle3( );
-		p.run( );
-		p = null;
+		return finished;
 	}
 }	
