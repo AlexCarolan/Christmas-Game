@@ -12,13 +12,11 @@ Christmas Room
 
 Platform Game
 1. add hazards (needed for kitchen)
-2. consider adding moving obstacles
-3. consider adding timer
+2. add more gaps to fall through in attic and kitchen - Val
+3. consider adding moving obstacles
+4. consider adding timer
 
 Puzzle Game
-1. Puzzle class needs to return true on successful completion (like platformGame) - 
-   needed for setting menu options correctly
-   Can't do this while class is static (while file contains main) Val
 
 Graphics - Leo
 1. images for traffic puzzle
