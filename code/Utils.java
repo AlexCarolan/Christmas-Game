@@ -89,25 +89,28 @@ public class Utils
 														{-250,500,250,400},	// left hand edge
 														{6500,0,PlatformGameWidth/2,PlatformGameHeight+1}},	// right hand edge
 														{ // gameLevel 2 - attic
-														{0,700,5400,100},	// base 1
-														{5500,700,1200,100},	// base 2
+														{0,700,1350,100},	// base 1
+														{1450,700,500,100},	// base a
+														{2050,700,400,100},	// base b
+														{2550,700,1900,100},	// base c
+														{4500,700,700,100},	// base d
+														{5300,700,1200,100},	// base 2
 														{1150,600,100,100},	//3
 														{1250,650,100,50},	//4
 														{1400,500,100,50},	//5
 														{1400,550,200,80},	//6
-														{1700,600,300,100},	//7
-														{1900,500,100,100},	//8
+														{1650,600,300,100},	//7
+														{1850,500,100,100},	//8
 														{2050,540,150,80},	//9
 														{2250,600,200,100},	//10
-														{2600,620,100,80},	//11
-														{2600,540,200,80},	//12
+														{2550,620,100,80},	//11
+														{2550,540,200,80},	//12
 														{3200,500,200,200},	//13
 														{3400,600,600,100},	//14
-														{4500,550,250,150},	//15
-														{4800,500,200,200},	//16
-														{5000,600,400,100},	//17
-														{5130,400,200,100},	//18
-														{5230,300,100,100},	//19
+														{4500,550,200,150},	//15
+														{4800,600,400,100},	//16
+														{4900,430,200,100},	//17
+														{5000,330,100,100},	//18
 														{-250,200,250,650},	// left hand edge
 														{6500,200,250,650}},	// right hand edge
 														{ // gameLevel 3
@@ -186,8 +189,12 @@ public class Utils
 														"images\\obstacles\\long-logpile.png",	//left hand edge
 														"images\\obstacles\\ForestOne.png"},	// right hand edge
 														{ // gameLevel 2
-														"images\\platform\\bricks.png",	//base1
-														"images\\platform\\bricks.png",	//base2
+														"images\\platform\\bricks.png",	//base 1
+														"images\\platform\\bricks.png",	//base a
+														"images\\platform\\bricks.png",	//base b
+														"images\\platform\\bricks.png",	//base c
+														"images\\platform\\bricks.png",	//base d
+														"images\\platform\\bricks.png",	//base 2
 														"images\\platform\\bricks.png",
 														"images\\platform\\bricks.png",
 														"images\\platform\\bricks.png",
@@ -204,9 +211,8 @@ public class Utils
 														"images\\platform\\bricks.png",
 														"images\\platform\\bricks.png",
 														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\obstacles\\Shelf_Single.png",	//20
-														"images\\obstacles\\Shelf_Single.png"},
+														"images\\obstacles\\Shelf_Single.png",	//left hand edge
+														"images\\obstacles\\Shelf_Single.png"},	// right hand edge
 														{ // gameLevel 3
 														"images\\platform\\LogLarge.png",	//base1
 														"images\\platform\\LogLarge.png",	//base2
@@ -284,6 +290,10 @@ public class Utils
 														false},	// right edge
 														{ // gameLevel 2
 														true,	// base1
+														true,	// basea
+														true,	// baseb
+														true,	// basec
+														true,	// based
 														true,	// base 2
 														false,
 														false,
@@ -295,7 +305,6 @@ public class Utils
 														false,
 														true,
 														true,
-														false,
 														false,
 														false,
 														false,
@@ -357,7 +366,7 @@ public class Utils
 														{3630,530,80,70},
 														{3710,510,100,95},
 														{3810,558,120,50},
-														{4100,480,260,220},	// this one
+														{4100,480,260,220},
 														{4540,485,105,65},
 														{5700,600,245,100},
 														{5950,600,200,105},
@@ -415,11 +424,11 @@ public class Utils
 														{220,535,15,15},
 														{6400,520,15,15}},
 														{ // gameLevel 2 attic
-														{2700,665,37,35},	// key
+														{2650,665,37,35},	// key
 														{1510,535,15,15},
-														{1670,685,15,15},
+														{1620,685,15,15},
 														{2120,685,15,15},
-														{5180,385,15,15}},
+														{4980,415,15,15}},
 														{ // gameLevel 3 kitchen
 														{3450,665,37,35},	// key
 														{1800,685,15,15},
