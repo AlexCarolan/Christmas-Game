@@ -10,7 +10,7 @@ class Level
 	 */
 	public Level()
 	{
-		level = 3; //0;  EDITED FOR SPEED OF PLATFORM TESTING
+		level = 0;
 	}
 
 	/**
