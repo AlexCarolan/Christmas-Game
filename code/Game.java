@@ -77,12 +77,12 @@ class Game
 		int numCollectibles = 16;
 		int numCollectablesPerLevel = 4;
 		Collectible[][] collectible = new Collectible[4][4];
-		for(int gameLevel = 0; gameLevel < 4; gameLevel++)
+		for (int gameLevel = 0; gameLevel < Utils.MaxLevel; gameLevel++)
 		{
 			for (int i = 0; i < numCollectablesPerLevel; i++)
 				collectible[gameLevel][i] = new Collectible((i*100)+gameLevel*25,740,
 												Utils.CollectiblePositions[gameLevel][i][2],Utils.CollectiblePositions[gameLevel][i][3],
-												Utils.CollectibleImages[gameLevel][i],Utils.CollectibleKeys[gameLevel][i],playerScore);
+												Utils.CollectibleImages[gameLevel][i],playerScore);
 		}
 		
 

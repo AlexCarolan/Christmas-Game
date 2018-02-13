@@ -73,10 +73,7 @@ class PlatformGame
 		for (int i = 0; i < numCollectibles; i++)
 			collectible[i] = new Collectible(Utils.CollectiblePositions[gameLevel][i][0],Utils.CollectiblePositions[gameLevel][i][1],
 											Utils.CollectiblePositions[gameLevel][i][2],Utils.CollectiblePositions[gameLevel][i][3],
-											Utils.CollectibleImages[gameLevel][i],Utils.CollectibleKeys[gameLevel][i],playerScore);
-
-		int numKeysToCollect = Utils.numKeys[gameLevel];
-		int numKeysCollected = 0;
+											Utils.CollectibleImages[gameLevel][i],playerScore);
 
 		Platform door = new Platform(Utils.DoorPosition[gameLevel][0],Utils.DoorPosition[gameLevel][1],
 										Utils.DoorPosition[gameLevel][2],Utils.DoorPosition[gameLevel][3],
@@ -90,9 +87,8 @@ class PlatformGame
 		//AnimatedPlayer sleighRight = new AnimatedPlayer(player, Utils.SleighRightPath, 2, 100);
 		AnimatedCollectible key = new AnimatedCollectible(Utils.KeyPath, 4, 250);
 
-		// TODO - fix this line, so it animates whichever collectible is the key - there could be more than one!!
-		collectible[1].setAnimation(key);		// HARD CODING WHICH COLLECTIBLE IS THE KEY !!!!  YUK  !!!!
-												// THAT EXPLAINS WHY THE KEY HAS TO BE THE 2nd COLLECTIBLE in Utils !!!!
+		// first collectible is ALWAYS the key
+		collectible[0].setAnimation(key);
 		
 		//sleighRight.start();
 		//if (gameLevel != Utils.SleighGameLevel)
@@ -439,19 +435,17 @@ class PlatformGame
 										collectible[i].getXSize(),collectible[i].getYSize()))
 					{
 						collectible[i].collect();
-						if (collectible[i].isKey())
+						if (i == 0)				// key is always first collectible
+						{
 							keyCollected = true;
-							if (++numKeysCollected >= numKeysToCollect)
-							{
-								door.setImage(Utils.OpenDoorImage);
-								System.out.println("Collected the key(s) to the exit door");
-							}
+							door.setImage(Utils.OpenDoorImage);
+							System.out.println("Collected the key to the exit door");
+						}
 					}
 			}
 
 			if (player.touching(door.getXPosition(),door.getYPosition(),
-								door.getXSize(),door.getYSize()) &&
-				numKeysCollected >= numKeysToCollect)
+								door.getXSize(),door.getYSize()) && keyCollected)
 				finished = true;
 
 			// if player has fallen off the bottom of the window, put all the items back to the start
@@ -495,7 +489,7 @@ class PlatformGame
 				lastNumCollected = itemsCollected;
 			}
 		}
-		for(int i = 0; i < 5; i++)
+		for (int i = 0; i < 5; i++)
 		{
 			System.out.println(Utils.isCollected[gameLevel][i]);
 		}

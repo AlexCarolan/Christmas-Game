@@ -4,7 +4,6 @@
 class Collectible extends Platform
 {
 	private boolean itemCollected;
-	private boolean keyItem;
 	private static Score playerScore;
 
 	/**
@@ -13,12 +12,12 @@ class Collectible extends Platform
 	 * @param height - the height of the collectible
 	 * @param xPosition - the left hand side of the collectible
 	 * @param yPosition - the top of the collectible
+	 * @param filename - the file for the image
 	 * @param score - the score class tracking the players score
 	 */
-	public Collectible(int width, int height, int xPosition, int yPosition, String filename, boolean key, Score score)
+	public Collectible(int width, int height, int xPosition, int yPosition, String filename, Score score)
 	{
 		super(width, height, xPosition, yPosition, filename, false);
-		keyItem = key;
 		itemCollected = false;
 		playerScore = score;
 	}
@@ -40,15 +39,6 @@ class Collectible extends Platform
 		itemCollected = true;
 		playerScore.increaseScore(100);
 		
-	}
-	
-	/**
-	 * isKey - returns true if item is a key (to the door)
-	 * @return boolean, true if item is a key
-	 */
-	public boolean isKey()
-	{
-		return keyItem;
 	}
 }
  
