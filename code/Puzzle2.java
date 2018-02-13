@@ -12,8 +12,9 @@ class Puzzle2
 {
 	/**
 	 * run - handle display and movement of the platform game for this level
+	 * @return boolean - success indicator (true if puzzle completed)
 	 */
-	public static void run () 
+	public boolean run()
 	{
 		// create the window
 		PuzzleTile background = new PuzzleTile(0,0,"images\\knotPuzzle\\tree.png", 520, 601);
@@ -141,32 +142,32 @@ class Puzzle2
 						KeyEvent keyEvent = event.asKeyEvent();
 						if ((keyEvent.key == Keyboard.Key.LEFT) || (keyEvent.key == Keyboard.Key.A))
 						{
-							for(int i = 0; i < 5; i ++)
+							for (int i = 0; i < 5; i ++)
 							{
 								//System.out.println(Strings[selectPosition][i].getX());
 								TempHolder[i] = Strings[selectPosition][i];
 							}
 							Strings[selectPosition][0] = new PuzzleTile(TempHolder[0].getX(),TempHolder[0].getY(), TempHolder[4].getPicture(), 35, 35);
-							for(int i = 1; i < 5; i ++)
+							for (int i = 1; i < 5; i ++)
 							{
 								Strings[selectPosition][i] = new PuzzleTile(TempHolder[i].getX(),TempHolder[i].getY(), TempHolder[i-1].getPicture(), 35, 35);
 							}
 						}
 						else if ((keyEvent.key == Keyboard.Key.RIGHT) || (keyEvent.key == Keyboard.Key.D))
 						{
-							for(int i = 0; i < 5; i ++)
+							for (int i = 0; i < 5; i ++)
 							{
 								TempHolder[i] = Strings[selectPosition][i];
 							}
 							Strings[selectPosition][4] = new PuzzleTile(TempHolder[4].getX(),TempHolder[4].getY(), TempHolder[0].getPicture(), 35, 35);
-							for(int i = 0; i < 4; i ++)
+							for (int i = 0; i < 4; i ++)
 							{
 								Strings[selectPosition][i] = new PuzzleTile(TempHolder[i].getX(),TempHolder[i].getY(), TempHolder[i+1].getPicture(), 35, 35);
 							}
 						}
 						else if ((keyEvent.key == Keyboard.Key.UP) || (keyEvent.key == Keyboard.Key.W))
 						{
-							if(selectPosition > 0)
+							if (selectPosition > 0)
 							{
 								selectPosition--;
 								selectTool = new PuzzleTile(selectPositions[selectPosition][0],selectPositions[selectPosition][1],"images\\knotPuzzle\\select.png", 35, 35);
@@ -174,7 +175,7 @@ class Puzzle2
 						}
 						else if ((keyEvent.key == Keyboard.Key.DOWN) || (keyEvent.key == Keyboard.Key.S))
 						{
-							if(selectPosition < 3)
+							if (selectPosition < 3)
 							{
 								selectPosition++;
 								selectTool = new PuzzleTile(selectPositions[selectPosition][0],selectPositions[selectPosition][1],"images\\knotPuzzle\\select.png", 35, 35);
@@ -218,7 +219,7 @@ class Puzzle2
 
 				if (finished)
 				{
-					System.out.println("Well done, you completed the picture!");
+					System.out.println("Well done, you untangled the lights!");
 					window.draw(text3);
 				}
 
@@ -238,11 +239,6 @@ class Puzzle2
 		}
 		if (window.isOpen())
 			window.close();
+		return finished;
 	}
-
-	//public static void main (String args[ ]) 
-	//{
-	//	Puzzle2 p = new Puzzle2( );
-	//	p.run( );
-	//}
 }	
