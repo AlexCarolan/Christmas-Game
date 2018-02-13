@@ -71,6 +71,20 @@ class Game
 		textPlatform4.setPosition(100, Utils.PlatformGameHeight-100);
 		Text textPuzzle4 = new Text("8. Play Level 4 Puzzle Game", sansRegular, 18);
 		textPuzzle4.setPosition(100, Utils.PlatformGameHeight-80);
+		
+		//show collectables:
+		Score playerScore = new Score(0);
+		int numCollectibles = 16;
+		int numCollectablesPerLevel = 4;
+		Collectible[][] collectible = new Collectible[4][4];
+		for(int gameLevel = 0; gameLevel < 4; gameLevel++)
+		{
+			for (int i = 0; i < numCollectablesPerLevel; i++)
+				collectible[gameLevel][i] = new Collectible((i*100)+gameLevel*25,740,
+												Utils.CollectiblePositions[gameLevel][i][2],Utils.CollectiblePositions[gameLevel][i][3],
+												Utils.CollectibleImages[gameLevel][i],Utils.CollectibleKeys[gameLevel][i],playerScore);
+		}
+		
 
 		while (window.isOpen())
 		{
@@ -82,6 +96,19 @@ class Game
 			window.draw(textIntro2);
 			window.draw(textIntro3);
 			window.draw(textPlatform1);
+			for(int i = 0; i < numCollectablesPerLevel; i++)
+			{
+				for(int j = 0; j < numCollectablesPerLevel; j++)
+				{
+					//System.out.println(Utils.isCollected[i][j]);
+					if(Utils.isCollected[i][j] == true)
+					{
+						//System.out.println("output");
+						window.draw(collectible[i][j].getPlatform());
+					}
+				}
+				
+			}
 			if (gameLevel > 0)
 			{
 				window.draw(textPuzzle1);

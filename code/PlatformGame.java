@@ -73,8 +73,10 @@ class PlatformGame
 		for (int i = 0; i < numCollectibles; i++)
 			collectible[i] = new Collectible(Utils.CollectiblePositions[gameLevel][i][0],Utils.CollectiblePositions[gameLevel][i][1],
 											Utils.CollectiblePositions[gameLevel][i][2],Utils.CollectiblePositions[gameLevel][i][3],
-											Utils.CollectibleImages[gameLevel][i],playerScore);
-		boolean keyCollected = false;
+											Utils.CollectibleImages[gameLevel][i],Utils.CollectibleKeys[gameLevel][i],playerScore);
+
+		int numKeysToCollect = Utils.numKeys[gameLevel];
+		int numKeysCollected = 0;
 
 		Platform door = new Platform(Utils.DoorPosition[gameLevel][0],Utils.DoorPosition[gameLevel][1],
 										Utils.DoorPosition[gameLevel][2],Utils.DoorPosition[gameLevel][3],
@@ -88,8 +90,9 @@ class PlatformGame
 		//AnimatedPlayer sleighRight = new AnimatedPlayer(player, Utils.SleighRightPath, 2, 100);
 		AnimatedCollectible key = new AnimatedCollectible(Utils.KeyPath, 4, 250);
 
-		// The first collectible is the key, so animate it
-		collectible[0].setAnimation(key);
+		// TODO - fix this line, so it animates whichever collectible is the key - there could be more than one!!
+		collectible[1].setAnimation(key);		// HARD CODING WHICH COLLECTIBLE IS THE KEY !!!!  YUK  !!!!
+												// THAT EXPLAINS WHY THE KEY HAS TO BE THE 2nd COLLECTIBLE in Utils !!!!
 		
 		//sleighRight.start();
 		//if (gameLevel != Utils.SleighGameLevel)
@@ -108,11 +111,11 @@ class PlatformGame
 			ex.printStackTrace( );
 		}
 		
-		// add the score tracker to the UI
+		// add the score tracker
 		Text scoreText = new Text("Score:0", scoreFont, 18);
 		scoreText.setPosition(10, 10);
 		
-		// create and add life counter to the UI
+		// create and add life counter
 		Texture heart = new Texture();
 		try {
 		heart.loadFromFile(Paths.get(Utils.HeartPath));
@@ -127,23 +130,9 @@ class PlatformGame
 			lives[i].setOrigin(0,0);
 			lives[i].setPosition(13 + (i*40), 35);
 		}
-		
-		// Create and add key tracker to the UI
-		Texture keySprite = new Texture();
-		
-		try {
-		keySprite.loadFromFile(Paths.get(Utils.StaticKeyPath));
-		} catch(IOException ex) {
-			System.out.println(ex);
-		}
 
-		Sprite invKey = new Sprite(keySprite);
-		invKey.setOrigin(0,0);
-		invKey.setPosition(13, 65);
-		
-		
 		boolean finished = false;
-		while (window.isOpen() && !finished && (player.getLives() > 0))
+		while (window.isOpen() && !finished)
 		{
 			// fill the window with black
 			window.clear(Color.BLACK);
@@ -156,10 +145,6 @@ class PlatformGame
 			// add the life counter to the window
 			for (int i = 0; i < player.getLives(); i++)
 				window.draw(lives[i]);
-			
-			// add the key collected display
-			if (keyCollected == true)
-				window.draw(invKey);
 				
 			// add all objects onto the window
 			for (int i = 0; i < numPlatforms; i++)
@@ -433,15 +418,18 @@ class PlatformGame
 										collectible[i].getXSize(),collectible[i].getYSize()))
 					{
 						collectible[i].collect();
-						if (i == 0)
-							keyCollected = true;
-							door.setImage(Utils.OpenDoorImage);
-							System.out.println("Collected the key to the exit door");
+						if (collectible[i].isKey())
+							if (++numKeysCollected >= numKeysToCollect)
+							{
+								door.setImage(Utils.OpenDoorImage);
+								System.out.println("Collected the key(s) to the exit door");
+							}
 					}
 			}
 
 			if (player.touching(door.getXPosition(),door.getYPosition(),
-								door.getXSize(),door.getYSize()) && keyCollected)
+								door.getXSize(),door.getYSize()) &&
+				numKeysCollected >= numKeysToCollect)
 				finished = true;
 
 			// if player has fallen off the bottom of the window, put all the items back to the start
@@ -466,8 +454,7 @@ class PlatformGame
 			try {
 				Thread.sleep(1); }
 			catch (InterruptedException e) {
-				System.out.println("My sleep was interrupted");
-			}
+				System.out.println("My sleep was interrupted"); }
 
 			// if any items were collected this time, then list all the items collected
 			int itemsCollected = 0;
@@ -478,10 +465,17 @@ class PlatformGame
 			{
 				for (int i = 0; i < numCollectibles; i++)
 					if (collectible[i].collected())
+					{
+						Utils.isCollected[gameLevel][i] = true;
 						System.out.println("Collected item " + i + ": " + Utils.CollectibleImages[gameLevel][i]);
+					}
 				System.out.println();
 				lastNumCollected = itemsCollected;
 			}
+		}
+		for(int i = 0; i < 5; i++)
+		{
+			System.out.println(Utils.isCollected[gameLevel][i]);
 		}
 		idleRight.kill();
 		idleLeft.kill();
@@ -490,11 +484,7 @@ class PlatformGame
 		//sleighRight.kill();
 		key.kill();
 		window.close();
-		
-		if (player.getLives() <= 0)
-				return false;	// if player died returns false, i.e. not finished
-		else
-			return finished;	// returns true if platform completed successfully
-								// if window closed without finishing, returns false
+		return finished;	// returns true if platform completed successfully
+							// if window closed without finishing, returns false
 	}
 }
