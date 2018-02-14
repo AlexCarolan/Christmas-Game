@@ -74,9 +74,9 @@ class Game
 		
 		//show collectibles:
 		Score playerScore = new Score(0);
-		int numCollectibles = 16;
-		int numCollectiblesPerLevel = 4;
-		Collectible[][] collectible = new Collectible[4][4];
+		int numCollectiblesPerLevel = Utils.CollectibleImages[0].length;
+		//int numCollectibles = numCollectiblesPerLevel * Utils.MaxLevel;
+		Collectible[][] collectible = new Collectible[Utils.MaxLevel][numCollectiblesPerLevel];
 		for (int gameLevel = 0; gameLevel < Utils.MaxLevel; gameLevel++)
 		{
 			for (int i = 0; i < numCollectiblesPerLevel; i++)
@@ -116,7 +116,7 @@ class Game
 				window.draw(textPuzzle4);
 			}
 
-			for (int i = 0; i < numCollectiblesPerLevel; i++)
+			for (int i = 0; i < Utils.MaxLevel; i++)
 			{
 				for (int j = 0; j < numCollectiblesPerLevel; j++)
 				{
