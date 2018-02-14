@@ -455,9 +455,9 @@ public class Utils
 	// NOTE: key MUST be first collectible
 	public static final String CollectibleImages[][] = {{ // gameLevel 1
 														"Sprites\\Key\\KeyMain.png",
-														"images\\collectibles\\GreenBauble.png",
-														"images\\collectibles\\OrangeBauble.png",
 														"images\\collectibles\\BlueBauble.png",
+														"images\\collectibles\\OrangeBauble.png",
+														"images\\collectibles\\GreenBauble.png",
 														"images\\collectibles\\RedBauble.png"},
 														{ // gameLevel 2
 														"Sprites\\Key\\KeyMain.png",
