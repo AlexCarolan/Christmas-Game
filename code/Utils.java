@@ -143,10 +143,13 @@ public class Utils
 														{6500,510,PlatformGameWidth/2,PlatformGameHeight-510}},	// right hand edge
 														{ // gameLevel 4
 														{0,PlatformGameHeight - 25,PlatformGameWidth,25},	// base
-														{PlatformGameWidth+150,PlatformGameHeight - 50,500,50},
-														{200,550,100,25},
-														{0,0,2,PlatformGameHeight},		// left hand edge
-														{6500,0,2,PlatformGameHeight}}	// right hand edge
+														{PlatformGameWidth+150,PlatformGameHeight - 50,500,50}, // base 2
+														{-10,495,260,10},	// 3
+														{150,490,3,10},		// 4
+														{650,325,550,10},	// 5
+														{950,320,3,10},		// 6
+														{0-PlatformGameWidth/2,0,PlatformGameWidth/2,PlatformGameHeight-1},		// left hand edge
+														{6500,0,PlatformGameWidth/2,PlatformGameHeight+1}}	// right hand edge
 													};
 	// define image for each platform on each level, in same order as PlatformPositions array
 	public static final String PlatformImages[][] = {{ // gameLevel 1
@@ -244,9 +247,12 @@ public class Utils
 														{ // gameLevel 4
 														"images\\platform\\Rock_Platform.png",
 														"images\\platform\\Rock_Platform.png",
-														"images\\platform\\Rock_Platform.png",
-														"images\\platform\\Rock_Platform.png",
-														"images\\platform\\Rock_Platform.png"}
+														"images\\platform\\Roof_Line.png",
+														"images\\platform\\Vertical_Log.png",
+														"images\\platform\\Roof_Line.png",
+														"images\\platform\\Vertical_Log.png",
+														"images\\platform\\Cabin_Large.png",
+														"images\\obstacles\\ForestOne.png"}
 													};
 	// specify whether platform is a ceiling (can't be jumped up through)
 	public static final boolean PlatformCeilings[][] = {{ // gameLevel 1
@@ -344,6 +350,9 @@ public class Utils
 														{ // gameLevel 4
 														true,
 														true,
+														false,
+														true,
+														false,
 														true,
 														true,
 														true}
@@ -379,14 +388,14 @@ public class Utils
 														{5835,590,50,50},
 														{5890,660,50,50}},
 														{ // gameLevel 4
-														{250,520,40,40},
+														{2250,670,40,40},
 														{800,PlatformGameHeight - 55,35,35}}
 													};
 	// define image for each obstacle on each level, in same order as ObstaclePositions array
 	public static final String ObstacleImages[][] = {{ // gameLevel 1
 														"images\\obstacles\\big-log.png",
 														"images\\obstacles\\big-log.png",
-														"images\\obstacles\\logs1.png"},
+														"images\\obstacles\\rock.png"},
 														{ // gameLevel 2
 														"images\\obstacles\\Box_Brown.png",
 														"images\\obstacles\\Box_Tan.png",
@@ -437,18 +446,18 @@ public class Utils
 														{4850,485,15,15}},
 														{ // gameLevel 4
 														{PlatformGameWidth+200,PlatformGameHeight - 80,37,35}, // key
-														{220,535,15,15},
-														{220,535,15,15},
-														{220,535,15,15},
-														{220,535,15,15}}
+														{130,480,15,15},
+														{800,310,15,15},
+														{1220,535,15,15},
+														{1220,535,15,15}}
 														};
 	// define image for each collectible on each level, in same order as CollectiblePositions array
 	// NOTE: key MUST be first collectible
 	public static final String CollectibleImages[][] = {{ // gameLevel 1
 														"Sprites\\Key\\KeyMain.png",
-														"images\\collectibles\\BlueBauble.png",
-														"images\\collectibles\\OrangeBauble.png",
 														"images\\collectibles\\GreenBauble.png",
+														"images\\collectibles\\OrangeBauble.png",
+														"images\\collectibles\\BlueBauble.png",
 														"images\\collectibles\\RedBauble.png"},
 														{ // gameLevel 2
 														"Sprites\\Key\\KeyMain.png",

@@ -301,9 +301,12 @@ class PlatformGame
 					if (player.touchingLeft(platform[i].getXPosition()+moveX/2,platform[i].getYPosition(),
 							platform[i].getXSize()-moveX,platform[i].getYSize()))
 					{
-						//System.out.println("touchingLeft platform " + i);
-						touching = true;
-						break;
+						if ((gameLevel != Utils.SleighGameLevel) || platform[i].isCeiling())
+						{
+							//System.out.println("touchingLeft platform " + i);
+							touching = true;
+							break;
+						}
 					}
 				if (!touching)
 				{
@@ -324,9 +327,12 @@ class PlatformGame
 					if (player.touchingRight(platform[i].getXPosition()-moveX/2,platform[i].getYPosition(),
 							platform[i].getXSize()+moveX,platform[i].getYSize()))
 					{
-						//System.out.println("touchingRight platform " + i);
-						touching = true;
-						break;
+						if ((gameLevel != Utils.SleighGameLevel) || platform[i].isCeiling())
+						{
+							//System.out.println("touchingRight platform " + i);
+							touching = true;
+							break;
+						}
 					}
 				if (!touching)
 				{
