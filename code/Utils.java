@@ -419,9 +419,9 @@ public class Utils
 	// NOTE: key MUST be first collectible
 	public static final int CollectiblePositions[][][] = {{ // gameLevel 1
 														{2400,400,37,35},	// key
-														{1630,400,15,15},
 														{800,500,15,15},
-														{220,535,15,15},
+														{1630,400,15,15},
+														{2500,650,15,15},
 														{6400,520,15,15}},
 														{ // gameLevel 2 attic
 														{2650,665,37,35},	// key
@@ -446,8 +446,8 @@ public class Utils
 	// NOTE: key MUST be first collectible
 	public static final String CollectibleImages[][] = {{ // gameLevel 1
 														"Sprites\\Key\\KeyMain.png",
-														"images\\collectibles\\OrangeBauble.png",
 														"images\\collectibles\\BlueBauble.png",
+														"images\\collectibles\\OrangeBauble.png",
 														"images\\collectibles\\GreenBauble.png",
 														"images\\collectibles\\RedBauble.png"},
 														{ // gameLevel 2
