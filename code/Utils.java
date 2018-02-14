@@ -89,29 +89,29 @@ public class Utils
 														{-250,500,250,400},	// left hand edge
 														{6500,0,PlatformGameWidth/2,PlatformGameHeight+1}},	// right hand edge
 														{ // gameLevel 2 - attic
-														{0,700,1350,100},	// base 1
-														{1450,700,500,100},	// base a
-														{2050,700,400,100},	// base b
-														{2550,700,1900,100},	// base c
-														{4500,700,700,100},	// base d
-														{5300,700,1200,100},	// base 2
-														{1150,600,100,100},	//3
-														{1250,650,100,50},	//4
-														{1400,500,100,50},	//5
-														{1400,550,200,80},	//6
-														{1650,600,300,100},	//7
-														{1850,500,100,100},	//8
-														{2050,540,150,80},	//9
-														{2250,600,200,100},	//10
-														{2550,620,100,80},	//11
-														{2550,540,200,80},	//12
-														{3200,500,200,200},	//13
-														{3400,600,600,100},	//14
-														{4500,550,200,150},	//15
-														{4800,600,400,100},	//16
-														{4900,430,200,100},	//17
-														{5000,330,100,100},	//18
-														{-250,200,250,650},	// left hand edge
+														{0,700,1350,100},		// base 1
+														{1450,700,500,100},		// base 2
+														{2050,700,400,100},		// base 3
+														{2550,700,1900,100},	// base 4
+														{4500,700,700,100},		// base 5
+														{5300,700,1200,100},	// base 6
+														{1150,600,100,100},	//7
+														{1250,650,100,50},	//8
+														{1400,500,100,50},	//9
+														{1400,550,200,80},	//10
+														{1650,600,300,100},	//11
+														{1850,500,100,100},	//12
+														{2050,540,150,80},	//13
+														{2250,600,200,100},	//14
+														{2550,620,100,80},	//15
+														{2550,540,200,80},	//16
+														{3200,500,200,200},	//17
+														{3400,600,600,100},	//18
+														{4500,550,200,150},	//19
+														{4800,600,400,100},	//20
+														{4900,430,200,100},	//21
+														{5000,330,100,100},	//22
+														{-250,200,250,650},		// left hand edge
 														{6500,200,250,650}},	// right hand edge
 														{ // gameLevel 3
 														{0,700,3950,50},	// base 1
@@ -119,13 +119,13 @@ public class Utils
 														{5300,700,1200,50},	// base 3
 														{600,550,200,15},	//4
 														{700,450,50,15},	//5
-														{900,600,200,100},	//6
-														{1150,500,150,15},	//7
-														{1400,500,150,15},	//8
+														{850,500,250,200},	//6
+														{1150,400,150,15},	//7
+														{1350,500,150,15},	//8
 														{1550,600,150,100},	//9
-														{1900,650,50,50},	//10
-														{1950,600,150,100},	//11
-														{2150,500,200,15},	//12
+														{1850,650,50,50},	//10
+														{1900,500,300,200},	//11
+														{2250,400,100,15},	//12
 														{2350,650,50,50},	//13
 														{2400,600,750,100},	//14
 														{2550,500,150,100},	//15
@@ -138,7 +138,7 @@ public class Utils
 														{3900,500,150,15},	//22
 														{4100,600,150,15},	//23
 														{4300,500,200,15},	//24
-														{4650,650,300,50},	//25
+														{4650,500,400,200},	//25
 														{20-PlatformGameWidth/2,510,PlatformGameWidth/2+20,PlatformGameHeight-510},	// left hand edge
 														{6500,510,PlatformGameWidth/2,PlatformGameHeight-510}},	// right hand edge
 														{ // gameLevel 4
@@ -190,15 +190,11 @@ public class Utils
 														"images\\obstacles\\ForestOne.png"},	// right hand edge
 														{ // gameLevel 2
 														"images\\platform\\bricks.png",	//base 1
-														"images\\platform\\bricks.png",	//base a
-														"images\\platform\\bricks.png",	//base b
-														"images\\platform\\bricks.png",	//base c
-														"images\\platform\\bricks.png",	//base d
 														"images\\platform\\bricks.png",	//base 2
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
-														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",	//base 3
+														"images\\platform\\bricks.png",	//base 4
+														"images\\platform\\bricks.png",	//base 5
+														"images\\platform\\bricks.png",	//base 6
 														"images\\platform\\bricks.png",
 														"images\\platform\\bricks.png",
 														"images\\platform\\bricks.png",
@@ -209,6 +205,10 @@ public class Utils
 														"images\\platform\\bricks.png",
 														"images\\platform\\bricks.png",
 														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",
+														"images\\platform\\bricks.png",	//20
 														"images\\platform\\bricks.png",
 														"images\\platform\\bricks.png",
 														"images\\obstacles\\Shelf_Single.png",	//left hand edge
@@ -289,26 +289,26 @@ public class Utils
 														false,	// left edge
 														false},	// right edge
 														{ // gameLevel 2
-														true,	// base1
-														true,	// basea
-														true,	// baseb
-														true,	// basec
-														true,	// based
+														true,	// base 1
 														true,	// base 2
+														true,	// base 3
+														true,	// base 4
+														true,	// base 5
+														true,	// base 6
 														false,
+														false,
+														true,
+														true,	// 10
+														false,
+														false,
+														true,
 														false,
 														true,
 														true,
 														false,
 														false,
-														true,
 														false,
-														true,
-														true,
-														false,
-														false,
-														false,
-														false,
+														false,	// 20
 														true,
 														true,
 														false,	// left edge
@@ -434,7 +434,7 @@ public class Utils
 														{1800,685,15,15},
 														{2900,585,15,15},
 														{4460,685,15,15},
-														{4850,635,15,15}},
+														{4850,485,15,15}},
 														{ // gameLevel 4
 														{PlatformGameWidth+200,PlatformGameHeight - 80,37,35}, // key
 														{220,535,15,15},
@@ -505,7 +505,7 @@ public class Utils
 												 // gameLevel 2
 												{5950,265,48,66},
 												 // gameLevel 3
-												{6300,600,48,66},
+												{6300,450,48,66},
 												 // gameLevel 4
 												{6300,300,48,66}
 												};
