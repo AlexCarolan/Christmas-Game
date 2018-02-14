@@ -76,14 +76,15 @@ class Game
 		Score playerScore = new Score(0);
 		int numCollectiblesPerLevel = Utils.CollectibleImages[0].length;
 		//int numCollectibles = numCollectiblesPerLevel * Utils.MaxLevel;
+		int yDisplayOffset[] = {40,110,155,185,215};
+		int xDisplayOffset[] = {585,620,670,695};
 		Collectible[][] collectible = new Collectible[Utils.MaxLevel][numCollectiblesPerLevel];
 		for (int gameLevel = 0; gameLevel < Utils.MaxLevel; gameLevel++)
-		{
 			for (int i = 0; i < numCollectiblesPerLevel; i++)
-				collectible[gameLevel][i] = new Collectible((i*100)+gameLevel*25,740,
+				//collectible[gameLevel][i] = new Collectible((i*150)+gameLevel*30,720,
+				collectible[gameLevel][i] = new Collectible(xDisplayOffset[gameLevel],yDisplayOffset[i],
 												Utils.CollectiblePositions[gameLevel][i][2],Utils.CollectiblePositions[gameLevel][i][3],
 												Utils.CollectibleImages[gameLevel][i],playerScore);
-		}
 		
 
 		while (window.isOpen())
