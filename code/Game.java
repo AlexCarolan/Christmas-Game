@@ -120,8 +120,7 @@ class Game
 			{
 				for (int j = 0; j < numCollectiblesPerLevel; j++)
 				{
-					//System.out.println(Utils.isCollected[i][j]);
-					if (Utils.isCollected[i][j] == true)
+					if (collectible[i][j].collected())
 					{
 						//System.out.println("output");
 						window.draw(collectible[i][j].getPlatform());
@@ -138,7 +137,7 @@ class Game
 			if (Keyboard.isKeyPressed(Keyboard.Key.NUM1) || Keyboard.isKeyPressed(Keyboard.Key.NUMPAD1))
 			{
 				PlatformGame platGame = new PlatformGame();
-				if ((platGame.run(0) == true) && (level.getLevel() == 0))
+				if ((platGame.run(0, collectible[0]) == true) && (level.getLevel() == 0))
 				{
 					level.incrementLevel();
 					Puzzle0 puzzle = new Puzzle0();
@@ -156,7 +155,7 @@ class Game
 			else if ((Keyboard.isKeyPressed(Keyboard.Key.NUM3) || Keyboard.isKeyPressed(Keyboard.Key.NUMPAD3)) && level.getLevel() > 0)
 			{
 				PlatformGame platGame = new PlatformGame();
-				if (platGame.run(1) && (level.getLevel() == 1))
+				if (platGame.run(1, collectible[1]) && (level.getLevel() == 1))
 				{
 					level.incrementLevel();
 					Puzzle1 puzzle = new Puzzle1();
@@ -174,7 +173,7 @@ class Game
 			else if ((Keyboard.isKeyPressed(Keyboard.Key.NUM5) || Keyboard.isKeyPressed(Keyboard.Key.NUMPAD5)) && level.getLevel() > 1)
 			{
 				PlatformGame platGame = new PlatformGame();
-				if (platGame.run(2) && (level.getLevel() == 2))
+				if (platGame.run(2, collectible[2]) && (level.getLevel() == 2))
 				{
 					level.incrementLevel();
 					Puzzle2 puzzle = new Puzzle2();
@@ -192,7 +191,7 @@ class Game
 			else if ((Keyboard.isKeyPressed(Keyboard.Key.NUM7)|| Keyboard.isKeyPressed(Keyboard.Key.NUMPAD7)) && level.getLevel() > 2)
 			{
 				PlatformGame platGame = new PlatformGame();
-				if (platGame.run(3) && (level.getLevel() == 3))
+				if (platGame.run(3, collectible[3]) && (level.getLevel() == 3))
 				{
 					level.incrementLevel();
 					Puzzle3 puzzle = new Puzzle3();

@@ -479,33 +479,6 @@ public class Utils
 														"images\\collectibles\\OrangeBauble.png"}
 													};
 
-	// define whether each collectible on each level has been collected or not.
-	public static final boolean isCollected[][] = {{ // gameLevel 1
-														false,
-														false,
-														false,
-														false,
-														false},
-														{ // gameLevel 2
-														false,
-														false,
-														false,
-														false,
-														false},
-														{ // gameLevel 3
-														false,
-														false,
-														false,
-														false,
-														false},
-														{ // gameLevel 4
-														false,
-														false,
-														false,
-														false,
-														false}
-													};
-
 	// define width, height, xPosition, yPosition for the door for each level
 	// to access this array: first index is level, 
 	// second index is xPosition, yPosition, width, height of the door
