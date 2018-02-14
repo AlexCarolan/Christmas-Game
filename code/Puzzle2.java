@@ -18,17 +18,17 @@ class Puzzle2
 	{
 		// create the window
 		PuzzleTile background = new PuzzleTile(0,0,"images\\knotPuzzle\\tree.png", 520, 601);
-		PuzzleTile selectTool = new PuzzleTile(380,140,"images\\knotPuzzle\\select.png", 35, 35);
+		PuzzleTile selectTool = new PuzzleTile(380,80,"images\\knotPuzzle\\select.png", 35, 35);
 		int selectPosition = 0;
 		int[][] selectPositions = new int[4][2];
 		selectPositions[0][0] = 380;
-		selectPositions[0][1] = 140;
-		selectPositions[1][0] = 100;
-		selectPositions[1][1] = 205;
-		selectPositions[2][0] = 455;
-		selectPositions[2][1] = 295;
-		selectPositions[3][0] = 25;
-		selectPositions[3][1] = 360;
+		selectPositions[0][1] = 80;
+		selectPositions[1][0] = 80;
+		selectPositions[1][1] = 180;
+		selectPositions[2][0] = 410;
+		selectPositions[2][1] = 290;
+		selectPositions[3][0] = 45;
+		selectPositions[3][1] = 365;
 		int puzzleHeight = 601;
 
 		RenderWindow window = new RenderWindow( );
@@ -43,32 +43,32 @@ class Puzzle2
 		PuzzleTile[][] Strings = new PuzzleTile[4][5];
 		PuzzleTile[][] endStrings = new PuzzleTile[4][5];
 		PuzzleTile[] TempHolder = new PuzzleTile[5];
-		PuzzleTile ConstantBulb = new PuzzleTile(302,161,"images\\knotPuzzle\\pinkB.png", 35, 35);
+		PuzzleTile ConstantBulb = new PuzzleTile(305,87,"images\\knotPuzzle\\pinkB.png", 35, 35);
 
 		// strings at start of puzzle game
-		Strings[0][0] = new PuzzleTile(135,213,"images\\knotPuzzle\\orangeB.png", 35, 35);
-		Strings[0][1] = new PuzzleTile(185,210,"images\\knotPuzzle\\purpleB.png", 35, 35);
-		Strings[0][2] = new PuzzleTile(230,195,"images\\knotPuzzle\\pinkB.png", 35, 35);
-		Strings[0][3] = new PuzzleTile(270,185,"images\\knotPuzzle\\silverB.png", 35, 35);
-		Strings[0][4] = new PuzzleTile(302,161,"images\\knotPuzzle\\redB.png", 35, 35);
+	  Strings[0][0] = new PuzzleTile(125,178,"images\\knotPuzzle\\orangeB.png", 35, 35);
+		Strings[0][1] = new PuzzleTile(173,160,"images\\knotPuzzle\\purpleB.png", 35, 35);
+		Strings[0][2] = new PuzzleTile(222,143,"images\\knotPuzzle\\pinkB.png", 35, 35);
+		Strings[0][3] = new PuzzleTile(270,125,"images\\knotPuzzle\\silverB.png", 35, 35);
+		Strings[0][4] = new PuzzleTile(305,87,"images\\knotPuzzle\\redB.png", 35, 35);
 		
-		Strings[1][0] = new PuzzleTile(135,213,"images\\knotPuzzle\\silverB.png", 35, 35);
-		Strings[1][1] = new PuzzleTile(190,255,"images\\knotPuzzle\\purpleB.png", 35, 35);
-		Strings[1][2] = new PuzzleTile(265,280,"images\\knotPuzzle\\pinkB.png", 35, 35);
-		Strings[1][3] = new PuzzleTile(340,295,"images\\knotPuzzle\\redB.png", 35, 35);
-		Strings[1][4] = new PuzzleTile(405,300,"images\\knotPuzzle\\orangeB.png", 35, 35);
+		Strings[1][0] = new PuzzleTile(125,178,"images\\knotPuzzle\\silverB.png", 35, 35);
+		Strings[1][1] = new PuzzleTile(180,214,"images\\knotPuzzle\\purpleB.png", 35, 35);
+		Strings[1][2] = new PuzzleTile(235,240,"images\\knotPuzzle\\pinkB.png", 35, 35);
+		Strings[1][3] = new PuzzleTile(298,268,"images\\knotPuzzle\\redB.png", 35, 35);
+		Strings[1][4] = new PuzzleTile(345,292,"images\\knotPuzzle\\orangeB.png", 35, 35);
 		
-		Strings[2][0] = new PuzzleTile(75,380,"images\\knotPuzzle\\pinkB.png", 35, 35);
-		Strings[2][1] = new PuzzleTile(175,385,"images\\knotPuzzle\\silverB.png", 35, 35);
-		Strings[2][2] = new PuzzleTile(295,370,"images\\knotPuzzle\\redB.png", 35, 35);
-		Strings[2][3] = new PuzzleTile(370,345,"images\\knotPuzzle\\orangeB.png", 35, 35);
-		Strings[2][4] = new PuzzleTile(405,300,"images\\knotPuzzle\\purpleB.png", 35, 35);
+		Strings[2][0] = new PuzzleTile(100,366,"images\\knotPuzzle\\pinkB.png", 35, 35);
+		Strings[2][1] = new PuzzleTile(162,350,"images\\knotPuzzle\\silverB.png", 35, 35);
+		Strings[2][2] = new PuzzleTile(225,333,"images\\knotPuzzle\\redB.png", 35, 35);
+		Strings[2][3] = new PuzzleTile(290,317,"images\\knotPuzzle\\orangeB.png", 35, 35);
+		Strings[2][4] = new PuzzleTile(345,292,"images\\knotPuzzle\\purpleB.png", 35, 35);
 		
-		Strings[3][0] = new PuzzleTile(75,380,"images\\knotPuzzle\\redB.png", 35, 35);
-		Strings[3][1] = new PuzzleTile(145,425,"images\\knotPuzzle\\purpleB.png", 35, 35);
-		Strings[3][2] = new PuzzleTile(225,440,"images\\knotPuzzle\\silverB.png", 35, 35);
-		Strings[3][3] = new PuzzleTile(345,455,"images\\knotPuzzle\\orangeB.png", 35, 35);
-		Strings[3][4] = new PuzzleTile(430,464,"images\\knotPuzzle\\pinkB.png", 35, 35);
+		Strings[3][0] = new PuzzleTile(100,366,"images\\knotPuzzle\\redB.png", 35, 35);
+		Strings[3][1] = new PuzzleTile(165,410,"images\\knotPuzzle\\purpleB.png", 35, 35);
+		Strings[3][2] = new PuzzleTile(240,431,"images\\knotPuzzle\\silverB.png", 35, 35);
+		Strings[3][3] = new PuzzleTile(315,450,"images\\knotPuzzle\\orangeB.png", 35, 35);
+		Strings[3][4] = new PuzzleTile(398,473,"images\\knotPuzzle\\pinkB.png", 35, 35);
 		
 		// strings at end of puzzle
 		endStrings[0][0] = new PuzzleTile(135,213,"images\\knotPuzzle\\silverB.png", 35, 35);
@@ -140,7 +140,7 @@ class Puzzle2
 						break;
 					case KEY_PRESSED:
 						KeyEvent keyEvent = event.asKeyEvent();
-						if ((keyEvent.key == Keyboard.Key.LEFT) || (keyEvent.key == Keyboard.Key.A))
+						if ((keyEvent.key == Keyboard.Key.RIGHT) || (keyEvent.key == Keyboard.Key.D))
 						{
 							for (int i = 0; i < 5; i ++)
 							{
@@ -153,7 +153,7 @@ class Puzzle2
 								Strings[selectPosition][i] = new PuzzleTile(TempHolder[i].getX(),TempHolder[i].getY(), TempHolder[i-1].getPicture(), 35, 35);
 							}
 						}
-						else if ((keyEvent.key == Keyboard.Key.RIGHT) || (keyEvent.key == Keyboard.Key.D))
+						else if ((keyEvent.key == Keyboard.Key.LEFT) || (keyEvent.key == Keyboard.Key.A))
 						{
 							for (int i = 0; i < 5; i ++)
 							{
