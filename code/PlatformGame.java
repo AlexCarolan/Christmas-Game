@@ -40,6 +40,22 @@ class PlatformGame
 		int moveY = 0;
 		double sleighGravity = 0.0;
 		
+		// add load screen
+		Texture loadImg = new Texture();
+ 		
+ 		try {
+ 		loadImg.loadFromFile(Paths.get("images\\load\\main.png"));
+ 		} catch(IOException ex) {
+ 			System.out.println(ex);
+ 		}
+  
+ 		Sprite loadBkg = new Sprite(loadImg);
+		loadBkg.setOrigin(0,0);
+ 		loadBkg.setPosition(0,0);
+
+		window.draw(loadBkg);
+		window.display();
+		
 		// create new score object
 		Score playerScore = new Score(0);
 
