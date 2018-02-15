@@ -27,6 +27,22 @@ class Puzzle3
 
 		// limit the framerate
 		window.setFramerateLimit(60);
+		
+		// add load screen
+		Texture loadImg = new Texture();
+ 		
+ 		try {
+ 		loadImg.loadFromFile(Paths.get("images\\load\\puzzle3.png"));
+ 		} catch(IOException ex) {
+ 			System.out.println(ex);
+ 		}
+  
+ 		Sprite loadBkg = new Sprite(loadImg);
+		loadBkg.setOrigin(0,0);
+ 		loadBkg.setPosition(0,0);
+
+		window.draw(loadBkg);
+		window.display();
 
 		// create all object
 		//PuzzleTile t = new PuzzleTile(0,0,"T0.png");

@@ -29,7 +29,23 @@ class Puzzle0
 
 		// limit the framerate
 		window.setFramerateLimit(18);
+		
+		// add load screen
+		Texture loadImg = new Texture();
+ 		
+ 		try {
+ 		loadImg.loadFromFile(Paths.get("images\\load\\puzzle0.png"));
+ 		} catch(IOException ex) {
+ 			System.out.println(ex);
+ 		}
+  
+ 		Sprite loadBkg = new Sprite(loadImg);
+		loadBkg.setOrigin(0,0);
+ 		loadBkg.setPosition(0,0);
 
+		window.draw(loadBkg);
+		window.display();
+		
 		// create all object
 		//PuzzleTile t = new PuzzleTile(0,0,"T0.png");
 		int[] blankTile = new int[2];
@@ -208,10 +224,12 @@ class Puzzle0
 		text2.setPosition(50, Utils.PlatformGameHeight-60);
 		text3.setPosition(50, Utils.PlatformGameHeight-40);
 
+		window.clear(Color.BLACK);
 
 		boolean finished = false;
 		while (window.isOpen() && !finished) 
 		{
+			window.draw(loadBkg);
 			// handle keyboard/mouse events (movement can be via WASD or arrow keys)
 			if (Keyboard.isKeyPressed(Keyboard.Key.S) || Keyboard.isKeyPressed(Keyboard.Key.DOWN))
 			{
