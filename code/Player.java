@@ -29,10 +29,10 @@ class Player
 		Texture texture = new Texture();
 		try {
 			// try to load the texture from file
-			//if (gameLevel != Utils.SleighGameLevel)
+			if (gameLevel != Utils.SleighGameLevel)
 				texture.loadFromFile(Paths.get("Sprites\\Running_Right\\Santa_Elf_Running12.png"));
-			//else
-			//	texture.loadFromFile(Paths.get("Sprites\\Sleigh_Right\\Sleigh1.png"));
+			else
+				texture.loadFromFile(Paths.get("Sprites\\Sleigh_Idle_Right\\Sleigh1.png"));
 
 			// texture was loaded successfully - retrieve and print size
 			size = texture.getSize();
@@ -214,7 +214,7 @@ class Player
 	}
 	
 	/**
-	 * Changes the current animation
+	 * setAnimation - Changes the current animation
 	 * @param ani - the new animation
 	 */
 	public void setAnimation(AnimatedPlayer ani)
@@ -229,7 +229,7 @@ class Player
 	}
 	
 	/**
-	 * Removes a single life from the player
+	 * takeLife - removes a single life from the player
 	 */
 	public void takeLife()
 	{
@@ -237,12 +237,11 @@ class Player
 	}
 	
 	/**
-	 * Changes the current animation
+	 * getLives - returns the number of lives remaining
 	 * @return lives - the number of lives the player has
 	 */
 	public int getLives()
 	{
 		return lives;
 	}
-	
 }	
