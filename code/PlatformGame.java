@@ -96,11 +96,24 @@ class PlatformGame
 										Utils.ShutDoorImage,true);
 
 		// create and start animations
-		AnimatedPlayer idleRight = new AnimatedPlayer(Utils.IdleRightPath, 4, 175);
-		AnimatedPlayer idleLeft = new AnimatedPlayer(Utils.IdleLeftPath, 4, 175);
-		AnimatedPlayer runningLeft = new AnimatedPlayer(Utils.RunningLeftPath, 12, 90);
-		AnimatedPlayer runningRight = new AnimatedPlayer(Utils.RunningRightPath, 12, 90);
-		//AnimatedPlayer sleighRight = new AnimatedPlayer(player, Utils.SleighRightPath, 2, 100);
+		AnimatedPlayer idleRight;
+		AnimatedPlayer idleLeft;
+		AnimatedPlayer runningRight;
+		AnimatedPlayer runningLeft;
+		if (gameLevel != Utils.SleighGameLevel)
+		{
+			idleRight = new AnimatedPlayer(Utils.IdleRightPath, 4, 175);
+			idleLeft = new AnimatedPlayer(Utils.IdleLeftPath, 4, 175);
+			runningRight = new AnimatedPlayer(Utils.RunningRightPath, 12, 90);
+			runningLeft = new AnimatedPlayer(Utils.RunningLeftPath, 12, 90);
+		}
+		else
+		{
+			idleRight = new AnimatedPlayer(Utils.SleighIdleRightPath, 2, 175);
+			idleLeft = new AnimatedPlayer(Utils.SleighIdleLeftPath, 2, 175);
+			runningRight = new AnimatedPlayer(Utils.SleighRunningRightPath, 2, 90);
+			runningLeft = new AnimatedPlayer(Utils.SleighRunningLeftPath, 2, 90);
+		}
 		AnimatedCollectible key = new AnimatedCollectible(Utils.KeyPath, 4, 250);
 
 		// first collectible is ALWAYS the key

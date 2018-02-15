@@ -32,7 +32,10 @@ public class Utils
 	public static final String IdleLeftPath = "Sprites\\Idle_Left\\Idle";
 	public static final String RunningRightPath = "Sprites\\Running_Right\\Santa_Elf_Running";
 	public static final String RunningLeftPath = "Sprites\\Running_Left\\Santa_Elf_Running";
-	//public static final String SleighRightPath = "Sprites\\Sleigh_Right\\";
+	public static final String SleighIdleRightPath = "Sprites\\Sleigh_Idle_Right\\Sleigh";
+	public static final String SleighIdleLeftPath = "Sprites\\Sleigh_Idle_Left\\Sleigh";
+	public static final String SleighRunningRightPath = "Sprites\\Sleigh_Running_Right\\Sleigh";
+	public static final String SleighRunningLeftPath = "Sprites\\Sleigh_Running_Left\\Sleigh";
 	public static final String Bauble1Path = "Sprites\\Baubles\\Bauble";
 	public static final String KeyPath = "Sprites\\Key\\Key";
 	public static final String HeartPath = "Sprites\\Heart\\heart.png";
@@ -148,7 +151,7 @@ public class Utils
 														{150,490,3,10},		// 4
 														{650,325,550,10},	// 5
 														{950,320,3,10},		// 6
-														{0-PlatformGameWidth/2,0,PlatformGameWidth/2,PlatformGameHeight-1},		// left hand edge
+														{0-PlatformGameWidth/2,50,PlatformGameWidth/2,PlatformGameHeight-1},		// left hand edge
 														{6500,0,PlatformGameWidth/2,PlatformGameHeight+1}}	// right hand edge
 													};
 	// define image for each platform on each level, in same order as PlatformPositions array
