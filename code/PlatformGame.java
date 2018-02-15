@@ -25,7 +25,7 @@ class PlatformGame
 	 * @return true is platform level completed successfully
 	 *         if window closed without finishing, returns false
 	 */
-	public boolean run(int gameLevel)
+	public boolean run(int gameLevel, Collectible[] gameCollectible)
 	{
 		// create the window
 		RenderWindow window = new RenderWindow( );
@@ -107,10 +107,6 @@ class PlatformGame
 			ex.printStackTrace( );
 		}
 
-		// set all collectibles for this level as Not collected
-		for (int i = 0; i < numCollectibles; i++)
-			Utils.isCollected[gameLevel][i] = false;
-		
 		// add the score tracker to the UI
 		Text scoreText = new Text("Score:0", scoreFont, 18);
 		scoreText.setPosition(10, 10);
@@ -489,17 +485,10 @@ class PlatformGame
 			{
 				for (int i = 0; i < numCollectibles; i++)
 					if (collectible[i].collected())
-					{
-						Utils.isCollected[gameLevel][i] = true;
-						System.out.println("Collected item " + i + ": " + Utils.CollectibleImages[gameLevel][i]);
-					}
+						System.out.println("Collected " + Utils.CollectibleImages[gameLevel][i]);
 				System.out.println();
 				lastNumCollected = itemsCollected;
 			}
-		}
-		for (int i = 0; i < 5; i++)
-		{
-			System.out.println(Utils.isCollected[gameLevel][i]);
 		}
 		idleRight.kill();
 		idleLeft.kill();
@@ -509,11 +498,12 @@ class PlatformGame
 		key.kill();
 		window.close();
 		if (player.getLives() <= 0)
-		{
-			// set all collectibles for this level as Not collected
-			for (int i = 0; i < numCollectibles; i++)
-				Utils.isCollected[gameLevel][i] = false;
 			return false;	// return false if all lives lost
+		if (finished)
+		{	// if we successfully finished the game then update the outer list with all the items collected this time
+			for (int i = 0; i < numCollectibles; i++)
+				if (collectible[i].collected())
+					gameCollectible[i].collect();
 		}
 		return finished;	// returns true if platform completed successfully
 							// if window closed without finishing, returns false

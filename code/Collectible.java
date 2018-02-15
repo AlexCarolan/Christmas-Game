@@ -8,16 +8,16 @@ class Collectible extends Platform
 
 	/**
 	 * Collectible constructor - creates an item for the player to collect
-	 * @param width - the width of the collectible
-	 * @param height - the height of the collectible
 	 * @param xPosition - the left hand side of the collectible
 	 * @param yPosition - the top of the collectible
+	 * @param width - the width of the collectible
+	 * @param height - the height of the collectible
 	 * @param filename - the file for the image
-	 * @param score - the score class tracking the players score
+	 * @param score - the score class tracking the player's score
 	 */
-	public Collectible(int width, int height, int xPosition, int yPosition, String filename, Score score)
+	public Collectible(int xPosition, int yPosition, int width, int height, String filename, Score score)
 	{
-		super(width, height, xPosition, yPosition, filename, false);
+		super(xPosition, yPosition, width, height, filename, false);
 		itemCollected = false;
 		playerScore = score;
 	}
@@ -32,13 +32,12 @@ class Collectible extends Platform
 	}
 	
 	/**
-	 * collect - marks this item as collected
+	 * collect - marks this item as collected, and increases the player's score
 	 */
 	public void collect()
 	{
 		itemCollected = true;
 		playerScore.increaseScore(100);
-		
 	}
 }
  

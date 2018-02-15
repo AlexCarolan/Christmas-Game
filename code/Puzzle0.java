@@ -252,19 +252,22 @@ class Puzzle0
 			}
 			else if (Keyboard.isKeyPressed(Keyboard.Key.W) || Keyboard.isKeyPressed(Keyboard.Key.UP))
 			{
-				switchTile[1] = blankTile[1] - 1;
-				if (blankTile[1] != 0)
+				if (blankTile[1] != 0)	// added this line to protect against running out of the top of the maze
 				{
-					if(tiles[switchTile[0]][switchTile[1]].isPassable())
+					switchTile[1] = blankTile[1] - 1;
+					if (blankTile[1] != 0)
 					{
-						String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
-						tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
-						tiles[blankTile[0]][blankTile[1]].setPicture(temp);
-						blankTile[1] = switchTile[1];
-					}
-					else
-					{
-						switchTile[1] = blankTile[1];
+						if(tiles[switchTile[0]][switchTile[1]].isPassable())
+						{
+							String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
+							tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
+							tiles[blankTile[0]][blankTile[1]].setPicture(temp);
+							blankTile[1] = switchTile[1];
+						}
+						else
+						{
+							switchTile[1] = blankTile[1];
+						}
 					}
 				}
 			}
