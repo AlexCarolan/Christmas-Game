@@ -76,33 +76,30 @@ class Puzzle3
 		
 		//System.out.println(dictionary[0].length);
 		//System.out.println(car8.length+""+""+car2.length);
-		tiles[player[0][0]][player[0][1]] = new MazeTile((player[0][0]*100),(player[0][1]*100),"images\\trafficPuzzle\\Sleigh_H_Left.png",100,100,false);
-		tiles[player[1][0]][player[1][1]] = new MazeTile((player[1][0]*100),(player[1][1]*100),"images\\trafficPuzzle\\Sleigh_H_Right.png",100,100,false);
-
-		tiles[car2[0][0]][car2[0][1]] = new MazeTile((car2[0][0]*100),(car2[0][1]*100),"images\\trafficPuzzle\\1x2\\Horizontal\\Logs_H_Left.png",100,100,false);
-		tiles[car2[1][0]][car2[1][1]] = new MazeTile((car2[1][0]*100),(car2[1][1]*100),"images\\trafficPuzzle\\1x2\\Horizontal\\Logs_H_Right.png",100,100,false);
-
-		tiles[car4[0][0]][car4[0][1]] = new MazeTile((car4[0][0]*100),(car4[0][1]*100),"images\\trafficPuzzle\\1x2\\Vertical\\Logs_V_Top.png",100,100,false);
-		tiles[car4[1][0]][car4[1][1]] = new MazeTile((car4[1][0]*100),(car4[1][1]*100),"images\\trafficPuzzle\\1x2\\Vertical\\Logs_V_Bottom.png",100,100,false);
-
-		tiles[car6[0][0]][car6[0][1]] = new MazeTile((car6[0][0]*100),(car6[0][1]*100),"images\\trafficPuzzle\\1x2\\Horizontal\\Tree_H_Left.png",100,100,false);
-		tiles[car6[1][0]][car6[1][1]] = new MazeTile((car6[1][0]*100),(car6[1][1]*100),"images\\trafficPuzzle\\1x2\\Horizontal\\Tree_H_Right.png",100,100,false);
+		tiles[car2[0][0]][car2[0][1]] = new MazeTile((car2[0][0]*100),(car2[0][1]*100),"images\\trafficPuzzle\\Logs_H_Left.png",100,100,false);
+		tiles[car2[1][0]][car2[1][1]] = new MazeTile((car2[1][0]*100),(car2[1][1]*100),"images\\trafficPuzzle\\Logs_H_Right.png",100,100,false);
 		
-		tiles[car3[0][0]][car3[0][1]] = new MazeTile((car3[0][0]*100),(car3[0][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Tree_V_Top.png",100,100,false);
-		tiles[car3[1][0]][car3[1][1]] = new MazeTile((car3[1][0]*100),(car3[1][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Tree_V_Middle.png",100,100,false);
-		tiles[car3[2][0]][car3[2][1]] = new MazeTile((car3[2][0]*100),(car3[2][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Tree_V_Bottom.png",100,100,false);
+		tiles[car4[0][0]][car4[0][1]] = new MazeTile((car4[0][0]*100),(car4[0][1]*100),"images\\trafficPuzzle\\Logs_V_Top.png",100,100,false);
+		tiles[car4[1][0]][car4[1][1]] = new MazeTile((car4[1][0]*100),(car4[1][1]*100),"images\\trafficPuzzle\\Logs_V_Bottom.png",100,100,false);
 		
-		tiles[car5[0][0]][car5[0][1]] = new MazeTile((car5[0][0]*100),(car5[0][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Reindeer_V_Top.png",100,100,false);
-		tiles[car5[1][0]][car5[1][1]] = new MazeTile((car5[1][0]*100),(car5[1][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Reindeer_V_Middle.png",100,100,false);
-		tiles[car5[2][0]][car5[2][1]] = new MazeTile((car5[2][0]*100),(car5[2][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Reindeer_V_Bottom.png",100,100,false);
-
-		tiles[car7[0][0]][car7[0][1]] = new MazeTile((car7[0][0]*100),(car7[0][1]*100),"images\\trafficPuzzle\\1x3\\Horizontal\\Ice_H_Left.png",100,100,false);
-		tiles[car7[1][0]][car7[1][1]] = new MazeTile((car7[1][0]*100),(car7[1][1]*100),"images\\trafficPuzzle\\1x3\\Horizontal\\Ice_H_Middle.png",100,100,false);
-		tiles[car7[2][0]][car7[2][1]] = new MazeTile((car7[2][0]*100),(car7[2][1]*100),"images\\trafficPuzzle\\1x3\\Horizontal\\Ice_H_Right.png",100,100,false);
+		tiles[car6[0][0]][car6[0][1]] = new MazeTile((car6[0][0]*100),(car6[0][1]*100),"images\\trafficPuzzle\\Tree_H_Left.png",100,100,false);
+		tiles[car6[1][0]][car6[1][1]] = new MazeTile((car6[1][0]*100),(car6[1][1]*100),"images\\trafficPuzzle\\Tree_H_Right.png",100,100,false);
 		
-		tiles[car8[0][0]][car8[0][1]] = new MazeTile((car8[0][0]*100),(car8[0][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Ice_V_Top.png",100,100,false);
-		tiles[car8[1][0]][car8[1][1]] = new MazeTile((car8[1][0]*100),(car8[1][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Ice_V_Middle.png",100,100,false);
-		tiles[car8[2][0]][car8[2][1]] = new MazeTile((car8[2][0]*100),(car8[2][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Ice_V_Bottom.png",100,100,false);
+		tiles[car3[0][0]][car3[0][1]] = new MazeTile((car3[0][0]*100),(car3[0][1]*100),"images\\trafficPuzzle\\Tree_H_Top.png",100,100,false);
+		tiles[car3[1][0]][car3[1][1]] = new MazeTile((car3[1][0]*100),(car3[1][1]*100),"images\\trafficPuzzle\\Tree_H_Middle.png",100,100,false);
+		tiles[car3[2][0]][car3[2][1]] = new MazeTile((car3[2][0]*100),(car3[2][1]*100),"images\\trafficPuzzle\\Tree_H_Bottom.png",100,100,false);
+		
+		tiles[car5[0][0]][car5[0][1]] = new MazeTile((car5[0][0]*100),(car5[0][1]*100),"images\\trafficPuzzle\\Reindeer_V_Top.png",100,100,false);
+		tiles[car5[1][0]][car5[1][1]] = new MazeTile((car5[1][0]*100),(car5[1][1]*100),"images\\trafficPuzzle\\Reindeer_V_Middle.png",100,100,false);
+		tiles[car5[2][0]][car5[2][1]] = new MazeTile((car5[2][0]*100),(car5[2][1]*100),"images\\trafficPuzzle\\Reindeer_V_Bottom.png",100,100,false);
+		
+		tiles[car7[0][0]][car7[0][1]] = new MazeTile((car7[0][0]*100),(car7[0][1]*100),"images\\trafficPuzzle\\Ice_H_Left.png",100,100,false);
+		tiles[car7[1][0]][car7[1][1]] = new MazeTile((car7[1][0]*100),(car7[1][1]*100),"images\\trafficPuzzle\\Ice_H_Middle.png",100,100,false);
+		tiles[car7[2][0]][car7[2][1]] = new MazeTile((car7[2][0]*100),(car7[2][1]*100),"images\\trafficPuzzle\\Ice_H_Right.png",100,100,false);
+		
+		tiles[car8[0][0]][car8[0][1]] = new MazeTile((car8[0][0]*100),(car8[0][1]*100),"images\\trafficPuzzle\\Ice_V_Top.png",100,100,false);
+		tiles[car8[1][0]][car8[1][1]] = new MazeTile((car8[1][0]*100),(car8[1][1]*100),"images\\trafficPuzzle\\Ice_V_Middle.png",100,100,false);
+		tiles[car8[2][0]][car8[2][1]] = new MazeTile((car8[2][0]*100),(car8[2][1]*100),"images\\trafficPuzzle\\Ice_V_Bottom.png",100,100,false);
 
 		for (int i = 0; i < 2; i++)
 		{
