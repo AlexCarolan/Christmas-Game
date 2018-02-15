@@ -78,28 +78,32 @@ class Puzzle3
 		//System.out.println(car8.length+""+""+car2.length);
 		tiles[player[0][0]][player[0][1]] = new MazeTile((player[0][0]*100),(player[0][1]*100),"images\\trafficPuzzle\\Sleigh_H_Left.png",100,100,false);
 		tiles[player[1][0]][player[1][1]] = new MazeTile((player[1][0]*100),(player[1][1]*100),"images\\trafficPuzzle\\Sleigh_H_Right.png",100,100,false);
-		tiles[car2[0][0]][car2[0][1]] = new MazeTile((car2[0][0]*100),(car2[0][1]*100),"images\\trafficPuzzle\\1x2\\Horizontal\\Ice_H_Left.png",100,100,false);
-		tiles[car2[1][0]][car2[1][1]] = new MazeTile((car2[1][0]*100),(car2[1][1]*100),"images\\trafficPuzzle\\1x2\\Horizontal\\Ice_H_Right.png",100,100,false);
+
+		tiles[car2[0][0]][car2[0][1]] = new MazeTile((car2[0][0]*100),(car2[0][1]*100),"images\\trafficPuzzle\\1x2\\Horizontal\\Logs_H_Left.png",100,100,false);
+		tiles[car2[1][0]][car2[1][1]] = new MazeTile((car2[1][0]*100),(car2[1][1]*100),"images\\trafficPuzzle\\1x2\\Horizontal\\Logs_H_Right.png",100,100,false);
+
 		tiles[car4[0][0]][car4[0][1]] = new MazeTile((car4[0][0]*100),(car4[0][1]*100),"images\\trafficPuzzle\\1x2\\Vertical\\Logs_V_Top.png",100,100,false);
 		tiles[car4[1][0]][car4[1][1]] = new MazeTile((car4[1][0]*100),(car4[1][1]*100),"images\\trafficPuzzle\\1x2\\Vertical\\Logs_V_Bottom.png",100,100,false);
+
 		tiles[car6[0][0]][car6[0][1]] = new MazeTile((car6[0][0]*100),(car6[0][1]*100),"images\\trafficPuzzle\\1x2\\Horizontal\\Tree_H_Left.png",100,100,false);
 		tiles[car6[1][0]][car6[1][1]] = new MazeTile((car6[1][0]*100),(car6[1][1]*100),"images\\trafficPuzzle\\1x2\\Horizontal\\Tree_H_Right.png",100,100,false);
 		
-		tiles[car3[0][0]][car3[0][1]] = new MazeTile((car3[0][0]*100),(car3[0][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Reindeer_V_Top.png",100,100,false);
-		tiles[car3[1][0]][car3[1][1]] = new MazeTile((car3[1][0]*100),(car3[1][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Reindeer_V_Middle.png",100,100,false);
-		tiles[car3[2][0]][car3[2][1]] = new MazeTile((car3[2][0]*100),(car3[2][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Reindeer_V_Bottom.png",100,100,false);
+		tiles[car3[0][0]][car3[0][1]] = new MazeTile((car3[0][0]*100),(car3[0][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Tree_V_Top.png",100,100,false);
+		tiles[car3[1][0]][car3[1][1]] = new MazeTile((car3[1][0]*100),(car3[1][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Tree_V_Middle.png",100,100,false);
+		tiles[car3[2][0]][car3[2][1]] = new MazeTile((car3[2][0]*100),(car3[2][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Tree_V_Bottom.png",100,100,false);
 		
-		tiles[car5[0][0]][car5[0][1]] = new MazeTile((car5[0][0]*100),(car5[0][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Ice_V_Top.png",100,100,false);
-		tiles[car5[1][0]][car5[1][1]] = new MazeTile((car5[1][0]*100),(car5[1][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Ice_V_Middle.png",100,100,false);
-		tiles[car5[2][0]][car5[2][1]] = new MazeTile((car5[2][0]*100),(car5[2][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Ice_V_Bottom.png",100,100,false);
+		tiles[car5[0][0]][car5[0][1]] = new MazeTile((car5[0][0]*100),(car5[0][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Reindeer_V_Top.png",100,100,false);
+		tiles[car5[1][0]][car5[1][1]] = new MazeTile((car5[1][0]*100),(car5[1][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Reindeer_V_Middle.png",100,100,false);
+		tiles[car5[2][0]][car5[2][1]] = new MazeTile((car5[2][0]*100),(car5[2][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Reindeer_V_Bottom.png",100,100,false);
+
+		tiles[car7[0][0]][car7[0][1]] = new MazeTile((car7[0][0]*100),(car7[0][1]*100),"images\\trafficPuzzle\\1x3\\Horizontal\\Ice_H_Left.png",100,100,false);
+		tiles[car7[1][0]][car7[1][1]] = new MazeTile((car7[1][0]*100),(car7[1][1]*100),"images\\trafficPuzzle\\1x3\\Horizontal\\Ice_H_Middle.png",100,100,false);
+		tiles[car7[2][0]][car7[2][1]] = new MazeTile((car7[2][0]*100),(car7[2][1]*100),"images\\trafficPuzzle\\1x3\\Horizontal\\Ice_H_Right.png",100,100,false);
 		
-		tiles[car7[0][0]][car7[0][1]] = new MazeTile((car7[0][0]*100),(car7[0][1]*100),"images\\trafficPuzzle\\1x3\\Horizontal\\Tree_H_Left.png",100,100,false);
-		tiles[car7[1][0]][car7[1][1]] = new MazeTile((car7[1][0]*100),(car7[1][1]*100),"images\\trafficPuzzle\\1x3\\Horizontal\\Tree_H_Middle.png",100,100,false);
-		tiles[car7[2][0]][car7[2][1]] = new MazeTile((car7[2][0]*100),(car7[2][1]*100),"images\\trafficPuzzle\\1x3\\Horizontal\\Tree_H_Right.png",100,100,false);
-		
-		tiles[car8[0][0]][car8[0][1]] = new MazeTile((car8[0][0]*100),(car8[0][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Logs_V_Top.png",100,100,false);
-		tiles[car8[1][0]][car8[1][1]] = new MazeTile((car8[1][0]*100),(car8[1][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Logs_V_Middle.png",100,100,false);
-		tiles[car8[2][0]][car8[2][1]] = new MazeTile((car8[2][0]*100),(car8[2][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Logs_V_Bottom.png",100,100,false);
+		tiles[car8[0][0]][car8[0][1]] = new MazeTile((car8[0][0]*100),(car8[0][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Ice_V_Top.png",100,100,false);
+		tiles[car8[1][0]][car8[1][1]] = new MazeTile((car8[1][0]*100),(car8[1][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Ice_V_Middle.png",100,100,false);
+		tiles[car8[2][0]][car8[2][1]] = new MazeTile((car8[2][0]*100),(car8[2][1]*100),"images\\trafficPuzzle\\1x3\\Vertical\\Ice_V_Bottom.png",100,100,false);
+
 		for (int i = 0; i < 2; i++)
 		{
 			//tiles[player[i][0]][player[i][1]] = new MazeTile((player[i][0]*100),(player[i][1]*100),"images\\trafficPuzzle\\player.png",100,100,false);
@@ -127,16 +131,20 @@ class Puzzle3
 		} catch (IOException ex) {
 			ex.printStackTrace( );
 		}
-		Text text1 = new Text("Can you move the reindeer to unblock Santa's sleigh?", sansRegular, 18);
-		Text text2 = new Text("Select the object with number keys; use the arrow keys, or WASD, to move", sansRegular, 18);
+		Text text1 = new Text("Can you move the obstacles and get Santa's sleigh to the exit?", sansRegular, 18);
+		Text text2a = new Text("Select the obstacle using the number keys", sansRegular, 18);
+		Text text2b = new Text("Use the arrow keys, or WASD, to move the selected object", sansRegular, 18);
 		Text text3 = new Text("Well done, you unblocked the sleigh!", sansRegular, 18);
 		text1.setColor(Color.RED);
-		text2.setColor(Color.RED);
+		text2a.setColor(Color.RED);
+		text2b.setColor(Color.RED);
 		text3.setColor(Color.WHITE);
-		text2.setStyle(Text.ITALIC);
+		text2a.setStyle(Text.ITALIC);
+		text2b.setStyle(Text.ITALIC);
 		text1.setPosition(20, Utils.PuzzleGameHeight+20);
-		text2.setPosition(20, Utils.PuzzleGameHeight+40);
-		text3.setPosition(20, Utils.PuzzleGameHeight+60);
+		text2a.setPosition(20, Utils.PuzzleGameHeight+40);
+		text2b.setPosition(20, Utils.PuzzleGameHeight+60);
+		text3.setPosition(20, Utils.PuzzleGameHeight+80);
 		
 		
 		boolean finished = false;
@@ -329,7 +337,8 @@ class Puzzle3
 
 				// add instructions
 				window.draw(text1);
-				window.draw(text2);
+				window.draw(text2a);
+				window.draw(text2b);
 
 				// check whether images are all in the right place
 				if (dictionary[0][1][0] == 5)
