@@ -76,6 +76,9 @@ class Puzzle3
 		
 		//System.out.println(dictionary[0].length);
 		//System.out.println(car8.length+""+""+car2.length);
+		tiles[player[0][0]][player[0][1]] = new MazeTile((player[0][0]*100),(player[0][1]*100),"images\\trafficPuzzle\\Sleigh_H_Left.png",100,100,false);
+		tiles[player[1][0]][player[1][1]] = new MazeTile((player[1][0]*100),(player[1][1]*100),"images\\trafficPuzzle\\Sleigh_H_Right.png",100,100,false);
+		
 		tiles[car2[0][0]][car2[0][1]] = new MazeTile((car2[0][0]*100),(car2[0][1]*100),"images\\trafficPuzzle\\Logs_H_Left.png",100,100,false);
 		tiles[car2[1][0]][car2[1][1]] = new MazeTile((car2[1][0]*100),(car2[1][1]*100),"images\\trafficPuzzle\\Logs_H_Right.png",100,100,false);
 		
@@ -85,9 +88,9 @@ class Puzzle3
 		tiles[car6[0][0]][car6[0][1]] = new MazeTile((car6[0][0]*100),(car6[0][1]*100),"images\\trafficPuzzle\\Tree_H_Left.png",100,100,false);
 		tiles[car6[1][0]][car6[1][1]] = new MazeTile((car6[1][0]*100),(car6[1][1]*100),"images\\trafficPuzzle\\Tree_H_Right.png",100,100,false);
 		
-		tiles[car3[0][0]][car3[0][1]] = new MazeTile((car3[0][0]*100),(car3[0][1]*100),"images\\trafficPuzzle\\Tree_H_Top.png",100,100,false);
-		tiles[car3[1][0]][car3[1][1]] = new MazeTile((car3[1][0]*100),(car3[1][1]*100),"images\\trafficPuzzle\\Tree_H_Middle.png",100,100,false);
-		tiles[car3[2][0]][car3[2][1]] = new MazeTile((car3[2][0]*100),(car3[2][1]*100),"images\\trafficPuzzle\\Tree_H_Bottom.png",100,100,false);
+		tiles[car3[0][0]][car3[0][1]] = new MazeTile((car3[0][0]*100),(car3[0][1]*100),"images\\trafficPuzzle\\Tree_V_Top.png",100,100,false);
+		tiles[car3[1][0]][car3[1][1]] = new MazeTile((car3[1][0]*100),(car3[1][1]*100),"images\\trafficPuzzle\\Tree_V_Middle.png",100,100,false);
+		tiles[car3[2][0]][car3[2][1]] = new MazeTile((car3[2][0]*100),(car3[2][1]*100),"images\\trafficPuzzle\\Tree_V_Bottom.png",100,100,false);
 		
 		tiles[car5[0][0]][car5[0][1]] = new MazeTile((car5[0][0]*100),(car5[0][1]*100),"images\\trafficPuzzle\\Reindeer_V_Top.png",100,100,false);
 		tiles[car5[1][0]][car5[1][1]] = new MazeTile((car5[1][0]*100),(car5[1][1]*100),"images\\trafficPuzzle\\Reindeer_V_Middle.png",100,100,false);
