@@ -15,6 +15,10 @@ import org.jsfml.graphics.*;
 class Game 
 {
 	private static int fontSize = 30;
+	private static int unlockedLevels = 1;
+	private static int unlockedPuzzles = 0;
+	private static int currentPos = 1;
+	private static int maxPos = 1;
 
 	public static void main (String args[ ]) 
 	{
@@ -28,49 +32,66 @@ class Game
 						WindowStyle.CLOSE | WindowStyle.TITLEBAR);	// window can't be resized
 
 		// set the frame-rate
-		window.setFramerateLimit(60);
+		window.setFramerateLimit(24);
+		
+		// add load screen
+		Texture loadImg = new Texture();
+ 		
+ 		try {
+ 		loadImg.loadFromFile(Paths.get("images\\load\\main.png"));
+ 		} catch(IOException ex) {
+ 			System.out.println(ex);
+ 		}
+  
+ 		Sprite loadBkg = new Sprite(loadImg);
+		loadBkg.setOrigin(0,0);
+ 		loadBkg.setPosition(0,0);
+
+		window.draw(loadBkg);
+		window.display();
 
 		// display the Christmas Room (as a platform)
 		Platform room = new Platform(0,0,Utils.PlatformGameWidth,Utils.PlatformGameHeight-350,Utils.RoomImage[level.getLevel()],false);
+		
+		// display the menu
+		Platform background = new Platform(0,Utils.PlatformGameHeight-350,Utils.PlatformGameWidth,350,"images\\mainMenu\\background.png",false);
 										
 		// Load the font for the menu options
 		Font sansRegular = new Font( );
 		try {
 			sansRegular.loadFromFile(
-					Paths.get("fonts\\LucidaSansRegular.ttf"));
+					Paths.get("fonts\\joystix monospace.ttf"));
 		} catch (IOException ex) {
 			ex.printStackTrace( );
 		}
 		// create the game introduction text
-		Text textIntro1 = new Text("Can you help give this poor family a great Christmas?", sansRegular, 18);
-		Text textIntro2 = new Text("Complete each level to add something special to the Christmas Room.", sansRegular, 18);
-		Text textIntro3 = new Text("Look out for items to collect along the way. And there's a fun puzzle to solve at the end of each level.", sansRegular, 18);
-		textIntro1.setColor(Color.RED);
-		textIntro2.setColor(Color.RED);
-		textIntro3.setColor(Color.RED);
-		textIntro1.setStyle(Text.ITALIC);
-		textIntro2.setStyle(Text.ITALIC);
-		textIntro3.setStyle(Text.ITALIC);
-		textIntro1.setPosition(50, Utils.PlatformGameHeight-340);
-		textIntro2.setPosition(50, Utils.PlatformGameHeight-320);
-		textIntro3.setPosition(50, Utils.PlatformGameHeight-300);
+		Text textIntro1 = new Text("Can you help give this poor", sansRegular, 10);
+		Text textIntro2 = new Text("family a great Christmas?", sansRegular, 10);
+		Text textIntro3 = new Text("Complete each level to add", sansRegular, 10);
+		Text textIntro4 = new Text("something special to the Christmas Room.", sansRegular, 10);
+		Text textIntro5 = new Text("Look out for items to collect", sansRegular, 10);
+		Text textIntro6 = new Text("along the way.", sansRegular, 10);
+		Text textIntro7 = new Text("And there's a fun puzzle", sansRegular, 10);
+		Text textIntro8 = new Text("to solve at the end of each level.", sansRegular, 10);
+
+		textIntro1.setPosition(670, Utils.PlatformGameHeight-250);
+		textIntro2.setPosition(670, Utils.PlatformGameHeight-230);
+		textIntro3.setPosition(670, Utils.PlatformGameHeight-210);
+		textIntro4.setPosition(670, Utils.PlatformGameHeight-190);
+		textIntro5.setPosition(670, Utils.PlatformGameHeight-170);
+		textIntro6.setPosition(670, Utils.PlatformGameHeight-150);
+		textIntro7.setPosition(670, Utils.PlatformGameHeight-130);
+		textIntro8.setPosition(670, Utils.PlatformGameHeight-110);
+		
 		// create the menu text
-		Text textPlatform1 = new Text("1. Play Level 1 Platform Game", sansRegular, 18);
-		textPlatform1.setPosition(100, Utils.PlatformGameHeight-250);
-		Text textPuzzle1 = new Text("2. Play Level 1 Puzzle Game", sansRegular, 18);
-		textPuzzle1.setPosition(100, Utils.PlatformGameHeight-230);
-		Text textPlatform2 = new Text("3. Play Level 2 Platform Game", sansRegular, 18);
-		textPlatform2.setPosition(100, Utils.PlatformGameHeight-200);
-		Text textPuzzle2 = new Text("4. Play Level 2 Puzzle Game", sansRegular, 18);
-		textPuzzle2.setPosition(100, Utils.PlatformGameHeight-180);
-		Text textPlatform3 = new Text("5. Play Level 3 Platform Game", sansRegular, 18);
-		textPlatform3.setPosition(100, Utils.PlatformGameHeight-150);
-		Text textPuzzle3 = new Text("6. Play Level 3 Puzzle Game", sansRegular, 18);
-		textPuzzle3.setPosition(100, Utils.PlatformGameHeight-130);
-		Text textPlatform4 = new Text("7. Play Level 4 Platform Game", sansRegular, 18);
-		textPlatform4.setPosition(100, Utils.PlatformGameHeight-100);
-		Text textPuzzle4 = new Text("8. Play Level 4 Puzzle Game", sansRegular, 18);
-		textPuzzle4.setPosition(100, Utils.PlatformGameHeight-80);
+		Text textPlatform1 = new Text("Level 1 - The Forest", sansRegular, 18);
+		textPlatform1.setPosition(135, Utils.PlatformGameHeight-282);
+		Text textPlatform2 = new Text("Level 2 - The Attic", sansRegular, 18);
+		textPlatform2.setPosition(135, Utils.PlatformGameHeight-217);
+		Text textPlatform3 = new Text("Level 3 - The Kitchen", sansRegular, 18);
+		textPlatform3.setPosition(135, Utils.PlatformGameHeight-155);
+		Text textPlatform4 = new Text("Level 4 - Sleigh Ride", sansRegular, 18);
+		textPlatform4.setPosition(135, Utils.PlatformGameHeight-92);
 		
 		//show collectibles:
 		Score playerScore = new Score(0);
@@ -87,30 +108,53 @@ class Game
 												Utils.CollectibleImages[gameLevel][i],playerScore);
 		
 		boolean puzzleDone[] = {false,false,false,false};
+		
 		while (window.isOpen())
 		{
+			// find the number of unlocked puzzles
+			unlockedPuzzles = 0;
+					
+			for(int i=0; i<4; i++)
+			{
+				if(puzzleDone[i] == true)
+				{
+					unlockedPuzzles++;
+				}
+			}
+			
+			unlockedLevels = level.getLevel() + 1;
+			
+			maxPos = unlockedLevels + unlockedPuzzles;
+			
+			if(maxPos>8)
+			{
+				maxPos = 8;
+			}
+			
 			int gameLevel = level.getLevel();
 			room.setImage(Utils.RoomImage[gameLevel]);
+			background.setImage((Utils.MenuPath + unlockedLevels + unlockedPuzzles + currentPos + ".png"));
 			window.clear(Color.BLACK);
+			
+			window.draw(background.getPlatform());
 			window.draw(room.getPlatform());
+			
 			window.draw(textIntro1);
 			window.draw(textIntro2);
 			window.draw(textIntro3);
+			window.draw(textIntro4);
+			window.draw(textIntro5);
+			window.draw(textIntro6);
+			window.draw(textIntro7);
+			window.draw(textIntro8);
+			
 			window.draw(textPlatform1);
-			if (gameLevel > 0)
-				window.draw(textPuzzle1);
-			if (puzzleDone[0])
+			//if (puzzleDone[0])
 				window.draw(textPlatform2);
-			if (gameLevel > 1)
-				window.draw(textPuzzle2);
-			if (puzzleDone[1])
+			//if (puzzleDone[1])
 				window.draw(textPlatform3);
-			if (gameLevel > 2)
-				window.draw(textPuzzle3);
-			if (puzzleDone[2])
+			//if (puzzleDone[2])
 				window.draw(textPlatform4);
-			if (gameLevel > 3)
-				window.draw(textPuzzle4);
 
 			for (int i = 0; i < Utils.MaxLevel; i++)
 			{
@@ -126,96 +170,165 @@ class Game
 
 			// display what was drawn on the window
 			window.display();
-
-			// handle keyboard events (movement can be via WASD or arrow keys)
-			// if we're playing a platform game, play it at the current level
-			// if we're playing a puzzle, play it at the current level
-			if (Keyboard.isKeyPressed(Keyboard.Key.NUM1) || Keyboard.isKeyPressed(Keyboard.Key.NUMPAD1))
+			
+			if(Keyboard.isKeyPressed(Keyboard.Key.W) || Keyboard.isKeyPressed(Keyboard.Key.UP))
 			{
-				PlatformGame platGame = new PlatformGame();
-				if ((platGame.run(0, collectible[0])) && (level.getLevel() == 0))
+				currentPos = currentPos - 2;
+				
+				if(currentPos <= 0)
 				{
-					level.incrementLevel();
+					currentPos = 1;
+				}
+				
+				try        
+				{
+					Thread.sleep(100);
+				} 
+				catch(InterruptedException e) 
+				{
+					System.out.println(e);
+				}
+
+			}
+			else if(Keyboard.isKeyPressed(Keyboard.Key.A) || Keyboard.isKeyPressed(Keyboard.Key.LEFT))
+			{
+				currentPos = currentPos - 1;
+				
+				if(currentPos <= 0)
+				{
+					currentPos = 1;
+				}
+				
+				try        
+				{
+					Thread.sleep(100);
+				} 
+				catch(InterruptedException e) 
+				{
+					System.out.println(e);
+				}
+				
+			}
+			else if(Keyboard.isKeyPressed(Keyboard.Key.S) || Keyboard.isKeyPressed(Keyboard.Key.DOWN))
+			{
+				currentPos = currentPos + 2;
+				
+				if(currentPos > maxPos)
+				{
+					currentPos = maxPos;
+				}
+				
+				try        
+				{
+					Thread.sleep(100);
+				} 
+				catch(InterruptedException e) 
+				{
+					System.out.println(e);
+				}
+				
+			}
+			else if(Keyboard.isKeyPressed(Keyboard.Key.D) || Keyboard.isKeyPressed(Keyboard.Key.RIGHT))
+			{
+				currentPos = currentPos + 1;
+				
+				if(currentPos > maxPos)
+				{
+					currentPos = maxPos;
+				}
+				
+				try        
+				{
+					Thread.sleep(100);
+				} 
+				catch(InterruptedException e) 
+				{
+					System.out.println(e);
+				}
+				
+			}
+			else if(Keyboard.isKeyPressed(Keyboard.Key.RETURN))
+			{
+				if (currentPos == 1)
+				{
+					PlatformGame platGame = new PlatformGame();
+					if ((platGame.run(0, collectible[0])) && (level.getLevel() == 0))
+					{
+						level.incrementLevel();
+						Puzzle0 puzzle = new Puzzle0();
+						if (puzzle.run())
+							puzzleDone[0] = true;
+						puzzle = null;
+					}
+					platGame = null;
+				}
+				else if (currentPos == 2)
+				{
 					Puzzle0 puzzle = new Puzzle0();
 					if (puzzle.run())
 						puzzleDone[0] = true;
 					puzzle = null;
 				}
-				platGame = null;
-			}
-			else if ((Keyboard.isKeyPressed(Keyboard.Key.NUM2) || Keyboard.isKeyPressed(Keyboard.Key.NUMPAD2)) &&
-						(level.getLevel() > 0))
-			{
-				Puzzle0 puzzle = new Puzzle0();
-				if (puzzle.run())
-					puzzleDone[0] = true;
-				puzzle = null;
-			}
-			else if ((Keyboard.isKeyPressed(Keyboard.Key.NUM3) || Keyboard.isKeyPressed(Keyboard.Key.NUMPAD3)) && 
-						(level.getLevel() > 0) && puzzleDone[0])
-			{
-				PlatformGame platGame = new PlatformGame();
-				if (platGame.run(1, collectible[1]) && (level.getLevel() == 1))
+				else if (currentPos == 3)
 				{
-					level.incrementLevel();
+					PlatformGame platGame = new PlatformGame();
+					if (platGame.run(1, collectible[1]) && (level.getLevel() == 1))
+					{
+						level.incrementLevel();
+						Puzzle1 puzzle = new Puzzle1();
+						if (puzzle.run())
+							puzzleDone[1] = true;
+						puzzle = null;
+					}
+					platGame = null;
+				}
+				else if (currentPos == 4)
+				{
 					Puzzle1 puzzle = new Puzzle1();
 					if (puzzle.run())
 						puzzleDone[1] = true;
 					puzzle = null;
 				}
-				platGame = null;
-			}
-			else if ((Keyboard.isKeyPressed(Keyboard.Key.NUM4) || Keyboard.isKeyPressed(Keyboard.Key.NUMPAD4)) && 
-						(level.getLevel() > 1))
-			{
-				Puzzle1 puzzle = new Puzzle1();
-				if (puzzle.run())
-					puzzleDone[1] = true;
-				puzzle = null;
-			}
-			else if ((Keyboard.isKeyPressed(Keyboard.Key.NUM5) || Keyboard.isKeyPressed(Keyboard.Key.NUMPAD5)) && 
-						(level.getLevel() > 1) && puzzleDone[1])
-			{
-				PlatformGame platGame = new PlatformGame();
-				if (platGame.run(2, collectible[2]) && (level.getLevel() == 2))
+				else if (currentPos == 5)
 				{
-					level.incrementLevel();
+					PlatformGame platGame = new PlatformGame();
+					if (platGame.run(2, collectible[2]) && (level.getLevel() == 2))
+					{
+						level.incrementLevel();
+						Puzzle2 puzzle = new Puzzle2();
+						if (puzzle.run())
+							puzzleDone[2] = true;
+						puzzle = null;
+					}
+					platGame = null;
+				}
+				else if (currentPos == 6)
+				{
 					Puzzle2 puzzle = new Puzzle2();
 					if (puzzle.run())
 						puzzleDone[2] = true;
 					puzzle = null;
 				}
-				platGame = null;
-			}
-			else if ((Keyboard.isKeyPressed(Keyboard.Key.NUM6) || Keyboard.isKeyPressed(Keyboard.Key.NUMPAD6)) && 
-						(level.getLevel() > 2))
-			{
-				Puzzle2 puzzle = new Puzzle2();
-				if (puzzle.run())
-					puzzleDone[2] = true;
-				puzzle = null;
-			}
-			else if ((Keyboard.isKeyPressed(Keyboard.Key.NUM7)|| Keyboard.isKeyPressed(Keyboard.Key.NUMPAD7)) && 
-						(level.getLevel() > 2) && puzzleDone[2])
-			{
-				PlatformGame platGame = new PlatformGame();
-				if (platGame.run(3, collectible[3]) && (level.getLevel() == 3))
+				else if (currentPos == 7)
 				{
-					level.incrementLevel();
+					PlatformGame platGame = new PlatformGame();
+					if (platGame.run(3, collectible[3]) && (level.getLevel() == 3))
+					{
+						level.incrementLevel();
+						Puzzle3 puzzle = new Puzzle3();
+						if (puzzle.run())
+							puzzleDone[3] = true;
+						puzzle = null;
+					}
+					platGame = null;
+				}
+				else if (currentPos == 8)
+				{
 					Puzzle3 puzzle = new Puzzle3();
 					if (puzzle.run())
 						puzzleDone[3] = true;
 					puzzle = null;
 				}
-				platGame = null;
-			}
-			else if ((Keyboard.isKeyPressed(Keyboard.Key.NUM8) || Keyboard.isKeyPressed(Keyboard.Key.NUMPAD8)) && 
-						(level.getLevel() > 3))
-			{
-				Puzzle3 puzzle = new Puzzle3();
-				if (puzzle.run())
-					puzzleDone[3] = true;
-				puzzle = null;
 			}
 
 			// handle keyboard/mouse events
