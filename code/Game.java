@@ -252,10 +252,12 @@ class Game
 					PlatformGame platGame = new PlatformGame();
 					if ((platGame.run(0, collectible[0])) && (level.getLevel() == 0))
 					{
-						level.incrementLevel();
 						Puzzle0 puzzle = new Puzzle0();
 						if (puzzle.run())
+						{
 							puzzleDone[0] = true;
+							level.incrementLevel();
+						}
 						puzzle = null;
 					}
 					platGame = null;
@@ -276,10 +278,12 @@ class Game
 					PlatformGame platGame = new PlatformGame();
 					if (platGame.run(1, collectible[1]) && (level.getLevel() == 1))
 					{
-						level.incrementLevel();
 						Puzzle1 puzzle = new Puzzle1();
 						if (puzzle.run())
+						{
 							puzzleDone[1] = true;
+							level.incrementLevel();
+						}
 						puzzle = null;
 					}
 					platGame = null;
@@ -290,7 +294,9 @@ class Game
 				{
 					Puzzle1 puzzle = new Puzzle1();
 					if (puzzle.run())
+					{
 						puzzleDone[1] = true;
+					}
 					puzzle = null;
 					
 					updatePosition();
@@ -300,10 +306,12 @@ class Game
 					PlatformGame platGame = new PlatformGame();
 					if (platGame.run(2, collectible[2]) && (level.getLevel() == 2))
 					{
-						level.incrementLevel();
 						Puzzle2 puzzle = new Puzzle2();
 						if (puzzle.run())
+						{
 							puzzleDone[2] = true;
+							level.incrementLevel();
+						}
 						puzzle = null;
 					}
 					platGame = null;
@@ -324,10 +332,12 @@ class Game
 					PlatformGame platGame = new PlatformGame();
 					if (platGame.run(3, collectible[3]) && (level.getLevel() == 3))
 					{
-						level.incrementLevel();
 						Puzzle3 puzzle = new Puzzle3();
 						if (puzzle.run())
+						{
 							puzzleDone[3] = true;
+							level.incrementLevel();
+						}
 						puzzle = null;
 					}
 					platGame = null;
