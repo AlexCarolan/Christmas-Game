@@ -19,11 +19,11 @@ class Game
 	private static int unlockedPuzzles = 0;
 	private static int currentPos = 1;
 	private static int maxPos = 1;
+	private static Level level = new Level();
+	private static boolean puzzleDone[] = {false,false,false,false};
 
 	public static void main (String args[ ]) 
 	{
-		// create the game level
-		Level level = new Level();
 
 		// create a window
 		RenderWindow window = new RenderWindow( );
@@ -106,8 +106,6 @@ class Game
 				collectible[gameLevel][i] = new Collectible(xDisplayOffset[gameLevel],yDisplayOffset[i],
 												Utils.CollectiblePositions[gameLevel][i][2],Utils.CollectiblePositions[gameLevel][i][3],
 												Utils.CollectibleImages[gameLevel][i],playerScore);
-		
-		boolean puzzleDone[] = {false,false,false,false};
 		
 		while (window.isOpen())
 		{
@@ -261,6 +259,8 @@ class Game
 						puzzle = null;
 					}
 					platGame = null;
+					
+					updatePosition();
 				}
 				else if (currentPos == 2)
 				{
@@ -268,6 +268,8 @@ class Game
 					if (puzzle.run())
 						puzzleDone[0] = true;
 					puzzle = null;
+					
+					updatePosition();
 				}
 				else if (currentPos == 3)
 				{
@@ -281,6 +283,8 @@ class Game
 						puzzle = null;
 					}
 					platGame = null;
+					
+					updatePosition();
 				}
 				else if (currentPos == 4)
 				{
@@ -288,6 +292,8 @@ class Game
 					if (puzzle.run())
 						puzzleDone[1] = true;
 					puzzle = null;
+					
+					updatePosition();
 				}
 				else if (currentPos == 5)
 				{
@@ -301,6 +307,8 @@ class Game
 						puzzle = null;
 					}
 					platGame = null;
+					
+					updatePosition();
 				}
 				else if (currentPos == 6)
 				{
@@ -308,6 +316,8 @@ class Game
 					if (puzzle.run())
 						puzzleDone[2] = true;
 					puzzle = null;
+					
+					updatePosition();
 				}
 				else if (currentPos == 7)
 				{
@@ -321,6 +331,8 @@ class Game
 						puzzle = null;
 					}
 					platGame = null;
+					
+					updatePosition();
 				}
 				else if (currentPos == 8)
 				{
@@ -328,6 +340,8 @@ class Game
 					if (puzzle.run())
 						puzzleDone[3] = true;
 					puzzle = null;
+					
+					updatePosition();
 				}
 			}
 
@@ -342,6 +356,31 @@ class Game
 						break;
 				}
 			}
+		}
+	}
+	
+	// Moves the current position after level completion
+	private static void updatePosition()
+	{
+		unlockedPuzzles = 0;
+		for(int i=0; i<4; i++)
+		{
+			if(puzzleDone[i] == true)
+			{
+				unlockedPuzzles++;
+			}
+		}
+		unlockedLevels = level.getLevel() + 1;
+		
+		maxPos = unlockedLevels + unlockedPuzzles;
+		if(maxPos>8)
+		{
+			maxPos = 8;
+			currentPos = 1;
+		}
+		else
+		{
+		currentPos = maxPos;
 		}
 	}
 }
