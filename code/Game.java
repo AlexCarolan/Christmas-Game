@@ -109,6 +109,10 @@ class Game
 		
 		while (window.isOpen())
 		{
+			//For testing levels
+			//PlatformGame test = new PlatformGame();
+			//test.run(2, collectible[2]);
+			
 			// find the number of unlocked puzzles
 			unlockedPuzzles = 0;
 					
