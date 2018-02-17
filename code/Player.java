@@ -78,6 +78,16 @@ class Player
 		if (Math.round(position.y) < 0)
 			sprite.setPosition(position.x, 0);
 	}
+	
+	/**
+	 * setLocation - moves the sprite to a set location on screen
+	 * @param x - the x coordinate to move to
+	 * @param y - the y coordinate to move to
+	 */
+	public void setLocation(int x, int y)
+	{
+		sprite.setPosition(x, y);
+	}
 
 	/**
 	 * standOn - moves the player to the specified vertical position
