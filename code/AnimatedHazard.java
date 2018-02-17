@@ -29,6 +29,7 @@ class AnimatedHazard extends Thread
 	{
 		numNoDamageFrames = noDamageFrames;
 		numDamageFrames = damageFrames;
+		//System.out.println("Number of NO damage images = " + numNoDamageFrames + ", Number of damage images = " + numDamageFrames);
 		texture = new Texture[noDamageFrames + damageFrames];
 		interval = delay;
 		
@@ -65,6 +66,9 @@ class AnimatedHazard extends Thread
 		int i = 0;
 		while (alive)
 		{
+			boolean damage = false;				// use local variable to calculate whether currently damaging
+												// do NOT use real 'damaging' indicator during calculations
+												// because this will stop isDamaging() from working properly
 			try {
 				this.sleep(interval);
 			} catch(InterruptedException e){
@@ -76,20 +80,29 @@ class AnimatedHazard extends Thread
 				//System.out.println("ALIVE");
 				if (++i == texture.length)
 				{
-					damaging = false;
+					damage = false;
 					i = 0;
 				}
-				else if (i >= numNoDamageFrames)
-					damaging = true;
+				// check whether animation is currently damaging
+				// leniency, one frame at start and finish does not damage
+				// but there must be at least one frame that causes damage at some time
+				int minDamageFrame = numNoDamageFrames;
+				int maxDamageFrame = texture.length - 1;
+				if (maxDamageFrame <= minDamageFrame)
+					maxDamageFrame = minDamageFrame + 1;
+				if (i > minDamageFrame && i < maxDamageFrame)
+					damage = true;
+				damaging = damage;			// save calculated damaging indicator
+				//System.out.println("Hazard is " + (damaging?"":"not ") + "damaging");
 			}
 		}
 	}
 	
 	/**
-	 * Damaging - returns true if the animation is currently damaging
+	 * isDamaging - returns true if the animation is currently damaging
 	 * @return boolean - true if hazard is currently damaging
 	 */
-	public boolean Damaging()
+	public boolean isDamaging()
 	{
 		return damaging;
 	}

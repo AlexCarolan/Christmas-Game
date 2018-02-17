@@ -79,7 +79,7 @@ class PlatformGame
 										Utils.ObstaclePositions[gameLevel][i][2],Utils.ObstaclePositions[gameLevel][i][3],
 										Utils.ObstacleImages[gameLevel][i],true);
 		int numHazards = Utils.HazardPositions[gameLevel].length;
-		System.out.println("Number of hazards: " + numHazards);
+		//System.out.println("Number of hazards: " + numHazards);
 		Hazard[] hazard = new Hazard[numHazards];
 		for (int i = 0; i < numHazards; i++)
 			hazard[i] = new Hazard(Utils.HazardPositions[gameLevel][i][0],Utils.HazardPositions[gameLevel][i][1],
@@ -133,7 +133,7 @@ class PlatformGame
 		AnimatedHazard[] animatedHazard = new AnimatedHazard[numHazards];
 		for (int i = 0; i < numHazards; i++)
 		{
-			animatedHazard[i] = new AnimatedHazard(Utils.HazardImages[gameLevel][i][0],1,Utils.HazardImages[gameLevel][i][1],1,100);
+			animatedHazard[i] = new AnimatedHazard(Utils.HazardImages[gameLevel][i][0],10,Utils.HazardImages[gameLevel][i][1],10,100);
 			hazard[i].setAnimation(animatedHazard[i]);
 		}
 		
@@ -472,29 +472,28 @@ class PlatformGame
 					//System.out.println("Not standing, so gravity; moveY=" + moveY);
 			}
 
-			// if touching a collectible, then pick it up
-			for (int i = 0; i < numCollectibles; i++)
+			// check if player is touching a hazard that is currently damaging
+			// check is touching the bottom 10pixels and the horizontal centre of the image
+			boolean damaged = false;
+			for (int i = 0; i < numHazards; i++)
 			{
-				if (!collectible[i].collected())
-					if (player.touching(collectible[i].getXPosition(),collectible[i].getYPosition(),
-										collectible[i].getXSize(),collectible[i].getYSize()))
-					{
-						collectible[i].collect();
-						if (i == 0)				// key is always first collectible
-						{
-							keyCollected = true;
-							door.setImage(Utils.OpenDoorImage);
-							System.out.println("Collected the key to the exit door");
-						}
-					}
+				int hazardousWidth = hazard[i].getXSize() / 4;
+				if (hazardousWidth < 2)
+					hazardousWidth = 2;
+				int startX = hazard[i].getXPosition() + hazardousWidth + hazardousWidth/2;
+				if (player.touching(startX,hazard[i].getYPosition() + hazard[i].getYSize() - 10,
+									hazardousWidth,10) && animatedHazard[i].isDamaging())
+				{
+					damaged = true;
+					//System.out.println("Touching damaging hazard " + i);
+					System.out.println("Touched a damaging hazard");
+					break;
+				}
 			}
 
-			if (player.touching(door.getXPosition(),door.getYPosition(),
-								door.getXSize(),door.getYSize()) && keyCollected)
-				finished = true;
-
-			// if player has fallen off the bottom of the window, put all the items back to the start
-			if (player.fallenBelowWindow(Utils.PlatformGameHeight))
+			// if touching a damaging hazard, or
+			// if player has fallen off the bottom of the window, then lose a life and put all the items back to the start
+			if (damaged || player.fallenBelowWindow(Utils.PlatformGameHeight))
 			{
 				player.resetPosition();
 				player.takeLife();
@@ -512,6 +511,28 @@ class PlatformGame
 				moveY = 0;
 			}
 
+			// if touching a collectible, then pick it up
+			for (int i = 0; i < numCollectibles; i++)
+			{
+				if (!collectible[i].collected())
+					if (player.touching(collectible[i].getXPosition(),collectible[i].getYPosition(),
+										collectible[i].getXSize(),collectible[i].getYSize()))
+					{
+						collectible[i].collect();
+						if (i == 0)				// key is always first collectible
+						{
+							keyCollected = true;
+							door.setImage(Utils.OpenDoorImage);
+							System.out.println("Collected the key to the platform exit");
+						}
+					}
+			}
+
+			// if touching the exit door and holding the exit key, then finished platform
+			if (keyCollected && player.touching(door.getXPosition(),door.getYPosition(),
+												door.getXSize(),door.getYSize()))
+				finished = true;
+
 			// display what was drawn on the window
 			window.display();
 			try {
@@ -521,16 +542,16 @@ class PlatformGame
 
 			// if any items were collected this time, then list all the items collected
 			int itemsCollected = 0;
-			for (int i = 0; i < numCollectibles; i++)
+			for (int i = 0; i < numCollectibles; i++)	// count how many collected currently
 				if (collectible[i].collected())
 					itemsCollected++;
-			if (itemsCollected > lastNumCollected)
+			if (itemsCollected > lastNumCollected)		// if more than we had before
 			{
 				for (int i = 0; i < numCollectibles; i++)
-					if (collectible[i].collected())
+					if (collectible[i].collected())		// list everything collected
 						System.out.println("Collected " + Utils.CollectibleImages[gameLevel][i]);
 				System.out.println();
-				lastNumCollected = itemsCollected;
+				lastNumCollected = itemsCollected;		// and update the count of how many we have
 			}
 		}
 		idleRight.kill();
