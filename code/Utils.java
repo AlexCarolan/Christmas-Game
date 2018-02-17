@@ -275,7 +275,7 @@ public class Utils
 														true,	// base1
 														true,	// base 2
 														false,
-														false,
+														true,
 														false,
 														false,
 														false,
@@ -290,8 +290,8 @@ public class Utils
 														false,
 														false,
 														false,
-														true,
-														true,	//20
+														false,
+														false,	//20
 														false,
 														false,
 														false,
@@ -339,26 +339,26 @@ public class Utils
 														true,	// base1
 														true,	// base2
 														true,	// base3
-														false,
-														false,
 														true,
 														false,
 														false,
+														true,
+														true,
 														true,
 														true,	// 10
 														true,
-														false,
 														true,
 														true,
 														true,
-														false,
+														true,
+														true,
 														true,
 														true,
 														true,
 														true,	// 20
 														false,
 														false,
-														false,
+														true,
 														false,
 														true,
 														true,
