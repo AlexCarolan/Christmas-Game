@@ -128,7 +128,7 @@ public class Utils
 														{850,500,250,200},	//6
 														{1150,400,150,15},	//7
 														{1350,500,150,15},	//8
-														{1550,600,150,100},	//9
+														//{1550,600,150,100},	//9
 														{1850,650,50,50},	//10
 														{1900,500,300,200},	//11
 														{2250,400,100,15},	//12
@@ -231,7 +231,7 @@ public class Utils
 														"images\\platform\\KitchenCounter.png",	//6
 														"images\\platform\\LogLarge.png",	//7
 														"images\\platform\\LogLarge.png",	//8
-														"images\\platform\\Fireplace.png",	//9
+														//"images\\platform\\Fireplace.png",	//9
 														"images\\platform\\LogLarge.png",	//10
 														"images\\platform\\KitchenCounter.png",	//11
 														"images\\platform\\LogLarge.png",	//12
@@ -334,7 +334,7 @@ public class Utils
 														true,
 														true,
 														true,
-														true,
+														//true,
 														true,	// 10
 														true,
 														true,
@@ -426,6 +426,24 @@ public class Utils
 														{ // gameLevel 4
 														"images\\obstacles\\box.png",
 														"images\\obstacles\\rock.png"}
+													};
+
+	// define width, height, xPosition, yPosition for the hazards for each level
+	// to access this array: first index is level, second index is hazard, 
+	// third index is xPosition, yPosition, width, height of that hazard
+	public static final int HazardPositions[][][] = {{},	// gameLevel 1
+													 {},	// gameLevel 2
+													 {		// gameLevel 3
+													  {1550,600,150,100}},
+													 {}		// gameLevel 4
+													};
+	// define image path for each hazard on each level, in same order as HazardPositions array
+	// first path is image for no damage, second path is image for damage
+	public static final String HazardImages[][][] = {{},	// gameLevel 1
+													 {},	// gameLevel 2
+													 {		// gameLevel 3
+													  {"Sprites\\Fireplace","Sprites\\Fireplace_With_Fire"}},
+													 {}		// gameLevel 4
 													};
 
 	// define width, height, xPosition, yPosition for the collectibles for each level

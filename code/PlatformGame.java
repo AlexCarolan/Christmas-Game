@@ -42,17 +42,14 @@ class PlatformGame
 		
 		// add load screen
 		Texture loadImg = new Texture();
- 		
  		try {
- 		loadImg.loadFromFile(Paths.get("images\\load\\main.png"));
+			loadImg.loadFromFile(Paths.get("images\\load\\main.png"));
  		} catch(IOException ex) {
  			System.out.println(ex);
  		}
-  
  		Sprite loadBkg = new Sprite(loadImg);
 		loadBkg.setOrigin(0,0);
  		loadBkg.setPosition(0,0);
-
 		window.draw(loadBkg);
 		window.display();
 		
@@ -81,7 +78,13 @@ class PlatformGame
 			obstacle[i] = new Platform(Utils.ObstaclePositions[gameLevel][i][0],Utils.ObstaclePositions[gameLevel][i][1],
 										Utils.ObstaclePositions[gameLevel][i][2],Utils.ObstaclePositions[gameLevel][i][3],
 										Utils.ObstacleImages[gameLevel][i],true);
-
+		int numHazards = Utils.HazardPositions[gameLevel].length;
+		System.out.println("Number of hazards: " + numHazards);
+		Hazard[] hazard = new Hazard[numHazards];
+		for (int i = 0; i < numHazards; i++)
+			hazard[i] = new Hazard(Utils.HazardPositions[gameLevel][i][0],Utils.HazardPositions[gameLevel][i][1],
+									Utils.HazardPositions[gameLevel][i][2],Utils.HazardPositions[gameLevel][i][3],
+									Utils.HazardImages[gameLevel][i][0],Utils.HazardImages[gameLevel][i][1]);
 
 		int numCollectibles = Utils.CollectiblePositions[gameLevel].length;
 		//System.out.println("Number of collectibles: " + numCollectibles);
@@ -126,6 +129,13 @@ class PlatformGame
 		
 		player = new Player(gameLevel);
 		player.setAnimation(idleRight);
+
+		AnimatedHazard[] animatedHazard = new AnimatedHazard[numHazards];
+		for (int i = 0; i < numHazards; i++)
+		{
+			animatedHazard[i] = new AnimatedHazard(Utils.HazardImages[gameLevel][i][0],1,Utils.HazardImages[gameLevel][i][1],1,100);
+			hazard[i].setAnimation(animatedHazard[i]);
+		}
 		
 		// load the font
 		Font scoreFont = new Font( );
@@ -143,7 +153,7 @@ class PlatformGame
 		// create and add life counter
 		Texture heart = new Texture();
 		try {
-		heart.loadFromFile(Paths.get(Utils.HeartPath));
+			heart.loadFromFile(Paths.get(Utils.HeartPath));
 		} catch(IOException ex) {
 			System.out.println(ex);
 		}
@@ -157,14 +167,12 @@ class PlatformGame
 		}
 
 		// Create and add key tracker to the UI
- 		Texture keySprite = new Texture();
- 		
+ 		Texture keySprite = new Texture();	
  		try {
- 		keySprite.loadFromFile(Paths.get(Utils.StaticKeyPath));
+			keySprite.loadFromFile(Paths.get(Utils.StaticKeyPath));
  		} catch(IOException ex) {
  			System.out.println(ex);
  		}
-  
  		Sprite invKey = new Sprite(keySprite);
 		invKey.setOrigin(0,0);
  		invKey.setPosition(13, 65);
@@ -195,6 +203,8 @@ class PlatformGame
 				window.draw(platform[i].getPlatform());
 			for (int i = 0; i < numObstacles; i++)
 				window.draw(obstacle[i].getPlatform());
+			for (int i = 0; i < numHazards; i++)
+				window.draw(hazard[i].getPlatform());
 			for (int i = 0; i < numCollectibles; i++)
 				if (!collectible[i].collected())
 					window.draw(collectible[i].getPlatform());
@@ -379,6 +389,8 @@ class PlatformGame
 					platform[i].move(0-moveX,0);
 				for (int i = 0; i < numObstacles; i++)
 					obstacle[i].move(0-moveX,0);
+				for (int i = 0; i < numHazards; i++)
+					hazard[i].move(0-moveX,0);
 				for (int i = 0; i < numCollectibles; i++)
 					collectible[i].move(0-moveX,0);
 				door.move(0-moveX,0);
@@ -491,6 +503,8 @@ class PlatformGame
 					platform[i].resetPosition(Utils.PlatformPositions[gameLevel][i][0],Utils.PlatformPositions[gameLevel][i][1]);
 				for (int i = 0; i < numObstacles; i++)
 					obstacle[i].resetPosition(Utils.ObstaclePositions[gameLevel][i][0],Utils.ObstaclePositions[gameLevel][i][1]);
+				for (int i = 0; i < numHazards; i++)
+					hazard[i].resetPosition(Utils.HazardPositions[gameLevel][i][0],Utils.HazardPositions[gameLevel][i][1]);
 				for (int i = 0; i < numCollectibles; i++)
 					collectible[i].resetPosition(Utils.CollectiblePositions[gameLevel][i][0],Utils.CollectiblePositions[gameLevel][i][1]);
 				door.resetPosition(Utils.DoorPosition[gameLevel][0],Utils.DoorPosition[gameLevel][1]);
