@@ -486,6 +486,8 @@ class PlatformGame
 				{
 					damaged = true;
 					//System.out.println("Touching damaging hazard " + i);
+					//System.out.println("XPos=" + hazard[i].getXPosition() + ", Width=" + hazard[i].getXSize() +
+					//					", hazardLeft=" + startX + ", hazardRight=" + (startX + hazardousWidth));
 					System.out.println("Touched a damaging hazard");
 					break;
 				}
