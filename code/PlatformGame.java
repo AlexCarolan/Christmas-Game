@@ -473,7 +473,7 @@ class PlatformGame
 			}
 
 			// check if player is touching a hazard that is currently damaging
-			// check is touching the bottom 10pixels and the horizontal centre of the image
+			// check if touching the bottom 10pixels and the horizontal centre of the image
 			boolean damaged = false;
 			for (int i = 0; i < numHazards; i++)
 			{

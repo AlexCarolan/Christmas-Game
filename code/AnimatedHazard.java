@@ -33,24 +33,24 @@ class AnimatedHazard extends Thread
 		texture = new Texture[noDamageFrames + damageFrames];
 		interval = delay;
 		
-		for (int i = 0; i < noDamageFrames; i++)
+		for (int i = 0; i < numNoDamageFrames; i++)
 		{
 			texture[i] = new Texture();
 			try {
-				// try to load the texture from file
-				texture[i].loadFromFile(Paths.get(noDamagePath + "\\Image" + (i+1) + ".png"));
+				// try to load the texture from file (there is only one image for no damage)
+				texture[i].loadFromFile(Paths.get(noDamagePath + "\\Image1.png"));
 				texture[i].setSmooth(true);
 			} catch (IOException ex) {
 				System.out.println("Unable to open image file");
 			}
 		}
-		for (int i = 0; i < noDamageFrames; i++)
+		for (int i = 0; i < numDamageFrames; i++)
 		{
-			texture[noDamageFrames + i] = new Texture();
+			texture[numNoDamageFrames + i] = new Texture();
 			try {
 				// try to load the texture from file
-				texture[noDamageFrames + i].loadFromFile(Paths.get(damagePath + "\\Image" + (i+1) + ".png"));
-				texture[noDamageFrames + i].setSmooth(true);
+				texture[numNoDamageFrames + i].loadFromFile(Paths.get(damagePath + "\\Image" + (i+1) + ".png"));
+				texture[numNoDamageFrames + i].setSmooth(true);
 			} catch (IOException ex) {
 				System.out.println("Unable to open image file");
 			}

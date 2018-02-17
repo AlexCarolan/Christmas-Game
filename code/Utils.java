@@ -119,7 +119,7 @@ public class Utils
 														{5000,330,100,100},	//22
 														{-250,200,250,650},		// left hand edge
 														{6500,200,250,650}},	// right hand edge
-														{ // gameLevel 3
+														{ // gameLevel 3 - kitchen
 														{0,700,3950,50},	// base 1
 														{4000,700,1200,50},	// base 2
 														{5300,700,1200,50},	// base 3
@@ -128,13 +128,13 @@ public class Utils
 														{850,500,250,200},	//6
 														{1150,400,150,15},	//7
 														{1350,500,150,15},	//8
-														//{1550,600,150,100},	//9
+														{1550,595,150,5},	//9
 														{1850,650,50,50},	//10
 														{1900,500,300,200},	//11
-														{2250,400,100,15},	//12
+														{2250,450,100,15},	//12
 														{2350,650,50,50},	//13
 														{2400,600,750,100},	//14
-														{2550,500,150,100},	//15
+														{2550,495,150,5},	//15
 														{2750,400,350,15},	//16
 														{3150,450,300,250},	//17
 														{3450,450,150,15},	//18
@@ -145,6 +145,11 @@ public class Utils
 														{4100,600,150,15},	//23
 														{4300,500,200,15},	//24
 														{4650,500,400,200},	//25
+														{5050,650,50,50},	//26
+														{5750,650,50,50},	//27
+														{5800,600,100,100},	//28
+														{5850,550,50,50},	//29
+														{5900,650,50,50},	//30
 														{20-PlatformGameWidth/2,510,PlatformGameWidth/2+20,PlatformGameHeight-510},	// left hand edge
 														{6500,510,PlatformGameWidth/2,PlatformGameHeight-510}},	// right hand edge
 														{ // gameLevel 4
@@ -231,13 +236,13 @@ public class Utils
 														"images\\platform\\KitchenCounter.png",	//6
 														"images\\platform\\LogLarge.png",	//7
 														"images\\platform\\LogLarge.png",	//8
-														//"images\\platform\\Fireplace.png",	//9
+														"images\\platform\\LogLarge.png",	//9 (above fireplace)
 														"images\\platform\\LogLarge.png",	//10
 														"images\\platform\\KitchenCounter.png",	//11
 														"images\\platform\\LogLarge.png",	//12
 														"images\\platform\\LogLarge.png",	//13
 														"images\\platform\\KitchenCounter.png",	//14
-														"images\\platform\\Fireplace.png",	//15
+														"images\\platform\\LogLarge.png",	//15 (above fireplace)
 														"images\\platform\\LogLarge.png",	//16
 														"images\\platform\\Shelf.png",	//17
 														"images\\platform\\LogLarge.png",	//18
@@ -248,6 +253,11 @@ public class Utils
 														"images\\platform\\LogLarge.png",	//23
 														"images\\platform\\LogLarge.png",	//24
 														"images\\platform\\KitchenCounter.png",	//25
+														"images\\platform\\LogLarge.png",	//26
+														"images\\platform\\LogLarge.png",	//27
+														"images\\platform\\LogLarge.png",	//28
+														"images\\platform\\LogLarge.png",	//29
+														"images\\platform\\LogLarge.png",	//30
 														"images\\platform\\KitchenCounter.png",	//left hand edge
 														"images\\platform\\KitchenCounter.png"},	//right hand edge
 														{ // gameLevel 4
@@ -329,28 +339,33 @@ public class Utils
 														true,	// base1
 														true,	// base2
 														true,	// base3
+														false,
+														false,
 														true,
+														false,
+														false,
 														true,
-														true,
-														true,
-														true,
-														//true,
 														true,	// 10
 														true,
+														false,
 														true,
 														true,
 														true,
-														true,
-														true,
+														false,
 														true,
 														true,
 														true,
 														true,	// 20
 														false,
 														false,
+														false,
+														false,
 														true,
 														true,
 														true,
+														true,
+														true,
+														true,	// 30
 														true,
 														true},
 														{ // gameLevel 4
@@ -389,10 +404,7 @@ public class Utils
 														{5835,500,230,100},
 														{5923,435,90,65}},
 														{ // gameLevel 3
-														{5760,660,50,50},
-														{5800,620,100,100},
-														{5835,590,50,50},
-														{5890,660,50,50}},
+														},
 														{ // gameLevel 4
 														{2250,670,40,40},
 														{800,PlatformGameHeight - 55,35,35}}
@@ -419,10 +431,7 @@ public class Utils
 														"images\\obstacles\\Box_Tan.png",
 														"images\\obstacles\\Box_Brown.png"},
 														{ // gameLevel 3
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\box.png"},
+														},
 														{ // gameLevel 4
 														"images\\obstacles\\box.png",
 														"images\\obstacles\\rock.png"}
@@ -434,15 +443,49 @@ public class Utils
 	public static final int HazardPositions[][][] = {{},	// gameLevel 1
 													 {},	// gameLevel 2
 													 {		// gameLevel 3
-													  {1550,600,150,100}},
+													  {700,500,50,50},
+													  {650,650,50,50},
+													  {1300,600,100,100},
+													  {1550,550,50,50},
+													  {1550,600,150,100},
+													  {2200,650,50,50},
+													  {2550,500,150,100},
+													  {3050,500,100,100},
+													  {3250,400,50,50},
+													  {3650,600,100,100},
+													  {4400,450,50,50},
+													  {4600,650,50,50},
+													  {4700,450,50,50},
+													  {5100,650,50,50},
+													  {5450,600,100,100},
+													  {5900,600,50,50},
+													 },
 													 {}		// gameLevel 4
 													};
 	// define image path for each hazard on each level, in same order as HazardPositions array
 	// first path is image for no damage, second path is image for damage
+	// there MUST be one image within the noDamage path, labelled Image1
+	// there MUST be ten images within the damage path, labelled Image1..Image10
 	public static final String HazardImages[][][] = {{},	// gameLevel 1
 													 {},	// gameLevel 2
 													 {		// gameLevel 3
-													  {"Sprites\\Fireplace","Sprites\\Fireplace_With_Fire"}},
+													  {"Sprites\\Fire_Off","Sprites\\Fire"},
+													  {"Sprites\\Fire_Off","Sprites\\Fire"},	// should be a knife
+													  {"Sprites\\Fire_Off","Sprites\\Fire"},
+													  {"Sprites\\Fire_Off","Sprites\\Fire"},
+													  {"Sprites\\Fireplace","Sprites\\Fireplace_With_Fire"},
+													  {"Sprites\\Fire_Off","Sprites\\Fire"},	// should be a knife
+													  {"Sprites\\Fireplace","Sprites\\Fireplace_With_Fire"},
+													  {"Sprites\\Fire_Off","Sprites\\Fire"},
+													  {"Sprites\\Fire_Off","Sprites\\Fire"},	// should be a knife
+													  {"Sprites\\Fire_Off","Sprites\\Fire"},
+													  {"Sprites\\Fire_Off","Sprites\\Fire"},
+													  {"Sprites\\Fire_Off","Sprites\\Fire"},
+													  {"Sprites\\Fire_Off","Sprites\\Fire"},	// should be a knife
+													  {"Sprites\\Fire_Off","Sprites\\Fire"},
+													  {"Sprites\\Fire_Off","Sprites\\Fire"},
+													  {"Sprites\\Fire_Off","Sprites\\Fire"},	// should be a knife
+													 },
 													 {}		// gameLevel 4
 													};
 
