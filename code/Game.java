@@ -49,6 +49,10 @@ class Game
 
 		window.draw(loadBkg);
 		window.display();
+		
+		//create menu still image of the player
+		Player menuPlayer = new Player(1);
+		menuPlayer.setLocation(800,700);
 
 		// display the Christmas Room (as a platform)
 		Platform room = new Platform(0,0,Utils.PlatformGameWidth,Utils.PlatformGameHeight-350,Utils.RoomImage[level.getLevel()],false);
@@ -159,7 +163,9 @@ class Game
 					}
 				}
 			}
-
+			//display player
+			window.draw(menuPlayer.getSprite());
+			
 			// display what was drawn on the window
 			window.display();
 			
