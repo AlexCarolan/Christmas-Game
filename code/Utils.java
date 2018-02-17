@@ -474,17 +474,17 @@ public class Utils
 													  {"Sprites\\Fire_Off","Sprites\\Fire"},
 													  {"Sprites\\Fire_Off","Sprites\\Fire"},
 													  {"Sprites\\Fireplace","Sprites\\Fireplace_With_Fire"},
-													  {"Sprites\\Fire_Off","Sprites\\Fire"},	// should be a knife
+													  {"Sprites\\Cleaver_Down","Sprites\\Cleaver_Up"},
 													  {"Sprites\\Fireplace","Sprites\\Fireplace_With_Fire"},
 													  {"Sprites\\Fire_Off","Sprites\\Fire"},
-													  {"Sprites\\Fire_Off","Sprites\\Fire"},	// should be a knife
+													  {"Sprites\\Cleaver_Down","Sprites\\Cleaver_Up"},
 													  {"Sprites\\Fire_Off","Sprites\\Fire"},
 													  {"Sprites\\Fire_Off","Sprites\\Fire"},
 													  {"Sprites\\Fire_Off","Sprites\\Fire"},
-													  {"Sprites\\Fire_Off","Sprites\\Fire"},	// should be a knife
+													  {"Sprites\\Cleaver_Down","Sprites\\Cleaver_Up"},
 													  {"Sprites\\Fire_Off","Sprites\\Fire"},
 													  {"Sprites\\Fire_Off","Sprites\\Fire"},
-													  {"Sprites\\Fire_Off","Sprites\\Fire"},	// should be a knife
+													  {"Sprites\\Cleaver_Down","Sprites\\Cleaver_Up"},
 													 },
 													 {}		// gameLevel 4
 													};
