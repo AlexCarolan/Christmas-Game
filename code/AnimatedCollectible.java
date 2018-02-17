@@ -1,5 +1,5 @@
 /**
- * This class animates a player in the game
+ * This class animates a platform (or collectible) in the game
  */
 import java.nio.file.*;
 import java.io.*;
@@ -15,9 +15,8 @@ class AnimatedCollectible extends Thread
 	private boolean alive = true;
 	
 	/**
-	 * Platform constructor - creates a platform (for the sprite to stand on)
-	 * @param c - the Collectible instance to be animated
-	 * @param path - the file path to the sprites
+	 * AnimatedCollectible constructor - creates the images for the animation
+	 * @param path - the file path to the images
 	 * @param frames - the number of frames in the animation
 	 * @param delay - the delay between each frame of the animation in milliseconds
 	 */
@@ -37,12 +36,11 @@ class AnimatedCollectible extends Thread
 				System.out.println("Unable to open image file");
 			}
 		}
-		
 		this.start();
 	}
 	
 	/**
-	* Starts the thread causing the frames to cycle at regular intervals
+	* run - starts the thread causing the frames to cycle at regular intervals
 	*/
 	public void run()
 	{
@@ -65,7 +63,7 @@ class AnimatedCollectible extends Thread
 	}
 	
 	/**
-	 * Allows the animation to be activated or halted
+	 * setActive - allows the animation to be activated or halted
 	 * @param state - the true/false value that states if the animation is active
 	 */
 	public void setActive(boolean state)
@@ -73,13 +71,17 @@ class AnimatedCollectible extends Thread
 		active = state;
 	}
 
+	/**
+	 * getActive - returns whether the animation is active
+	 * @return boolean, true if the animation is currently active
+	 */
 	public boolean getActive()
 	{
 		return active;
 	}
 	
 	/**
-	* Ends the thread
+	* kill - ends the thread
 	*/
 	public void kill()
 	{
@@ -87,7 +89,7 @@ class AnimatedCollectible extends Thread
 	}
 	
 	/**
-	* sets the Collectible to be animated
+	* setCollectible - sets the platform/collectible to be animated
 	*/
 	public void setCollectible(Platform col)
 	{
