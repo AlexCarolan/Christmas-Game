@@ -4,7 +4,7 @@
 import java.nio.file.*;
 import java.io.*;
 import org.jsfml.graphics.*;
-import java.util.ArrayList;
+import java.util.*;
 
 class AnimatedHazard extends Thread
 {
@@ -23,15 +23,19 @@ class AnimatedHazard extends Thread
 	 * @param noDamageFrames - the number of frames in the no damage animation
 	 * @param damagePath - the file path to the images for damage
 	 * @param damageFrames - the number of frames in the damage animation
-	 * @param delay - the delay between each frame of the animation in milliseconds
+	 * @param delay - the delay between each frame of the animation in milliseconds, will be randomised up to 50%
 	 */
 	public AnimatedHazard(String noDamagePath, int noDamageFrames, String damagePath, int damageFrames, int delay)
 	{
+		Random r = new Random();
+		int randomValue = r.nextInt(delay/2);		// add a random factor into the animation timing
+													// so that animations are not all in sync
+
 		numNoDamageFrames = noDamageFrames;
 		numDamageFrames = damageFrames;
 		//System.out.println("Number of NO damage images = " + numNoDamageFrames + ", Number of damage images = " + numDamageFrames);
 		texture = new Texture[noDamageFrames + damageFrames];
-		interval = delay;
+		interval = delay + randomValue - delay/4;
 		
 		for (int i = 0; i < numNoDamageFrames; i++)
 		{
@@ -63,7 +67,9 @@ class AnimatedHazard extends Thread
 	*/
 	public void run()
 	{
-		int i = 0;
+		Random r = new Random();
+		int i = r.nextInt(texture.length);		// randomise where the animation starts
+
 		while (alive)
 		{
 			boolean damage = false;				// use local variable to calculate whether currently damaging
