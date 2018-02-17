@@ -57,7 +57,7 @@ class PlatformGame
 		Score playerScore = new Score(0);
 
 		// create the background
-		Platform background = new Platform(0-Utils.PlatformGameWidth/2,0,Utils.PlatformBackgroundWidth[gameLevel],Utils.PlatformGameHeight+1,
+		Platform background = new Platform(0-Utils.PlatformGameWidth/2,0,Utils.PlatformBackgroundWidth,Utils.PlatformGameHeight+1,
 											Utils.PlatformBackgroundImage[gameLevel],false);
 
 		// create all objects - player, platforms, obstacles, collectibles
@@ -175,7 +175,7 @@ class PlatformGame
  		}
  		Sprite invKey = new Sprite(keySprite);
 		invKey.setOrigin(0,0);
- 		invKey.setPosition(13, 65);
+ 		invKey.setPosition(135, 35);
 		
 		boolean keyCollected = false;
 		
@@ -277,7 +277,8 @@ class PlatformGame
 							break;
 						}
 					}
-					if (!standing)
+					// the sleigh can go past all the obstacles, it stops only for platforms
+					if ((!standing) && (gameLevel != Utils.SleighGameLevel))
 					{
 						for (int i = 0; i < numObstacles; i++)
 						{
@@ -343,7 +344,8 @@ class PlatformGame
 							break;
 						}
 					}
-				if (!touching)
+				// the sleigh can go past all the obstacles, it stops only for platforms
+				if ((!touching) && (gameLevel != Utils.SleighGameLevel))
 				{
 					for (int i = 0; i < numObstacles; i++)
 						if (player.touchingLeft(obstacle[i].getXPosition()+moveX/2,obstacle[i].getYPosition(),
@@ -369,7 +371,8 @@ class PlatformGame
 							break;
 						}
 					}
-				if (!touching)
+				// the sleigh can go past all the obstacles, it stops only for platforms
+				if ((!touching) && (gameLevel != Utils.SleighGameLevel))
 				{
 					for (int i = 0; i < numObstacles; i++)
 						if (player.touchingRight(obstacle[i].getXPosition()-moveX/2,obstacle[i].getYPosition(),
@@ -438,16 +441,20 @@ class PlatformGame
 					break;
 				}
 			}
-			for (int i = 0; i < numObstacles; i++)
+			// the sleigh can go past all the obstacles, it stops only for platforms
+			if (gameLevel != Utils.SleighGameLevel)
 			{
-				if (player.standingOn(obstacle[i].getXPosition(),obstacle[i].getYPosition()-Utils.MoveAmountY/2,
-										obstacle[i].getXSize(),obstacle[i].getYSize()+Utils.MoveAmountY))
+				for (int i = 0; i < numObstacles; i++)
 				{
-					standing = true;
-					// make player stand in same vertical position above obstacle
-					player.standOn(obstacle[i].getYPosition()-Utils.MoveAmountY/2);
-					//System.out.println("Player is NOW standing on obstacle " + i + ", moveY=0");
-					break;
+					if (player.standingOn(obstacle[i].getXPosition(),obstacle[i].getYPosition()-Utils.MoveAmountY/2,
+											obstacle[i].getXSize(),obstacle[i].getYSize()+Utils.MoveAmountY))
+					{
+						standing = true;
+						// make player stand in same vertical position above obstacle
+						player.standOn(obstacle[i].getYPosition()-Utils.MoveAmountY/2);
+						//System.out.println("Player is NOW standing on obstacle " + i + ", moveY=0");
+						break;
+					}
 				}
 			}
 			if (standing)

@@ -50,7 +50,7 @@ public class Utils
 															"images\\platform\\Kitchen.png",	// platform level 3
 															"images\\platform\\Village.png"		// platform level 4
 															};
-	public static final int PlatformBackgroundWidth[] = {7564, 7564, 7564, 7564};
+	public static final int PlatformBackgroundWidth = 7564;
 
 	// define width, height, xPosition, yPosition for all the platforms for each level
 	// to access this array: first index is level, second index is platform, 
@@ -155,11 +155,10 @@ public class Utils
 														{ // gameLevel 4
 														{0,PlatformGameHeight - 25,PlatformGameWidth,25},	// base
 														{PlatformGameWidth+150,PlatformGameHeight - 50,500,50}, // base 2
+														{5900,PlatformGameHeight - 50,1100,50},	// base 3
 														{-10,495,260,10},	// 3
-														{150,490,3,10},		// 4
-														{650,325,550,10},	// 5
-														{950,320,3,10},		// 6
-														{0-PlatformGameWidth/2,50,PlatformGameWidth/2,PlatformGameHeight-1},		// left hand edge
+														{650,325,550,10},	// 4
+														{0-PlatformGameWidth/2,40,PlatformGameWidth/2,PlatformGameHeight-40},	// left hand edge
 														{6500,0,PlatformGameWidth/2,PlatformGameHeight+1}}	// right hand edge
 													};
 	// define image for each platform on each level, in same order as PlatformPositions array
@@ -261,14 +260,13 @@ public class Utils
 														"images\\platform\\KitchenCounter.png",	//left hand edge
 														"images\\platform\\KitchenCounter.png"},	//right hand edge
 														{ // gameLevel 4
-														"images\\platform\\Rock_Platform.png",
-														"images\\platform\\Rock_Platform.png",
-														"images\\platform\\Roof_Line.png",
-														"images\\platform\\Vertical_Log.png",
-														"images\\platform\\Roof_Line.png",
-														"images\\platform\\Vertical_Log.png",
-														"images\\platform\\Cabin_Large.png",
-														"images\\obstacles\\ForestOne.png"}
+														"images\\platform\\Rock_Platform.png",	// base 1
+														"images\\platform\\Rock_Platform.png",	// base 2
+														"images\\platform\\Rock_Platform.png",	// base 3
+														"images\\platform\\Roof_Line.png",		// 3
+														"images\\platform\\Roof_Line.png",		// 4
+														"images\\platform\\Cabin_Large.png",	// left hand side
+														"images\\obstacles\\ForestOne.png"}	// right hand side
 													};
 	// specify whether platform is a ceiling (can't be jumped up through)
 	public static final boolean PlatformCeilings[][] = {{ // gameLevel 1
@@ -371,10 +369,9 @@ public class Utils
 														{ // gameLevel 4
 														true,
 														true,
-														false,
 														true,
 														false,
-														true,
+														false,
 														true,
 														true}
 													};
@@ -406,8 +403,15 @@ public class Utils
 														{ // gameLevel 3
 														},
 														{ // gameLevel 4
-														{2250,670,40,40},
-														{800,PlatformGameHeight - 55,35,35}}
+														{1750,500,600,400},
+														{2250,370,700,500},
+														{3000,510,500,300},
+														{3470,530,510,310},
+														{3100,590,550,350},
+														{4000,490,560,320},
+														{4500,400,1000,500},
+														{5050,600,800,300},
+														}
 													};
 	// define image for each obstacle on each level, in same order as ObstaclePositions array
 	public static final String ObstacleImages[][] = {{ // gameLevel 1
@@ -433,8 +437,15 @@ public class Utils
 														{ // gameLevel 3
 														},
 														{ // gameLevel 4
-														"images\\obstacles\\box.png",
-														"images\\obstacles\\rock.png"}
+														"images\\platform\\Cabin_Small.png",
+														"images\\platform\\Cabin_Medium.png",
+														"images\\platform\\Cabin_Small.png",
+														"images\\platform\\Cabin_Small.png",
+														"images\\platform\\Cabin_Small.png",
+														"images\\platform\\Cabin_Small.png",
+														"images\\platform\\Cabin_Medium.png",
+														"images\\platform\\Cabin_Small.png",
+														}
 													};
 
 	// define width, height, xPosition, yPosition for the hazards for each level
@@ -534,7 +545,7 @@ public class Utils
 														"images\\collectibles\\BlueBauble.png"},
 														{ // gameLevel 3
 														"Sprites\\Key\\KeyMain.png",
-														"images\\collectibles\\RedBauble.png",
+														"images\\collectibles\\GreenBauble.png",
 														"images\\collectibles\\OrangeBauble.png",
 														"images\\collectibles\\RedBauble.png",
 														"images\\collectibles\\BlueBauble.png"},
