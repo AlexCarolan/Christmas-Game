@@ -112,22 +112,16 @@ class Game
 			// find the number of unlocked puzzles
 			unlockedPuzzles = 0;
 					
-			for(int i=0; i<4; i++)
-			{
-				if(puzzleDone[i] == true)
-				{
+			for (int i = 0; i < Utils.MaxLevel; i++)
+				if (puzzleDone[i] == true)
 					unlockedPuzzles++;
-				}
-			}
 			
 			unlockedLevels = level.getLevel() + 1;
 			
 			maxPos = unlockedLevels + unlockedPuzzles;
 			
-			if(maxPos>8)
-			{
-				maxPos = 8;
-			}
+			if (maxPos > Utils.MaxLevel * 2)
+				maxPos = Utils.MaxLevel * 2;
 			
 			int gameLevel = level.getLevel();
 			room.setImage(Utils.RoomImage[gameLevel]);
@@ -169,33 +163,27 @@ class Game
 			// display what was drawn on the window
 			window.display();
 			
-			if(Keyboard.isKeyPressed(Keyboard.Key.W) || Keyboard.isKeyPressed(Keyboard.Key.UP))
+			if (Keyboard.isKeyPressed(Keyboard.Key.W) || Keyboard.isKeyPressed(Keyboard.Key.UP))
 			{
 				currentPos = currentPos - 2;
-				
-				if(currentPos <= 0)
-				{
+				if (currentPos <= 0)
 					currentPos = 1;
-				}
 				
 				try        
 				{
 					Thread.sleep(100);
 				} 
-				catch(InterruptedException e) 
+				catch (InterruptedException e) 
 				{
 					System.out.println(e);
 				}
 
 			}
-			else if(Keyboard.isKeyPressed(Keyboard.Key.A) || Keyboard.isKeyPressed(Keyboard.Key.LEFT))
+			else if (Keyboard.isKeyPressed(Keyboard.Key.A) || Keyboard.isKeyPressed(Keyboard.Key.LEFT))
 			{
 				currentPos = currentPos - 1;
-				
-				if(currentPos <= 0)
-				{
+				if (currentPos <= 0)
 					currentPos = 1;
-				}
 				
 				try        
 				{
@@ -205,16 +193,12 @@ class Game
 				{
 					System.out.println(e);
 				}
-				
 			}
-			else if(Keyboard.isKeyPressed(Keyboard.Key.S) || Keyboard.isKeyPressed(Keyboard.Key.DOWN))
+			else if (Keyboard.isKeyPressed(Keyboard.Key.S) || Keyboard.isKeyPressed(Keyboard.Key.DOWN))
 			{
 				currentPos = currentPos + 2;
-				
-				if(currentPos > maxPos)
-				{
+				if (currentPos > maxPos)
 					currentPos = maxPos;
-				}
 				
 				try        
 				{
@@ -224,16 +208,12 @@ class Game
 				{
 					System.out.println(e);
 				}
-				
 			}
 			else if(Keyboard.isKeyPressed(Keyboard.Key.D) || Keyboard.isKeyPressed(Keyboard.Key.RIGHT))
 			{
 				currentPos = currentPos + 1;
-				
-				if(currentPos > maxPos)
-				{
+				if (currentPos > maxPos)
 					currentPos = maxPos;
-				}
 				
 				try        
 				{
@@ -243,9 +223,8 @@ class Game
 				{
 					System.out.println(e);
 				}
-				
 			}
-			else if(Keyboard.isKeyPressed(Keyboard.Key.RETURN))
+			else if (Keyboard.isKeyPressed(Keyboard.Key.RETURN))
 			{
 				if (currentPos == 1)
 				{
@@ -261,7 +240,6 @@ class Game
 						puzzle = null;
 					}
 					platGame = null;
-					
 					updatePosition();
 				}
 				else if (currentPos == 2)
@@ -270,7 +248,6 @@ class Game
 					if (puzzle.run())
 						puzzleDone[0] = true;
 					puzzle = null;
-					
 					updatePosition();
 				}
 				else if (currentPos == 3)
@@ -287,7 +264,6 @@ class Game
 						puzzle = null;
 					}
 					platGame = null;
-					
 					updatePosition();
 				}
 				else if (currentPos == 4)
@@ -298,7 +274,6 @@ class Game
 						puzzleDone[1] = true;
 					}
 					puzzle = null;
-					
 					updatePosition();
 				}
 				else if (currentPos == 5)
@@ -315,7 +290,6 @@ class Game
 						puzzle = null;
 					}
 					platGame = null;
-					
 					updatePosition();
 				}
 				else if (currentPos == 6)
@@ -324,7 +298,6 @@ class Game
 					if (puzzle.run())
 						puzzleDone[2] = true;
 					puzzle = null;
-					
 					updatePosition();
 				}
 				else if (currentPos == 7)
@@ -341,7 +314,6 @@ class Game
 						puzzle = null;
 					}
 					platGame = null;
-					
 					updatePosition();
 				}
 				else if (currentPos == 8)
@@ -350,7 +322,6 @@ class Game
 					if (puzzle.run())
 						puzzleDone[3] = true;
 					puzzle = null;
-					
 					updatePosition();
 				}
 			}
@@ -373,24 +344,19 @@ class Game
 	private static void updatePosition()
 	{
 		unlockedPuzzles = 0;
-		for(int i=0; i<4; i++)
-		{
-			if(puzzleDone[i] == true)
-			{
+		for (int i=0; i < Utils.MaxLevel; i++)
+			if (puzzleDone[i] == true)
 				unlockedPuzzles++;
-			}
-		}
+
 		unlockedLevels = level.getLevel() + 1;
 		
 		maxPos = unlockedLevels + unlockedPuzzles;
-		if(maxPos>8)
+		if (maxPos > Utils.MaxLevel * 2)
 		{
-			maxPos = 8;
+			maxPos = Utils.MaxLevel * 2;
 			currentPos = 1;
 		}
 		else
-		{
-		currentPos = maxPos;
-		}
+			currentPos = maxPos;
 	}
 }
