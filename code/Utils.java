@@ -403,6 +403,7 @@ public class Utils
 														{ // gameLevel 3
 														},
 														{ // gameLevel 4
+														{500,50,200,70},
 														{1750,500,600,400},
 														{2250,370,700,500},
 														{3000,510,500,300},
@@ -437,6 +438,7 @@ public class Utils
 														{ // gameLevel 3
 														},
 														{ // gameLevel 4
+														"images\\obstacles\\Cloud.png",
 														"images\\platform\\Cabin_Small.png",
 														"images\\platform\\Cabin_Medium.png",
 														"images\\platform\\Cabin_Small.png",
@@ -471,7 +473,16 @@ public class Utils
 													  {5450,600,100,100},
 													  {5900,600,50,50},
 													 },
-													 {}		// gameLevel 4
+													 {		// gameLevel 4
+													  {1808,251,55,200},
+													  {2225,400,30,100},
+													  {2345,155,70,200},
+													  {2802,220,45,150},
+													  {3465,7,55,150},
+													  {3968,219,50,200},
+													  {4580,54,50,200},
+													  {5295,200,50,200},	//
+													 }
 													};
 	// define image path for each hazard on each level, in same order as HazardPositions array
 	// first path is image for no damage, second path is image for damage
@@ -497,7 +508,16 @@ public class Utils
 													  {"Sprites\\Fire_Off","Sprites\\Fire"},
 													  {"Sprites\\Cleaver_Down","Sprites\\Cleaver_Up"},
 													 },
-													 {}		// gameLevel 4
+													 {		// gameLevel 4
+													  {"Sprites\\Smoke_Off","Sprites\\Smoke_On"},
+													  {"Sprites\\Smoke_Off","Sprites\\Smoke_On"},
+													  {"Sprites\\Smoke_Off","Sprites\\Smoke_On"},
+													  {"Sprites\\Smoke_Off","Sprites\\Smoke_On"},
+													  {"Sprites\\Smoke_Off","Sprites\\Smoke_On"},
+													  {"Sprites\\Smoke_Off","Sprites\\Smoke_On"},
+													  {"Sprites\\Smoke_Off","Sprites\\Smoke_On"},
+													  {"Sprites\\Smoke_Off","Sprites\\Smoke_On"},
+													 }
 													};
 
 	// define width, height, xPosition, yPosition for the collectibles for each level
