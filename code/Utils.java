@@ -454,7 +454,12 @@ public class Utils
 	// to access this array: first index is level, second index is hazard, 
 	// third index is xPosition, yPosition, width, height of that hazard
 	public static final int HazardPositions[][][] = {{},	// gameLevel 1
-													 {},	// gameLevel 2
+													 {		// gameLevel 2
+													  {1350,600,100,200},
+													  {1950,550,100,250},
+													  {2450,350,100,450},
+													  {5200,350,100,450},
+													 },
 													 {		// gameLevel 3
 													  {700,500,50,50},
 													  {650,650,50,50},
@@ -492,7 +497,12 @@ public class Utils
 	// there MUST be one image within the noDamage path, labelled Image1
 	// there MUST be ten images within the damage path, labelled Image1..Image10
 	public static final String HazardImages[][][] = {{},	// gameLevel 1
-													 {},	// gameLevel 2
+													 {		// gameLevel 2
+													  {"Sprites\\Smoke_Off","Sprites\\Smoke_On"},
+													  {"Sprites\\Smoke_Off","Sprites\\Smoke_On"},
+													  {"Sprites\\Smoke_Off","Sprites\\Smoke_On"},
+													  {"Sprites\\Smoke_Off","Sprites\\Smoke_On"},
+													 },
 													 {		// gameLevel 3
 													  {"Sprites\\Fire_Off","Sprites\\Fire"},
 													  {"Sprites\\Fire_Off","Sprites\\Fire"},	// should be a knife
