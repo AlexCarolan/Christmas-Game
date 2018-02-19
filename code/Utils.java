@@ -546,8 +546,8 @@ public class Utils
 														{PlatformGameWidth+200,PlatformGameHeight - 80,37,35}, // key
 														{130,480,15,15},
 														{800,310,15,15},
-														{1220,535,15,15},
-														{1220,535,15,15}}
+														{3330,650,15,15},
+														{3650,470,15,15}}
 														};
 	// define image for each collectible on each level, in same order as CollectiblePositions array
 	// NOTE: key MUST be first collectible
