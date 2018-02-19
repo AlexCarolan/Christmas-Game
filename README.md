@@ -8,14 +8,17 @@ Compile and run the code with the commands:
 ToDo:
 
 Platform Game
-1. consider whether to add more gaps to fall through in kitchen
-3. do Level 4
-4. consider adding moving obstacles
-5. consider adding timer
+1. consider adding moving obstacles
+2. consider adding timer
 
 Puzzle Game
 
 Graphics - Leo
 1. Christmas Room images (bare, + tree, +tree+decorations, +tree+decor+food, +tree+decor+food+gifts)
-2. knife hazard image
+2. shorten sleigh
 3. improved food puzzle image
+
+Graphics - Alex
+1. animate smoke
+2. animate sleigh
+3. narrow menu options, so instructions can be bigger font
