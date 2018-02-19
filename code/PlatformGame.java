@@ -121,12 +121,7 @@ class PlatformGame
 
 		// first collectible is ALWAYS the key
 		collectible[0].setAnimation(key);
-		
-		//sleighRight.start();
-		//if (gameLevel != Utils.SleighGameLevel)
-		//else
-			//sleighRight.setActive(true);
-		
+
 		player = new Player(gameLevel);
 		player.setAnimation(idleRight);
 
@@ -212,7 +207,7 @@ class PlatformGame
 			window.draw(player.getSprite());
 
 			// modify horizontal movement per game tick so that player gradually slows down, rather than being jerky
-			if (gameLevel != Utils.SleighGameLevel)
+			if (gameLevel != Utils.SleighGameLevel)		// COMMENT OUT BLOCK TO TEST LEVEL 4
 			{
 				if (moveX < 0)
 					moveX++;
@@ -293,7 +288,16 @@ class PlatformGame
 					}
 				}
 				if (gameLevel == Utils.SleighGameLevel)
+				{
 					moveY = 0-Utils.MoveAmountY;
+					if (moveX == 0)				// COMMENT OUT BLOCK TO TEST LEVEL 4
+					{
+						if (idleRight.getActive())
+							moveX = Utils.MoveAmountX;
+						else
+							moveX = 0-Utils.MoveAmountX;
+					}
+				}
 				else if (standing)
 				{
 					moveY = 0-Utils.JumpAmount;
@@ -480,23 +484,31 @@ class PlatformGame
 			}
 
 			// check if player is touching a hazard that is currently damaging
-			// check if touching the bottom 10pixels and the horizontal centre of the image
+			// check if touching the centre bottom of the image
 			boolean damaged = false;
 			for (int i = 0; i < numHazards; i++)
 			{
-				int hazardousWidth = hazard[i].getXSize() / 4;
-				if (hazardousWidth < 2)
-					hazardousWidth = 2;
-				int startX = hazard[i].getXPosition() + hazardousWidth + hazardousWidth/2;
-				if (player.touching(startX,hazard[i].getYPosition() + hazard[i].getYSize() - 10,
-									hazardousWidth,10) && animatedHazard[i].isDamaging())
+				if (animatedHazard[i].isDamaging())
 				{
-					damaged = true;
-					//System.out.println("Touching damaging hazard " + i);
-					//System.out.println("XPos=" + hazard[i].getXPosition() + ", Width=" + hazard[i].getXSize() +
-					//					", hazardLeft=" + startX + ", hazardRight=" + (startX + hazardousWidth));
-					System.out.println("Touched a damaging hazard");
-					break;
+					int hazardousWidth = hazard[i].getXSize() / 4;
+					if (hazardousWidth < 2)
+						hazardousWidth = 2;
+					int hazardousHeight = hazard[i].getYSize() / 2;
+					if (hazardousHeight < 2)
+						hazardousHeight = 2;
+					int startX = hazard[i].getXPosition() + hazardousWidth + hazardousWidth/2;
+					int startY = hazard[i].getYPosition() + hazardousHeight/2;
+					//if (player.touching(startX,hazard[i].getYPosition() + hazard[i].getYSize() - 10,
+					//					hazardousWidth,10) && animatedHazard[i].isDamaging())
+					if (player.touching(startX,startY,hazardousWidth,hazardousHeight + hazardousHeight/2))
+					{
+						damaged = true;
+						//System.out.println("Touching damaging hazard " + i);
+						//System.out.println("XPos=" + hazard[i].getXPosition() + ", Width=" + hazard[i].getXSize() +
+						//					", hazardLeft=" + startX + ", hazardRight=" + (startX + hazardousWidth));
+						System.out.println("Touched a damaging hazard");
+						break;
+					}
 				}
 			}
 
