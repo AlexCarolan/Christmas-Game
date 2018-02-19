@@ -153,11 +153,11 @@ public class Utils
 														{20-PlatformGameWidth/2,510,PlatformGameWidth/2+20,PlatformGameHeight-510},	// left hand edge
 														{6500,510,PlatformGameWidth/2,PlatformGameHeight-510}},	// right hand edge
 														{ // gameLevel 4
-														{0,PlatformGameHeight - 25,PlatformGameWidth,25},	// base
-														{PlatformGameWidth+150,PlatformGameHeight - 50,500,50}, // base 2
-														{5900,PlatformGameHeight - 50,1100,50},	// base 3
-														{-10,495,260,10},	// 3
-														{650,325,550,10},	// 4
+														{0,PlatformGameHeight - 25,PlatformGameWidth,25},	// base 1
+														{PlatformGameWidth+150,PlatformGameHeight - 25,500,50}, // base 2
+														{5900,PlatformGameHeight - 20,1100,50},	// base 3
+														//{-10,495,260,10},	// 4
+														//{650,325,550,10},	// 5
 														{0-PlatformGameWidth/2,40,PlatformGameWidth/2,PlatformGameHeight-40},	// left hand edge
 														{6500,0,PlatformGameWidth/2,PlatformGameHeight+1}}	// right hand edge
 													};
@@ -263,8 +263,8 @@ public class Utils
 														"images\\platform\\Rock_Platform.png",	// base 1
 														"images\\platform\\Rock_Platform.png",	// base 2
 														"images\\platform\\Rock_Platform.png",	// base 3
-														"images\\platform\\Roof_Line.png",		// 3
-														"images\\platform\\Roof_Line.png",		// 4
+														//"images\\platform\\Roof_Line.png",		// 4
+														//"images\\platform\\Roof_Line.png",		// 5
 														"images\\platform\\Cabin_Large.png",	// left hand side
 														"images\\obstacles\\ForestOne.png"}	// right hand side
 													};
@@ -370,8 +370,8 @@ public class Utils
 														true,
 														true,
 														true,
-														false,
-														false,
+														//false,
+														//false,
 														true,
 														true}
 													};
@@ -403,7 +403,7 @@ public class Utils
 														{ // gameLevel 3
 														},
 														{ // gameLevel 4
-														{500,50,200,70},
+														//{500,50,200,70},
 														{1750,500,600,400},
 														{2250,370,700,500},
 														{3000,510,500,300},
@@ -438,7 +438,7 @@ public class Utils
 														{ // gameLevel 3
 														},
 														{ // gameLevel 4
-														"images\\obstacles\\Cloud.png",
+														//"images\\obstacles\\Cloud.png",
 														"images\\platform\\Cabin_Small.png",
 														"images\\platform\\Cabin_Medium.png",
 														"images\\platform\\Cabin_Small.png",
@@ -474,6 +474,8 @@ public class Utils
 													  {5900,600,50,50},
 													 },
 													 {		// gameLevel 4
+													  {328,225,55,200},
+													  {1268,50,55,200},
 													  {1808,251,55,200},
 													  {2225,400,30,100},
 													  {2345,155,70,200},
@@ -481,7 +483,8 @@ public class Utils
 													  {3465,7,55,150},
 													  {3968,219,50,200},
 													  {4580,54,50,200},
-													  {5295,200,50,200},	//
+													  {5295,200,50,200},
+													  {5680,420,50,180},
 													 }
 													};
 	// define image path for each hazard on each level, in same order as HazardPositions array
@@ -517,6 +520,9 @@ public class Utils
 													  {"Sprites\\Smoke_Off","Sprites\\Smoke_On"},
 													  {"Sprites\\Smoke_Off","Sprites\\Smoke_On"},
 													  {"Sprites\\Smoke_Off","Sprites\\Smoke_On"},
+													  {"Sprites\\Smoke_Off","Sprites\\Smoke_On"},
+													  {"Sprites\\Smoke_Off","Sprites\\Smoke_On"},
+													  {"Sprites\\Smoke_Off","Sprites\\Smoke_On"},
 													 }
 													};
 
@@ -543,11 +549,11 @@ public class Utils
 														{4460,685,15,15},
 														{4850,485,15,15}},
 														{ // gameLevel 4
-														{PlatformGameWidth+200,PlatformGameHeight - 80,37,35}, // key
+														{3650,470,37,35}, // key
 														{130,480,15,15},
 														{800,310,15,15},
 														{3330,650,15,15},
-														{3650,470,15,15}}
+														{4940,500,15,15}}
 														};
 	// define image for each collectible on each level, in same order as CollectiblePositions array
 	// NOTE: key MUST be first collectible
