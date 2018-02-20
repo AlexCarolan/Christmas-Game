@@ -69,32 +69,36 @@ class Game
 			ex.printStackTrace( );
 		}
 		// create the game introduction text
-		Text textIntro1 = new Text("Can you help give this poor", sansRegular, 10);
-		Text textIntro2 = new Text("family a great Christmas?", sansRegular, 10);
-		Text textIntro3 = new Text("Complete each level to add", sansRegular, 10);
-		Text textIntro4 = new Text("something special to the Christmas Room.", sansRegular, 10);
-		Text textIntro5 = new Text("Look out for items to collect", sansRegular, 10);
-		Text textIntro6 = new Text("along the way.", sansRegular, 10);
-		Text textIntro7 = new Text("And there's a fun puzzle", sansRegular, 10);
-		Text textIntro8 = new Text("to solve at the end of each level.", sansRegular, 10);
+		Text textIntro1 = new Text("Can you help decorate", sansRegular, 14);
+		Text textIntro2 = new Text("this room for Christmas?", sansRegular, 14);
+		Text textIntro3 = new Text("Complete each level", sansRegular, 14);
+		Text textIntro4 = new Text("to add to the room", sansRegular, 14);
+		Text textIntro5 = new Text("There are items to", sansRegular, 14);
+		Text textIntro6 = new Text("collect along the way,", sansRegular, 14);
+		Text textIntro7 = new Text("and a fun puzzle at", sansRegular, 14);
+		Text textIntro8 = new Text("the end of each level", sansRegular, 14);
+		Text textIntro9 = new Text("Be careful, there are", sansRegular, 14);
+		Text textIntro10 = new Text("hazards and pitfalls", sansRegular, 14);
 
-		textIntro1.setPosition(670, Utils.PlatformGameHeight-250);
-		textIntro2.setPosition(670, Utils.PlatformGameHeight-230);
-		textIntro3.setPosition(670, Utils.PlatformGameHeight-210);
-		textIntro4.setPosition(670, Utils.PlatformGameHeight-190);
-		textIntro5.setPosition(670, Utils.PlatformGameHeight-170);
-		textIntro6.setPosition(670, Utils.PlatformGameHeight-150);
-		textIntro7.setPosition(670, Utils.PlatformGameHeight-130);
-		textIntro8.setPosition(670, Utils.PlatformGameHeight-110);
+		textIntro1.setPosition(670, Utils.PlatformGameHeight-280);
+		textIntro2.setPosition(670, Utils.PlatformGameHeight-265);
+		textIntro3.setPosition(670, Utils.PlatformGameHeight-240);
+		textIntro4.setPosition(670, Utils.PlatformGameHeight-225);
+		textIntro5.setPosition(670, Utils.PlatformGameHeight-200);
+		textIntro6.setPosition(670, Utils.PlatformGameHeight-185);
+		textIntro7.setPosition(670, Utils.PlatformGameHeight-170);
+		textIntro8.setPosition(670, Utils.PlatformGameHeight-155);
+		textIntro9.setPosition(670, Utils.PlatformGameHeight-130);
+		textIntro10.setPosition(670, Utils.PlatformGameHeight-115);
 		
 		// create the menu text
-		Text textPlatform1 = new Text("Level 1 - The Forest", sansRegular, 18);
+		Text textPlatform1 = new Text("Level 1 - The Tree", sansRegular, 18);
 		textPlatform1.setPosition(135, Utils.PlatformGameHeight-282);
-		Text textPlatform2 = new Text("Level 2 - The Attic", sansRegular, 18);
+		Text textPlatform2 = new Text("Level 2 - The Decorations", sansRegular, 18);
 		textPlatform2.setPosition(135, Utils.PlatformGameHeight-217);
-		Text textPlatform3 = new Text("Level 3 - The Kitchen", sansRegular, 18);
+		Text textPlatform3 = new Text("Level 3 - The Food", sansRegular, 18);
 		textPlatform3.setPosition(135, Utils.PlatformGameHeight-155);
-		Text textPlatform4 = new Text("Level 4 - Sleigh Ride", sansRegular, 18);
+		Text textPlatform4 = new Text("Level 4 - The Gifts", sansRegular, 18);
 		textPlatform4.setPosition(135, Utils.PlatformGameHeight-92);
 		
 		//show collectibles:
@@ -147,6 +151,8 @@ class Game
 			window.draw(textIntro6);
 			window.draw(textIntro7);
 			window.draw(textIntro8);
+			window.draw(textIntro9);
+			window.draw(textIntro10);
 			
 			window.draw(textPlatform1);
 			//if (puzzleDone[0])
