@@ -140,8 +140,6 @@ class Game
 			//PlatformGame test = new PlatformGame();
 			//test.run(2, collectible[2]);
 			
-			System.out.println(levelsUnlocked);
-			
 			int gameLevel = level.getLevel();
 			room.setImage(Utils.RoomImage[gameLevel]);
 			background.setImage((Utils.MenuPath + levelsUnlocked + currentPos + ".png"));
@@ -282,6 +280,7 @@ class Game
 					if (puzzle.run() && levelsUnlocked == 2)
 					{
 						puzzleDone[0] = true;
+						level.incrementLevel();
 						levelsUnlocked++;
 					}
 					puzzle = null;
@@ -316,6 +315,7 @@ class Game
 					{
 						puzzleDone[1] = true;
 						levelsUnlocked++;
+						levelsUnlocked++;
 					}
 					puzzle = null;
 					updatePosition();
@@ -349,6 +349,7 @@ class Game
 					{
 						puzzleDone[2] = true;
 						levelsUnlocked++;
+						level.incrementLevel();
 					}
 					puzzle = null;
 					updatePosition();
@@ -380,6 +381,7 @@ class Game
 					if (puzzle.run() && levelsUnlocked == 8)
 					{
 						puzzleDone[3] = true;
+						level.incrementLevel();
 					}
 					puzzle = null;
 					updatePosition();
