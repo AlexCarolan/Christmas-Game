@@ -17,11 +17,9 @@ import java.nio.file.Paths;
 class Game 
 {
 	private static int fontSize = 30;
-	private static int unlockedLevels = 1;
-	private static int unlockedPuzzles = 0;
 	private static int currentPos = 1;
-	private static int maxPos = 1;
 	private static Level level = new Level();
+	private static int levelsUnlocked = 1;
 	private static boolean puzzleDone[] = {false,false,false,false};
 
 	public static void main (String args[ ]) 
@@ -142,23 +140,11 @@ class Game
 			//PlatformGame test = new PlatformGame();
 			//test.run(2, collectible[2]);
 			
-			// find the number of unlocked puzzles
-			unlockedPuzzles = 0;
-					
-			for (int i = 0; i < Utils.MaxLevel; i++)
-				if (puzzleDone[i] == true)
-					unlockedPuzzles++;
-			
-			unlockedLevels = level.getLevel() + 1;
-			
-			maxPos = unlockedLevels + unlockedPuzzles;
-			
-			if (maxPos > Utils.MaxLevel * 2)
-				maxPos = Utils.MaxLevel * 2;
+			System.out.println(levelsUnlocked);
 			
 			int gameLevel = level.getLevel();
 			room.setImage(Utils.RoomImage[gameLevel]);
-			background.setImage((Utils.MenuPath + unlockedLevels + unlockedPuzzles + currentPos + ".png"));
+			background.setImage((Utils.MenuPath + levelsUnlocked + currentPos + ".png"));
 			window.clear(Color.BLACK);
 			
 			window.draw(background.getPlatform());
@@ -237,8 +223,8 @@ class Game
 			{
 				select.play();
 				currentPos = currentPos + 2;
-				if (currentPos > maxPos)
-					currentPos = maxPos;
+				if (currentPos > levelsUnlocked)
+					currentPos = levelsUnlocked;
 				
 				try        
 				{
@@ -253,8 +239,8 @@ class Game
 			{
 				select.play();
 				currentPos = currentPos + 1;
-				if (currentPos > maxPos)
-					currentPos = maxPos;
+				if (currentPos > levelsUnlocked)
+					currentPos = levelsUnlocked;
 				
 				try        
 				{
@@ -273,16 +259,17 @@ class Game
 				if (currentPos == 1)
 				{
 					PlatformGame platGame = new PlatformGame();
-					
-					if ((platGame.run(0, collectible[0])) && (level.getLevel() == 0))
+					if ((platGame.run(0, collectible[0])) && (levelsUnlocked == 1))
 					{
 						Puzzle0 puzzle = new Puzzle0();
 						if (puzzle.run())
 						{
 							puzzleDone[0] = true;
 							level.incrementLevel();
+							levelsUnlocked++;
 						}
 						puzzle = null;
+						levelsUnlocked++;
 					}
 					music.play();
 					levelmusic.pause();
@@ -292,8 +279,11 @@ class Game
 				else if (currentPos == 2)
 				{
 					Puzzle0 puzzle = new Puzzle0();
-					if (puzzle.run())
+					if (puzzle.run() && levelsUnlocked == 2)
+					{
 						puzzleDone[0] = true;
+						levelsUnlocked++;
+					}
 					puzzle = null;
 					updatePosition();
 					music.play();
@@ -302,15 +292,17 @@ class Game
 				else if (currentPos == 3)
 				{
 					PlatformGame platGame = new PlatformGame();
-					if (platGame.run(1, collectible[1]) && (level.getLevel() == 1))
+					if (platGame.run(1, collectible[1]) && (levelsUnlocked == 3))
 					{
 						Puzzle1 puzzle = new Puzzle1();
 						if (puzzle.run())
 						{
 							puzzleDone[1] = true;
 							level.incrementLevel();
+							levelsUnlocked++;
 						}
 						puzzle = null;
+						levelsUnlocked++;
 					}
 					music.play();
 					levelmusic.pause();
@@ -320,9 +312,10 @@ class Game
 				else if (currentPos == 4)
 				{
 					Puzzle1 puzzle = new Puzzle1();
-					if (puzzle.run())
+					if (puzzle.run() && levelsUnlocked == 4)
 					{
 						puzzleDone[1] = true;
+						levelsUnlocked++;
 					}
 					puzzle = null;
 					updatePosition();
@@ -332,16 +325,17 @@ class Game
 				else if (currentPos == 5)
 				{
 					PlatformGame platGame = new PlatformGame();
-					if (platGame.run(2, collectible[2]) && (level.getLevel() == 2))
+					if (platGame.run(2, collectible[2]) && (levelsUnlocked == 5))
 					{
 						Puzzle2 puzzle = new Puzzle2();
 						if (puzzle.run())
 						{
 							puzzleDone[2] = true;
 							level.incrementLevel();
+							levelsUnlocked++;
 						}
 						puzzle = null;
-						
+						levelsUnlocked++;
 					}
 					music.play();
 					levelmusic.pause();
@@ -351,8 +345,11 @@ class Game
 				else if (currentPos == 6)
 				{
 					Puzzle2 puzzle = new Puzzle2();
-					if (puzzle.run())
+					if (puzzle.run() && levelsUnlocked == 6)
+					{
 						puzzleDone[2] = true;
+						levelsUnlocked++;
+					}
 					puzzle = null;
 					updatePosition();
 					music.play();
@@ -361,7 +358,7 @@ class Game
 				else if (currentPos == 7)
 				{
 					PlatformGame platGame = new PlatformGame();
-					if (platGame.run(3, collectible[3]) && (level.getLevel() == 3))
+					if (platGame.run(3, collectible[3]) && (levelsUnlocked == 7))
 					{
 						Puzzle3 puzzle = new Puzzle3();
 						if (puzzle.run())
@@ -370,6 +367,7 @@ class Game
 							level.incrementLevel();
 						}
 						puzzle = null;
+						levelsUnlocked++;
 					}
 					music.play();
 					levelmusic.pause();
@@ -379,12 +377,16 @@ class Game
 				else if (currentPos == 8)
 				{
 					Puzzle3 puzzle = new Puzzle3();
-					if (puzzle.run())
+					if (puzzle.run() && levelsUnlocked == 8)
+					{
 						puzzleDone[3] = true;
+					}
 					puzzle = null;
 					updatePosition();
+
 					music.play();
 					levelmusic.pause();
+
 				}
 			}
 
@@ -402,23 +404,13 @@ class Game
 		}
 	}
 	
-	// Moves the current position after level completion
-	private static void updatePosition()
+	// Updates the position of the selector
+	public static void updatePosition()
 	{
-		unlockedPuzzles = 0;
-		for (int i=0; i < Utils.MaxLevel; i++)
-			if (puzzleDone[i] == true)
-				unlockedPuzzles++;
-
-		unlockedLevels = level.getLevel() + 1;
-		
-		maxPos = unlockedLevels + unlockedPuzzles;
-		if (maxPos > Utils.MaxLevel * 2)
+		currentPos = levelsUnlocked;
+		if (levelsUnlocked >= 8)
 		{
-			maxPos = Utils.MaxLevel * 2;
 			currentPos = 1;
 		}
-		else
-			currentPos = maxPos;
 	}
 }
