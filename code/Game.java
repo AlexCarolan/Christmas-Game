@@ -11,6 +11,8 @@ import org.jsfml.window.*;
 import org.jsfml.window.event.*;
 import org.jsfml.window.Keyboard.*;
 import org.jsfml.graphics.*;
+import org.jsfml.audio.Music;
+import java.nio.file.Paths;
 
 class Game 
 {
@@ -101,6 +103,25 @@ class Game
 		Text textPlatform4 = new Text("Level 4 - The Gifts", sansRegular, 18);
 		textPlatform4.setPosition(135, Utils.PlatformGameHeight-92);
 		
+		//Load a music to play
+        Music music = new Music();
+		Music select = new Music();
+		Music levelmusic = new Music();
+		
+		music.setLoop(true);
+		
+		levelmusic.setLoop(true);
+		
+		try{
+			music.openFromFile(Paths.get("menu.ogg"));
+			select.openFromFile(Paths.get("select.ogg"));
+			levelmusic.openFromFile(Paths.get("level.ogg"));
+		}catch(Exception e){}
+			
+        //Play the music
+        music.play();
+
+		
 		//show collectibles:
 		Score playerScore = new Score(0);
 		int numCollectiblesPerLevel = Utils.CollectibleImages[0].length;
@@ -181,6 +202,7 @@ class Game
 			
 			if (Keyboard.isKeyPressed(Keyboard.Key.W) || Keyboard.isKeyPressed(Keyboard.Key.UP))
 			{
+				select.play();
 				currentPos = currentPos - 2;
 				if (currentPos <= 0)
 					currentPos = 1;
@@ -197,6 +219,7 @@ class Game
 			}
 			else if (Keyboard.isKeyPressed(Keyboard.Key.A) || Keyboard.isKeyPressed(Keyboard.Key.LEFT))
 			{
+				select.play();
 				currentPos = currentPos - 1;
 				if (currentPos <= 0)
 					currentPos = 1;
@@ -212,6 +235,7 @@ class Game
 			}
 			else if (Keyboard.isKeyPressed(Keyboard.Key.S) || Keyboard.isKeyPressed(Keyboard.Key.DOWN))
 			{
+				select.play();
 				currentPos = currentPos + 2;
 				if (currentPos > maxPos)
 					currentPos = maxPos;
@@ -227,6 +251,7 @@ class Game
 			}
 			else if(Keyboard.isKeyPressed(Keyboard.Key.D) || Keyboard.isKeyPressed(Keyboard.Key.RIGHT))
 			{
+				select.play();
 				currentPos = currentPos + 1;
 				if (currentPos > maxPos)
 					currentPos = maxPos;
@@ -242,9 +267,13 @@ class Game
 			}
 			else if (Keyboard.isKeyPressed(Keyboard.Key.RETURN))
 			{
+				select.play();
+				music.pause();
+				levelmusic.play();
 				if (currentPos == 1)
 				{
 					PlatformGame platGame = new PlatformGame();
+					
 					if ((platGame.run(0, collectible[0])) && (level.getLevel() == 0))
 					{
 						Puzzle0 puzzle = new Puzzle0();
@@ -255,6 +284,8 @@ class Game
 						}
 						puzzle = null;
 					}
+					music.play();
+					levelmusic.pause();
 					platGame = null;
 					updatePosition();
 				}
@@ -265,6 +296,8 @@ class Game
 						puzzleDone[0] = true;
 					puzzle = null;
 					updatePosition();
+					music.play();
+					levelmusic.pause();
 				}
 				else if (currentPos == 3)
 				{
@@ -279,6 +312,8 @@ class Game
 						}
 						puzzle = null;
 					}
+					music.play();
+					levelmusic.pause();
 					platGame = null;
 					updatePosition();
 				}
@@ -291,6 +326,8 @@ class Game
 					}
 					puzzle = null;
 					updatePosition();
+					music.play();
+					levelmusic.pause();
 				}
 				else if (currentPos == 5)
 				{
@@ -304,7 +341,10 @@ class Game
 							level.incrementLevel();
 						}
 						puzzle = null;
+						
 					}
+					music.play();
+					levelmusic.pause();
 					platGame = null;
 					updatePosition();
 				}
@@ -315,6 +355,8 @@ class Game
 						puzzleDone[2] = true;
 					puzzle = null;
 					updatePosition();
+					music.play();
+					levelmusic.pause();
 				}
 				else if (currentPos == 7)
 				{
@@ -329,6 +371,8 @@ class Game
 						}
 						puzzle = null;
 					}
+					music.play();
+					levelmusic.pause();
 					platGame = null;
 					updatePosition();
 				}
@@ -339,6 +383,8 @@ class Game
 						puzzleDone[3] = true;
 					puzzle = null;
 					updatePosition();
+					music.play();
+					levelmusic.pause();
 				}
 			}
 
