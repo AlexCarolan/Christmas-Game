@@ -67,7 +67,7 @@ public class Utils
 														{1900,570,80,30},	//9
 														{2050,590,80,30},	//10
 														{2150,650,200,80},	//11
-														{2200,440,400,80},	//12 bigger frozen pond
+														{2200,440,400,60},	//12 bigger frozen pond
 														{2360,670,90,40},	//13
 														{2460,670,90,54},	//14
 														{2570,660,90,40},	//15
@@ -108,9 +108,9 @@ public class Utils
 														{1650,600,300,100},	//11
 														{1850,500,100,100},	//12
 														{2050,540,150,80},	//13
-														{2250,600,200,100},	//14
+														{2250,600,200,90},	//14
 														{2550,620,100,80},	//15
-														{2550,540,200,80},	//16
+														{2550,560,200,70},	//16
 														{3200,500,200,200},	//17
 														{3400,600,600,100},	//18
 														{4500,550,200,150},	//19
@@ -174,7 +174,7 @@ public class Utils
 														"images\\platform\\Rock_Platform.png",	//9
 														"images\\platform\\Rock_Platform.png",	//10
 														"images\\platform\\Rock_Platform.png",	//11
-														"images\\platform\\FrozenPond_Two.png",	//12
+														"images\\platform\\FrozenPond.png",		//12
 														"images\\platform\\Rock_Platform.png",	//13
 														"images\\platform\\Rock_Platform.png",	//14
 														"images\\platform\\Rock_Platform.png",	//15
@@ -389,7 +389,7 @@ public class Utils
 														{680,580,140,125},
 														{823,642,100,60},
 														{2330,540,60,60},
-														{3150,660,50,50},
+														{3050,650,150,50},
 														{3630,530,80,70},
 														{3710,510,100,95},
 														{3810,558,120,50},
@@ -420,21 +420,21 @@ public class Utils
 														"images\\obstacles\\big-log.png",
 														"images\\obstacles\\rock.png"},
 														{ // gameLevel 2
-														"images\\obstacles\\Box_Brown.png",
+														"images\\obstacles\\Box_Blue.png",
 														"images\\obstacles\\Box_Tan.png",
-														"images\\obstacles\\Box_Brown.png",
+														"images\\obstacles\\Box_Blue.png",
 														"images\\obstacles\\Box_Tan.png",
-														"images\\obstacles\\box.png",
+														"images\\obstacles\\Box_Red.png",
 														"images\\obstacles\\Box_Tan.png",
-														"images\\obstacles\\Box_Brown.png",
+														"images\\obstacles\\Box_Blue.png",
 														"images\\obstacles\\Box_Tan.png",
 														"images\\obstacles\\Box_Tan.png",
 														"images\\obstacles\\Box_Tan.png",
-														"images\\obstacles\\Box_Brown.png",
+														"images\\obstacles\\Box_Blue.png",
 														"images\\obstacles\\Box_Tan.png",
-														"images\\obstacles\\Box_Brown.png",
+														"images\\obstacles\\Box_Blue.png",
 														"images\\obstacles\\Box_Tan.png",
-														"images\\obstacles\\Box_Brown.png"},
+														"images\\obstacles\\Box_Blue.png"},
 														{ // gameLevel 3
 														},
 														{ // gameLevel 4
