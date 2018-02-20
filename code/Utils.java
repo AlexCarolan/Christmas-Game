@@ -21,11 +21,11 @@ public class Utils
 	public static final int SleighGameLevel = 3;
 
 	// file path for Christmas Room image
-	public static final String RoomImage[] = {"images\\christmasRoom\\bareRoom.png",	// game level 1 start
-												"images\\christmasRoom\\bareRoom.png",	// game level 2 start
-												"images\\christmasRoom\\fullRoom.png",	// game level 3 start
-												"images\\christmasRoom\\fullRoom.png",	// game level 4 start
-												"images\\christmasRoom\\fullRoom.png"};	// game level 4 end
+	public static final String RoomImage[] = {"images\\christmasRoom\\Christmas_Room_Bare.png",	// game level 1 start
+												"images\\christmasRoom\\Christmas_Room_Tree.png",	// game level 2 start
+												"images\\christmasRoom\\Christmas_Room_Tree_decorations.png",	// game level 3 start
+												"images\\christmasRoom\\Christmas_Room_Complete.png",	// game level 4 start
+												"images\\christmasRoom\\Christmas_Room_Complete.png"};	// game level 4 end
 	
 	// file paths for sprites
 	public static final String IdleRightPath = "Sprites\\Idle_Right\\Idle";
