@@ -11,6 +11,8 @@ import org.jsfml.window.*;
 import org.jsfml.window.event.*;
 import org.jsfml.window.Keyboard.*;
 import org.jsfml.graphics.*;
+import org.jsfml.audio.Music;
+import java.nio.file.Paths;
 
 class PlatformGame
 {
@@ -172,6 +174,17 @@ class PlatformGame
 		invKey.setOrigin(0,0);
  		invKey.setPosition(135, 35);
 		
+		//platform sound effects:
+		Music jumpSound = new Music();
+		Music collectSound = new Music();
+		
+		try{
+			jumpSound.openFromFile(Paths.get("music\\jump.ogg"));
+			collectSound.openFromFile(Paths.get("music\\collect.ogg"));
+
+		}catch(Exception e){}
+		
+		
 		boolean keyCollected = false;
 		
 		boolean finished = false;
@@ -259,6 +272,7 @@ class PlatformGame
 			{
 				// can only jump if bottom of player sprite standing on a platform or obstacle
 				// or if in sleigh gameLevel
+				
 				boolean standing = false;
 				if (gameLevel != Utils.SleighGameLevel)
 				{
@@ -300,6 +314,7 @@ class PlatformGame
 				}
 				else if (standing)
 				{
+					jumpSound.play();
 					moveY = 0-Utils.JumpAmount;
 					sleighGravity = 0.0;
 					//System.out.println("Standing on something, so moveY="+moveY);
@@ -540,6 +555,7 @@ class PlatformGame
 										collectible[i].getXSize(),collectible[i].getYSize()))
 					{
 						collectible[i].collect();
+						collectSound.play();
 						if (i == 0)				// key is always first collectible
 						{
 							keyCollected = true;

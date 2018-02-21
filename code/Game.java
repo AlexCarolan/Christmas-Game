@@ -111,9 +111,9 @@ class Game
 		levelmusic.setLoop(true);
 		
 		try{
-			music.openFromFile(Paths.get("menu.ogg"));
-			select.openFromFile(Paths.get("select.ogg"));
-			levelmusic.openFromFile(Paths.get("level.ogg"));
+			music.openFromFile(Paths.get("music\\menu.ogg"));
+			select.openFromFile(Paths.get("music\\select.ogg"));
+			levelmusic.openFromFile(Paths.get("music\\level.ogg"));
 		}catch(Exception e){}
 			
         //Play the music
