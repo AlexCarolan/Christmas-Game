@@ -27,10 +27,10 @@ class PlatformGame
 	 * @return true is platform level completed successfully
 	 *         if window closed without finishing, returns false
 	 */
-	public boolean run(int gameLevel, Collectible[] gameCollectible)
+	public boolean run(int gameLevel, Collectible[] gameCollectible, RenderWindow win)
 	{
 		// create the window
-		RenderWindow window = new RenderWindow( );
+		RenderWindow window = win;
 		window.create(new VideoMode(Utils.PlatformGameWidth, Utils.PlatformGameHeight),
 					Title + (gameLevel+1),
 					WindowStyle.CLOSE | WindowStyle.TITLEBAR);	// window can't be resized
@@ -597,7 +597,6 @@ class PlatformGame
 		runningRight.kill();
 		//sleighRight.kill();
 		key.kill();
-		window.close();
 		if (player.getLives() <= 0)
 			return false;	// return false if all lives lost
 		if (finished)

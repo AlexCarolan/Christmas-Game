@@ -257,7 +257,7 @@ class Game
 				if (currentPos == 1)
 				{
 					PlatformGame platGame = new PlatformGame();
-					if ((platGame.run(0, collectible[0])) && (levelsUnlocked == 1))
+					if ((platGame.run(0, collectible[0], window)) && (levelsUnlocked == 1))
 					{
 						Puzzle0 puzzle = new Puzzle0();
 						if (puzzle.run())
@@ -291,7 +291,7 @@ class Game
 				else if (currentPos == 3)
 				{
 					PlatformGame platGame = new PlatformGame();
-					if (platGame.run(1, collectible[1]) && (levelsUnlocked == 3))
+					if (platGame.run(1, collectible[1], window) && (levelsUnlocked == 3))
 					{
 						Puzzle1 puzzle = new Puzzle1();
 						if (puzzle.run())
@@ -325,7 +325,7 @@ class Game
 				else if (currentPos == 5)
 				{
 					PlatformGame platGame = new PlatformGame();
-					if (platGame.run(2, collectible[2]) && (levelsUnlocked == 5))
+					if (platGame.run(2, collectible[2], window) && (levelsUnlocked == 5))
 					{
 						Puzzle2 puzzle = new Puzzle2();
 						if (puzzle.run())
@@ -359,7 +359,7 @@ class Game
 				else if (currentPos == 7)
 				{
 					PlatformGame platGame = new PlatformGame();
-					if (platGame.run(3, collectible[3]) && (levelsUnlocked == 7))
+					if (platGame.run(3, collectible[3], window) && (levelsUnlocked == 7))
 					{
 						Puzzle3 puzzle = new Puzzle3();
 						if (puzzle.run())
