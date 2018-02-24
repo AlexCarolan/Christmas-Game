@@ -138,7 +138,7 @@ class Game
 		{
 			//For testing levels
 			//PlatformGame test = new PlatformGame();
-			//test.run(2, collectible[2]);
+			//test.run(1, collectible[1], window);
 			
 			int gameLevel = level.getLevel();
 			room.setImage(Utils.RoomImage[gameLevel]);
