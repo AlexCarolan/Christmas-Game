@@ -347,14 +347,15 @@ class PlatformGame
 				}
 			}
 			
-
 			boolean touching = false;
 			if (moveX < 0)	// player moving left
 			{	
 				// check that player is not trying to run into an obstacle or the side of a platform
 				for (int i = 0; i < numPlatforms; i++)
-					if (player.touchingLeft(platform[i].getXPosition()+moveX/2,platform[i].getYPosition(),
-							platform[i].getXSize()-moveX,platform[i].getYSize()))
+				{
+					// allow sideways movement that goes up a small amount
+					if (player.touchingLeft(platform[i].getXPosition()+moveX/2,platform[i].getYPosition()+20,
+							platform[i].getXSize()-moveX,platform[i].getYSize()-20))
 					{
 						if ((gameLevel != Utils.SleighGameLevel) || platform[i].isCeiling())
 						{
@@ -363,25 +364,31 @@ class PlatformGame
 							break;
 						}
 					}
+				}
 				// the sleigh can go past all the obstacles, it stops only for platforms
 				if ((!touching) && (gameLevel != Utils.SleighGameLevel))
 				{
 					for (int i = 0; i < numObstacles; i++)
-						if (player.touchingLeft(obstacle[i].getXPosition()+moveX/2,obstacle[i].getYPosition(),
-								obstacle[i].getXSize()-moveX,obstacle[i].getYSize()))
+					{
+						// allow sideways movement that goes up a small amount
+						if (player.touchingLeft(obstacle[i].getXPosition()+moveX/2,obstacle[i].getYPosition()+20,
+								obstacle[i].getXSize()-moveX,obstacle[i].getYSize()-20))
 						{
 							//System.out.println("touchingLeft obstacle " + i);
 							touching = true;
 							break;
 						}
+					}
 				}
 			}
 			else if (moveX > 0)	// player moving right
 			{
 				// check that player is not trying to run into an obstacle or the side of a platform
 				for (int i = 0; i < numPlatforms; i++)
-					if (player.touchingRight(platform[i].getXPosition()-moveX/2,platform[i].getYPosition(),
-							platform[i].getXSize()+moveX,platform[i].getYSize()))
+				{
+					// allow sideways movement that goes up a small amount
+					if (player.touchingRight(platform[i].getXPosition()-moveX/2,platform[i].getYPosition()+20,
+							platform[i].getXSize()+moveX,platform[i].getYSize()-20))
 					{
 						if ((gameLevel != Utils.SleighGameLevel) || platform[i].isCeiling())
 						{
@@ -390,17 +397,21 @@ class PlatformGame
 							break;
 						}
 					}
+				}
 				// the sleigh can go past all the obstacles, it stops only for platforms
 				if ((!touching) && (gameLevel != Utils.SleighGameLevel))
 				{
 					for (int i = 0; i < numObstacles; i++)
-						if (player.touchingRight(obstacle[i].getXPosition()-moveX/2,obstacle[i].getYPosition(),
-								obstacle[i].getXSize()+moveX,obstacle[i].getYSize()))
+					{
+						// allow sideways movement that goes up a small amount
+						if (player.touchingRight(obstacle[i].getXPosition()-moveX/2,obstacle[i].getYPosition()+20,
+								obstacle[i].getXSize()+moveX,obstacle[i].getYSize()-20))
 						{
 							//System.out.println("touchingRight obstacle " + i);
 							touching = true;
 							break;
 						}
+					}
 				}
 			}
 			// if the player wants to move horizontally and there's nothing in the way, move everything else in the opposite direction
