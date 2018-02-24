@@ -14,11 +14,9 @@ Platform Game
 Puzzle Game
 
 Graphics - Leo
-1. Christmas Room images (bare, + tree, +tree+decorations, +tree+decor+food, +tree+decor+food+gifts)
-2. shorten sleigh
-3. improved food puzzle image
+1. Christmas Room image (+tree+decor+food but no gifts)
+2. animated reindeer
 
 Graphics - Alex
-1. animate smoke
-2. animate sleigh
-3. narrow menu options, so instructions can be bigger font
+1. animate sleigh
+2. delay at menu before reacting to keys?
