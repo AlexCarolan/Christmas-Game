@@ -134,6 +134,7 @@ class Game
 												Utils.CollectiblePositions[gameLevel][i][2],Utils.CollectiblePositions[gameLevel][i][3],
 												Utils.CollectibleImages[gameLevel][i],playerScore);
 		
+		boolean paused = false;
 		while (window.isOpen())
 		{
 			//For testing levels
@@ -184,214 +185,216 @@ class Game
 			// display what was drawn on the window
 			window.display();
 			
-			if (Keyboard.isKeyPressed(Keyboard.Key.W) || Keyboard.isKeyPressed(Keyboard.Key.UP))
+			if (!paused)
 			{
-				select.play();
-				currentPos = currentPos - 2;
-				if (currentPos <= 0)
-					currentPos = 1;
-				
-				try        
+				if (Keyboard.isKeyPressed(Keyboard.Key.W) || Keyboard.isKeyPressed(Keyboard.Key.UP))
 				{
-					Thread.sleep(100);
-				} 
-				catch (InterruptedException e) 
-				{
-					System.out.println(e);
-				}
+					select.play();
+					currentPos = currentPos - 2;
+					if (currentPos <= 0)
+						currentPos = 1;
+					
+					try        
+					{
+						Thread.sleep(100);
+					} 
+					catch (InterruptedException e) 
+					{
+						System.out.println(e);
+					}
 
-			}
-			else if (Keyboard.isKeyPressed(Keyboard.Key.A) || Keyboard.isKeyPressed(Keyboard.Key.LEFT))
-			{
-				select.play();
-				currentPos = currentPos - 1;
-				if (currentPos <= 0)
-					currentPos = 1;
-				
-				try        
-				{
-					Thread.sleep(100);
-				} 
-				catch(InterruptedException e) 
-				{
-					System.out.println(e);
 				}
-			}
-			else if (Keyboard.isKeyPressed(Keyboard.Key.S) || Keyboard.isKeyPressed(Keyboard.Key.DOWN))
-			{
-				select.play();
-				currentPos = currentPos + 2;
-				if (currentPos > levelsUnlocked)
-					currentPos = levelsUnlocked;
-				
-				try        
+				else if (Keyboard.isKeyPressed(Keyboard.Key.A) || Keyboard.isKeyPressed(Keyboard.Key.LEFT))
 				{
-					Thread.sleep(100);
-				} 
-				catch(InterruptedException e) 
-				{
-					System.out.println(e);
+					select.play();
+					currentPos = currentPos - 1;
+					if (currentPos <= 0)
+						currentPos = 1;
+					
+					try        
+					{
+						Thread.sleep(100);
+					} 
+					catch(InterruptedException e) 
+					{
+						System.out.println(e);
+					}
 				}
-			}
-			else if(Keyboard.isKeyPressed(Keyboard.Key.D) || Keyboard.isKeyPressed(Keyboard.Key.RIGHT))
-			{
-				select.play();
-				currentPos = currentPos + 1;
-				if (currentPos > levelsUnlocked)
-					currentPos = levelsUnlocked;
-				
-				try        
+				else if (Keyboard.isKeyPressed(Keyboard.Key.S) || Keyboard.isKeyPressed(Keyboard.Key.DOWN))
 				{
-					Thread.sleep(100);
-				} 
-				catch(InterruptedException e) 
-				{
-					System.out.println(e);
+					select.play();
+					currentPos = currentPos + 2;
+					if (currentPos > levelsUnlocked)
+						currentPos = levelsUnlocked;
+					
+					try        
+					{
+						Thread.sleep(100);
+					} 
+					catch(InterruptedException e) 
+					{
+						System.out.println(e);
+					}
 				}
-			}
-			else if (Keyboard.isKeyPressed(Keyboard.Key.RETURN))
-			{
-				select.play();
-				music.pause();
-				levelmusic.play();
-				if (currentPos == 1)
+				else if(Keyboard.isKeyPressed(Keyboard.Key.D) || Keyboard.isKeyPressed(Keyboard.Key.RIGHT))
 				{
-					PlatformGame platGame = new PlatformGame();
-					if ((platGame.run(0, collectible[0], window)) && (levelsUnlocked == 1))
+					select.play();
+					currentPos = currentPos + 1;
+					if (currentPos > levelsUnlocked)
+						currentPos = levelsUnlocked;
+					
+					try        
+					{
+						Thread.sleep(100);
+					} 
+					catch(InterruptedException e) 
+					{
+						System.out.println(e);
+					}
+				}
+				else if (Keyboard.isKeyPressed(Keyboard.Key.RETURN))
+				{
+					select.play();
+					music.pause();
+					levelmusic.play();
+					if (currentPos == 1)
+					{
+						PlatformGame platGame = new PlatformGame();
+						if ((platGame.run(0, collectible[0], window)) && (levelsUnlocked == 1))
+						{
+							Puzzle0 puzzle = new Puzzle0();
+							if (puzzle.run())
+							{
+								puzzleDone[0] = true;
+								level.incrementLevel();
+								levelsUnlocked++;
+							}
+							puzzle = null;
+							levelsUnlocked++;
+						}
+						music.play();
+						levelmusic.pause();
+						platGame = null;
+						updatePosition();
+					}
+					else if (currentPos == 2)
 					{
 						Puzzle0 puzzle = new Puzzle0();
-						if (puzzle.run())
+						if (puzzle.run() && levelsUnlocked == 2)
 						{
 							puzzleDone[0] = true;
 							level.incrementLevel();
 							levelsUnlocked++;
 						}
 						puzzle = null;
-						levelsUnlocked++;
+						updatePosition();
+						music.play();
+						levelmusic.pause();
 					}
-					music.play();
-					levelmusic.pause();
-					platGame = null;
-					updatePosition();
-				}
-				else if (currentPos == 2)
-				{
-					Puzzle0 puzzle = new Puzzle0();
-					if (puzzle.run() && levelsUnlocked == 2)
+					else if (currentPos == 3)
 					{
-						puzzleDone[0] = true;
-						level.incrementLevel();
-						levelsUnlocked++;
+						PlatformGame platGame = new PlatformGame();
+						if (platGame.run(1, collectible[1], window) && (levelsUnlocked == 3))
+						{
+							Puzzle1 puzzle = new Puzzle1();
+							if (puzzle.run())
+							{
+								puzzleDone[1] = true;
+								level.incrementLevel();
+								levelsUnlocked++;
+							}
+							puzzle = null;
+							levelsUnlocked++;
+						}
+						music.play();
+						levelmusic.pause();
+						platGame = null;
+						updatePosition();
 					}
-					puzzle = null;
-					updatePosition();
-					music.play();
-					levelmusic.pause();
-				}
-				else if (currentPos == 3)
-				{
-					PlatformGame platGame = new PlatformGame();
-					if (platGame.run(1, collectible[1], window) && (levelsUnlocked == 3))
+					else if (currentPos == 4)
 					{
 						Puzzle1 puzzle = new Puzzle1();
-						if (puzzle.run())
+						if (puzzle.run() && levelsUnlocked == 4)
 						{
 							puzzleDone[1] = true;
-							level.incrementLevel();
+							levelsUnlocked++;
 							levelsUnlocked++;
 						}
 						puzzle = null;
-						levelsUnlocked++;
+						updatePosition();
+						music.play();
+						levelmusic.pause();
 					}
-					music.play();
-					levelmusic.pause();
-					platGame = null;
-					updatePosition();
-				}
-				else if (currentPos == 4)
-				{
-					Puzzle1 puzzle = new Puzzle1();
-					if (puzzle.run() && levelsUnlocked == 4)
+					else if (currentPos == 5)
 					{
-						puzzleDone[1] = true;
-						levelsUnlocked++;
-						levelsUnlocked++;
+						PlatformGame platGame = new PlatformGame();
+						if (platGame.run(2, collectible[2], window) && (levelsUnlocked == 5))
+						{
+							Puzzle2 puzzle = new Puzzle2();
+							if (puzzle.run())
+							{
+								puzzleDone[2] = true;
+								level.incrementLevel();
+								levelsUnlocked++;
+							}
+							puzzle = null;
+							levelsUnlocked++;
+						}
+						music.play();
+						levelmusic.pause();
+						platGame = null;
+						updatePosition();
 					}
-					puzzle = null;
-					updatePosition();
-					music.play();
-					levelmusic.pause();
-				}
-				else if (currentPos == 5)
-				{
-					PlatformGame platGame = new PlatformGame();
-					if (platGame.run(2, collectible[2], window) && (levelsUnlocked == 5))
+					else if (currentPos == 6)
 					{
 						Puzzle2 puzzle = new Puzzle2();
-						if (puzzle.run())
+						if (puzzle.run() && levelsUnlocked == 6)
 						{
 							puzzleDone[2] = true;
-							level.incrementLevel();
 							levelsUnlocked++;
+							level.incrementLevel();
 						}
 						puzzle = null;
-						levelsUnlocked++;
+						updatePosition();
+						music.play();
+						levelmusic.pause();
 					}
-					music.play();
-					levelmusic.pause();
-					platGame = null;
-					updatePosition();
-				}
-				else if (currentPos == 6)
-				{
-					Puzzle2 puzzle = new Puzzle2();
-					if (puzzle.run() && levelsUnlocked == 6)
+					else if (currentPos == 7)
 					{
-						puzzleDone[2] = true;
-						levelsUnlocked++;
-						level.incrementLevel();
+						PlatformGame platGame = new PlatformGame();
+						if (platGame.run(3, collectible[3], window) && (levelsUnlocked == 7))
+						{
+							Puzzle3 puzzle = new Puzzle3();
+							if (puzzle.run())
+							{
+								puzzleDone[3] = true;
+								level.incrementLevel();
+							}
+							puzzle = null;
+							levelsUnlocked++;
+						}
+						music.play();
+						levelmusic.pause();
+						platGame = null;
+						updatePosition();
 					}
-					puzzle = null;
-					updatePosition();
-					music.play();
-					levelmusic.pause();
-				}
-				else if (currentPos == 7)
-				{
-					PlatformGame platGame = new PlatformGame();
-					if (platGame.run(3, collectible[3], window) && (levelsUnlocked == 7))
+					else if (currentPos == 8)
 					{
 						Puzzle3 puzzle = new Puzzle3();
-						if (puzzle.run())
+						if (puzzle.run() && levelsUnlocked == 8)
 						{
 							puzzleDone[3] = true;
 							level.incrementLevel();
 						}
 						puzzle = null;
-						levelsUnlocked++;
-					}
-					music.play();
-					levelmusic.pause();
-					platGame = null;
-					updatePosition();
-				}
-				else if (currentPos == 8)
-				{
-					Puzzle3 puzzle = new Puzzle3();
-					if (puzzle.run() && levelsUnlocked == 8)
-					{
-						puzzleDone[3] = true;
-						level.incrementLevel();
-					}
-					puzzle = null;
-					updatePosition();
+						updatePosition();
 
-					music.play();
-					levelmusic.pause();
+						music.play();
+						levelmusic.pause();
 
+					}
 				}
 			}
-
 			// handle keyboard/mouse events
 			for (Event event : window.pollEvents()) 
 			{
@@ -400,6 +403,12 @@ class Game
 					case CLOSED:
 						window.close();
 						System.exit(0);
+						break;
+					case LOST_FOCUS:
+						paused = true;
+						break;
+					case GAINED_FOCUS:
+						paused = false;
 						break;
 				}
 			}
