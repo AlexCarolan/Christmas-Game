@@ -46,7 +46,7 @@ class Puzzle1
 		PuzzleTile ConstantBulb = new PuzzleTile(305,87,"images\\knotPuzzle\\pinkB.png", 35, 35);
 
 		// strings at start of puzzle game
-	  Strings[0][0] = new PuzzleTile(125,178,"images\\knotPuzzle\\orangeB.png", 35, 35);
+		Strings[0][0] = new PuzzleTile(125,178,"images\\knotPuzzle\\orangeB.png", 35, 35);
 		Strings[0][1] = new PuzzleTile(173,160,"images\\knotPuzzle\\purpleB.png", 35, 35);
 		Strings[0][2] = new PuzzleTile(222,143,"images\\knotPuzzle\\pinkB.png", 35, 35);
 		Strings[0][3] = new PuzzleTile(270,125,"images\\knotPuzzle\\silverB.png", 35, 35);
@@ -128,6 +128,7 @@ class Puzzle1
 
 
 		boolean finished = false;
+		boolean paused = false;
 		while (window.isOpen() && !finished) 
 		{
 			// handle keyboard/mouse events (movement can be via WASD or arrow keys)
@@ -138,50 +139,59 @@ class Puzzle1
 					case CLOSED:
 						window.close();
 						break;
-					case KEY_PRESSED:
-						KeyEvent keyEvent = event.asKeyEvent();
-						if ((keyEvent.key == Keyboard.Key.RIGHT) || (keyEvent.key == Keyboard.Key.D))
-						{
-							for (int i = 0; i < 5; i ++)
-							{
-								//System.out.println(Strings[selectPosition][i].getX());
-								TempHolder[i] = Strings[selectPosition][i];
-							}
-							Strings[selectPosition][0] = new PuzzleTile(TempHolder[0].getX(),TempHolder[0].getY(), TempHolder[4].getPicture(), 35, 35);
-							for (int i = 1; i < 5; i ++)
-							{
-								Strings[selectPosition][i] = new PuzzleTile(TempHolder[i].getX(),TempHolder[i].getY(), TempHolder[i-1].getPicture(), 35, 35);
-							}
-						}
-						else if ((keyEvent.key == Keyboard.Key.LEFT) || (keyEvent.key == Keyboard.Key.A))
-						{
-							for (int i = 0; i < 5; i ++)
-							{
-								TempHolder[i] = Strings[selectPosition][i];
-							}
-							Strings[selectPosition][4] = new PuzzleTile(TempHolder[4].getX(),TempHolder[4].getY(), TempHolder[0].getPicture(), 35, 35);
-							for (int i = 0; i < 4; i ++)
-							{
-								Strings[selectPosition][i] = new PuzzleTile(TempHolder[i].getX(),TempHolder[i].getY(), TempHolder[i+1].getPicture(), 35, 35);
-							}
-						}
-						else if ((keyEvent.key == Keyboard.Key.UP) || (keyEvent.key == Keyboard.Key.W))
-						{
-							if (selectPosition > 0)
-							{
-								selectPosition--;
-								selectTool = new PuzzleTile(selectPositions[selectPosition][0],selectPositions[selectPosition][1],"images\\knotPuzzle\\select.png", 35, 35);
-							}
-						}
-						else if ((keyEvent.key == Keyboard.Key.DOWN) || (keyEvent.key == Keyboard.Key.S))
-						{
-							if (selectPosition < 3)
-							{
-								selectPosition++;
-								selectTool = new PuzzleTile(selectPositions[selectPosition][0],selectPositions[selectPosition][1],"images\\knotPuzzle\\select.png", 35, 35);
-							}
-						}
+					case LOST_FOCUS:
+						paused = true;
 						break;
+					case GAINED_FOCUS:
+						paused = false;
+						break;
+					case KEY_PRESSED:
+						if (!paused)
+						{
+							KeyEvent keyEvent = event.asKeyEvent();
+							if ((keyEvent.key == Keyboard.Key.RIGHT) || (keyEvent.key == Keyboard.Key.D))
+							{
+								for (int i = 0; i < 5; i ++)
+								{
+									//System.out.println(Strings[selectPosition][i].getX());
+									TempHolder[i] = Strings[selectPosition][i];
+								}
+								Strings[selectPosition][0] = new PuzzleTile(TempHolder[0].getX(),TempHolder[0].getY(), TempHolder[4].getPicture(), 35, 35);
+								for (int i = 1; i < 5; i ++)
+								{
+									Strings[selectPosition][i] = new PuzzleTile(TempHolder[i].getX(),TempHolder[i].getY(), TempHolder[i-1].getPicture(), 35, 35);
+								}
+							}
+							else if ((keyEvent.key == Keyboard.Key.LEFT) || (keyEvent.key == Keyboard.Key.A))
+							{
+								for (int i = 0; i < 5; i ++)
+								{
+									TempHolder[i] = Strings[selectPosition][i];
+								}
+								Strings[selectPosition][4] = new PuzzleTile(TempHolder[4].getX(),TempHolder[4].getY(), TempHolder[0].getPicture(), 35, 35);
+								for (int i = 0; i < 4; i ++)
+								{
+									Strings[selectPosition][i] = new PuzzleTile(TempHolder[i].getX(),TempHolder[i].getY(), TempHolder[i+1].getPicture(), 35, 35);
+								}
+							}
+							else if ((keyEvent.key == Keyboard.Key.UP) || (keyEvent.key == Keyboard.Key.W))
+							{
+								if (selectPosition > 0)
+								{
+									selectPosition--;
+									selectTool = new PuzzleTile(selectPositions[selectPosition][0],selectPositions[selectPosition][1],"images\\knotPuzzle\\select.png", 35, 35);
+								}
+							}
+							else if ((keyEvent.key == Keyboard.Key.DOWN) || (keyEvent.key == Keyboard.Key.S))
+							{
+								if (selectPosition < 3)
+								{
+									selectPosition++;
+									selectTool = new PuzzleTile(selectPositions[selectPosition][0],selectPositions[selectPosition][1],"images\\knotPuzzle\\select.png", 35, 35);
+								}
+							}
+							break;
+						}
 				}
 			}
 
