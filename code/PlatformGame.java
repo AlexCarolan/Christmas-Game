@@ -348,8 +348,7 @@ class PlatformGame
 						runningRight.kill();
 						//sleighRight.kill();
 						key.kill();
-						window.close();
-						break;
+						return false;
 					case LOST_FOCUS:
 						paused = true;
 						break;
