@@ -97,6 +97,7 @@ class Puzzle2
 		
 
 		boolean finished = false;
+		boolean paused = false;
 		while (window.isOpen() && !finished) 
 		{
 			// handle keyboard/mouse events (movement can be via WASD or arrow keys)
@@ -105,58 +106,67 @@ class Puzzle2
 				switch(event.type) 
 				{
 					case KEY_PRESSED:
-						KeyEvent keyEvent = event.asKeyEvent();
-						if ((keyEvent.key == Keyboard.Key.LEFT) || (keyEvent.key == Keyboard.Key.A))
+						if (!paused)
 						{
-							if (blankTile[1] != 2)
+							KeyEvent keyEvent = event.asKeyEvent();
+							if ((keyEvent.key == Keyboard.Key.LEFT) || (keyEvent.key == Keyboard.Key.A))
 							{
-								switchTile[1] = blankTile[1] + 1;
-								String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
-								tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
-								tiles[blankTile[0]][blankTile[1]].setPicture(temp);
-								blankTile[1] = switchTile[1];
+								if (blankTile[1] != 2)
+								{
+									switchTile[1] = blankTile[1] + 1;
+									String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
+									tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
+									tiles[blankTile[0]][blankTile[1]].setPicture(temp);
+									blankTile[1] = switchTile[1];
+								}
 							}
-						}
-						else if ((keyEvent.key == Keyboard.Key.RIGHT) || (keyEvent.key == Keyboard.Key.D))
-						{
-							if (blankTile[1] != 0)
+							else if ((keyEvent.key == Keyboard.Key.RIGHT) || (keyEvent.key == Keyboard.Key.D))
 							{
-								switchTile[1] = blankTile[1] - 1;
-								String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
-								tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
-								tiles[blankTile[0]][blankTile[1]].setPicture(temp);
-								blankTile[1] = switchTile[1];
+								if (blankTile[1] != 0)
+								{
+									switchTile[1] = blankTile[1] - 1;
+									String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
+									tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
+									tiles[blankTile[0]][blankTile[1]].setPicture(temp);
+									blankTile[1] = switchTile[1];
+								}
 							}
-						}
-						else if ((keyEvent.key == Keyboard.Key.UP) || (keyEvent.key == Keyboard.Key.W))
-						{
-							// if possible, get tile above blank tile
-							if (blankTile[0] != 2)
+							else if ((keyEvent.key == Keyboard.Key.UP) || (keyEvent.key == Keyboard.Key.W))
 							{
-								// swap tiles
-								switchTile[0] = blankTile[0] + 1;
-								String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
-								tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
-								tiles[blankTile[0]][blankTile[1]].setPicture(temp);
-								blankTile[0] = switchTile[0];
+								// if possible, get tile above blank tile
+								if (blankTile[0] != 2)
+								{
+									// swap tiles
+									switchTile[0] = blankTile[0] + 1;
+									String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
+									tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
+									tiles[blankTile[0]][blankTile[1]].setPicture(temp);
+									blankTile[0] = switchTile[0];
+								}
 							}
-						}
-						else if ((keyEvent.key == Keyboard.Key.DOWN) || (keyEvent.key == Keyboard.Key.S))
-						{
-							if (blankTile[0] != 0)
+							else if ((keyEvent.key == Keyboard.Key.DOWN) || (keyEvent.key == Keyboard.Key.S))
 							{
-								// swap tiles
-								switchTile[0] = blankTile[0] - 1;
-								String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
-								tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
-								tiles[blankTile[0]][blankTile[1]].setPicture(temp);
-								blankTile[0] = switchTile[0];
+								if (blankTile[0] != 0)
+								{
+									// swap tiles
+									switchTile[0] = blankTile[0] - 1;
+									String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
+									tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
+									tiles[blankTile[0]][blankTile[1]].setPicture(temp);
+									blankTile[0] = switchTile[0];
+								}
 							}
+							break;
 						}
-						break;
 					case CLOSED:
 						//System.out.println("Close clicked");
 						window.close();
+						break;
+					case LOST_FOCUS:
+						paused = true;
+						break;
+					case GAINED_FOCUS:
+						paused = false;
 						break;
 				}
 			}
