@@ -227,64 +227,87 @@ class Puzzle0
 		window.clear(Color.BLACK);
 
 		boolean finished = false;
+		boolean paused = false;
 		while (window.isOpen() && !finished) 
 		{
 			window.draw(loadBkg);
 			// handle keyboard/mouse events (movement can be via WASD or arrow keys)
-			if (Keyboard.isKeyPressed(Keyboard.Key.S) || Keyboard.isKeyPressed(Keyboard.Key.DOWN))
+			if (!paused)
 			{
-				switchTile[1] = blankTile[1] + 1;
-				if(tiles[switchTile[0]][switchTile[1]].isPassable())
+				if (Keyboard.isKeyPressed(Keyboard.Key.S) || Keyboard.isKeyPressed(Keyboard.Key.DOWN))
 				{
-					if (blankTile[1] != 19)
+					switchTile[1] = blankTile[1] + 1;
+					if(tiles[switchTile[0]][switchTile[1]].isPassable())
 					{
-						//switchTile[1] = blankTile[1] + 1;
-						String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
-						tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
-						tiles[blankTile[0]][blankTile[1]].setPicture(temp);
-						blankTile[1] = switchTile[1];
-					}
-				}
-				else
-				{
-					switchTile[1] = blankTile[1];
-				}
-			}
-			else if (Keyboard.isKeyPressed(Keyboard.Key.W) || Keyboard.isKeyPressed(Keyboard.Key.UP))
-			{
-				if (blankTile[1] != 0)	// added this line to protect against running out of the top of the maze
-				{
-					switchTile[1] = blankTile[1] - 1;
-					if (blankTile[1] != 0)
-					{
-						if(tiles[switchTile[0]][switchTile[1]].isPassable())
+						if (blankTile[1] != 19)
 						{
+							//switchTile[1] = blankTile[1] + 1;
 							String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
 							tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
 							tiles[blankTile[0]][blankTile[1]].setPicture(temp);
 							blankTile[1] = switchTile[1];
 						}
-						else
+					}
+					else
+					{
+						switchTile[1] = blankTile[1];
+					}
+				}
+				else if (Keyboard.isKeyPressed(Keyboard.Key.W) || Keyboard.isKeyPressed(Keyboard.Key.UP))
+				{
+					if (blankTile[1] != 0)	// added this line to protect against running out of the top of the maze
+					{
+						switchTile[1] = blankTile[1] - 1;
+						if (blankTile[1] != 0)
 						{
-							switchTile[1] = blankTile[1];
+							if(tiles[switchTile[0]][switchTile[1]].isPassable())
+							{
+								String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
+								tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
+								tiles[blankTile[0]][blankTile[1]].setPicture(temp);
+								blankTile[1] = switchTile[1];
+							}
+							else
+							{
+								switchTile[1] = blankTile[1];
+							}
 						}
 					}
 				}
-			}
-			else if (Keyboard.isKeyPressed(Keyboard.Key.D) || Keyboard.isKeyPressed(Keyboard.Key.RIGHT))
-			{
-				// if possible, get tile above blank tile
-				if (blankTile[0] != 18)
+				else if (Keyboard.isKeyPressed(Keyboard.Key.D) || Keyboard.isKeyPressed(Keyboard.Key.RIGHT))
 				{
-					switchTile[0] = blankTile[0] + 1;
+					// if possible, get tile above blank tile
+					if (blankTile[0] != 18)
+					{
+						switchTile[0] = blankTile[0] + 1;
+						if(tiles[switchTile[0]][switchTile[1]].isPassable())
+						{
+							// swap tiles
+							switchTile[0] = blankTile[0] + 1;
+							String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
+							tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
+							tiles[blankTile[0]][blankTile[1]].setPicture(temp);
+							blankTile[0] = switchTile[0];
+						}
+						else
+						{
+							switchTile[0] = blankTile[0];
+						}
+					}
+				}
+				else if (Keyboard.isKeyPressed(Keyboard.Key.A) || Keyboard.isKeyPressed(Keyboard.Key.LEFT))
+				{
+					switchTile[0] = blankTile[0] - 1;
 					if(tiles[switchTile[0]][switchTile[1]].isPassable())
 					{
-						// swap tiles
-						switchTile[0] = blankTile[0] + 1;
-						String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
-						tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
-						tiles[blankTile[0]][blankTile[1]].setPicture(temp);
-						blankTile[0] = switchTile[0];
+						if (blankTile[0] != 0)
+						{
+							// swap tiles
+							String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
+							tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
+							tiles[blankTile[0]][blankTile[1]].setPicture(temp);
+							blankTile[0] = switchTile[0];
+						}
 					}
 					else
 					{
@@ -292,26 +315,6 @@ class Puzzle0
 					}
 				}
 			}
-			else if (Keyboard.isKeyPressed(Keyboard.Key.A) || Keyboard.isKeyPressed(Keyboard.Key.LEFT))
-			{
-				switchTile[0] = blankTile[0] - 1;
-				if(tiles[switchTile[0]][switchTile[1]].isPassable())
-				{
-					if (blankTile[0] != 0)
-					{
-						// swap tiles
-						String temp = tiles[switchTile[0]][switchTile[1]].getPicture();
-						tiles[switchTile[0]][switchTile[1]].setPicture(tiles[blankTile[0]][blankTile[1]].getPicture());
-						tiles[blankTile[0]][blankTile[1]].setPicture(temp);
-						blankTile[0] = switchTile[0];
-					}
-				}
-				else
-				{
-					switchTile[0] = blankTile[0];
-				}
-			}
-
 			for (Event event : window.pollEvents()) 
 			{
 				switch(event.type) 
@@ -319,6 +322,12 @@ class Puzzle0
 					case CLOSED:
 						//System.out.println("Close clicked");
 						window.close();
+						break;
+					case LOST_FOCUS:
+						paused = true;
+						break;
+					case GAINED_FOCUS:
+						paused = false;
 						break;
 				}
 			}
