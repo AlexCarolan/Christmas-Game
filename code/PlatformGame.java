@@ -177,12 +177,15 @@ class PlatformGame
 		//platform sound effects:
 		Music jumpSound = new Music();
 		Music collectSound = new Music();
+		Music hitSound = new Music();
 		
 		try {
 			jumpSound.openFromFile(Paths.get("music\\jump.ogg"));
 			collectSound.openFromFile(Paths.get("music\\collect.ogg"));
-
-		} catch(Exception e){}
+			hitSound.openFromFile(Paths.get("music\\hurt.aiff"));
+		} catch(Exception e){
+			System.out.println(e);
+		}
 		
 		
 		boolean keyCollected = false;
@@ -568,6 +571,7 @@ class PlatformGame
 			{
 				player.resetPosition();
 				player.takeLife();
+				hitSound.play();
 				background.resetPosition(0-Utils.PlatformGameWidth/2,0);
 				for (int i = 0; i < numPlatforms; i++)
 					platform[i].resetPosition(Utils.PlatformPositions[gameLevel][i][0],Utils.PlatformPositions[gameLevel][i][1]);
