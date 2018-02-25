@@ -24,7 +24,6 @@ class Game
 
 	public static void main (String args[ ]) 
 	{
-
 		// create a window
 		RenderWindow window = new RenderWindow( );
 		window.create(new VideoMode(Utils.PlatformGameWidth, Utils.PlatformGameHeight),
@@ -32,13 +31,13 @@ class Game
 						WindowStyle.CLOSE | WindowStyle.TITLEBAR);	// window can't be resized
 
 		// set the frame-rate
-		window.setFramerateLimit(24);
+		window.setFramerateLimit(12);	//24);
 		
 		// add load screen
 		Texture loadImg = new Texture();
  		
  		try {
- 		loadImg.loadFromFile(Paths.get("images\\load\\main.png"));
+			loadImg.loadFromFile(Paths.get("images\\load\\main.png"));
  		} catch(IOException ex) {
  			System.out.println(ex);
  		}
@@ -50,7 +49,7 @@ class Game
 		window.draw(loadBkg);
 		window.display();
 		
-		//create menu still image of the player
+		// create still image of the player on the menu 
 		Player menuPlayer = new Player(1);
 		menuPlayer.setLocation(800,700);
 
@@ -101,7 +100,7 @@ class Game
 		Text textPlatform4 = new Text("Level 4 - The Gifts", sansRegular, 18);
 		textPlatform4.setPosition(135, Utils.PlatformGameHeight-92);
 		
-		//Load a music to play
+		//Load music to play
         Music music = new Music();
 		Music select = new Music();
 		Music levelmusic = new Music();
@@ -110,11 +109,11 @@ class Game
 		
 		levelmusic.setLoop(true);
 		
-		try{
+		try {
 			music.openFromFile(Paths.get("music\\menu.ogg"));
 			select.openFromFile(Paths.get("music\\select.ogg"));
 			levelmusic.openFromFile(Paths.get("music\\level.ogg"));
-		}catch(Exception e){}
+		} catch(Exception e){}
 			
         //Play the music
         music.play();
@@ -123,13 +122,11 @@ class Game
 		//show collectibles:
 		Score playerScore = new Score(0);
 		int numCollectiblesPerLevel = Utils.CollectibleImages[0].length;
-		//int numCollectibles = numCollectiblesPerLevel * Utils.MaxLevel;
 		int yDisplayOffset[] = {40,110,155,185,215};
 		int xDisplayOffset[] = {585,620,670,695};
 		Collectible[][] collectible = new Collectible[Utils.MaxLevel][numCollectiblesPerLevel];
 		for (int gameLevel = 0; gameLevel < Utils.MaxLevel; gameLevel++)
 			for (int i = 0; i < numCollectiblesPerLevel; i++)
-				//collectible[gameLevel][i] = new Collectible((i*150)+gameLevel*30,720,
 				collectible[gameLevel][i] = new Collectible(xDisplayOffset[gameLevel],yDisplayOffset[i],
 												Utils.CollectiblePositions[gameLevel][i][2],Utils.CollectiblePositions[gameLevel][i][3],
 												Utils.CollectibleImages[gameLevel][i],playerScore);
@@ -169,16 +166,10 @@ class Game
 				window.draw(textPlatform4);
 
 			for (int i = 0; i < Utils.MaxLevel; i++)
-			{
 				for (int j = 0; j < numCollectiblesPerLevel; j++)
-				{
 					if (collectible[i][j].collected())
-					{
-						//System.out.println("output");
 						window.draw(collectible[i][j].getPlatform());
-					}
-				}
-			}
+
 			//display player
 			window.draw(menuPlayer.getSprite());
 			
@@ -196,13 +187,12 @@ class Game
 					
 					try        
 					{
-						Thread.sleep(100);
+						Thread.sleep(200);
 					} 
 					catch (InterruptedException e) 
 					{
 						System.out.println(e);
 					}
-
 				}
 				else if (Keyboard.isKeyPressed(Keyboard.Key.A) || Keyboard.isKeyPressed(Keyboard.Key.LEFT))
 				{
@@ -213,7 +203,7 @@ class Game
 					
 					try        
 					{
-						Thread.sleep(100);
+						Thread.sleep(200);
 					} 
 					catch(InterruptedException e) 
 					{
@@ -229,7 +219,7 @@ class Game
 					
 					try        
 					{
-						Thread.sleep(100);
+						Thread.sleep(200);
 					} 
 					catch(InterruptedException e) 
 					{
@@ -245,7 +235,7 @@ class Game
 					
 					try        
 					{
-						Thread.sleep(100);
+						Thread.sleep(200);
 					} 
 					catch(InterruptedException e) 
 					{
@@ -391,7 +381,6 @@ class Game
 
 						music.play();
 						levelmusic.pause();
-
 					}
 				}
 			}
@@ -420,8 +409,6 @@ class Game
 	{
 		currentPos = levelsUnlocked;
 		if (levelsUnlocked >= 8)
-		{
 			currentPos = 1;
-		}
 	}
 }
