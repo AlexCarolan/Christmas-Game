@@ -178,16 +178,17 @@ class PlatformGame
 		Music jumpSound = new Music();
 		Music collectSound = new Music();
 		
-		try{
+		try {
 			jumpSound.openFromFile(Paths.get("music\\jump.ogg"));
 			collectSound.openFromFile(Paths.get("music\\collect.ogg"));
 
-		}catch(Exception e){}
+		} catch(Exception e){}
 		
 		
 		boolean keyCollected = false;
 		
-		boolean finished = false;
+		boolean finished = false;		// set when player completes level
+		boolean paused = false;			// set when window loses focus
 		while (window.isOpen() && !finished && (player.getLives() > 0))
 		{
 			// fill the window with black
@@ -242,7 +243,8 @@ class PlatformGame
 			}
 
 			// handle keyboard events (movement can be via WASD or arrow keys)
-			if (Keyboard.isKeyPressed(Keyboard.Key.A) || Keyboard.isKeyPressed(Keyboard.Key.LEFT))	// going left
+			if (!paused &&
+				(Keyboard.isKeyPressed(Keyboard.Key.A) || Keyboard.isKeyPressed(Keyboard.Key.LEFT)))	// going left
 			{
 				//if (gameLevel != Utils.SleighGameLevel)
 				{
@@ -255,7 +257,8 @@ class PlatformGame
 				runDirectionRight = false;
 				moveX = 0-Utils.MoveAmountX;
 			}
-			if (Keyboard.isKeyPressed(Keyboard.Key.D) || Keyboard.isKeyPressed(Keyboard.Key.RIGHT))	// going right
+			if (!paused && 
+				(Keyboard.isKeyPressed(Keyboard.Key.D) || Keyboard.isKeyPressed(Keyboard.Key.RIGHT)))	// going right
 			{
 				//if (gameLevel != Utils.SleighGameLevel)
 				{
@@ -268,7 +271,9 @@ class PlatformGame
 				runDirectionRight = true;
 				moveX = Utils.MoveAmountX;
 			}
-			if (Keyboard.isKeyPressed(Keyboard.Key.W) || Keyboard.isKeyPressed(Keyboard.Key.UP) || Keyboard.isKeyPressed(Keyboard.Key.SPACE))
+			if (!paused &&
+				(Keyboard.isKeyPressed(Keyboard.Key.W) || Keyboard.isKeyPressed(Keyboard.Key.UP) || 
+				 Keyboard.isKeyPressed(Keyboard.Key.SPACE)))
 			{
 				// can only jump if bottom of player sprite standing on a platform or obstacle
 				// or if in sleigh gameLevel
@@ -321,7 +326,8 @@ class PlatformGame
 				}
 				//System.out.println("Up pressed: moveY=" + moveY);
 			}
-			if (Keyboard.isKeyPressed(Keyboard.Key.S) || Keyboard.isKeyPressed(Keyboard.Key.DOWN))
+			if (!paused &&
+				(Keyboard.isKeyPressed(Keyboard.Key.S) || Keyboard.isKeyPressed(Keyboard.Key.DOWN)))
 			{
 				if (gameLevel == Utils.SleighGameLevel)
 					moveY = Utils.MoveAmountY;
@@ -344,9 +350,15 @@ class PlatformGame
 						key.kill();
 						window.close();
 						break;
+					case LOST_FOCUS:
+						paused = true;
+						break;
+					case GAINED_FOCUS:
+						paused = false;
+						break;
 				}
 			}
-			
+
 			boolean touching = false;
 			if (moveX < 0)	// player moving left
 			{	
