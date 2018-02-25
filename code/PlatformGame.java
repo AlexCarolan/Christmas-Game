@@ -116,8 +116,8 @@ class PlatformGame
 		{
 			idleRight = new AnimatedPlayer(Utils.SleighIdleRightPath, 2, 175);
 			idleLeft = new AnimatedPlayer(Utils.SleighIdleLeftPath, 2, 175);
-			runningRight = new AnimatedPlayer(Utils.SleighRunningRightPath, 2, 90);
-			runningLeft = new AnimatedPlayer(Utils.SleighRunningLeftPath, 2, 90);
+			runningRight = new AnimatedPlayer(Utils.SleighRunningRightPath, 10, 90);
+			runningLeft = new AnimatedPlayer(Utils.SleighRunningLeftPath, 10, 90);
 		}
 		AnimatedCollectible key = new AnimatedCollectible(Utils.KeyPath, 4, 250);
 
@@ -230,29 +230,22 @@ class PlatformGame
 			}
 
 			// apply idle animation when still
-			if (runningRight.getActive() || runningLeft.getActive() &&
+			if ((gameLevel != Utils.SleighGameLevel) &&
+				(runningRight.getActive() || runningLeft.getActive()) &&
 				((System.currentTimeMillis() - lastTimeMoved) > 10))
 			{
-				//if (gameLevel != Utils.SleighGameLevel)
-				{
-					if (runDirectionRight == true)
-						player.setAnimation(idleRight);
-					else
-						player.setAnimation(idleLeft);
-				}
+				if (runDirectionRight)
+					player.setAnimation(idleRight);
+				else
+					player.setAnimation(idleLeft);
 			}
 
 			// handle keyboard events (movement can be via WASD or arrow keys)
 			if (!paused &&
 				(Keyboard.isKeyPressed(Keyboard.Key.A) || Keyboard.isKeyPressed(Keyboard.Key.LEFT)))	// going left
 			{
-				//if (gameLevel != Utils.SleighGameLevel)
-				{
-					// turn on animation for runningLeft
-					player.setAnimation(runningLeft);
-				}
-				//else
-					//sleighRight.setActive(true);
+				// turn on animation for runningLeft
+				player.setAnimation(runningLeft);
 				lastTimeMoved = System.currentTimeMillis();
 				runDirectionRight = false;
 				moveX = 0-Utils.MoveAmountX;
@@ -260,13 +253,8 @@ class PlatformGame
 			if (!paused && 
 				(Keyboard.isKeyPressed(Keyboard.Key.D) || Keyboard.isKeyPressed(Keyboard.Key.RIGHT)))	// going right
 			{
-				//if (gameLevel != Utils.SleighGameLevel)
-				{
-					// turn on animation for runningRight
-					player.setAnimation(runningRight);
-				}
-				//else
-					//sleighRight.setActive(true);
+				// turn on animation for runningRight
+				player.setAnimation(runningRight);
 				lastTimeMoved = System.currentTimeMillis();
 				runDirectionRight = true;
 				moveX = Utils.MoveAmountX;
@@ -311,10 +299,18 @@ class PlatformGame
 					moveY = 0-Utils.MoveAmountY;
 					if (moveX == 0)				// COMMENT OUT BLOCK TO TEST LEVEL 4
 					{
-						if (idleRight.getActive())
+						if (runDirectionRight)
+						{
 							moveX = Utils.MoveAmountX;
+							player.setAnimation(runningRight);
+							lastTimeMoved = System.currentTimeMillis();
+						}
 						else
+						{
 							moveX = 0-Utils.MoveAmountX;
+							player.setAnimation(runningLeft);
+							lastTimeMoved = System.currentTimeMillis();
+						}
 					}
 				}
 				else if (standing)
@@ -330,7 +326,24 @@ class PlatformGame
 				(Keyboard.isKeyPressed(Keyboard.Key.S) || Keyboard.isKeyPressed(Keyboard.Key.DOWN)))
 			{
 				if (gameLevel == Utils.SleighGameLevel)
+				{
 					moveY = Utils.MoveAmountY;
+					if (moveX == 0)				// COMMENT OUT BLOCK TO TEST LEVEL 4
+					{
+						if (runDirectionRight)
+						{
+							moveX = Utils.MoveAmountX;
+							player.setAnimation(runningRight);
+							lastTimeMoved = System.currentTimeMillis();
+						}
+						else
+						{
+							moveX = 0-Utils.MoveAmountX;
+							player.setAnimation(runningLeft);
+							lastTimeMoved = System.currentTimeMillis();
+						}
+					}
+				}
 				else
 					moveY += Utils.MoveAmountY;
 				//System.out.println("Down pressed: moveY=" + moveY);
@@ -567,6 +580,10 @@ class PlatformGame
 				door.resetPosition(Utils.DoorPosition[gameLevel][0],Utils.DoorPosition[gameLevel][1]);
 				moveX = 0;
 				moveY = 0;
+				if (runDirectionRight)
+					player.setAnimation(idleRight);
+				else
+					player.setAnimation(idleLeft);
 			}
 
 			// if touching a collectible, then pick it up
@@ -617,7 +634,6 @@ class PlatformGame
 		idleLeft.kill();
 		runningLeft.kill();
 		runningRight.kill();
-		//sleighRight.kill();
 		key.kill();
 		if (player.getLives() <= 0)
 			return false;	// return false if all lives lost
