@@ -46,7 +46,7 @@ class Player
 		// put it on the screen
 		sprite.setOrigin(0,0);
 		resetPosition();
-		System.out.println("Y position of Sprite: " + this.getYBottomPosition());
+		//System.out.println("Y position of Sprite: " + this.getYBottomPosition());
 	}
 
 	/**
