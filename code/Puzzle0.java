@@ -23,7 +23,8 @@ class Puzzle0
 		// create the window
 		RenderWindow window = new RenderWindow( );
 		//window.create(new VideoMode((19*35), (19*35)),
-		window.create(new VideoMode((19*35), Utils.PlatformGameHeight),
+		//window.create(new VideoMode((19*35), Utils.PlatformGameHeight),
+		window.create(new VideoMode(Utils.PlatformGameWidth, Utils.PlatformGameHeight),
 						"Maze Puzzle, Level 1",
 						WindowStyle.CLOSE | WindowStyle.TITLEBAR);	// window can't be resized
 
@@ -34,7 +35,7 @@ class Puzzle0
 		Texture loadImg = new Texture();
  		
  		try {
- 		loadImg.loadFromFile(Paths.get("images\\load\\puzzle0.png"));
+			loadImg.loadFromFile(Paths.get("images\\load\\puzzle0.png"));
  		} catch(IOException ex) {
  			System.out.println(ex);
  		}
@@ -213,7 +214,7 @@ class Puzzle0
 		} catch (IOException ex) {
 			ex.printStackTrace( );
 		}
-		Text text1 = new Text("Can you help the Christmas Elf to find her way through the Maze?", sansRegular, 18);
+		Text text1 = new Text("Can you help the Christmas Elf through the Maze to find the Christmas Tree?", sansRegular, 18);
 		Text text2 = new Text("Use the arrow keys, or WASD, to move", sansRegular, 18);
 		Text text3 = new Text("Well done, you completed the maze!", sansRegular, 18);
 		text1.setColor(Color.RED);
@@ -223,6 +224,10 @@ class Puzzle0
 		text1.setPosition(50, Utils.PlatformGameHeight-80);
 		text2.setPosition(50, Utils.PlatformGameHeight-60);
 		text3.setPosition(50, Utils.PlatformGameHeight-40);
+
+		// display the Christmas Tree (as a platform) at the side of the puzzle
+		Platform miniTree = new Platform((19*35)+2,550,90,100,"images\\maze\\Tree.png",false);
+		Platform tree = new Platform((19*35),0,2200,Utils.PlatformGameHeight+200,Utils.RoomImage[1],false);
 
 		window.clear(Color.BLACK);
 
@@ -237,7 +242,7 @@ class Puzzle0
 				if (Keyboard.isKeyPressed(Keyboard.Key.S) || Keyboard.isKeyPressed(Keyboard.Key.DOWN))
 				{
 					switchTile[1] = blankTile[1] + 1;
-					if(tiles[switchTile[0]][switchTile[1]].isPassable())
+					if (tiles[switchTile[0]][switchTile[1]].isPassable())
 					{
 						if (blankTile[1] != 19)
 						{
@@ -334,8 +339,8 @@ class Puzzle0
 
 			if (window.isOpen())
 			{
-				// fill the window with black
-				window.clear(Color.BLACK);
+				// fill the window with white
+				window.clear(Color.WHITE);
 
 				// add all objects onto the window
 				for (int i = 0; i < 19; i++)
@@ -358,13 +363,18 @@ class Puzzle0
 					window.draw(text3);
 				}
 
+				if (finished)
+					window.draw(tree.getPlatform());
+				else
+					window.draw(miniTree.getPlatform());
+
 				// display what was drawn on the window
 				window.display();
 
 				if (finished)
 				{
 					try {					// pause so player can see success message
-						Thread.sleep(600);
+						Thread.sleep(1200);	//600);
 					} catch (Exception e) {
 						System.out.println();
 					}
