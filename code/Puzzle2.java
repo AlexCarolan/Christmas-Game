@@ -14,10 +14,10 @@ class Puzzle2
 	 * run - handle tile movement and generation for picture tile puzzle
 	 * @return boolean - success indicator (true if puzzle completed)
 	 */
-	public boolean run() 
+	public boolean run(RenderWindow win) 
 	{
 		// create the window
-		RenderWindow window = new RenderWindow( );
+		RenderWindow window = win;
 		//window.create(new VideoMode(Utils.PuzzleGameWidth, Utils.PlatformGameHeight),
 		window.create(new VideoMode(Utils.PlatformGameWidth, Utils.PlatformGameHeight),
 					"Picture Puzzle, Level 2",
@@ -30,7 +30,7 @@ class Puzzle2
 		Texture loadImg = new Texture();
  		
  		try {
-			loadImg.loadFromFile(Paths.get("images\\load\\puzzle1.png"));
+			loadImg.loadFromFile(Paths.get("images\\load\\main.png"));
  		} catch(IOException ex) {
  			System.out.println(ex);
  		}
@@ -161,9 +161,7 @@ class Puzzle2
 							break;
 						}
 					case CLOSED:
-						//System.out.println("Close clicked");
-						window.close();
-						break;
+						return false;
 					case LOST_FOCUS:
 						paused = true;
 						break;
@@ -217,13 +215,10 @@ class Puzzle2
 					} catch (Exception e) {
 						System.out.println();
 					}
-					window.close();
 					break;
 				}
 			}
 		}
-		if (window.isOpen())
-			window.close();
 		return finished;
 	}
 }	
