@@ -318,7 +318,7 @@ class Game
 						if (platGame.run(1, collectible[1], window) && (levelsUnlocked == 3))
 						{
 							Puzzle1 puzzle = new Puzzle1();
-							if (puzzle.run())
+							if (puzzle.run(window))
 							{
 								puzzleDone[1] = true;
 								level.incrementLevel();
@@ -335,7 +335,7 @@ class Game
 					else if (currentPos == 4)
 					{
 						Puzzle1 puzzle = new Puzzle1();
-						if (puzzle.run() && levelsUnlocked == 4)
+						if (puzzle.run(window) && levelsUnlocked == 4)
 						{
 							puzzleDone[1] = true;
 							levelsUnlocked++;

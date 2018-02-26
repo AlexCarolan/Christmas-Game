@@ -14,7 +14,7 @@ class Puzzle1
 	 * run - handle display and movement of the platform game for this level
 	 * @return boolean - success indicator (true if puzzle completed)
 	 */
-	public boolean run()
+	public boolean run(RenderWindow win)
 	{
 		// create the window
 		PuzzleTile background = new PuzzleTile(0,0,"images\\knotPuzzle\\tree.png", 520, 601);
@@ -31,7 +31,7 @@ class Puzzle1
 		selectPositions[3][1] = 365;
 		int puzzleHeight = 601;
 
-		RenderWindow window = new RenderWindow( );
+		RenderWindow window = win;
 		//window.create(new VideoMode(520, Utils.PlatformGameHeight),
 		window.create(new VideoMode(Utils.PlatformGameWidth, Utils.PlatformGameHeight),
 					"Christmas Tree Lights Puzzle, Level 3",
@@ -140,8 +140,7 @@ class Puzzle1
 				switch(event.type) 
 				{
 					case CLOSED:
-						window.close();
-						break;
+						return false;
 					case LOST_FOCUS:
 						paused = true;
 						break;
@@ -247,12 +246,9 @@ class Puzzle1
 					} catch (Exception e) {
 						System.out.println();
 					}
-					window.close();
 				}
 			}
 		}
-		if (window.isOpen())
-			window.close();
 		return finished;
 	}
 }	
