@@ -127,29 +127,31 @@ public class Utils
 														{700,450,50,15},	//5
 														{850,500,250,200},	//6
 														{1150,400,150,15},	//7
-														{1350,500,150,15},	//8
-														{1550,595,150,5},	//9
-														{1850,650,50,50},	//10
-														{1900,500,300,200},	//11
-														{2250,450,100,15},	//12
-														{2350,650,50,50},	//13
-														{2400,600,750,100},	//14
-														{2550,495,150,5},	//15
-														{2750,400,350,15},	//16
-														{3150,450,300,250},	//17
-														{3450,450,150,15},	//18
-														{3450,535,100,15},	//19
-														{3450,620,50,15},	//20
-														{3700,450,150,15},	//21
-														{3900,500,150,15},	//22
-														{4100,600,150,15},	//23
-														{4300,500,200,15},	//24
-														{4650,500,400,200},	//25
-														{5050,650,50,50},	//26
-														{5750,650,50,50},	//27
-														{5800,600,100,100},	//28
-														{5850,550,50,50},	//29
-														{5900,650,50,50},	//30
+														{1350,470,50,15},	//8
+														{1420,540,75,15},	//9
+														{1550,595,150,5},	//10
+														{1850,650,50,50},	//11
+														{1900,500,300,200},	//12
+														{2250,450,100,15},	//13
+														{2350,650,50,50},	//14
+														{2400,600,750,100},	//15
+														{2550,495,150,5},	//16
+														{2740,450,70,15},	//17
+														{2850,400,250,15},	//18
+														{3150,450,300,250},	//19
+														{3450,450,150,15},	//20
+														{3450,535,100,15},	//21
+														{3450,620,50,15},	//22
+														{3700,450,150,15},	//23
+														{3900,500,150,15},	//24
+														{4100,600,150,15},	//25
+														{4300,500,200,15},	//26
+														{4650,500,400,200},	//27
+														{5050,650,50,50},	//28
+														{5750,650,50,50},	//29
+														{5800,600,100,100},	//30
+														{5850,550,50,50},	//31
+														{5900,650,50,50},	//32
 														{20-PlatformGameWidth/2,510,PlatformGameWidth/2+20,PlatformGameHeight-510},	// left hand edge
 														{6500,510,PlatformGameWidth/2,PlatformGameHeight-510}},	// right hand edge
 														{ // gameLevel 4
@@ -235,28 +237,30 @@ public class Utils
 														"images\\platform\\KitchenCounter.png",	//6
 														"images\\platform\\LogLarge.png",	//7
 														"images\\platform\\LogLarge.png",	//8
-														"images\\platform\\LogLarge.png",	//9 (above fireplace)
-														"images\\platform\\LogLarge.png",	//10
-														"images\\platform\\KitchenCounter.png",	//11
-														"images\\platform\\LogLarge.png",	//12
+														"images\\platform\\LogLarge.png",	//9
+														"images\\platform\\LogLarge.png",	//10 (above fireplace)
+														"images\\platform\\LogLarge.png",	//11
+														"images\\platform\\KitchenCounter.png",	//12
 														"images\\platform\\LogLarge.png",	//13
-														"images\\platform\\KitchenCounter.png",	//14
-														"images\\platform\\LogLarge.png",	//15 (above fireplace)
-														"images\\platform\\LogLarge.png",	//16
-														"images\\platform\\Shelf.png",	//17
+														"images\\platform\\LogLarge.png",	//14
+														"images\\platform\\KitchenCounter.png",	//15
+														"images\\platform\\LogLarge.png",	//16 (above fireplace)
+														"images\\platform\\LogLarge.png",	//17
 														"images\\platform\\LogLarge.png",	//18
-														"images\\platform\\LogLarge.png",	//19
+														"images\\platform\\Shelf.png",		//19
 														"images\\platform\\LogLarge.png",	//20
 														"images\\platform\\LogLarge.png",	//21
 														"images\\platform\\LogLarge.png",	//22
 														"images\\platform\\LogLarge.png",	//23
 														"images\\platform\\LogLarge.png",	//24
-														"images\\platform\\KitchenCounter.png",	//25
+														"images\\platform\\LogLarge.png",	//25
 														"images\\platform\\LogLarge.png",	//26
-														"images\\platform\\LogLarge.png",	//27
+														"images\\platform\\KitchenCounter.png",	//27
 														"images\\platform\\LogLarge.png",	//28
 														"images\\platform\\LogLarge.png",	//29
 														"images\\platform\\LogLarge.png",	//30
+														"images\\platform\\LogLarge.png",	//31
+														"images\\platform\\LogLarge.png",	//32
 														"images\\platform\\KitchenCounter.png",	//left hand edge
 														"images\\platform\\KitchenCounter.png"},	//right hand edge
 														{ // gameLevel 4
@@ -354,16 +358,18 @@ public class Utils
 														true,
 														true,
 														true,	// 20
-														false,
-														false,
-														false,
-														false,
 														true,
 														true,
+														false,
+														false,
+														false,
+														false,
 														true,
 														true,
 														true,
 														true,	// 30
+														true,
+														true,
 														true,
 														true},
 														{ // gameLevel 4
