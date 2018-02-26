@@ -569,6 +569,12 @@ class PlatformGame
 			// if player has fallen off the bottom of the window, then lose a life and put all the items back to the start
 			if (damaged || player.fallenBelowWindow(Utils.PlatformGameHeight))
 			{
+				window.display();
+				try {					// pause so player can see success message
+						Thread.sleep(100);
+					} catch (Exception e) {
+						System.out.println();
+					}
 				player.resetPosition();
 				player.takeLife();
 				hitSound.play();
