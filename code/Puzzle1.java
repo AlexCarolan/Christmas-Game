@@ -32,7 +32,8 @@ class Puzzle1
 		int puzzleHeight = 601;
 
 		RenderWindow window = new RenderWindow( );
-		window.create(new VideoMode(520, Utils.PlatformGameHeight),
+		//window.create(new VideoMode(520, Utils.PlatformGameHeight),
+		window.create(new VideoMode(Utils.PlatformGameWidth, Utils.PlatformGameHeight),
 					"Christmas Tree Lights Puzzle, Level 3",
 					WindowStyle.DEFAULT);
 
@@ -105,7 +106,7 @@ class Puzzle1
 		} catch (IOException ex) {
 			ex.printStackTrace( );
 		}
-		Text text1a = new Text("Can you untangle the lights?", sansRegular, 18);
+		Text text1a = new Text("Can you untangle the lights to decorate the Tree?", sansRegular, 18);
 		Text text1b = new Text("Each row should have no repeat colours", sansRegular, 18);
 		Text text2a = new Text("Use Up/Down (or WS) keys to select the row", sansRegular, 18);
 		Text text2b = new Text("and Left/Right (or AD) keys to rotate the lights", sansRegular, 18);
@@ -119,13 +120,15 @@ class Puzzle1
 		text3.setColor(Color.RED);
 		text2a.setStyle(Text.ITALIC);
 		text2b.setStyle(Text.ITALIC);
-		text1a.setPosition(50, puzzleHeight+20);
-		text1b.setPosition(50, puzzleHeight+40);
-		text2a.setPosition(50, puzzleHeight+60);
-		text2b.setPosition(50, puzzleHeight+80);
-		text2c.setPosition(50, puzzleHeight+100);
-		text3.setPosition(50, puzzleHeight+120);
+		text1a.setPosition(40, puzzleHeight+20);
+		text1b.setPosition(40, puzzleHeight+40);
+		text2a.setPosition(40, puzzleHeight+60);
+		text2b.setPosition(40, puzzleHeight+80);
+		text2c.setPosition(40, puzzleHeight+100);
+		text3.setPosition(40, puzzleHeight+120);
 
+		// display the decorated Christmas Tree (as a platform) at the side of the puzzle
+		Platform tree = new Platform(520,0,3100,Utils.PlatformGameHeight+200,Utils.RoomImage[2],false);
 
 		boolean finished = false;
 		boolean paused = false;
@@ -231,6 +234,7 @@ class Puzzle1
 				{
 					System.out.println("Well done, you untangled the lights!");
 					window.draw(text3);
+					window.draw(tree.getPlatform());
 				}
 
 				// display what was drawn on the window
@@ -239,7 +243,7 @@ class Puzzle1
 				if (finished)
 				{
 					try {					// pause so player can see success message
-						Thread.sleep(2000);
+						Thread.sleep(2400);
 					} catch (Exception e) {
 						System.out.println();
 					}

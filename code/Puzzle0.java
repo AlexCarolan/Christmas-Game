@@ -214,20 +214,20 @@ class Puzzle0
 		} catch (IOException ex) {
 			ex.printStackTrace( );
 		}
-		Text text1 = new Text("Can you help the Christmas Elf through the Maze to find the Christmas Tree?", sansRegular, 18);
+		Text text1 = new Text("Help the Christmas Elf through the Maze to find the Christmas Tree", sansRegular, 18);
 		Text text2 = new Text("Use the arrow keys, or WASD, to move", sansRegular, 18);
 		Text text3 = new Text("Well done, you completed the maze!", sansRegular, 18);
 		text1.setColor(Color.RED);
 		text2.setColor(Color.RED);
 		text3.setColor(Color.WHITE);
 		text2.setStyle(Text.ITALIC);
-		text1.setPosition(50, Utils.PlatformGameHeight-80);
-		text2.setPosition(50, Utils.PlatformGameHeight-60);
-		text3.setPosition(50, Utils.PlatformGameHeight-40);
+		text1.setPosition(40, Utils.PlatformGameHeight-80);
+		text2.setPosition(40, Utils.PlatformGameHeight-60);
+		text3.setPosition(40, Utils.PlatformGameHeight-40);
 
 		// display the Christmas Tree (as a platform) at the side of the puzzle
 		Platform miniTree = new Platform((19*35)+2,550,90,100,"images\\maze\\Tree.png",false);
-		Platform tree = new Platform((19*35),0,2200,Utils.PlatformGameHeight+200,Utils.RoomImage[1],false);
+		Platform tree = new Platform((19*35),0,2300,Utils.PlatformGameHeight+200,Utils.RoomImage[1],false);
 
 		window.clear(Color.BLACK);
 
