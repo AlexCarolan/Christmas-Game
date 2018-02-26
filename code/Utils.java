@@ -152,8 +152,8 @@ public class Utils
 														{5800,600,100,100},	//30
 														{5850,550,50,50},	//31
 														{5900,650,50,50},	//32
-														{20-PlatformGameWidth/2,510,PlatformGameWidth/2+20,PlatformGameHeight-510},	// left hand edge
-														{6500,510,PlatformGameWidth/2,PlatformGameHeight-510}},	// right hand edge
+														{20-PlatformGameWidth/2,500,PlatformGameWidth/2+20,PlatformGameHeight-500},	// left hand edge
+														{6500,500,PlatformGameWidth/2,PlatformGameHeight-500}},	// right hand edge
 														{ // gameLevel 4
 														{0,PlatformGameHeight - 25,PlatformGameWidth,25},	// base 1
 														{PlatformGameWidth+150,PlatformGameHeight - 25,500,50}, // base 2
