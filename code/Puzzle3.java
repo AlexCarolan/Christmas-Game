@@ -127,8 +127,7 @@ class Puzzle3
 		// Load the font for the instructions
 		Font sansRegular = new Font( );
 		try {
-			sansRegular.loadFromFile(
-					Paths.get("fonts\\LucidaSansRegular.ttf"));
+			sansRegular.loadFromFile(Paths.get("fonts\\LucidaSansRegular.ttf"));
 		} catch (IOException ex) {
 			ex.printStackTrace( );
 		}
@@ -147,9 +146,16 @@ class Puzzle3
 		text2b.setPosition(20, Utils.PuzzleGameHeight+60);
 		text3.setPosition(20, Utils.PuzzleGameHeight+80);
 
-		// display the Christmas Tree (as a platform) at the side of the puzzle
-		//Platform gifts = new Platform((7*100),(2*100),100,100,"images\\trafficPuzzle\\Gifts.png",false);
-		Platform tree = new Platform((6*100),0,2300,Utils.PlatformGameHeight+200,Utils.RoomImage[4],false);
+		// display the mantelpiece at the side of the puzzle
+		//Platform fireplace = new Platform(-1250,0,2300,600,Utils.RoomImage[4],false);	// mantelpiece
+
+		// display the Christmas Tree gifts at the side of the puzzle
+		//Platform gift1 = new Platform((7*100),200,100,100,"images\\presents.png",false);	// presents
+		//Platform gift2 = new Platform((7*100)+5,205,30,30,"images\\sock.png",false);		// stocking
+		//Platform gift3 = new Platform((7*100)+35,210,30,30,"images\\sock.png",false);		// stocking
+		//Platform gift4 = new Platform((7*100)+65,205,30,30,"images\\sock.png",false);		// stocking
+		Platform gift1 = new Platform((7*100)+5,190,100,100,"images\\presents.png",false);	// presents
+		Platform tree = new Platform(600,0,2300,600,Utils.RoomImage[4],false);		// christmas tree
 		
 		
 		boolean finished = false;
@@ -338,6 +344,21 @@ class Puzzle3
 				// fill the window with black
 				window.clear(Color.BLACK);
 
+				// check whether images are all in the right place
+				if (dictionary[0][1][0] == 5)
+					finished = true;
+
+				if (finished)
+					window.draw(tree.getPlatform());		// window.draw(fireplace.getPlatform())
+				else
+				{
+					window.draw(exit.getTile());
+					window.draw(gift1.getPlatform());		// display presents (for under tree)
+					//window.draw(gift2.getPlatform());		// with three stockings
+					//window.draw(gift3.getPlatform());
+					//window.draw(gift4.getPlatform());
+				}
+
 				// add all objects onto the window
 				for (int i = 0; i < 6; i++)
 				{
@@ -346,25 +367,17 @@ class Puzzle3
 						window.draw(tiles[i][j].getTile());
 					}
 				}
-				window.draw(exit.getTile());
 
 				// add instructions
 				window.draw(text1);
 				window.draw(text2a);
 				window.draw(text2b);
 
-				// check whether images are all in the right place
-				if (dictionary[0][1][0] == 5)
-					finished = true;
-
 				if (finished)
 				{
 					System.out.println("Well done, you unblocked the sleigh!");
 					window.draw(text3);
-					window.draw(tree.getPlatform());
 				}
-				//else
-				//	window.draw(gifts.getPlatform());
 
 				// display what was drawn on the window
 				window.display();
@@ -372,7 +385,7 @@ class Puzzle3
 				if (finished)
 				{
 					try {					// pause so player can see success message
-						Thread.sleep(1800);
+						Thread.sleep(2000);
 					} catch (Exception e) {
 						System.out.println();
 					}
