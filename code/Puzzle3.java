@@ -17,10 +17,10 @@ class Puzzle3
 	 * run - handle display and movement of the platform game for this level
 	 * @return boolean - success indicator (true if puzzle completed)
 	 */
-	public boolean run()
+	public boolean run(RenderWindow win)
 	{
 		// create the window
-		RenderWindow window = new RenderWindow( );
+		RenderWindow window = win;
 		//window.create(new VideoMode((7*100), Utils.PlatformGameHeight),
 		window.create(new VideoMode(Utils.PlatformGameWidth, Utils.PlatformGameHeight),
 					Title,
@@ -33,7 +33,7 @@ class Puzzle3
 		Texture loadImg = new Texture();
  		
  		try {
-			loadImg.loadFromFile(Paths.get("images\\load\\puzzle3.png"));
+			loadImg.loadFromFile(Paths.get("images\\load\\main.png"));
  		} catch(IOException ex) {
  			System.out.println(ex);
  		}
@@ -323,9 +323,7 @@ class Puzzle3
 							break;
 						}
 					case CLOSED:
-						//System.out.println("Close clicked");
-						window.close();
-						break;
+						return false;
 					case LOST_FOCUS:
 						paused = true;
 						break;
@@ -378,12 +376,9 @@ class Puzzle3
 					} catch (Exception e) {
 						System.out.println();
 					}
-					window.close();
 				}
 			}
 		}
-		if (window.isOpen())
-			window.close();
 		return finished;
 	}
 }	
