@@ -89,6 +89,9 @@ class Game
 		textIntro8.setPosition(670, Utils.PlatformGameHeight-155);
 		textIntro9.setPosition(670, Utils.PlatformGameHeight-130);
 		textIntro10.setPosition(670, Utils.PlatformGameHeight-115);
+
+		Text textShelves = new Text("COLLECTED ITEMS", sansRegular, 14);
+		textShelves.setPosition(570,5);
 		
 		// create the menu text
 		Text textPlatform1 = new Text("Level 1 - The Tree", sansRegular, 18);
@@ -180,6 +183,7 @@ class Game
 			window.draw(textIntro8);
 			window.draw(textIntro9);
 			window.draw(textIntro10);
+			window.draw(textShelves);
 			
 			window.draw(textPlatform1);
 			//if (puzzleDone[0])
