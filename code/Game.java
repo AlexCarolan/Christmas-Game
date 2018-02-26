@@ -68,16 +68,16 @@ class Game
 			ex.printStackTrace( );
 		}
 		// create the game introduction text
-		Text textIntro1 = new Text("Can you help decorate", sansRegular, 14);
-		Text textIntro2 = new Text("this room for Christmas?", sansRegular, 14);
-		Text textIntro3 = new Text("Complete each level", sansRegular, 14);
-		Text textIntro4 = new Text("to add to the room", sansRegular, 14);
-		Text textIntro5 = new Text("There are items to", sansRegular, 14);
-		Text textIntro6 = new Text("collect along the way,", sansRegular, 14);
-		Text textIntro7 = new Text("and a fun puzzle at", sansRegular, 14);
-		Text textIntro8 = new Text("the end of each level", sansRegular, 14);
-		Text textIntro9 = new Text("Be careful, there are", sansRegular, 14);
-		Text textIntro10 = new Text("hazards and pitfalls", sansRegular, 14);
+		Text textIntro1  = new Text("Can you help decorate   ", sansRegular, 14);	// DONT' Change the length of these messages
+		Text textIntro2  = new Text("this room for Christmas?", sansRegular, 14);	// without changing the replacement messages
+		Text textIntro3  = new Text("Complete each level     ", sansRegular, 14);	// just inside the while loop
+		Text textIntro4  = new Text("to add to the room      ", sansRegular, 14);
+		Text textIntro5  = new Text("There are items to      ", sansRegular, 14);
+		Text textIntro6  = new Text("collect along the way,  ", sansRegular, 14);
+		Text textIntro7  = new Text("and a fun puzzle at     ", sansRegular, 14);
+		Text textIntro8  = new Text("the end of each level   ", sansRegular, 14);
+		Text textIntro9  = new Text("Be careful, there are   ", sansRegular, 14);
+		Text textIntro10 = new Text("hazards and pitfalls    ", sansRegular, 14);
 
 		textIntro1.setPosition(670, Utils.PlatformGameHeight-280);
 		textIntro2.setPosition(670, Utils.PlatformGameHeight-265);
@@ -137,6 +137,30 @@ class Game
 			//For testing levels
 			//PlatformGame test = new PlatformGame();
 			//test.run(1, collectible[1], window);
+
+			if (levelsUnlocked >= 8)
+			{
+				textIntro1.setString("You've decorated the    ");
+				textIntro2.setString("room for Christmas      ");
+				textIntro3.setString("                        ");
+				textIntro4.setString("                        ");
+				textIntro5.setString("Play any game again to  ");
+				textIntro6.setString("collect any baubles     ");
+				textIntro7.setString("you missed              ");
+				textIntro8.setString("                        ");
+				textIntro9.setString("                        ");
+				textIntro10.setString("                        ");
+				textIntro1.setColor(Color.BLACK);
+				textIntro2.setColor(Color.BLACK);
+				textIntro3.setColor(Color.BLACK);
+				textIntro4.setColor(Color.BLACK);
+				textIntro5.setColor(Color.BLACK);
+				textIntro6.setColor(Color.BLACK);
+				textIntro7.setColor(Color.BLACK);
+				textIntro8.setColor(Color.BLACK);
+				textIntro9.setColor(Color.BLACK);
+				textIntro10.setColor(Color.BLACK);
+			}
 			
 			int gameLevel = level.getLevel();
 			room.setImage(Utils.RoomImage[gameLevel]);
