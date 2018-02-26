@@ -21,18 +21,19 @@ class Puzzle3
 	{
 		// create the window
 		RenderWindow window = new RenderWindow( );
-		window.create(new VideoMode((7*100), Utils.PlatformGameHeight),
+		//window.create(new VideoMode((7*100), Utils.PlatformGameHeight),
+		window.create(new VideoMode(Utils.PlatformGameWidth, Utils.PlatformGameHeight),
 					Title,
 					WindowStyle.CLOSE | WindowStyle.TITLEBAR);	// window can't be resized
 
 		// limit the framerate
-		window.setFramerateLimit(60);
+		window.setFramerateLimit(18);		// was 60
 		
 		// add load screen
 		Texture loadImg = new Texture();
  		
  		try {
- 		loadImg.loadFromFile(Paths.get("images\\load\\puzzle3.png"));
+			loadImg.loadFromFile(Paths.get("images\\load\\puzzle3.png"));
  		} catch(IOException ex) {
  			System.out.println(ex);
  		}
@@ -145,6 +146,10 @@ class Puzzle3
 		text2a.setPosition(20, Utils.PuzzleGameHeight+40);
 		text2b.setPosition(20, Utils.PuzzleGameHeight+60);
 		text3.setPosition(20, Utils.PuzzleGameHeight+80);
+
+		// display the Christmas Tree (as a platform) at the side of the puzzle
+		//Platform gifts = new Platform((7*100),(2*100),100,100,"images\\trafficPuzzle\\Gifts.png",false);
+		Platform tree = new Platform((6*100),0,2300,Utils.PlatformGameHeight+200,Utils.RoomImage[4],false);
 		
 		
 		boolean finished = false;
@@ -358,15 +363,18 @@ class Puzzle3
 				{
 					System.out.println("Well done, you unblocked the sleigh!");
 					window.draw(text3);
+					window.draw(tree.getPlatform());
 				}
-				
+				//else
+				//	window.draw(gifts.getPlatform());
+
 				// display what was drawn on the window
 				window.display();
 				
 				if (finished)
 				{
 					try {					// pause so player can see success message
-						Thread.sleep(1000);
+						Thread.sleep(1800);
 					} catch (Exception e) {
 						System.out.println();
 					}
