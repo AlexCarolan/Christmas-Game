@@ -8,7 +8,7 @@ Compile and run the code with the commands:
 ToDo:
 
 Platform Game
-1. add Ooooops sound when losing a life
+1. add instructions (what to pick up)
 2. consider adding moving obstacles
 3. consider adding timer
 
@@ -17,4 +17,4 @@ Puzzle Game
 Graphics - Leo
 
 Graphics - Alex
-1. delay at menu before reacting to keys?
+1. smoke animation?
