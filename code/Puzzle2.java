@@ -11,7 +11,7 @@ import org.jsfml.graphics.*;
 class Puzzle2
 {
 	/**
-	 * run - handle display and movement of the platform game for this level
+	 * run - handle tile movement and generation for picture tile puzzle
 	 * @return boolean - success indicator (true if puzzle completed)
 	 */
 	public boolean run() 
