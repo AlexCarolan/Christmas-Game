@@ -142,7 +142,7 @@ class Game
 			//test.run(1, collectible[1], window);
 			//For testing puzzles
 			//Puzzle3 test = new Puzzle3();
-			//test.run();
+			//test.run(window);
 
 			if (levelsUnlocked >= 8)
 			{
