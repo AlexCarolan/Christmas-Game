@@ -18,7 +18,8 @@ class Puzzle2
 	{
 		// create the window
 		RenderWindow window = new RenderWindow( );
-		window.create(new VideoMode(Utils.PuzzleGameWidth, Utils.PlatformGameHeight),
+		//window.create(new VideoMode(Utils.PuzzleGameWidth, Utils.PlatformGameHeight),
+		window.create(new VideoMode(Utils.PlatformGameWidth, Utils.PlatformGameHeight),
 					"Picture Puzzle, Level 2",
 					WindowStyle.CLOSE | WindowStyle.TITLEBAR);	// window can't be resized
 
@@ -29,7 +30,7 @@ class Puzzle2
 		Texture loadImg = new Texture();
  		
  		try {
- 		loadImg.loadFromFile(Paths.get("images\\load\\puzzle1.png"));
+			loadImg.loadFromFile(Paths.get("images\\load\\puzzle1.png"));
  		} catch(IOException ex) {
  			System.out.println(ex);
  		}
@@ -79,12 +80,11 @@ class Puzzle2
 		// Load the font for the instructions
 		Font sansRegular = new Font( );
 		try {
-			sansRegular.loadFromFile(
-					Paths.get("fonts\\LucidaSansRegular.ttf"));
+			sansRegular.loadFromFile(Paths.get("fonts\\LucidaSansRegular.ttf"));
 		} catch (IOException ex) {
 			ex.printStackTrace( );
 		}
-		Text text1 = new Text("Can you re-arrange the pieces to find the Christmas picture?", sansRegular, 18);
+		Text text1 = new Text("Re-arrange the pieces to reveal the Christmas picture", sansRegular, 18);
 		Text text2 = new Text("Use the arrow keys, or WASD, to move", sansRegular, 18);
 		Text text3 = new Text("Well done, you completed the picture!", sansRegular, 18);
 		text1.setColor(Color.RED);
@@ -95,10 +95,12 @@ class Puzzle2
 		text2.setPosition(50, Utils.PuzzleGameHeight+40);
 		text3.setPosition(50, Utils.PuzzleGameHeight+60);
 		
+		// display the food table (as a platform) at the side of the puzzle
+		Platform table = new Platform(330,-170,1480,Utils.PlatformGameHeight-1,Utils.RoomImage[3],false);
 
 		boolean finished = false;
 		boolean paused = false;
-		while (window.isOpen() && !finished) 
+		while (window.isOpen()) 
 		{
 			// handle keyboard/mouse events (movement can be via WASD or arrow keys)
 			for (Event event : window.pollEvents()) 
@@ -176,6 +178,17 @@ class Puzzle2
 				// fill the window with black
 				window.clear(Color.BLACK);
 
+				// check whether images are all in the right place
+				finished = true;
+				for (int i = 0; i < 3; i++)
+					if (finished)
+						for (int j = 0; j < 3; j++)
+							if (tiles[i][j].getPicture() != endTiles[i][j].getPicture())
+								finished = false;
+
+				if (finished)
+					window.draw(table.getPlatform());
+
 				// add all objects onto the window
 				for (int i = 0; i < 3; i++)
 				{
@@ -185,18 +198,9 @@ class Puzzle2
 					}
 				}
 
-				// add instructions
+				// add instructions onto the window
 				window.draw(text1);
 				window.draw(text2);
-
-				// check whether images are all in the right place
-				finished = true;
-				for (int i = 0; i < 3; i++)
-					if (finished)
-						for (int j = 0; j < 3; j++)
-							if (tiles[i][j].getPicture() != endTiles[i][j].getPicture())
-								finished = false;
-
 				if (finished)
 				{
 					System.out.println("Well done, you completed the picture!");
@@ -209,11 +213,12 @@ class Puzzle2
 				if (finished)
 				{
 					try {					// pause so player can see success message
-						Thread.sleep(1000);
+						Thread.sleep(1800);
 					} catch (Exception e) {
 						System.out.println();
 					}
 					window.close();
+					break;
 				}
 			}
 		}
