@@ -137,9 +137,12 @@ class Game
 		boolean paused = false;
 		while (window.isOpen())
 		{
-			//For testing levels
+			//For testing platform levels
 			//PlatformGame test = new PlatformGame();
 			//test.run(1, collectible[1], window);
+			//For testing puzzles
+			//Puzzle3 test = new Puzzle3();
+			//test.run();
 
 			if (levelsUnlocked >= 8)
 			{
