@@ -297,6 +297,7 @@ class Game
 						levelmusic.pause();
 						platGame = null;
 						updatePosition();
+						newWindow(window);
 					}
 					else if (currentPos == 2)
 					{
@@ -311,6 +312,7 @@ class Game
 						updatePosition();
 						music.play();
 						levelmusic.pause();
+						newWindow(window);
 					}
 					else if (currentPos == 3)
 					{
@@ -331,6 +333,7 @@ class Game
 						levelmusic.pause();
 						platGame = null;
 						updatePosition();
+						newWindow(window);
 					}
 					else if (currentPos == 4)
 					{
@@ -345,6 +348,7 @@ class Game
 						updatePosition();
 						music.play();
 						levelmusic.pause();
+						newWindow(window);
 					}
 					else if (currentPos == 5)
 					{
@@ -365,6 +369,7 @@ class Game
 						levelmusic.pause();
 						platGame = null;
 						updatePosition();
+						newWindow(window);
 					}
 					else if (currentPos == 6)
 					{
@@ -379,6 +384,7 @@ class Game
 						updatePosition();
 						music.play();
 						levelmusic.pause();
+						newWindow(window);
 					}
 					else if (currentPos == 7)
 					{
@@ -398,6 +404,7 @@ class Game
 						levelmusic.pause();
 						platGame = null;
 						updatePosition();
+						newWindow(window);
 					}
 					else if (currentPos == 8)
 					{
@@ -412,6 +419,7 @@ class Game
 
 						music.play();
 						levelmusic.pause();
+						newWindow(window);
 					}
 				}
 			}
@@ -436,10 +444,20 @@ class Game
 	}
 	
 	// Updates the position of the selector
-	public static void updatePosition()
+	private static void updatePosition()
 	{
 		currentPos = levelsUnlocked;
 		if (levelsUnlocked >= 8)
 			currentPos = 1;
 	}
+	
+	// updates winodw after switch
+	private static void newWindow(RenderWindow window)
+	{
+		window.create(new VideoMode(Utils.PlatformGameWidth, Utils.PlatformGameHeight),
+				"Christmas Game Menu",
+				WindowStyle.CLOSE | WindowStyle.TITLEBAR);
+	}
+	
+	
 }
